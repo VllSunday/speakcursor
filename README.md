@@ -93,6 +93,15 @@ The clipboard contents are saved and restored afterwards.
 If some app understands neither shortcut, switch to "Type text" mode in the settings — it emulates
 keystrokes, works everywhere and never touches the clipboard, but is slower for long text.
 
+## Freeing memory when idle
+
+The `large-v3` model holds about 3 GB of VRAM the whole time the app sits in the tray, which is
+annoying when the GPU is needed for something else. "Unload model from memory" in the settings
+frees it after 5, 10 or 15 minutes without dictation; "Never" (the default) keeps it loaded.
+
+The trade-off: the first dictation after an unload takes a few seconds longer, because the model
+is read from disk again. Everything after that is as fast as usual.
+
 ## Build an .exe
 
 ```powershell

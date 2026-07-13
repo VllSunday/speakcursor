@@ -2,8 +2,9 @@ import ctypes
 import logging
 import sys
 import threading
+import time
 
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, QTimer, Signal
 from PySide6.QtWidgets import QApplication
 
 import audio
@@ -16,6 +17,7 @@ import whisper_service
 from tray import Tray
 
 ERROR_ALREADY_EXISTS = 183
+IDLE_CHECK_INTERVAL = 30_000
 
 
 class Bridge(QObject):
@@ -27,6 +29,7 @@ class App:
     def __init__(self):
         self.busy = False
         self.smart = False
+        self.last_used = time.time()
         self.bridge = Bridge()
         self.tray = Tray(self.restart_hotkeys, self.quit)
         self.bridge.state.connect(self.tray.set_state)
@@ -34,11 +37,24 @@ class App:
         self.restart_hotkeys()
         threading.Thread(target=self.preload_model, daemon=True).start()
 
+        self.idle_timer = QTimer()
+        self.idle_timer.timeout.connect(self.unload_if_idle)
+        self.idle_timer.start(IDLE_CHECK_INTERVAL)
+
     def preload_model(self):
         try:
             whisper_service.load(settings.get("whisper_model"))
         except Exception:
             logging.exception("Не удалось загрузить модель Whisper")
+
+    def unload_if_idle(self):
+        # модель занимает несколько гигабайт видеопамяти, в простое её можно освободить
+        minutes = settings.get("unload_after")
+        if not minutes or self.busy or not whisper_service.is_loaded():
+            return
+        if time.time() - self.last_used < minutes * 60:
+            return
+        threading.Thread(target=whisper_service.unload, daemon=True).start()
 
     def restart_hotkeys(self):
         hotkeys.start(settings.get("hotkey"), self.on_press, self.on_release)
@@ -82,6 +98,7 @@ class App:
             logging.exception("Ошибка обработки записи")
         finally:
             self.busy = False
+            self.last_used = time.time()
             self.bridge.state.emit("idle")
 
     def quit(self):

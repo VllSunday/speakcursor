@@ -39,6 +39,13 @@ PASTE_MODES = {
     "Печатать текст (работает везде)": "type",
 }
 
+UNLOAD_OPTIONS = {
+    "Никогда": 0,
+    "Через 5 минут": 5,
+    "Через 10 минут": 10,
+    "Через 15 минут": 15,
+}
+
 PREVIEW_LENGTH = 50
 
 
@@ -91,6 +98,12 @@ class SettingsDialog(QDialog):
             if code == settings.get("paste_mode"):
                 self.paste_mode.setCurrentText(label)
 
+        self.unload_after = QComboBox()
+        self.unload_after.addItems(UNLOAD_OPTIONS.keys())
+        for label, minutes in UNLOAD_OPTIONS.items():
+            if minutes == settings.get("unload_after"):
+                self.unload_after.setCurrentText(label)
+
         self.use_gpt = QCheckBox("Обрабатывать текст через GPT")
         self.use_gpt.setChecked(settings.get("use_gpt"))
 
@@ -108,6 +121,7 @@ class SettingsDialog(QDialog):
         layout.addRow("Модель Whisper:", self.model)
         layout.addRow("Модель GPT:", self.gpt_model)
         layout.addRow("Вставка:", self.paste_mode)
+        layout.addRow("Выгружать модель из памяти:", self.unload_after)
         layout.addRow(self.use_gpt)
         layout.addRow(self.autostart)
         layout.addRow(buttons)
@@ -119,6 +133,7 @@ class SettingsDialog(QDialog):
         settings.set("whisper_model", self.model.currentText())
         settings.set("gpt_model", self.gpt_model.currentText().strip())
         settings.set("paste_mode", PASTE_MODES[self.paste_mode.currentText()])
+        settings.set("unload_after", UNLOAD_OPTIONS[self.unload_after.currentText()])
         settings.set("use_gpt", self.use_gpt.isChecked())
         settings.set("autostart", self.autostart.isChecked())
         settings.save()
