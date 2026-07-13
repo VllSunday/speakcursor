@@ -1,0 +1,11 @@
+faster-whisper
+sounddevice
+keyboard
+pyperclip
+openai
+PySide6
+
+# Только для распознавания на видеокарте NVIDIA (~1.3 ГБ).
+# Без видеокарты эти два пакета можно не ставить — приложение перейдёт на CPU.
+nvidia-cublas-cu12
+nvidia-cudnn-cu12
