@@ -1,100 +1,123 @@
-# Голосовой ввод
+# speakcursor
 
-Фоновая утилита для Windows: удерживаешь клавишу — говоришь — текст появляется там, где курсор.
-Распознавание работает локально, без интернета.
+Hold a key, speak, release — the text appears wherever your cursor is.
+Speech recognition runs locally, no internet required.
 
-- **F8** (удерживать) — обычная диктовка: распознать → исправить → вставить.
-- **Shift + F8** — умная диктовка: поток мыслей превращается в структурированный Markdown
-  (ТЗ, README, заметки).
-- Иконка в трее: серая — ожидание, красная — запись, оранжевая — обработка.
-- Меню трея: История (последние 20 распознаваний, клик — вставить повторно), Настройки,
-  О программе, Выход.
+[Русская версия](README.ru.md)
 
-Окон у приложения нет — только иконка в трее и диалог настроек.
+- **Hold F8** — plain dictation: recognize, fix, paste.
+- **Shift + F8** — smart dictation: a stream of thought becomes a structured Markdown
+  document (specs, notes, README drafts).
+- Tray icon: grey means idle, red means recording, orange means processing.
+- Tray menu: History (last 20 transcripts, click to paste again), Settings, About, Exit.
 
-## Требования
+The app has no main window — only a tray icon and a settings dialog.
+
+## Smart dictation
+
+The feature that sets this apart from other Whisper dictation tools. Hold Shift+F8, think out
+loud, and the rambling gets turned into a clean document instead of a wall of text.
+
+You say:
+
+> so basically we need a settings screen where the user can put in the api key and also pick a
+> model and uh also there should be a hotkey field and it should save automatically and yeah
+> the autostart checkbox too
+
+You get:
+
+```markdown
+## Settings screen
+
+- API key input
+- Model selection
+- Hotkey field
+- Autostart checkbox
+
+Settings are saved automatically.
+```
+
+## Requirements
 
 - Windows 10/11, Python 3.12
-- Микрофон
-- Видеокарта NVIDIA — желательно, но не обязательна
+- A microphone
+- NVIDIA GPU — recommended, but not required
 
-С видеокартой (проверено на RTX 5070 Ti) модель `large-v3` распознаёт ~11 секунд речи за
-секунду. Без видеокарты приложение работает на CPU, но `large-v3` будет ощутимо медленным —
-выберите в настройках модель поменьше (`small` или `base`).
+On a GPU (tested on an RTX 5070 Ti) the `large-v3` model transcribes 11 seconds of speech in
+about one second. Without a GPU the app falls back to CPU, where `large-v3` is noticeably slow —
+pick a smaller model (`small` or `base`) in the settings.
 
-## Установка
+## Install
 
 ```powershell
-git clone <репозиторий>
-cd voice-input
+git clone https://github.com/VllSunday/speakcursor.git
+cd speakcursor
 python -m venv .venv
 .venv\Scripts\pip install -r requirements.txt
 .venv\Scripts\pythonw.exe main.py
 ```
 
-При первом запуске скачивается модель Whisper (`large-v3` — около 3 ГБ) в кэш HuggingFace.
-Пока она грузится, иконка в трее уже есть, но распознавание начнёт работать через ~15 секунд.
+The first run downloads the Whisper model (`large-v3` is about 3 GB) into the HuggingFace cache.
+The tray icon shows up immediately, but recognition only starts working after ~15 seconds.
 
-## Постобработка через GPT (по желанию)
+## Optional GPT cleanup
 
-После распознавания текст можно прогнать через OpenAI, чтобы поправить пунктуацию и неверно
-распознанные технические термины (Whisper любит выдавать «УИСПЕР» вместо «Whisper»).
+Raw Whisper output can mangle technical terms — it happily turns "Whisper" into something else
+entirely. Sending the transcript through OpenAI fixes terms, grammar and punctuation.
 
-Вставьте ключ в Настройках или задайте переменную окружения `OPENAI_API_KEY`.
-Модель — `gpt-5-nano`, расход на одну диктовку минимальный.
+Paste an API key into Settings, or set the `OPENAI_API_KEY` environment variable. The model is
+configurable (`gpt-5-nano`, `gpt-5-mini`, `gpt-4.1-mini`, `gpt-4o-mini`, or anything you type in).
+Cost per dictation is negligible.
 
-Если ключа нет или галка «Обрабатывать текст через GPT» снята, вставляется чистый результат
-Whisper и никакие запросы наружу не уходят.
+Without a key — or with the "Use GPT" checkbox off — the raw Whisper text is pasted and nothing
+ever leaves your machine.
 
-## Права администратора
+## Administrator rights
 
-Если вы диктуете в окно, запущенное от имени администратора (например, терминал Warp с
-правами админа, редактор реестра, диспетчер задач), то утилита тоже должна работать с правами
-администратора. Windows (механизм UIPI) запрещает обычному процессу отправлять ввод в
-привилегированные окна — текст просто не вставится.
+If you dictate into a window that runs as administrator (an elevated terminal, Registry Editor,
+Task Manager), the app has to run as administrator too. Windows blocks input sent from a normal
+process into an elevated window, so the text simply will not paste.
 
-Галка «Запускать вместе с Windows» создаёт задачу в Планировщике с наивысшими правами: она
-стартует при входе в систему молча, без запроса UAC. Чтобы её создать, включите галку,
-запустив приложение от имени администратора.
+The "Start with Windows" checkbox creates a Scheduled Task with highest privileges: it starts
+silently at logon with no UAC prompt. To create it, enable the checkbox while running the app as
+administrator.
 
-Если привилегированными окнами вы не пользуетесь, обычного запуска достаточно.
+If you never dictate into elevated windows, a normal launch is fine.
 
-## Вставка текста
+## Pasting
 
-По умолчанию режим «Авто»: в терминалах (Warp, Windows Terminal, cmd, PowerShell, WezTerm,
-Alacritty…) используется Ctrl+Shift+V, потому что Ctrl+V там занят самим терминалом, а в
-остальных приложениях — обычный Ctrl+V. Содержимое буфера обмена сохраняется и
-восстанавливается после вставки.
+Default mode is "Auto": terminals (Warp, Windows Terminal, cmd, PowerShell, WezTerm, Alacritty…)
+get Ctrl+Shift+V, because Ctrl+V is taken by the terminal itself; everything else gets Ctrl+V.
+The clipboard contents are saved and restored afterwards.
 
-Если попалось приложение, которое не понимает ни одну комбинацию, в настройках есть режим
-«Печатать текст» — он эмулирует набор с клавиатуры, работает везде и не трогает буфер вообще,
-но для длинных текстов заметно медленнее.
+If some app understands neither shortcut, switch to "Type text" mode in the settings — it emulates
+keystrokes, works everywhere and never touches the clipboard, but is slower for long text.
 
-## Сборка .exe
+## Build an .exe
 
 ```powershell
 .venv\Scripts\pip install pyinstaller
 .venv\Scripts\pyinstaller build.spec
 ```
 
-Готовый `dist\VoiceInput\VoiceInput.exe` запускается без консоли. Сборка весит около 3 ГБ —
-почти всё это библиотеки CUDA (cuDNN и cuBLAS).
+`dist\VoiceInput\VoiceInput.exe` runs without a console window. The build is about 3 GB, almost
+entirely CUDA libraries (cuDNN and cuBLAS).
 
-## Где лежат данные
+## Data location
 
-`%APPDATA%\VoiceInput\` — настройки (`settings.json`), история (`history.json`) и лог ошибок
-(`error.log`). В репозиторий они не попадают.
+`%APPDATA%\VoiceInput\` holds settings (`settings.json`), history (`history.json`) and the error
+log (`error.log`).
 
-## Из чего состоит
+## Layout
 
-| Файл | Назначение |
+| File | Purpose |
 |---|---|
-| `main.py` | точка входа, связывает всё вместе |
-| `tray.py` | иконка в трее, меню, диалог настроек |
-| `hotkeys.py` | удержание горячей клавиши |
-| `audio.py` | запись с микрофона |
-| `whisper_service.py` | локальное распознавание (faster-whisper) |
-| `gpt_formatter.py` | постобработка текста через OpenAI |
-| `clipboard.py` | вставка в активное окно |
-| `settings.py` | настройки и автозапуск |
-| `history.py` | последние 20 распознаваний |
+| `main.py` | entry point, wires everything together |
+| `tray.py` | tray icon, menu, settings dialog |
+| `hotkeys.py` | hotkey hold detection |
+| `audio.py` | microphone recording |
+| `whisper_service.py` | local recognition (faster-whisper) |
+| `gpt_formatter.py` | optional OpenAI cleanup |
+| `clipboard.py` | pasting into the active window |
+| `settings.py` | settings and autostart |
+| `history.py` | last 20 transcripts |
