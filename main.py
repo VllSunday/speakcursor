@@ -72,7 +72,9 @@ class App:
             if not text:
                 return
             if settings.get("use_gpt"):
-                text = gpt_formatter.format_text(text, self.smart, settings.get("api_key"))
+                text = gpt_formatter.format_text(
+                    text, self.smart, settings.get("api_key"), settings.get("gpt_model")
+                )
             history.add(text)
             self.bridge.history_updated.emit()
             clipboard.paste(text, settings.get("paste_mode"))

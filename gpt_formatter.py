@@ -39,17 +39,21 @@ def format_text(text, smart, api_key, model="gpt-5-nano"):
     global _client
     if not api_key or not text:
         return text
+    model = model or "gpt-5-nano"
 
     try:
         if _client is None:
             from openai import OpenAI
 
             _client = OpenAI(api_key=api_key)
+        extra = {}
+        if model.startswith("gpt-5"):
+            extra["reasoning"] = {"effort": "minimal"}  # другие модели такой параметр не принимают
         response = _client.responses.create(
             model=model,
             instructions=PROMPT_SMART if smart else PROMPT_NORMAL,
             input=f"<text>\n{text}\n</text>",
-            reasoning={"effort": "minimal"},
+            **extra,
         )
         result = response.output_text.strip()
     except Exception:

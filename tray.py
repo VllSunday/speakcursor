@@ -30,6 +30,7 @@ STATE_TEXTS = {
 
 HOTKEYS = ["f8", "right ctrl"]
 MODELS = ["large-v3", "medium", "small", "base", "tiny"]
+GPT_MODELS = ["gpt-5-nano", "gpt-5-mini", "gpt-4.1-mini", "gpt-4o-mini"]
 LANGUAGES = {"Авто": "auto", "Русский": "ru"}
 PASTE_MODES = {
     "Авто (терминалы — Ctrl+Shift+V)": "auto",
@@ -79,6 +80,11 @@ class SettingsDialog(QDialog):
         self.model.addItems(MODELS)
         self.model.setCurrentText(settings.get("whisper_model"))
 
+        self.gpt_model = QComboBox()
+        self.gpt_model.setEditable(True)
+        self.gpt_model.addItems(GPT_MODELS)
+        self.gpt_model.setCurrentText(settings.get("gpt_model"))
+
         self.paste_mode = QComboBox()
         self.paste_mode.addItems(PASTE_MODES.keys())
         for label, code in PASTE_MODES.items():
@@ -100,6 +106,7 @@ class SettingsDialog(QDialog):
         layout.addRow("Горячая клавиша:", self.hotkey)
         layout.addRow("Язык:", self.language)
         layout.addRow("Модель Whisper:", self.model)
+        layout.addRow("Модель GPT:", self.gpt_model)
         layout.addRow("Вставка:", self.paste_mode)
         layout.addRow(self.use_gpt)
         layout.addRow(self.autostart)
@@ -110,6 +117,7 @@ class SettingsDialog(QDialog):
         settings.set("hotkey", self.hotkey.currentText())
         settings.set("language", LANGUAGES[self.language.currentText()])
         settings.set("whisper_model", self.model.currentText())
+        settings.set("gpt_model", self.gpt_model.currentText().strip())
         settings.set("paste_mode", PASTE_MODES[self.paste_mode.currentText()])
         settings.set("use_gpt", self.use_gpt.isChecked())
         settings.set("autostart", self.autostart.isChecked())

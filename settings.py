@@ -17,6 +17,7 @@ DEFAULTS = {
     "use_gpt": True,
     "autostart": False,
     "whisper_model": "large-v3",
+    "gpt_model": "gpt-5-nano",
     "paste_mode": "auto",
 }
 
