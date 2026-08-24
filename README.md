@@ -1,5 +1,9 @@
 # speakcursor
 
+<p align="center">
+  <img src="assets/demo.gif" alt="Hold F8, speak, release - the text appears at the cursor" width="820">
+</p>
+
 Hold a key, speak, release — the text appears wherever your cursor is.
 Speech recognition runs locally, no internet required.
 
