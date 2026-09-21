@@ -11,7 +11,11 @@
 </div>
 
 <p align="center">
-  <img src="assets/demo.gif" alt="Hold F8, speak, release — text appears at the cursor" width="820">
+  <img src="assets/demo.gif" alt="Hold F8, speak, release — text appears at the cursor" width="900">
+</p>
+
+<p align="center">
+  <sub>16 seconds, silent preview — <a href="assets/demo.mp4">full version with sound</a></sub>
 </p>
 
 > **Speak, release, keep working.** SpeakCursor is a Windows voice typing app that turns speech into text at the active cursor. Local Whisper speech-to-text works without an internet connection; GPT cleanup is optional.
