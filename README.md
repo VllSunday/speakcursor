@@ -1,19 +1,32 @@
-# speakcursor
+<div align="center">
+
+# SpeakCursor
+
+### Offline voice typing and push-to-talk dictation for Windows
+
+`Windows 10/11` &nbsp;·&nbsp; `Python` &nbsp;·&nbsp; `Whisper / faster-whisper` &nbsp;·&nbsp; `System tray`
+
+[Quick start](#quick-start) · [Features](#features) · [Smart dictation](#smart-dictation) · [Privacy](#privacy) · [Build an exe](#build-an-exe)
+
+</div>
 
 <p align="center">
-  <img src="assets/demo.gif" alt="Hold F8, speak, release - the text appears at the cursor" width="820">
+  <img src="assets/demo.gif" alt="Hold F8, speak, release — text appears at the cursor" width="820">
 </p>
 
-Hold a key, speak, release — the text appears wherever your cursor is.
-Speech recognition runs locally, no internet required.
+> **Speak, release, keep working.** SpeakCursor is a Windows voice typing app that turns speech into text at the active cursor. Local Whisper speech-to-text works without an internet connection; GPT cleanup is optional.
 
 [Русская версия](README.ru.md)
 
-- **Hold F8** — plain dictation: recognize, fix, paste.
-- **Shift + F8** — smart dictation: a stream of thought becomes a structured Markdown
-  document (specs, notes, README drafts).
-- Tray icon: grey means idle, red means recording, orange means processing.
-- Tray menu: History (last 20 transcripts, click to paste again), Settings, About, Exit.
+## Features
+
+| Feature                          | What it does                                                                         |
+| -------------------------------- | ------------------------------------------------------------------------------------ |
+| **F8 — dictation**               | Hold the key, speak, release: recognize, optionally clean up, and paste              |
+| **Shift + F8 — smart dictation** | Turn a stream of thought into structured Markdown for specs, notes, or README drafts |
+| **Local by default**             | Whisper transcription stays on the computer; no internet is required                 |
+| **Works where you type**         | Pastes into apps and terminals, then restores the previous clipboard contents        |
+| **Lives in the tray**            | Recording and processing state, settings, startup, and the last 20 transcripts       |
 
 The app has no main window — only a tray icon and a settings dialog.
 
@@ -51,7 +64,7 @@ On a GPU (tested on an RTX 5070 Ti) the `large-v3` model transcribes 11 seconds 
 about one second. Without a GPU the app falls back to CPU, where `large-v3` is noticeably slow —
 pick a smaller model (`small` or `base`) in the settings.
 
-## Install
+## Quick start
 
 ```powershell
 git clone https://github.com/VllSunday/speakcursor.git
@@ -63,6 +76,10 @@ python -m venv .venv
 
 The first run downloads the Whisper model (`large-v3` is about 3 GB) into the HuggingFace cache.
 The tray icon shows up immediately, but recognition only starts working after ~15 seconds.
+
+## Privacy
+
+Without an API key — or with the **Use GPT** checkbox off — the app pastes raw Whisper text and no transcription leaves the computer.
 
 ## Optional GPT cleanup
 
@@ -123,14 +140,14 @@ log (`error.log`).
 
 ## Layout
 
-| File | Purpose |
-|---|---|
-| `main.py` | entry point, wires everything together |
-| `tray.py` | tray icon, menu, settings dialog |
-| `hotkeys.py` | hotkey hold detection |
-| `audio.py` | microphone recording |
-| `whisper_service.py` | local recognition (faster-whisper) |
-| `gpt_formatter.py` | optional OpenAI cleanup |
-| `clipboard.py` | pasting into the active window |
-| `settings.py` | settings and autostart |
-| `history.py` | last 20 transcripts |
+| File                 | Purpose                                |
+| -------------------- | -------------------------------------- |
+| `main.py`            | entry point, wires everything together |
+| `tray.py`            | tray icon, menu, settings dialog       |
+| `hotkeys.py`         | hotkey hold detection                  |
+| `audio.py`           | microphone recording                   |
+| `whisper_service.py` | local recognition (faster-whisper)     |
+| `gpt_formatter.py`   | optional OpenAI cleanup                |
+| `clipboard.py`       | pasting into the active window         |
+| `settings.py`        | settings and autostart                 |
+| `history.py`         | last 20 transcripts                    |
