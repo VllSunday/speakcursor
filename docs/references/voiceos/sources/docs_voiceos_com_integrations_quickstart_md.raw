@@ -1,0 +1,113 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Quickstart
+
+> Build your first integration in about three minutes — no code, right inside VoiceOS.
+
+Every VoiceOS integration — Gmail, Google Calendar, Linear, and the ones you
+make — speaks the same visual language: **native cards in the notch**.
+
+<Frame caption="Gmail and Google Calendar answering in the notch. Your integration gets this exact surface.">
+  <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/gallery-official.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=4d472003dfdf108cc1f40833ec780c93" alt="Two VoiceOS notch cards side by side: a Gmail inbox card listing three emails with a green New badge, and a Google Calendar card listing the day's three events with times." width="3808" height="1278" data-path="images/integrations/gallery-official.png" />
+</Frame>
+
+You'll build one of your own without leaving the app. No code, no terminal.
+
+<Steps>
+  <Step title="Open the Studio">
+    **Integrations → Custom tab → Build anything.**
+
+    <Frame caption="Your integrations live on the Custom tab; Build anything starts a new one.">
+      <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-custom-tab.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=e5e589386102c49278135d095a63ec0f" alt="The VoiceOS Integrations page on the Custom tab, showing the Build anything hero card and the My Integrations list." width="2560" height="1664" data-path="images/integrations/studio-custom-tab.png" />
+    </Frame>
+  </Step>
+
+  <Step title="Say what you want">
+    Describe it the way you'd brief a person: what to fetch or track, what each
+    action does, what you want to see.
+
+    <Frame caption="One sentence is enough. You can also paste an MCP server URL to connect one directly.">
+      <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-composer.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=24a1c06404521151ec9c7f7cb8408d1f" alt="The Studio composer titled 'Tell VoiceOS what to build' with the brief 'Show me the Hacker News front page, and read the top story aloud with ElevenLabs.' typed in, above two template cards." width="2560" height="1664" data-path="images/integrations/studio-composer.png" />
+    </Frame>
+  </Step>
+
+  <Step title="Answer the quick decisions">
+    VoiceOS researches the services involved and asks up to four multiple-choice
+    questions — data source, API keys, scope. The recommended answer is always
+    first, and **Skip — build as described** is always available.
+
+    <Frame caption="The Studio caught that reading aloud needs an ElevenLabs key, and asks up front — not after the build.">
+      <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-plan.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=5bf69f006bdea70f2753e74008d67268" alt="The Quick decisions screen with two answered questions: an API key question with 'I have an ElevenLabs API key' selected, and a scope question with 'Read the front page' selected, above a Start building button." width="2560" height="1664" data-path="images/integrations/studio-plan.png" />
+    </Frame>
+  </Step>
+
+  <Step title="Watch it build">
+    A couple of minutes: it plans, generates, validates itself, installs a **live
+    draft on your Mac**, draws an icon, and design-reviews its own cards.
+
+    <Frame caption="Left: your integration taking shape. Right: a live notch preview.">
+      <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-build.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=0444328fa061f70c10328f3616fa0811" alt="The Studio build view for a generated Hacker News integration: Required fields marked 2 Missing, Tools with per-action 'asks first' toggles, logs reading 'Reviewing the design…', and a notch preview pane with tap-to-preview suggestions." width="2560" height="1664" data-path="images/integrations/studio-build.png" />
+    </Frame>
+
+    <Tip>
+      Closing the window doesn't stop the build. A progress row stays in My
+      Integrations — reopen it any time.
+    </Tip>
+  </Step>
+
+  <Step title="Test-drive it">
+    The preview runs **real agent turns** against your draft. Tap a suggestion chip
+    or type an utterance; acting tools park on their confirmation card first,
+    exactly as they will live.
+
+    <Frame caption="Your integration answering in the preview — a real card from a real tool run.">
+      <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/pattern-lookup.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=b6cca6c139b069d5a09d47b39b224cd8" alt="A Hacker News notch card with a globe icon, 'Front page' trailing label, and three story rows with authors, comment counts, and point scores." width="1952" height="1078" data-path="images/integrations/pattern-lookup.png" />
+    </Frame>
+
+    Two things worth doing before you save:
+
+    * **Fill in Required fields** (that ElevenLabs API key). The draft relaunches
+      with your values, so the full flow is testable immediately.
+    * **Click each row in Tools** to stage that action's card, and use the **Asks
+      first** toggles to decide which actions confirm before running.
+  </Step>
+
+  <Step title="Save — then just talk">
+    Hit **Save**. It lands in **My Integrations**, and from the next conversation
+    on the agent can use it anywhere: *"what's on Hacker News?"* → card in the
+    notch, story read aloud in Rachel's voice.
+  </Step>
+</Steps>
+
+## Changing it later
+
+| | |
+| - | - |
+| **Refine field** | Plain English change requests — *"add a search action"*. |
+| **Edit with AI** | Reopens any Studio-built integration as a draft. |
+| **Keep building** | It's a real folder on disk — hand it to Cursor or Claude. |
+
+## Where next
+
+<CardGroup cols={2}>
+  <Card title="The Studio, in depth" icon="sparkles" href="/integrations/build-with-ai">
+    Scoped refines, brand-matched design, icon generation, developer handoff.
+  </Card>
+
+  <Card title="Result cards" icon="layout-grid" href="/integrations/result-cards">
+    The block language behind every card you just saw.
+  </Card>
+
+  <Card title="Build with code" icon="code" href="/integrations/build-with-code">
+    The same integration by hand — full control over tools and cards.
+  </Card>
+
+  <Card title="How it works" icon="cpu" href="/integrations/how-it-works">
+    The architecture: manifest, tools, confirmations, and the notch.
+  </Card>
+</CardGroup>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

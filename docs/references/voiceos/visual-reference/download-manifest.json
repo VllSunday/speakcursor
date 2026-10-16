@@ -1,0 +1,2679 @@
+[
+  {
+    "url": "https://www.voiceos.com/blogs/guides/editorial/voice-agent-workflows-smoked-glass.webp",
+    "status": "downloaded",
+    "file": "images/530f5047-voice-agent-workflows-smoked-glass.webp",
+    "bytes": 88864,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "A smoked-glass speech bubble holds a flowing multicolor wave, connected to six quiet silver action tiles on a rich black surface.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/posts/voiceos-email-workflow/email-draft.png",
+    "status": "downloaded",
+    "file": "screenshots/379acd6c-email-draft.png",
+    "bytes": 2289247,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "Existing VoiceOS email demonstration with a composed message and recipient visible for review.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/workflows/voiceos-slack.png",
+    "status": "downloaded",
+    "file": "screenshots/ad1a7f65-voiceos-slack.png",
+    "bytes": 4256675,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "VoiceOS shows a Slack message draft to Jonah: “Hey Jonah, I’m gonna be late,” with a send button.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/workflows/voiceos-apple-notes.png",
+    "status": "downloaded",
+    "file": "screenshots/afbfa790-voiceos-apple-notes.png",
+    "bytes": 5785995,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "VoiceOS previews a Shopping List note with visible bullets for eggs, tomatoes, and bread, plus a Create Note button.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/workflows/voiceos-reminders.png",
+    "status": "downloaded",
+    "file": "screenshots/db1a2312-voiceos-reminders.png",
+    "bytes": 5901510,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "VoiceOS previews an Apple Reminder titled “Join the meeting” for tomorrow at 1:30 PM, with an Add Reminder button.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/workflows/voiceos-notion.png",
+    "status": "downloaded",
+    "file": "screenshots/31d03054-voiceos-notion.png",
+    "bytes": 6095947,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "VoiceOS is working on a request to change a task in a Notion knowledge-base table to urgent.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/workflows/voiceos-linear.png",
+    "status": "downloaded",
+    "file": "screenshots/ee81a2f8-voiceos-linear.png",
+    "bytes": 5575404,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "VoiceOS previews a Linear issue from attached screen context, showing an expected-behavior description, Todo status, High priority, assignee kai, team VoiceOS, and a Create button.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/workflows/voiceos-finder.png",
+    "status": "downloaded",
+    "file": "screenshots/025d2b2d-voiceos-finder.png",
+    "bytes": 6144186,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "VoiceOS responds to “find the VoiceOS demo video” with thirteen matching files and video thumbnails from Documents and Downloads.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/actions.svg",
+    "status": "downloaded",
+    "file": "icons/cd618ec2-actions.svg",
+    "bytes": 2839,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-agent-workflows.raw",
+        "alt": "Follow a voice request through the correct app, result review, and task completion.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/notion.webp",
+    "status": "downloaded",
+    "file": "icons/186b5539-notion.webp",
+    "bytes": 3956,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_notion.raw",
+        "alt": "Notion logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-notes.raw",
+        "alt": "Notion logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Notion logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_obsidian.raw",
+        "alt": "Notion logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/apple-notes.webp",
+    "status": "downloaded",
+    "file": "icons/153a716a-apple-notes.webp",
+    "bytes": 2720,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_notion.raw",
+        "alt": "Notes logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-notes.raw",
+        "alt": "Notes logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Notes logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_obsidian.raw",
+        "alt": "Notes logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/obsidian.webp",
+    "status": "downloaded",
+    "file": "icons/68fa79b5-obsidian.webp",
+    "bytes": 4184,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_notion.raw",
+        "alt": "Obsidian logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-notes.raw",
+        "alt": "Obsidian logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Obsidian logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_obsidian.raw",
+        "alt": "Obsidian logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/imessage.webp",
+    "status": "downloaded",
+    "file": "icons/d0196bb5-imessage.webp",
+    "bytes": 4064,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_notion.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_spotify.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-notes.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-calendar.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_x.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_slack.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_imessage.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_outlook.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-calendar.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_gmail.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_obsidian.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-mail.raw",
+        "alt": "iMessage logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/linear.webp",
+    "status": "downloaded",
+    "file": "icons/b55d463f-linear.webp",
+    "bytes": 5190,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_linear.raw",
+        "alt": "Linear logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Linear logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/reminders.webp",
+    "status": "downloaded",
+    "file": "icons/4aa6a623-reminders.webp",
+    "bytes": 2898,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_linear.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_spotify.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_reminders.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_canvas.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_x.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_slack.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-maps.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_finder.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_imessage.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_claude-code.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_jira.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_codex.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-drive.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Reminders logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/finder.png",
+    "status": "downloaded",
+    "file": "icons/ab947c3e-finder.png",
+    "bytes": 8779,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_linear.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_reminders.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_canvas.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-maps.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_finder.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_claude-code.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_jira.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_codex.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-drive.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Finder logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/google-maps.png",
+    "status": "downloaded",
+    "file": "icons/227b0950-google-maps.png",
+    "bytes": 15103,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_linear.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_reminders.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_canvas.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-maps.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_finder.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_claude-code.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_jira.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_codex.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-drive.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Google Maps logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/newMail.png",
+    "status": "downloaded",
+    "file": "icons/fcfe7b51-newMail.png",
+    "bytes": 7391,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_dictation.raw",
+        "alt": "Mail app icon",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/imessageApp.webp",
+    "status": "downloaded",
+    "file": "icons/ac5b03c8-imessageApp.webp",
+    "bytes": 16078,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_dictation.raw",
+        "alt": "Messages app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Messages",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Messages",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Messages",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/notionApp.webp",
+    "status": "downloaded",
+    "file": "icons/9871eef4-notionApp.webp",
+    "bytes": 3956,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_dictation.raw",
+        "alt": "Notion app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Notion app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Notion",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Notion app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Notion",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Notion",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Notion",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/spotify.webp",
+    "status": "downloaded",
+    "file": "icons/9f3f9d62-spotify.webp",
+    "bytes": 6104,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_spotify.raw",
+        "alt": "Spotify logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Spotify logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/apple-mail.webp",
+    "status": "downloaded",
+    "file": "icons/534a5e52-apple-mail.webp",
+    "bytes": 6822,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_spotify.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-calendar.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_x.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_slack.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_imessage.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_outlook.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-calendar.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_gmail.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-mail.raw",
+        "alt": "Apple Mail logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/launch-video-poster.webp",
+    "status": "downloaded",
+    "file": "images/c44a225f-launch-video-poster.webp",
+    "bytes": 3674,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_about.raw",
+        "alt": "",
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/launch-video-1080.mp4",
+    "status": "downloaded",
+    "file": "videos/892a85a5-launch-video-1080.mp4",
+    "bytes": 3916952,
+    "category": "videos",
+    "references": [
+      {
+        "page": "www_voiceos_com_about.raw",
+        "alt": "",
+        "type": "source"
+      },
+      {
+        "page": "www_voiceos_com_about.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/jonahFounderProfile.png",
+    "status": "downloaded",
+    "file": "images/5a244cdf-jonahFounderProfile.png",
+    "bytes": 640133,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_about.raw",
+        "alt": "Portrait of Jonah Daian, Co-Founder at VoiceOS",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/kaiFounderProfile.png",
+    "status": "downloaded",
+    "file": "images/55ce996e-kaiFounderProfile.png",
+    "bytes": 1990049,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_about.raw",
+        "alt": "Portrait of Kai Brokering, Co-Founder at VoiceOS",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/skyClouds.webp",
+    "status": "downloaded",
+    "file": "images/275f28b5-skyClouds.webp",
+    "bytes": 48124,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_about.raw",
+        "alt": "Soft white clouds drifting across a blue sky",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/google-drive.webp",
+    "status": "downloaded",
+    "file": "icons/35a0fef0-google-drive.webp",
+    "bytes": 3996,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_reminders.raw",
+        "alt": "Google Drive logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-maps.raw",
+        "alt": "Google Drive logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_finder.raw",
+        "alt": "Google Drive logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_google-drive.raw",
+        "alt": "Google Drive logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Google Drive logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/canvas.webp",
+    "status": "downloaded",
+    "file": "icons/81ec4b0a-canvas.webp",
+    "bytes": 8424,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_canvas.raw",
+        "alt": "Canvas logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Canvas logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/google-calendar.png",
+    "status": "downloaded",
+    "file": "icons/bb3ea54d-google-calendar.png",
+    "bytes": 12756,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_google-calendar.raw",
+        "alt": "Google Calendar logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-calendar.raw",
+        "alt": "Google Calendar logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Google Calendar logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/apple-calendar.svg",
+    "status": "downloaded",
+    "file": "icons/8bbd2abe-apple-calendar.svg",
+    "bytes": 722,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_google-calendar.raw",
+        "alt": "Apple Calendar logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-calendar.raw",
+        "alt": "Apple Calendar logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Apple Calendar logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/circle-to-search-on-your-computer-v2.png",
+    "status": "downloaded",
+    "file": "images/1f4959a2-circle-to-search-on-your-computer-v2.png",
+    "bytes": 1484549,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_circle-to-search-on-your-computer.raw",
+        "alt": "Circle to Search, But for Your Whole Computer",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/stopScreenshotsDemo.mp4",
+    "status": "downloaded",
+    "file": "videos/7cd78dd8-stopScreenshotsDemo.mp4",
+    "bytes": 2489831,
+    "category": "videos",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_circle-to-search-on-your-computer.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_blog_circle-to-search-on-your-computer.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_circle-to-search-on-your-computer.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_how-voiceos-is-building-the-voice-operating-system.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_blog_how-voiceos-is-building-the-voice-operating-system.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_how-voiceos-is-building-the-voice-operating-system.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/stopScreenshotsDemo-poster.webp",
+    "status": "downloaded",
+    "file": "images/c6a200c2-stopScreenshotsDemo-poster.webp",
+    "bytes": 39568,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_circle-to-search-on-your-computer.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_blog_how-voiceos-is-building-the-voice-operating-system.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "",
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/agentModeLaunchVideo.mp4",
+    "status": "downloaded",
+    "file": "videos/eaec2be2-agentModeLaunchVideo.mp4",
+    "bytes": 12985778,
+    "category": "videos",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/agentModeLaunchVideo-poster.webp",
+    "status": "downloaded",
+    "file": "images/e341d35a-agentModeLaunchVideo-poster.webp",
+    "bytes": 18514,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "",
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/lens.png",
+    "status": "downloaded",
+    "file": "images/5743d1b9-lens.png",
+    "bytes": 82644,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Glass lens highlight on the VoiceOS orb",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_blog_ai-that-can-see-your-screen-and-answer-questions.raw",
+        "alt": "Glass lens highlight on the VoiceOS orb",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Glass lens highlight on the VoiceOS orb",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Decorative glass highlight",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://logos.composio.dev/api/googlecalendar",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google Calendar logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/finderApp.webp",
+    "status": "downloaded",
+    "file": "icons/d9e27cc0-finderApp.webp",
+    "bytes": 13350,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Finder app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Finder",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Finder app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Finder",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Finder",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Finder",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/googlecalendarApp.png",
+    "status": "downloaded",
+    "file": "icons/905b81ce-googlecalendarApp.png",
+    "bytes": 12756,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google Calendar app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google Calendar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google Calendar app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Google Calendar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Google Calendar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/slackApp.webp",
+    "status": "downloaded",
+    "file": "icons/80abff14-slackApp.webp",
+    "bytes": 4500,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Slack app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Slack app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Slack",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Slack app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Slack",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Slack",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/gmailApp.webp",
+    "status": "downloaded",
+    "file": "icons/c71b87f9-gmailApp.webp",
+    "bytes": 3940,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Gmail app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Gmail",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Gmail app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Gmail app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Gmail app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Gmail",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Gmail",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Gmail",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/linearApp.webp",
+    "status": "downloaded",
+    "file": "icons/0c04001a-linearApp.webp",
+    "bytes": 21062,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Linear app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Linear",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Linear",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Linear",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/googleApp.png",
+    "status": "downloaded",
+    "file": "icons/85530a15-googleApp.png",
+    "bytes": 15634,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google app icon",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/applemapsApp.webp",
+    "status": "downloaded",
+    "file": "icons/f31f772f-applemapsApp.webp",
+    "bytes": 7902,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Apple Maps app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Apple Maps",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/googleDriveApp.webp",
+    "status": "downloaded",
+    "file": "icons/145991e9-googleDriveApp.webp",
+    "bytes": 3996,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google Drive",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Google Drive",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Google Drive",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Google Drive",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/googleDocsApp.webp",
+    "status": "downloaded",
+    "file": "icons/b0464a0b-googleDocsApp.webp",
+    "bytes": 11936,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google Docs",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Google Docs app icon",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Google Docs",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Google Docs",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/remindersApp.webp",
+    "status": "downloaded",
+    "file": "icons/1064c5e1-remindersApp.webp",
+    "bytes": 3792,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Reminders",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Reminders app icon",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/obsedian.webp",
+    "status": "downloaded",
+    "file": "icons/0d233137-obsedian.webp",
+    "bytes": 14684,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Obsidian",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Obsidian",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Obsidian",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/applecalendarApp.webp",
+    "status": "downloaded",
+    "file": "icons/ddd2497c-applecalendarApp.webp",
+    "bytes": 3886,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "alt": "Apple Calendar app icon",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/how-voiceos-is-building-the-voice-operating-system/hero-v2.jpg",
+    "status": "downloaded",
+    "file": "images/341aee66-hero-v2.jpg",
+    "bytes": 65093,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_how-voiceos-is-building-the-voice-operating-system.raw",
+        "alt": "How VoiceOS Is Building the Voice Operating System",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/x.webp",
+    "status": "downloaded",
+    "file": "icons/7b4c6c0c-x.webp",
+    "bytes": 1770,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_x.raw",
+        "alt": "X (Twitter) logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "X (Twitter) logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/slack.webp",
+    "status": "downloaded",
+    "file": "icons/0cd5055d-slack.webp",
+    "bytes": 4500,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_slack.raw",
+        "alt": "Slack logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_imessage.raw",
+        "alt": "Slack logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Slack logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/voiceClaude.png",
+    "status": "downloaded",
+    "file": "images/494fe060-voiceClaude.png",
+    "bytes": 100767,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-for-every-app.raw",
+        "alt": "Voice is becoming the default interface",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/VoiceOSFullLogo.png",
+    "status": "downloaded",
+    "file": "icons/2f9ddaa4-VoiceOSFullLogo.png",
+    "bytes": 9302,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_mobile.raw",
+        "alt": "VoiceOS",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/ai-that-can-see-your-screen-2026.jpg",
+    "status": "downloaded",
+    "file": "images/263202cc-ai-that-can-see-your-screen-2026.jpg",
+    "bytes": 70285,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_ai-that-can-see-your-screen-and-answer-questions.raw",
+        "alt": "AI That Can See Your Screen and Answer Questions (2026)",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/ai-that-can-see-your-screen-observing-laptop.jpg",
+    "status": "downloaded",
+    "file": "images/752c0262-ai-that-can-see-your-screen-observing-laptop.jpg",
+    "bytes": 140420,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_ai-that-can-see-your-screen-and-answer-questions.raw",
+        "alt": "VoiceOS observing what is displayed on a laptop screen",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/outlookApp.webp",
+    "status": "downloaded",
+    "file": "icons/92438950-outlookApp.webp",
+    "bytes": 16204,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_ai-that-can-see-your-screen-and-answer-questions.raw",
+        "alt": "Outlook app icon",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/kosukeBolgProfile.png",
+    "status": "downloaded",
+    "file": "images/ad452bf1-kosukeBolgProfile.png",
+    "bytes": 213033,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-input-complete-guide-2026.raw",
+        "alt": "Kosuke",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/ycLaunch.png",
+    "status": "downloaded",
+    "file": "images/99807957-ycLaunch.png",
+    "bytes": 90582,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_voice-input-complete-guide-2026.raw",
+        "alt": "The Complete Voice Input Guide 2026: Solving Every Pain Point from Punctuation to Productivity",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_blog_yc-launch.raw",
+        "alt": "VoiceOS: The Voice Operating System for Productivity",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/thumbnail.png",
+    "status": "downloaded",
+    "file": "screenshots/5ed6bdbb-thumbnail.png",
+    "bytes": 1372785,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_rewrite-edit-text-by-voice-mac-windows.raw",
+        "alt": "Voice editing: select, speak, replace—on Mac and Windows",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/docs-edit-shorter.png",
+    "status": "downloaded",
+    "file": "screenshots/811cf944-docs-edit-shorter.png",
+    "bytes": 1231030,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_rewrite-edit-text-by-voice-mac-windows.raw",
+        "alt": "VoiceOS Edit mode with selected Google Docs text and the instruction \"Can you make this shorter?\"",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/docs-edit-shorter-2.png",
+    "status": "downloaded",
+    "file": "screenshots/8c681ce5-docs-edit-shorter-2.png",
+    "bytes": 1144648,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_rewrite-edit-text-by-voice-mac-windows.raw",
+        "alt": "VoiceOS Edit mode ready on the same Google Docs selection",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/gmail-edit-more-formal.png",
+    "status": "downloaded",
+    "file": "screenshots/8abc4528-gmail-edit-more-formal.png",
+    "bytes": 1122205,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_rewrite-edit-text-by-voice-mac-windows.raw",
+        "alt": "VoiceOS Edit mode on a Gmail draft with \"Can you make this more formal?\"",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/gmail-edit-more-formal-2.png",
+    "status": "downloaded",
+    "file": "screenshots/ab2d186f-gmail-edit-more-formal-2.png",
+    "bytes": 1118105,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_rewrite-edit-text-by-voice-mac-windows.raw",
+        "alt": "VoiceOS Edit mode on the same Gmail draft after requesting a more formal rewrite",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/editorial/best-offline-dictation.webp",
+    "status": "downloaded",
+    "file": "images/7b077892-best-offline-dictation.webp",
+    "bytes": 61100,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_best-offline-dictation.raw",
+        "alt": "A closed laptop with a blue waveform and document beside a disconnected network cable.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/offline.svg",
+    "status": "downloaded",
+    "file": "icons/f3e38810-offline.svg",
+    "bytes": 2877,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_best-offline-dictation.raw",
+        "alt": "A local speech-to-text pipeline: microphone, local model, transcript, and review.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/guides/editorial/offline-test.svg",
+    "status": "downloaded",
+    "file": "icons/7b8dd83b-offline-test.svg",
+    "bytes": 2456,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_best-offline-dictation.raw",
+        "alt": "Prepare the model online, disconnect Wi-Fi and Ethernet, then record a new sample and check the text in a local app.",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/hands-free-voice-control-mac-windows.png",
+    "status": "downloaded",
+    "file": "images/2698f84d-hands-free-voice-control-mac-windows.png",
+    "bytes": 161990,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_hands-free-voice-control-mac-windows.raw",
+        "alt": "Hands-Free Voice Control for Mac and Windows: How to Control Your Computer with VoiceOS",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/YCombinatorIcon.svg",
+    "status": "downloaded",
+    "file": "icons/2a5d9493-YCombinatorIcon.svg",
+    "bytes": 630,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Y",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/skyCloudsHero.webp",
+    "status": "downloaded",
+    "file": "images/51025fe5-skyCloudsHero.webp",
+    "bytes": 170338,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Blue sky and clouds behind the VoiceOS desktop preview",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/chromeApp.svg",
+    "status": "downloaded",
+    "file": "icons/62c423c7-chromeApp.svg",
+    "bytes": 570,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Chrome",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Chrome",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/stopLookingDemo.mp4",
+    "status": "downloaded",
+    "file": "videos/4fabd9cc-stopLookingDemo.mp4",
+    "bytes": 1702592,
+    "category": "videos",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/stopLookingDemo-poster.webp",
+    "status": "downloaded",
+    "file": "images/c1efd404-stopLookingDemo-poster.webp",
+    "bytes": 30770,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "",
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/stayOnTaskDemo.mp4",
+    "status": "downloaded",
+    "file": "videos/14bd176c-stayOnTaskDemo.mp4",
+    "bytes": 1450283,
+    "category": "videos",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "",
+        "type": "video"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/stayOnTaskDemo-poster.webp",
+    "status": "downloaded",
+    "file": "images/27d80523-stayOnTaskDemo-poster.webp",
+    "bytes": 47292,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "",
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/gabe-perez.0_qerxqw6v3ns.png",
+    "status": "downloaded",
+    "file": "images/0a7e5594-gabe-perez.0_qerxqw6v3ns.png",
+    "bytes": 383962,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Gabe Perez avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Gabe Perez avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/alby-churven.3x23ypizppej2.png",
+    "status": "downloaded",
+    "file": "images/6ba0795c-alby-churven.3x23ypizppej2.png",
+    "bytes": 366221,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Andrey avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Andrey avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/yoichi-ochiai.0nfxzzko_f5j4.png",
+    "status": "downloaded",
+    "file": "images/8f51bc73-yoichi-ochiai.0nfxzzko_f5j4.png",
+    "bytes": 357967,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Yoichi Ochiai avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Yoichi Ochiai avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/andrey.1otl16viqjed0.png",
+    "status": "downloaded",
+    "file": "images/9fc95e15-andrey.1otl16viqjed0.png",
+    "bytes": 231355,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Usutaku avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Usutaku avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/sou-lab.1ulsoip84flrm.png",
+    "status": "downloaded",
+    "file": "images/7c8d782f-sou-lab.1ulsoip84flrm.png",
+    "bytes": 184523,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "sou-lab avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "sou-lab avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/usutaku.0tffha20qrop0.png",
+    "status": "downloaded",
+    "file": "images/2def0adf-usutaku.0tffha20qrop0.png",
+    "bytes": 316905,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Alby Churven avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Alby Churven avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/akira.2xnulheo1h2dc.png",
+    "status": "downloaded",
+    "file": "images/5eb723c3-akira.2xnulheo1h2dc.png",
+    "bytes": 359208,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "akira avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "akira avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/emanuel-perez.0255kk4_k0ktx.png",
+    "status": "downloaded",
+    "file": "images/8f6c065c-emanuel-perez.0255kk4_k0ktx.png",
+    "bytes": 268185,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Emanuel Perez avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Emanuel Perez avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/rene-grywnow.28_nye_pk6_u1.png",
+    "status": "downloaded",
+    "file": "images/c28c9a15-rene-grywnow.28_nye_pk6_u1.png",
+    "bytes": 180332,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "René Grywnow avatar",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "René Grywnow avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/join-user-1.3m8wflostgz48.jpg",
+    "status": "downloaded",
+    "file": "images/1fb3f55e-join-user-1.3m8wflostgz48.jpg",
+    "bytes": 23056,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "VoiceOS user avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/join-user-2.1-3cjge0-2xij.jpg",
+    "status": "downloaded",
+    "file": "images/982694f5-join-user-2.1-3cjge0-2xij.jpg",
+    "bytes": 23563,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "VoiceOS user avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/join-user-3.3_9_j1n0zzb2a.jpg",
+    "status": "downloaded",
+    "file": "images/b10341e4-join-user-3.3_9_j1n0zzb2a.jpg",
+    "bytes": 22811,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "VoiceOS user avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/_next/static/media/join-user-4.3nyb251ejg1y8.jpg",
+    "status": "downloaded",
+    "file": "images/e8a902ee-join-user-4.3nyb251ejg1y8.jpg",
+    "bytes": 32403,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "VoiceOS user avatar",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/oceanWarp.webp",
+    "status": "downloaded",
+    "file": "images/a2280375-oceanWarp.webp",
+    "bytes": 98000,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "alt": "Blue ocean and sky",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/claude-code.webp",
+    "status": "downloaded",
+    "file": "icons/07ae65a1-claude-code.webp",
+    "bytes": 9044,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_claude-code.raw",
+        "alt": "Claude Code logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Claude Code logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/agent-mode-send-message.png",
+    "status": "downloaded",
+    "file": "screenshots/d3107716-agent-mode-send-message.png",
+    "bytes": 87284,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_send-emails-and-slack-messages-by-voice.raw",
+        "alt": "VoiceOS Agent Mode showing a Gmail send confirmation card on a Mac, ready to send a message by voice",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/send-slack-message-by-voice-confirmation.png",
+    "status": "downloaded",
+    "file": "screenshots/48f6c77e-send-slack-message-by-voice-confirmation.png",
+    "bytes": 104750,
+    "category": "screenshots",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_send-emails-and-slack-messages-by-voice.raw",
+        "alt": "VoiceOS Agent Mode showing a Slack send confirmation card on a Mac, with a drafted message to the #product-team channel ready to send by voice",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/jira.svg",
+    "status": "downloaded",
+    "file": "icons/845877f2-jira.svg",
+    "bytes": 1050,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_jira.raw",
+        "alt": "Jira logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Jira logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/codex.webp",
+    "status": "downloaded",
+    "file": "icons/5426429b-codex.webp",
+    "bytes": 7164,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_codex.raw",
+        "alt": "Codex logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Codex logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/outlook.webp",
+    "status": "downloaded",
+    "file": "icons/785e725f-outlook.webp",
+    "bytes": 16204,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_outlook.raw",
+        "alt": "Outlook logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Outlook logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_gmail.raw",
+        "alt": "Outlook logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-mail.raw",
+        "alt": "Outlook logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/integrations/gmail.webp",
+    "status": "downloaded",
+    "file": "icons/ad34fe44-gmail.webp",
+    "bytes": 3940,
+    "category": "icons",
+    "references": [
+      {
+        "page": "www_voiceos_com_app-store_outlook.raw",
+        "alt": "Gmail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store.raw",
+        "alt": "Gmail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_gmail.raw",
+        "alt": "Gmail logo",
+        "type": "img"
+      },
+      {
+        "page": "www_voiceos_com_app-store_apple-mail.raw",
+        "alt": "Gmail logo",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/blogs/gpt-live-full-duplex-voice.png",
+    "status": "downloaded",
+    "file": "images/95e64668-gpt-live-full-duplex-voice.png",
+    "bytes": 37674,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "GPT-Live Is Here: ChatGPT's Voice Now Listens and Talks at Once, Just Like 'Her' and JARVIS",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://pbs.twimg.com/profile_images/2046764873200394240/r7BxVezs_normal.jpg",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "Sam Altman",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://pbs.twimg.com/profile_images/1885410181409820672/ztsaR0JW_bigger.jpg",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "OpenAI",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://pbs.twimg.com/profile_images/1885410181409820672/ztsaR0JW_normal.jpg",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "OpenAI",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://pbs.twimg.com/media/HMuNB0WboAE_A7s?format=jpg&name=small",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "",
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2074902339463598081/vid/avc1/1920x1080/NJGC4FQL3MGsbmQc.mp4",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "",
+        "type": "source"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://pbs.twimg.com/profile_images/2110605788045787136/AqE-Bo_X_normal.jpg",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "あむ",
+        "type": "img"
+      }
+    ]
+  },
+  {
+    "url": "https://pbs.twimg.com/amplify_video_thumb/2075072850525102080/img/KKoky4ds0JQ1jq0X?format=jpg&name=small",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "",
+        "type": "video"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2075072850525102080/vid/avc1/640x360/qfOBxT708p6je9Bf.mp4?tag=14",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "alt": "",
+        "type": "source"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2074902339463598081/vid/avc1/480x270/bNlVnmQpMKNO_Coi.mp4",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2074902339463598081/vid/avc1/640x360/wdgZJnX1yOvGDZeT.mp4",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2074902339463598081/vid/avc1/1280x720/g24fTo-VEY8H5Ijg.mp4",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2074902339463598081/vid/avc1/3840x2160/SlZg3Bq2mrXXDoO4.mp4",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2075072850525102080/vid/avc1/480x270/bUPfXCx19RPFkGc7.mp4?tag=14",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://video.twimg.com/amplify_video/2075072850525102080/vid/avc1/1280x720/hg7-v0j91liEGnhY.mp4?tag=14",
+    "status": "reference_only_external",
+    "references": [
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      },
+      {
+        "page": "www_voiceos_com_blog_gpt-live-full-duplex-voice.raw",
+        "type": "video-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/cloudsBlue.webp",
+    "status": "downloaded",
+    "file": "images/58cab08a-cloudsBlue.webp",
+    "bytes": 26426,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "type": "background"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/favicon.png",
+    "status": "downloaded",
+    "file": "images/0f313e64-favicon.png",
+    "bytes": 423,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "type": "source-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/apple-touch-icon.png",
+    "status": "downloaded",
+    "file": "images/340775a0-apple-touch-icon.png",
+    "bytes": 821,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "type": "source-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/skyCloudsHero-mobile.webp",
+    "status": "downloaded",
+    "file": "images/9e2e19fd-skyCloudsHero-mobile.webp",
+    "bytes": 6616,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_.raw",
+        "type": "source-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/beachWarp.webp",
+    "status": "downloaded",
+    "file": "images/249c1aa2-beachWarp.webp",
+    "bytes": 92066,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_dictation.raw",
+        "type": "background"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/cirrusSwirl.webp",
+    "status": "downloaded",
+    "file": "images/52e18883-cirrusSwirl.webp",
+    "bytes": 78108,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_dictation.raw",
+        "type": "background"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/agent-demo/jonahBlogProfile.png",
+    "status": "downloaded",
+    "file": "images/5ef0f8eb-jonahBlogProfile.png",
+    "bytes": 493711,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "type": "source-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/agent-demo/andrewBlogProfile.png",
+    "status": "downloaded",
+    "file": "images/4fa9366e-andrewBlogProfile.png",
+    "bytes": 152282,
+    "category": "images",
+    "references": [
+      {
+        "page": "www_voiceos_com_features_agent.raw",
+        "type": "source-reference"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/agent-demo/kaiBlogProfile.png",
+    "status": "downloaded",
+    "file": "images/76522b0b-kaiBlogProfile.png",
+    "bytes": 440046,
+    "category": "images",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/chatgptApp.webp",
+    "status": "downloaded",
+    "file": "icons/f3b0220b-chatgptApp.webp",
+    "bytes": 22122,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/claudeApp.webp",
+    "status": "downloaded",
+    "file": "icons/e09f6c72-claudeApp.webp",
+    "bytes": 22882,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/cursorApp.webp",
+    "status": "downloaded",
+    "file": "icons/6ee700aa-cursorApp.webp",
+    "bytes": 9412,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/diaApp.webp",
+    "status": "downloaded",
+    "file": "icons/e8068aaf-diaApp.webp",
+    "bytes": 10452,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/messengerApp.webp",
+    "status": "downloaded",
+    "file": "icons/1bd81521-messengerApp.webp",
+    "bytes": 20232,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/superhumanApp.webp",
+    "status": "downloaded",
+    "file": "icons/8e311f37-superhumanApp.webp",
+    "bytes": 14848,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/telegramApp.webp",
+    "status": "downloaded",
+    "file": "icons/1a330507-telegramApp.webp",
+    "bytes": 19712,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/vscodeApp.webp",
+    "status": "downloaded",
+    "file": "icons/6cb87749-vscodeApp.webp",
+    "bytes": 10742,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/icons/whatsApp.png",
+    "status": "downloaded",
+    "file": "icons/104349c5-whatsApp.png",
+    "bytes": 171482,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  },
+  {
+    "url": "https://www.voiceos.com/voiceOsLogo.png",
+    "status": "downloaded",
+    "file": "icons/29faa5e3-voiceOsLogo.png",
+    "bytes": 8354,
+    "category": "icons",
+    "references": [
+      {
+        "type": "public_website_bundle"
+      }
+    ]
+  }
+]

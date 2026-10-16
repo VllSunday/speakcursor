@@ -1,0 +1,1745 @@
+# VoiceOS — Published Guides and Articles
+
+VoiceOS publishes these articles with their sources, methods, and limitations. Publication does not imply hands-on testing or independent review. Canonical HTML pages remain the source of truth.
+
+## [How to Use Windows Voice Typing (Win+H) in 2026](https://www.voiceos.com/blog/windows-voice-typing-win-h-how-to-dictate)
+
+Author: Kai Brokering
+
+Published: 2026-10-02T00:00:00.000Z
+Updated: 2026-10-02T00:00:00.000Z
+Content type: guide
+
+Press Win+H to dictate into any text box on Windows. This guide covers setup, commands, Fluid Dictation, Voice Access vs Voice Typing, and when a system-wide layer helps.
+
+Method: Reviewed Microsoft Support documentation for Voice Typing, Voice Access, and Fluid Dictation. Reviewed VoiceOS product documentation for dictation and edit modes. No first-party accuracy benchmarks performed.
+
+Limitations: No first-party test measured transcription accuracy; results vary by accent, noise, and microphone. Fluid Dictation availability depends on hardware and rollout status. This is not medical advice.
+
+Disclosure: This article was prepared with AI assistance for the VoiceOS blog using linked official sources. VoiceOS makes one of the products discussed.
+
+### Key takeaways
+
+- **Windows Voice Typing** turns speech into text in the focused text box. Shortcut: **Windows logo key + H**. You need a working microphone, an internet connection for standard Voice Typing, and your cursor in a field that accepts text.
+- **Voice Access** (Windows 11) is different: it can dictate *and* control the PC with spoken commands (open apps, click UI, navigate). Use Voice Typing when you only need words in a field; use Voice Access when you need hands-free control of the whole desktop.
+- **Fluid Dictation** on Copilot+ PCs can clean grammar, punctuation, and filler as you speak (on-device models). Availability depends on your hardware and language packs—check Microsoft's notes for your build.
+- Built-in tools are strong for **getting words in**. If you also need tone cleanup across every app, rewrite-in-place, or confirmed actions in Slack/Mail, a system-wide layer like VoiceOS sits on top of—not instead of—Win+H.
+
+### What Win+H actually does
+
+Voice Typing is Microsoft's built-in "talk instead of type" feature for Windows 10 and Windows 11. You click into a text box, press **Win + H**, wait for the listening state, and speak. The words land where the cursor is.
+
+That is the whole job: **author text by voice** inside editable fields. It is not a full assistant that runs your computer. Microsoft's own Voice Access FAQ draws the line clearly: Voice Typing is for dictation; Voice Access adds commanding plus dictation.
+
+If you searched "how do I type with my mic on Windows," this is the feature you want first.
+
+### Before you start (checklist)
+
+- **Microphone works** — Settings → System → Sound → Input; pick the mic you mean to use. External mics should be plugged in and selected.
+- **Microphone permission** — Settings → Privacy & security → Microphone; allow access so Voice Typing can hear you.
+- **Internet** — Standard Voice Typing uses online speech recognition (Azure Speech). Offline-only setups will fail or hang.
+- **Cursor in a text box** — Voice Typing starts only when focus is in a field that accepts typing. Click the Slack compose box, Word, browser form, Notes, etc., first.
+- **Language** — Switch input language with **Win + Space** if recognition is wrong. Install another language under Settings → Time & language → Language & region if needed.
+
+### How to start and stop Voice Typing
+
+**Start:** 1. Click inside any text box.
+2. Press **Windows logo key + H** (hardware keyboard), or use the microphone button on the touch keyboard.
+3. Wait for **Listening…** before you speak.
+4. Talk at a normal pace. Pause briefly between sentences if recognition trails off.
+
+**Stop:** Say **"Stop listening"** (or the stop/pause phrases Microsoft lists for your language), or press the microphone button on the Voice Typing menu.
+
+Keyboard tip: **Win + Alt + H** moves through the Voice Typing menu without the mouse.
+
+### Useful settings (gear icon)
+
+Open the gear on the Voice Typing flyout and check:
+
+| Setting | Why it matters |
+| --- | --- |
+| Voice typing launcher | Shows Voice Typing quickly when you enter a text box |
+| Automatic punctuation | Inserts commas and periods from how you speak |
+| Filter profanity | Blocks or allows swear words in the transcript |
+| Default microphone | Stops Windows from listening on the wrong device |
+| Wait time before acting | Gives slower speakers more time before a command fires |
+
+Turn these on one at a time so you can tell what helped.
+
+### Commands that save retyping
+
+In English (US and other English locales), common Voice Typing commands include:
+
+| Say | Result |
+| --- | --- |
+| "Delete that" / "Scratch that" | Remove the last spoken phrase or selection |
+| "Select that" | Select the last spoken phrase |
+| "Press Enter" / "Press Tab" / "Press Backspace" | Send those keys |
+| "Insert space" | Add a space |
+| "Undo that" / "Revert" | Undo the last change (where supported) |
+| "Period" / "Comma" / "Question mark" / "New line" / "New paragraph" | Punctuation and breaks |
+
+If automatic punctuation is on, you may not need to speak every period. If it is off, say the mark.
+
+Spelling mode (when available): say **"Start spelling"**, then letters or ICAO words ("alpha," "bravo"), then **"Stop spelling."** Say **"uppercase"** before a letter when you need a capital.
+
+### Fluid Dictation on Copilot+ PCs
+
+On supported **Copilot+ PCs**, Microsoft documents **Fluid Dictation**: Voice Typing can correct grammar, punctuation, and filler words as you speak, using on-device small language models. Microsoft notes it is available in English locales on those devices, enabled by default once the required models finish downloading, and turned off automatically in secure fields like password boxes.
+
+If the Fluid Dictation toggle looks dimmed, wait for the model download (Windows Update / the teaching tip on first launch) or check Settings → Windows Update. Say **"Revert"** / **"Undo that"** (or press Ctrl+Z) if a cleanup over-edits a sentence you liked.
+
+This is hardware- and rollout-dependent. If you are not on a Copilot+ PC, skip this section—standard Voice Typing still works without it.
+
+### Voice Typing vs Voice Access (pick the right tool)
+
+|  | Voice Typing (Win+H) | Voice Access (Windows 11) |
+| --- | --- | --- |
+| Job | Dictate into a text box | Dictate + control the PC by voice |
+| Start | Win+H when cursor is in a field | Settings → Accessibility → Speech, or search "Voice access" |
+| Internet | Needed for standard Voice Typing | Works offline after language download (setup needs internet) |
+| OS | Windows 10 and 11 | Windows 11 version 22H2 and later (per Microsoft) |
+| When to use | Emails, docs, chat boxes, forms | Open apps, click buttons, browse, full hands-free sessions |
+
+Microsoft's FAQ: if Voice Access is already running and you press Win+H, Windows may tell you to dictate with Voice Access instead of opening a second dictation UI. That is expected.
+
+**Quick setup for Voice Access** (from Microsoft's set-up guidance): Settings → Accessibility → Speech → turn on Voice Access; complete the language download; optionally run the interactive guide. Say **"Open voice access guide"** when you want the tutorial again.
+
+### When Voice Typing is not working
+
+Microsoft's troubleshooting guide covers the usual failures:
+
+- Confirm the correct **input device** under System → Sound → Input.
+- Turn on **microphone access** under Privacy & security → Microphone.
+- If you see "not available in the current language," install a supported language and switch with **Win + Space**.
+- If nothing appears after you speak, raise mic input level, move somewhere quieter, or try a headset mic.
+- On some Windows 11 builds, missing **Enhanced Speech Recognition** / speech language packs can open the mic UI without typing—install speech features under Language & region → language options, or allow Windows Update / Store to finish speech components.
+
+Still stuck? Reboot after language packs install, then test in Notepad before blaming Slack or a browser field.
+
+### Honest limits of built-in Voice Typing
+
+Voice Typing is excellent at **first-draft words**. It is weaker when you need:
+
+- A full **tone rewrite** of an existing paragraph in every app ("make this more formal")
+- **Filler cleanup + app-aware polish** that stays consistent across Slack, Mail, and Docs
+- **Actions** with confirmation ("reply to that thread," "schedule tomorrow at 2")
+- **Screen-aware** questions about what is already open
+
+Those jobs need either Voice Access (for UI control), a chatbot paste round-trip, or a system-wide voice layer. For rewrite-in-place specifically, see VoiceOS's guide on [rewriting and editing text by voice](/blog/rewrite-edit-text-by-voice-mac-windows). For injury-aware pacing, see [voice typing for RSI and carpal tunnel](/blog/voice-typing-for-rsi-and-carpal-tunnel).
+
+### Where VoiceOS fits (after Win+H works)
+
+Once you can land text with Win+H, you may still want a layer that works the same way on **Mac and Windows**, cleans dictation for the app you are in, edits selections by spoken instruction, and prepares actions with a confirmation step.
+
+**VoiceOS** is that system-wide layer:
+
+- **Dictate** — speak new text into the focused field with cleanup aimed at real work writing.
+- **Edit** — select existing text, speak a change ("make this shorter"), replace in place.
+- **Agent** — ask about the screen or run supported actions in connected apps, with confirmation before consequential sends.
+
+Complementary, not a forced swap: keep Win+H for quick built-in dictation; use VoiceOS when you need the same workflow across machines, rewrite-in-place, or confirmed multi-app actions. Download from [voiceos.com/download](/download). Broader hands-free picture: [hands-free voice control on Mac and Windows](/blog/hands-free-voice-control-mac-windows). Pillar context: [the best dictation tools compared](/blog/top-10-dictation-tools-april-2026).
+
+### Try this in the next five minutes
+
+- Open Notepad.
+- Press **Win + H**, wait for Listening, dictate two sentences.
+- Say **"Period"** or rely on auto-punctuation; say **"New line"** and continue.
+- Say **"Delete that"** once to feel the undo path.
+- If you need a rewrite of what you just wrote, select it and use an edit-by-voice tool—or paste into your usual AI chat as a fallback.
+
+That is the built-in path. Everything else is optional upgrade for tone, actions, and cross-app consistency.
+
+### Sources
+
+1. [Use voice typing to talk instead of type on your PC](https://support.microsoft.com/en-us/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc) — Microsoft Support
+2. [Voice Access FAQ](https://support.microsoft.com/en-us/topic/voice-access-faq) — Microsoft Support
+3. [Voice typing isn't working](https://support.microsoft.com/en-us/windows/voice-typing-isn-t-working) — Microsoft Support
+4. [VoiceOS Dictation Mode: voice writing and formatting](https://www.voiceos.com/features/dictation) — VoiceOS
+
+---
+
+## [40 VoiceOS actions and how to verify each one](https://www.voiceos.com/blog/voice-agent-workflows)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-30T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS maps each example to its official integration catalog, so you can see the action, the platform, the confirmation behavior, and what to check afterward.
+
+Method: Cross-checked all forty named actions, platform flags, and confirmation flags against the repository-generated official integration catalog on September 30, 2026.
+
+Limitations: These are documented capabilities and authored test cases. No claim is made that forty live account actions were executed or that sample wording always succeeds.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Forty documented actions, with a check for each
+
+VoiceOS’s integration catalog is the starting point for these examples. Every action below is matched to a tool definition in the shipped catalog, including its platform boundary and whether it asks first. That is source verification, not forty completed live tests.
+
+The screenshots show VoiceOS in everyday use: drafting a Slack reply, preparing a note or reminder, working on a Notion request, finding videos, and drafting a Linear issue. Each image opens at full size. Preview and in-progress states are described where they appear.
+
+Use disposable notes, events, files, and issues for an evaluation. Connect only the accounts you mean to use. The sample requests describe an intent; their success still depends on permissions, required fields, account state, and the product version.
+
+### Gmail: Mac and Windows
+
+Examples below require the Gmail integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+![Existing VoiceOS email demonstration with a composed message and recipient visible for review.](https://www.voiceos.com/posts/voiceos-email-workflow/email-draft.png)
+An existing email demonstration shows the kind of result to inspect. The requests in this guide are authored examples, not recorded tests.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Read and search mail | Find the email about the sample review | No confirmation listed | Check sender, subject, and thread against the inbox |
+| Look up contacts | Look up the contact for the test recipient | No confirmation listed | Verify the full address before using it |
+| Organize with labels | Add the test label to this sample message | Asks first | Check the intended label on the intended message |
+| Reply to a thread | Prepare a reply to the sample thread | Asks first | Inspect the recipient and quoted thread before approving a send |
+
+### Slack: Mac and Windows
+
+Examples below require the Slack integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+Say who you want to reach and what you want to say. In this example, “Can you send a message to Jonah on Slack saying I’m gonna be late?” produces a short draft with the conversation above it. The send button is still available so the message can be reviewed.
+
+![VoiceOS shows a Slack message draft to Jonah: “Hey Jonah, I’m gonna be late,” with a send button.](https://www.voiceos.com/blogs/guides/workflows/voiceos-slack.png)
+A spoken request becomes a Slack draft. Check the recipient and wording before sending.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Search messages | Find the test message in the project channel | No confirmation listed | Open the matched message and confirm the channel |
+| Read conversations | Read the recent messages in the test channel | No confirmation listed | Check the returned channel and time range |
+| Send a message | Prepare a message for the test channel | Asks first | Inspect the channel and body before approving |
+| Schedule a message | Schedule the sample message for the agreed test time | Asks first | Check channel, date, time zone, and scheduled-message state |
+
+### Google Calendar: Mac and Windows
+
+Examples below require the Google Calendar integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| See your schedule | Show my test calendar for tomorrow | No confirmation listed | Check the selected calendar and date |
+| Find open time | Find an open half hour on the test day | No confirmation listed | Compare the proposed gap with the actual calendar |
+| Create an event | Create a test review event | Asks first | Verify calendar, attendees, time zone, start and end before approval |
+| Update an event | Move the test review to the new agreed time | Asks first | Verify the exact event and the resulting time |
+
+### Notes: Mac
+
+Examples below require the Notes integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+Ask for a note while the idea is fresh. In this shopping-list example, the request becomes a titled draft with separate bullets. The visible portion shows eggs, tomatoes, and bread; review the full contents against everything you asked for, then choose Create Note.
+
+![VoiceOS previews a Shopping List note with visible bullets for eggs, tomatoes, and bread, plus a Create Note button.](https://www.voiceos.com/blogs/guides/workflows/voiceos-apple-notes.png)
+A spoken shopping list becomes a note preview with a title and separate bullet points. Review the full list before creating it.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Your folders | List my Notes folders | No confirmation listed | Check that the intended account and folder appear |
+| Search notes | Find my sample project note | No confirmation listed | Open the match and confirm its title |
+| Create a note | Create a note for this sample idea | No confirmation listed | Check title, body, and destination folder |
+| Add to a note | Add this sample paragraph to the test note | No confirmation listed | Check the existing note was appended to, not replaced |
+
+### Reminders: Mac
+
+Examples below require the Reminders integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+Include the task and when you need it: “Remind me at 1:30 tomorrow to join the meeting. Use Apple Reminders.” The preview below shows the title, tomorrow’s date, and 1:30 PM before the Add Reminder step.
+
+![VoiceOS previews an Apple Reminder titled “Join the meeting” for tomorrow at 1:30 PM, with an Add Reminder button.](https://www.voiceos.com/blogs/guides/workflows/voiceos-reminders.png)
+“Remind me at 1:30 tomorrow to join the meeting.” The reminder preview puts the title, date, and time together.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Your lists | Show my reminder lists | No confirmation listed | Identify the correct test list |
+| Search reminders | Find the sample follow-up reminder | No confirmation listed | Check the matching reminder and list |
+| Create a reminder | Create a sample follow-up reminder | No confirmation listed | Check text, list, and any requested due date |
+| Complete a reminder | Complete the test reminder | No confirmation listed | Check that only the intended reminder is completed |
+
+### Notion: Mac and Windows
+
+Examples below require the Notion integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+You can describe the database task you want to change in ordinary language. This screenshot captures a request to mark a task urgent while VoiceOS is working. For your own tasks, name the exact record and database so the intended item is clear.
+
+![VoiceOS is working on a request to change a task in a Notion knowledge-base table to urgent.](https://www.voiceos.com/blogs/guides/workflows/voiceos-notion.png)
+A Notion request in progress. Check the task and priority in the database when the update finishes.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Search and read | Find the sample project page | No confirmation listed | Verify the workspace and page |
+| Create a page | Create a sample planning page | Asks first | Inspect the parent page and content before approval |
+| Add content to a page | Add a sample checklist to the test page | Asks first | Verify the target page and inserted content |
+| Query a database | Show matching records in the test database | No confirmation listed | Check database, filter, and returned records |
+
+### Linear: Mac and Windows
+
+Examples below require the Linear integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+With the relevant screen attached, ask “Can you create a Linear ticket for this?” Here the draft includes an expected-behavior description alongside status, priority, assignee, and team. Check those fields and the description before choosing Create.
+
+![VoiceOS previews a Linear issue from attached screen context, showing an expected-behavior description, Todo status, High priority, assignee kai, team VoiceOS, and a Create button.](https://www.voiceos.com/blogs/guides/workflows/voiceos-linear.png)
+“Can you create a Linear ticket for this?” Screen context becomes an issue draft with fields to review before creating it.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Find issues | Find the sample issue in the test team | No confirmation listed | Verify the issue identifier and team |
+| Create an issue | Create a sample issue in the test team | Asks first | Review team, title, and description before approval |
+| Update an issue | Update the description of the sample issue | Asks first | Check the identifier and exact changed fields |
+| Comment on an issue | Add a sample comment to the test issue | Asks first | Confirm issue, text, and resulting comment |
+
+### Jira: Mac and Windows
+
+Examples below require the Jira integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Find issues | Find the sample issue in the test project | No confirmation listed | Verify the project key and issue identifier |
+| Create an issue | Create a sample issue in the test project | Asks first | Review project, issue type, and required fields |
+| Move an issue's status | Move the test issue to the agreed status | Asks first | Check that the workflow allows the transition and the status changed |
+| Assign an issue | Assign the test issue to the agreed test user | Asks first | Verify the user identity and the resulting assignee |
+
+### Obsidian: Mac and Windows
+
+Examples below require the Obsidian integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Search your vault | Find the sample note in my vault | No confirmation listed | Check the vault and matching path |
+| Read a note | Read the sample project note | No confirmation listed | Compare the content with the intended file |
+| Create a note | Create a sample note in the test folder | No confirmation listed | Check file path and contents |
+| Add to a note | Add a sample paragraph to the test note | No confirmation listed | Verify existing text remains and the paragraph is appended |
+
+### Finder: Mac
+
+Examples below require the Finder integration and access to the intended destination. Check the linked catalog page for its setup and permissions.
+
+A request such as “find the VoiceOS demo video” can start with what you remember about the file. In the screenshot, VoiceOS returns thirteen matches and identifies Documents and Downloads as locations. Use the results to choose the right version before opening or sharing it.
+
+![VoiceOS responds to “find the VoiceOS demo video” with thirteen matching files and video thumbnails from Documents and Downloads.](https://www.voiceos.com/blogs/guides/workflows/voiceos-finder.png)
+Describe the file you need. Here, VoiceOS returns 13 video matches to inspect.
+
+| Action | Illustrative request | Catalog behavior | Verify the result |
+| --- | --- | --- | --- |
+| Browse a folder | List the files in the test folder | No confirmation listed | Check the full folder path |
+| Get file info | Show information for the sample file | No confirmation listed | Verify the path and relevant file details |
+| Create a folder | Create a sample folder in the test directory | Asks first | Inspect the destination and verify the folder exists |
+| Copy | Copy the sample file into the test folder | Asks first | Confirm source and destination, and preserve the original |
+
+### How to turn a capability into evidence
+
+For each action you actually test, record the app version, operating system, integration, starting state, request, preview, result, and any manual repair. Inspect the destination instead of relying only on the assistant’s completion message. Keep failures in the record.
+
+![Follow a voice request through the correct app, result review, and task completion.](https://www.voiceos.com/blogs/guides/actions.svg)
+A task is complete when the intended result is present in the right app and account.
+
+A tool marked “No confirmation listed” may run without a separate approval step. Read operations and local writes are not equivalent, even if both have that label. Check the requested operation before invoking it, and keep your first tests limited to disposable material.
+
+If you later publish a tested workflow, include a permissioned recording or transcript and a clear description of what succeeded. Until that evidence exists, describe it as a documented capability or proposed test. This distinction makes the catalog useful to a reader deciding what to try.
+
+### Sources
+
+1. [VoiceOS official integration catalog](https://www.voiceos.com/app-store) — VoiceOS
+2. [VoiceOS Gmail integration](https://www.voiceos.com/app-store/gmail) — VoiceOS
+3. [VoiceOS Slack integration](https://www.voiceos.com/app-store/slack) — VoiceOS
+4. [VoiceOS Google Calendar integration](https://www.voiceos.com/app-store/google-calendar) — VoiceOS
+5. [VoiceOS Notes integration](https://www.voiceos.com/app-store/apple-notes) — VoiceOS
+6. [VoiceOS Reminders integration](https://www.voiceos.com/app-store/reminders) — VoiceOS
+7. [VoiceOS Notion integration](https://www.voiceos.com/app-store/notion) — VoiceOS
+8. [VoiceOS Linear integration](https://www.voiceos.com/app-store/linear) — VoiceOS
+9. [VoiceOS Jira integration](https://www.voiceos.com/app-store/jira) — VoiceOS
+10. [VoiceOS Obsidian integration](https://www.voiceos.com/app-store/obsidian) — VoiceOS
+11. [VoiceOS Finder integration](https://www.voiceos.com/app-store/finder) — VoiceOS
+
+---
+
+## [How to test dictation accuracy beyond word error rate](https://www.voiceos.com/blog/how-to-test-dictation-accuracy)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-27T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS looks beyond recognized words to the writing you can actually use: how much you need to edit after dictation is pasted, and how easily someone can scan and understand the result.
+
+Method: Uses the standard WER definition, NIST usability measures, and W3C structural guidance to propose separate post-paste editing and readability evaluations. The word-diff measure, 0–2 structure rubric, English examples, and Japanese sample are editorial proposals; no product results are reported.
+
+Limitations: No cross-product study has been run under this protocol. Illustrative arithmetic and formatting examples are not measured product outputs; edit distance does not substitute for observed effort, and a structure rubric does not establish reader comprehension.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Two questions matter after dictation
+
+A dictation result can contain the right words and still leave you work to do. You may need to repair a name, split one long paragraph, turn a spoken list into bullets, or separate an email’s greeting from its body. Word error rate alone cannot describe that experience.
+
+- How much do I need to edit after the text is pasted? Measure required corrections, formatting repairs, and the time until the draft is ready to use.
+- How easy is the original output to understand? Check whether readers can find the actions, deadlines, and main point without reorganizing the text.
+
+This guide proposes a practical evaluation method. The examples and calculations below are illustrative, not measured results for VoiceOS or competing apps. Report editing effort and readability separately, alongside checks that the meaning stayed right.
+
+### Start with the text in the real destination
+
+Use a small set of tasks you actually write: a short reply, a multi-paragraph email, a list of actions, meeting notes, names and numbers, and a sentence you correct while speaking. Keep the audio, a human-checked transcript, and a short brief describing what the finished message should communicate.
+
+Save the first result exactly as it lands in the destination app, before any editing. Keep plain text for word comparisons and a screenshot or rich-text copy for paragraph breaks, lists, and spacing. A well-formatted preview is not enough if pasting into Gmail, Slack, or a document flattens it into one block.
+
+Use the same destination, input, and relevant settings for each candidate. Record whether paragraph and list formatting was explicitly requested or inferred by the app. Test those cases separately: following “new paragraph” and recognizing a natural topic change are different capabilities.
+
+Define “ready to use” before the test: correct facts and intended meaning, complete content, and an appropriate structure for the destination. Ask writers to make the minimum necessary fixes. Log optional personal rewrites separately so one reviewer’s style preferences do not become another product’s error count.
+
+### Measure the editing left after paste
+
+Start the post-paste clock when the first output is fully inserted in the intended field. Stop when the writer accepts it as ready to send or save after review. Keep recognition and insertion latency as separate timings; this measurement is specifically the work left after the paste.
+
+| Measure | How to record it |
+| --- | --- |
+| Ready without edits | Count attempts accepted with no text or formatting changes and passing the task checks. Divide by all eligible attempts; failed insertions do not count as successes. |
+| Word edits per 100 accepted words | Compare the first pasted text with the minimally corrected text. Count the minimum word insertions, deletions, and substitutions, then divide by the final word count and multiply by 100. |
+| Formatting repairs | Record paragraph splits or joins, list conversions, indentation fixes, and email-layout repairs separately. Define an action consistently, such as one paragraph break or one list conversion. |
+| Time until ready | Record review time, active correction time, and total elapsed post-paste time. Keep the total even when a draft needs no edits: the user still has to check it. |
+
+For example, eight word edits in a final 100-word draft means 8 edits per 100 accepted words. If the writer also inserts two paragraph breaks and converts a block into a list, record three formatting repairs. If review takes 20 seconds and corrections take 40 seconds with no idle time, the post-paste total is 60 seconds. These are example calculations, not product scores.
+
+For the word comparison, document tokenization and normalization. An English baseline can split on whitespace, retain case and punctuation attached to words, and exclude layout markup. Keep the original formatting separately. A word diff misses line-break repairs and cannot tell you how many keystrokes, undo operations, or voice-edit attempts the user actually needed.
+
+Do not turn edit distance into a time estimate. One replacement can be a quick typo fix or a slow investigation of a wrong number. For deeper studies, record correction actions with consent and label the reason: recognition, changed meaning, formatting, or optional preference.
+
+NIST’s usability guidance combines task time, errors, completion, and user feedback. The measures here apply that approach to dictation; this particular scorecard is our proposed protocol, not a standardized dictation benchmark.
+
+### Check paragraphs, lists, and email structure
+
+Evaluate the unedited first paste. A reader should be able to see where one idea ends, which items belong together, and what needs a response. Formatting belongs in the quality assessment because a word-correct blob can still need manual restructuring.
+
+**Same words. Different structure.**
+
+Single paragraph:
+
+Hi Alex, Here are the items for Friday: Send the revised brief. Confirm the launch date. Share the budget estimate. Please send everything by 3 pm. Thanks, Sam.
+
+Paragraphs and a list:
+
+Hi Alex,
+
+Here are the items for Friday:
+
+- Send the revised brief.
+- Confirm the launch date.
+- Share the budget estimate.
+
+Please send everything by 3 pm.
+
+Thanks, Sam.
+
+Illustrative formatting example using identical words, not actual output from a product test.
+
+Both versions can have 0% WER against the same words when the scoring rules ignore whitespace and list markup. That score does not tell you which layout lets a reader find the three requests or the deadline more easily. Test that separately.
+
+The revised Gmail draft below shows the structure to look for: separate paragraphs, meeting times as a list, and a clear sign-off. In your test, count the edits needed to reach a usable layout and time those repairs. Score the original first paste separately from the finished draft.
+
+![A Gmail draft titled Meeting Follow-up, with separate paragraphs, three bulleted meeting times, and a Best, Kai sign-off.](https://www.voiceos.com/blogs/guides/workflows/gmail-dictation-formatting-v2.png)
+A revised formatting example supplied by the site owner, not an unedited first paste or a benchmark result.
+
+| Check | What usable output looks like | What needs repair |
+| --- | --- | --- |
+| Paragraphs | Related sentences stay together; topic changes start a new paragraph. | One dense block, or a line break after every sentence regardless of meaning. |
+| Lists | A set of items is easy to distinguish; numbering appears when sequence matters. | Items run together, nesting is misleading, or bullets change the intended order. |
+| Email layout | A dictated greeting, body, requests, and closing are separated appropriately. | The greeting or sign-off merges into the body, or the app invents an undictated subject or commitment. |
+| Punctuation and headings | Sentence boundaries are clear; longer notes use headings only where the task calls for them. | Missing punctuation or decorative headings make a short message harder to read. |
+| Destination rendering | The structure survives insertion into the actual app. | Bullets disappear, spacing collapses, or literal Markdown appears where rich text was expected. |
+
+Choose the applicable checks before seeing the outputs. For each, use 2 = usable as pasted, 1 = understandable but needs a small repair, and 0 = missing or misleading structure that needs reworking. Mark irrelevant checks N/A, such as an email closing in a search query. Report the criteria individually; extra headings or bullets do not automatically make a draft better.
+
+W3C’s page-structure guidance explains how meaningful headings and content organization support navigation and understanding. The general principle informs these checks; our 0–2 rubric is not a W3C rating or accessibility certification.
+
+### Measure how easily readers find information
+
+A formatting checklist captures structure, but the reader’s task is the useful test. Give representative readers the unedited output in its real destination and ask questions with predefined answers. For the example above: “Which three things must Alex send?” and “When is everything due?”
+
+Record time from showing the text and question to the submitted answer, then score whether the answer is correct and complete. Report time for correct responses alongside wrong-answer and timeout rates. A fast wrong answer is not a readability win. An ease rating can add context, but it should not replace the task result.
+
+To isolate formatting, compare versions with identical words and different layout. To compare whole products, use their actual outputs and report wording or meaning differences too. Hide product names, randomize presentation order, and use different matched passages for repeat tasks so readers do not simply remember an answer they saw a moment earlier.
+
+Keep writer correction effort separate from reader comprehension. The person who dictated a message already knows what it is meant to say; that can hide problems a recipient encounters. Recruit readers who reflect the intended audience, including their usual display and assistive settings.
+
+### Keep facts and meaning intact
+
+Label changed names, dates, amounts, negations, and commitments separately. A missing “not” may be only one word error but reverse the instruction. A wrong product spelling may be harmless in a personal note and unacceptable in a customer message. Decide these categories before looking at which app wins.
+
+![Assess words, meaning, correction effort, and completion of the final task.](https://www.voiceos.com/blogs/guides/measure.svg)
+Word error rate is one measurement. Meaning and correction effort determine whether the result is useful.
+
+Treat meaning as an acceptance requirement, not something attractive formatting can compensate for. Check names, dates, amounts, negations, commitments, and invented details against the task brief. A beautifully formatted email with the wrong deadline is not ready to use.
+
+Report empty outputs, wrong insertion targets, retries, and timeouts as failures. A run that never reaches the text field has no post-paste completion time; record that failure rather than giving it zero seconds or silently removing it. If a recording is unusable, apply the same declared exclusion to every tool.
+
+### Use word error rate as a supporting measure
+
+Word error rate is (substitutions + deletions + insertions) divided by the number of words in the reference. State the normalization rules before scoring: punctuation, capitalization, numbers, contractions, and tokenization can all change the result. Use the same rules for every candidate.
+
+![Illustrative WER calculation: send the revised brief tomorrow has five reference words. Omitting revised gives one deletion divided by five, or 20 percent WER.](https://www.voiceos.com/blogs/guides/editorial/wer-example.svg)
+Illustrative arithmetic, not a measured product score: one deletion in a five-word reference produces 20% WER.
+
+Illustrative example: the reference “send the revised brief tomorrow” has five words. If the output is “send the brief tomorrow,” one word is deleted, so the word error rate is 1 ÷ 5 = 20%. This is an arithmetic example, not a score for VoiceOS or another product.
+
+For a combined result, sum errors and reference words across the test set before dividing. A simple average of sentence percentages gives a two-word command as much weight as a long paragraph. Report the aggregation you use. Keep the per-sample results so an overall number does not conceal a specific failure pattern.
+
+### Japanese and English need a more careful reference
+
+A mixed-language sample might say: “明日のdesign reviewは午後3時です。FigmaのリンクをSlackで送ってください。” That is original sample text, not a tested transcript. It checks Japanese syntax, English product names, a time, and whether the output silently translates or transliterates terms.
+
+Record the intended spelling of names and whether variants are acceptable. Japanese does not use spaces in the same way as English, so a word-level score depends heavily on the tokenizer. State the tokenizer and normalization, or add a character-level result with its own explicit rules. Keep exact-name and meaning checks alongside either metric.
+
+Include several speakers and realistic language switches before making a bilingual accuracy claim. One carefully selected sentence cannot support “best Japanese dictation.” If the system is allowed to use a vocabulary list, give equivalent information to the other candidates or report that configuration difference.
+
+### Record results someone else can repeat
+
+- Task and sample ID; product/app version; date; operating system, microphone, destination app, and recording permission.
+- Mode, language, vocabulary, and formatting instructions; verbatim transcript and intended-message brief.
+- First pasted text and rendered layout; final accepted text and layout; normalization and diff rules.
+- Required word edits, formatting repairs, optional rewrites, review time, correction time, and total post-paste time.
+- Acceptance without edits, meaning/fact checks, retries, insertion failures, and timed-out or unfinished runs.
+- Structure ratings with N/A items; reader questions, correct answers, response times, and presentation order.
+
+Report the number of writers, readers, samples, and attempts. Break results down by task: short replies, emails, lists, and longer notes. Show the share ready without edits, word edits per 100 accepted words, formatting repairs, and median correction and total post-paste times. Include the spread, and a 90th percentile only when the sample size supports a meaningful estimate.
+
+Time summaries for completed runs must be labeled as such and shown beside failure counts. Keep readability results in a separate view: structure by criterion, correct-answer rate, and time for correct answers. Avoid combining everything into one “accuracy percentage” unless the weighting is declared and justified.
+
+Publish permissioned samples and outputs when possible, and explain who chose them and which product you make or sell. A useful conclusion describes how much work remains and how readable the first paste is, with enough detail for someone else to repeat the test.
+
+### Sources
+
+1. [Word Error Rate metric](https://huggingface.co/spaces/evaluate-metric/wer/blob/main/README.md) — Hugging Face Evaluate
+2. [Usability Testing](https://www.nist.gov/programs-projects/usability-testing) — NIST
+3. [Page Structure Tutorial](https://www.w3.org/WAI/tutorials/page-structure/) — W3C Web Accessibility Initiative
+
+---
+
+## [Best voice assistants for Mac and Windows in 2026](https://www.voiceos.com/blog/best-voice-assistants-mac-windows)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-24T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS separates three jobs that often get grouped together: writing text, operating an interface, and delegating work across connected apps.
+
+Method: Compared current product descriptions with Apple and Microsoft support documentation and VoiceOS’s shipped integration catalog. Selection is based on task type.
+
+Limitations: No end-to-end success-rate benchmark was conducted. Product demos and listed capabilities do not guarantee success in every app or account.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Choose the kind of help first
+
+A voice assistant that explains a screen, a dictation app that fills a text field, and an accessibility tool that clicks a button can all respond to speech. That does not make them substitutes. Start with the result you need and the amount of interface control you must retain.
+
+For connected desktop work, evaluate VoiceOS. For a Mac companion with on-screen guidance and agent features, compare HeyClicky. For command-based navigation and text entry, start with Apple Voice Control or Windows Voice access. If you mostly want polished writing, a dedicated dictation app may be the smaller purchase.
+
+### A task-based comparison
+
+| Option | Primary fit | Boundary to test |
+| --- | --- | --- |
+| VoiceOS | Dictation plus supported actions in connected services on Mac and Windows | Required connections, requested context, and the confirmation behavior of the action |
+| HeyClicky | A Mac companion with screen guidance and agent tasks | Mac requirement and the precise task it can complete |
+| Apple Voice Control | Mac navigation, text entry, and editing through commands | Whether each control in your apps is reachable |
+| Windows Voice access | Windows 11 navigation and text entry with on-device recognition | Supported language and your complete application workflow |
+| Dedicated dictation apps | Writing into existing text fields | Text quality, editing behavior, and insertion reliability |
+
+Do not equate a large list of app logos with the ability to perform any action inside those apps. Text insertion, screen interpretation, a supported integration, and general interface automation are different capabilities. Ask for a demonstration of your specific operation.
+
+### VoiceOS: when the next step is in another app
+
+VoiceOS’s official integration catalog describes what each connection can do, including the platform and whether the tool asks first. Gmail, Slack, calendars, Notion, Linear, and Jira are examples of connected workflows. Native Apple integrations have Mac-specific requirements. Check the individual integration page instead of assuming every action works on both platforms.
+
+![Existing VoiceOS screenshot showing the Apps panel with connected services including Gmail, Slack, and Google Calendar.](https://www.voiceos.com/posts/voiceos-email-workflow/connected-apps.png)
+VoiceOS product screenshot from an existing demonstration. Available actions depend on the integration, account, and platform.
+
+A useful trial is an internal coordination task with disposable content. Ask for a draft, verify its destination, then evaluate a single supported follow-up. Keep the request narrow enough that you can tell whether it succeeded. “Organize my week” is harder to assess than creating one correctly dated event in the intended calendar.
+
+Read operations, local changes, and external writes do not all have the same confirmation behavior. Review the catalog’s “asks first” field and the actual tool preview. Never turn an example of a confirmed email send into a claim that every tool call asks permission. The evidence should name the action.
+
+### HeyClicky: screen guidance and a Mac companion
+
+HeyClicky advertises a hotkey-triggered view of your screen, spoken guidance, drawing on screen, and agent tasks. Its current site lists Mac support and a Windows waitlist. That makes it worth evaluating if help understanding an interface is the main job. It should not be described as merely a dictation tool.
+
+Separate guidance from execution during the trial. Ask the same question in two forms: explain the next step, then perform an allowed example of that step. Evaluate how it handles ambiguity and what evidence it gives that the operation completed. An engaging conversation is valuable, but it is a different result from a correctly saved record.
+
+### Built-in voice control deserves its own evaluation
+
+Apple Voice Control supports spoken commands for navigation and editing. Windows Voice access provides a command-based route to navigating and authoring text. If your requirement is to operate the machine without a keyboard or pointer, these tools belong at the beginning of the evaluation.
+
+Test starting and stopping recognition, reaching a button without clicking, selecting text, fixing a mistake, and recovering from an unexpected dialog. A successful first paragraph is only one part of that loop. For nonvisual use, include the screen reader or other feedback tool you normally rely on. Do not assume an AI assistant’s visual overlay is sufficient feedback.
+
+It can be reasonable to combine tools: one for interface navigation, another for writing or connected actions. Test shortcut conflicts and which microphone listener is active. A combination that works in a demonstration should also let you pause, correct, and recover independently.
+
+### Evaluate a complete task, not a demo command
+
+- Define the starting state: app open, account connected, cursor or item selected.
+- Specify the result: exact destination, title, date, recipient, or record to change.
+- Observe context: what screen or account information did the assistant need?
+- Check review and recovery: could you inspect, correct, cancel, or undo the proposed action?
+- Verify the destination: look for the saved draft, event, or record in the target app.
+
+![A voice task moves from a request to the right app, a checked result, and completion.](https://www.voiceos.com/blogs/guides/actions.svg)
+Evaluate the finished task, including the result in the destination app.
+
+Count retries and manual fixes as part of the task. If the voice step took ten seconds but checking the result required reopening three apps, the full workflow may not have improved. That observation is more useful than a vendor’s isolated response-time number.
+
+Our guide to capturing ideas covers one narrow workflow that is easy to try. The email guide separates drafting, checking, and sending. Both describe proposed methods and examples, not a measured claim that a week of work became hands-free.
+
+### Sources
+
+1. [VoiceOS Agent Mode](https://www.voiceos.com/features/agent) — VoiceOS
+2. [HeyClicky product, plans, and platform availability](https://www.heyclicky.com/) — HeyClicky
+3. [Use Voice Control commands to interact with your Mac](https://support.apple.com/en-bw/guide/mac-help/mh40719/mac) — Apple
+4. [Get started with voice access](https://support.microsoft.com/en-US/Accessibility/windows/voice-access/get-started-with-voice-access) — Microsoft
+5. [VoiceOS official integration catalog](https://www.voiceos.com/app-store) — VoiceOS
+
+---
+
+## [How to dictate email without losing control of the message](https://www.voiceos.com/blog/dictate-email-without-losing-control)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-21T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS can help you draft, revise, and use supported email actions. A dependable workflow keeps the content and recipient visible before anything is sent.
+
+Method: VoiceOS integration definitions were checked for email action names and confirmation behavior. The draft and trial procedure are original examples. An owner-supplied Gmail screenshot illustrates the structure of a saved draft, including paragraph breaks, greeting, and sign-off.
+
+Limitations: No real emails were sent for this article and no hands-free week or measured productivity gain is claimed.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Separate writing from sending
+
+Dictating an email body and asking an agent to send email are different operations. Dictation enters words into a field. An email integration can act on a connected account. Keep that distinction explicit: first create a draft, then check the facts and destination, then decide whether to send.
+
+This guide contains an illustrative draft and a proposed trial method. It is not a report of a week spent working hands-free. No timing results or success rates are implied by the example.
+
+### State the purpose before the wording
+
+Before starting, identify the recipient, the purpose, and any non-negotiable details. For a routine reply, that might be “confirm Thursday’s review, ask for the document by Wednesday, and do not promise a launch date.” You can say the prose yourself or ask for a draft using those constraints.
+
+![Move an email from intent to a draft, review, and a deliberate send.](https://www.voiceos.com/blogs/guides/email.svg)
+Treat drafting, checking, and sending as separate decisions.
+
+Use direct dictation when the words are already yours. Use a draft request when you want help composing them, and check the generated text more carefully. A fluent response can introduce an assurance you never intended to make. Neither method removes the need to review a commitment.
+
+VoiceOS’s Dictation Mode enters writing into standard text fields; selected-text editing can revise a passage. Gmail and Outlook integrations expose specific email actions. Review the integration’s scope before assuming the app can manipulate every field in your mail client.
+
+### Format the draft so it reads like an email
+
+The right words are only part of a usable email. A single block of text makes the reader work to find the request, the details, and the next step. Give the greeting its own line, separate the main ideas into short paragraphs, and put the sign-off at the end.
+
+![A Gmail draft titled Meeting Follow-up, with separate paragraphs, three bulleted meeting times, and a Best, Kai sign-off.](https://www.voiceos.com/blogs/guides/workflows/gmail-dictation-formatting-v2.png)
+A revised Gmail draft with short paragraphs, bulleted meeting times, and a separate sign-off.
+
+In the Gmail draft above, the greeting, meeting follow-up, and sign-off are visually separate. The three available times appear as bullets, so the recipient can scan the options without picking them out of a sentence. Use that same check on your own dictated email: can the recipient quickly find what you are asking and how to respond?
+
+- Start a new paragraph when the purpose changes, such as moving from project context to meeting availability.
+- Use bullets when the message contains several tasks or items the recipient needs to check individually.
+- Keep the greeting and sign-off separate from the body, with blank lines that survive pasting into your mail app.
+
+If the words are right but the layout needs work, select the draft and ask for a formatting edit: “Keep the wording unchanged. Put the greeting and sign-off on their own lines, with a blank line between paragraphs.” Then check the result in the compose window, including the names, dates, and times.
+
+### An illustrative draft and review
+
+Suppose the intended message is: “Hi Maya, Thursday works for the review. Please send the revised brief by Wednesday at noon so I can read it first. Thanks, Alex.” This is sample copy written for the guide, not output recorded from a dictation test.
+
+| Review step | What to verify | Why it matters |
+| --- | --- | --- |
+| Destination | The intended account and Maya’s full address | A correct body sent to the wrong person is still a failed task |
+| Date and deadline | Thursday for the review; Wednesday at noon for the brief | Two different dates can be accidentally merged |
+| Commitment | Agreement to a review, not approval of the brief | An edit can subtly change what you promise |
+| Attachments | Whether the message needs one, and which file | A drafted sentence is not proof an attachment exists |
+| Final text | No leftover instruction or unintended rewrite | Spoken instructions can sometimes appear as message text |
+
+If you ask for a shorter version, compare it with those requirements instead of judging tone alone. “Thursday works—send the brief beforehand” is shorter but has lost the explicit deadline. That may be acceptable, but it should be your choice.
+
+### Make edits narrow enough to verify
+
+Select the sentence that needs work and describe one change: remove repetition, soften a phrase, or correct a name. Avoid asking for several changes at once while also changing the recipient or attachments. A small edit is easier to compare with the original.
+
+For detail-heavy messages, keep a visible checklist next to the draft. Verify amounts, dates, links, and names against the source. If you are replying in a long thread, confirm the claim you are answering belongs to the current message rather than an older quoted one.
+
+When a draft is wrong in several ways, start again from the intent and required facts. Repeatedly asking an assistant to fix its previous interpretation can be slower than giving it a clean, bounded request.
+
+### Use the actual send preview
+
+VoiceOS’s official catalog marks Gmail send and reply, and Outlook send and reply, as actions that ask first. Review the actual preview for the selected action and verify the message in the mail service afterward. Other tools have different behavior; this is not a promise about every VoiceOS tool call.
+
+![Existing VoiceOS email demonstration showing a composed message with a recipient and a preview of the draft.](https://www.voiceos.com/posts/voiceos-email-workflow/email-draft.png)
+A draft preview from an existing VoiceOS demonstration. Check the recipient and message before sending.
+
+If you are only dictating into a mail window, sending remains a separate mail-app operation. Make sure the cursor is in the body rather than the subject or recipient field before speaking. For a first trial, use an unsent draft with invented details and stop before an external send.
+
+An organization’s email policy still applies. The draft may be cloud-processed before it is sent to a recipient, and connected accounts have permissions of their own. Consult the privacy guide when deciding what content may enter the workflow.
+
+### How to run an honest small trial
+
+- Choose a few routine drafts of similar complexity. Exclude confidential content from any shared test record.
+- Record the method: ordinary typing, direct dictation, or an agent-created draft.
+- Time from opening the draft to a reviewed, send-ready message. Include retries and corrections.
+- Record changed facts and wrong destinations separately from punctuation edits.
+- Keep failed attempts in the results. A tool that is excellent only when its failures are omitted is not excellent for your workflow.
+
+A week can reveal whether a method fits your day, but it does not by itself produce a controlled study. Workload, familiarity, microphone conditions, and the kind of email all vary. Report those limitations beside any numbers you later publish. This article provides the process; it does not invent the week’s results.
+
+### Sources
+
+1. [VoiceOS Dictation Mode](https://www.voiceos.com/features/dictation) — VoiceOS
+2. [VoiceOS official integration catalog](https://www.voiceos.com/app-store) — VoiceOS
+3. [VoiceOS Privacy Policy](https://www.voiceos.com/privacy) — VoiceOS
+
+---
+
+## [How to Rewrite and Edit Text by Voice on Mac and Windows](https://www.voiceos.com/blog/rewrite-edit-text-by-voice-mac-windows)
+
+Author: Kai Brokering
+
+Published: 2026-09-19T09:00:00.000Z
+Updated: 2026-09-19T09:00:00.000Z
+Content type: guide
+
+Select existing text, speak a change, and let the model replace the selection—without pasting into a chatbot or retyping from scratch.
+
+Method: Reviewed VoiceOS product documentation for Edit, Dictate, and Agent modes. Reviewed macOS Dictation and Apple Intelligence Writing Tools documentation, and Windows Voice Typing documentation, to ground the built-in tool descriptions. No first-party accuracy benchmarks performed.
+
+Limitations: No first-party test measured transcription accuracy or edit quality; results vary by accent, noise, and microphone. This is not medical advice; readers with wrist or hand pain should consult a professional.
+
+Disclosure: This article was prepared with AI assistance for the VoiceOS blog. VoiceOS makes one of the products discussed.
+
+### Key takeaways
+
+- **Rewriting by voice** means you keep the draft you already have, select it, and speak an instruction ("make this shorter," "more formal," "turn this into bullets") so the computer replaces the selection—instead of dictating a brand-new paragraph from scratch.
+- **Built-in tools** (macOS Dictation, Windows Voice Typing, Apple Intelligence Writing Tools where available) help you *enter* or lightly clean text. They are weaker when you want a full rewrite in place across every app.
+- **Chatbots** can rewrite well if you paste text in—and that paste step is the friction. A system-wide **Edit mode** removes the round trip: select → speak → replace.
+- **VoiceOS Edit mode** (Mac and Windows) is built for that select-and-rewrite loop, alongside Dictate (new text) and Agent (actions with confirmation). Try it after you understand the general workflow below.
+
+### What "edit by voice" actually means
+
+Most people who try voice on a computer start with **dictation**: talk, get words in a text field, fix a few mistakes. That is useful. It is not the same as **editing**.
+
+Editing is what you do when the words are already there:
+
+- The email is too long.
+- The Slack reply sounds cold.
+- The paragraph should be bullets.
+- The tone should be friendlier for a customer, or sharper for a founder update.
+
+With a keyboard, you highlight, delete, retype, and second-guess. With voice editing, you highlight, speak the change you want, and let the model rewrite *that* selection. You stay in the same app. You do not re-explain the whole draft from memory.
+
+If your wrists, shoulders, or focus are already taxed from a long typing day, this is the part of voice that often matters more than raw speed. You are not generating more text. You are changing text you already decided to send.
+
+### Three ways people rewrite text with AI today
+
+**1. Built-in OS tools**
+
+**On a Mac:** Turn on Dictation in System Settings → Keyboard → Dictation (or the equivalent path on your macOS version). Place the cursor, use the Dictation shortcut, and speak new text. Where Apple Intelligence Writing Tools are available on your Mac, you can often select text and ask for a rewrite, proofread, or summary from the system UI.
+
+**On Windows:** Press Win + H to open Voice Typing in supported fields. Speak to insert text. Use the on-screen options your Windows build exposes for punctuation and commands.
+
+**Honest limit:** These tools are strongest at *getting words in*. Full "reshape this selection into a different tone" across *every* app is inconsistent. Some apps honor system writing tools; many chat boxes and web editors do not.
+
+**2. Paste into a chatbot, then paste back**
+
+The common 2026 workaround: copy the draft, open ChatGPT, Claude, Gemini, or similar, paste and add instructions ("shorter," "less corporate," "bullet points"), copy the result, paste back into Slack, Mail, Docs, or your IDE comment box.
+
+The model quality is often excellent. The workflow is not. You context-switch, lose the thread you were answering, and sometimes paste into the wrong window. If you do this ten times a day, the tax adds up.
+
+**3. System-wide select → speak → replace**
+
+A voice layer that sits above your apps can treat the current selection as the thing to rewrite. You stay in Gmail, Notion, Linear, Docs, or a browser text field. You speak the edit. The selection updates.
+
+That is the shape of **VoiceOS Edit mode**, described after the general steps so you can judge the fit.
+
+### How to rewrite text by voice (general workflow)
+
+Use this pattern with whatever stack you have.
+
+**Step 1 — Finish a rough draft first:** Dictate or type a messy first pass. Do not polish while you invent. Voice editing shines on text that already exists. Example rough Slack reply: "hey yeah I can look at the PR tomorrow morning but I might be in standup until 10 so maybe closer to 11 also can you drop the link again"
+
+**Step 2 — Select only what should change:** Highlight the sentences you want rewritten. Leave greetings, signatures, or code fences alone if they are already fine. Narrow selection = better edits.
+
+**Step 3 — Speak a clear edit instruction:** Say the outcome, not a novel: "Make this shorter." "Make this more polite." "Make this more direct." "Turn this into three bullet points." "Fix the grammar but keep my voice." "Rewrite this for a customer support tone." One instruction per pass beats stacking five requests in one breath.
+
+**Step 4 — Read before you send:** Voice edits can over-smooth personality or change a meaning you cared about. Skim the result. If it drifted, select again and say "keep my casual tone" or "put back the part about standup."
+
+**Step 5 — Repeat for structure, then tone:** A practical order: 1. Structure ("bullets," "one short paragraph"). 2. Length ("cut this in half"). 3. Tone ("warmer," "more formal"). That order prevents a beautiful tone pass on text that is still rambling.
+
+### Copy-ready edit prompts
+
+Speak or paste these as-is:
+
+| Goal | Say |
+| --- | --- |
+| Shorter | "Make this half as long. Keep the ask clear." |
+| Clearer | "Rewrite this so a busy teammate gets the point in one glance." |
+| Warmer | "Make this friendlier without sounding fake." |
+| Firmer | "Make this more direct. Keep it professional." |
+| Bullets | "Turn this into short bullet points." |
+| Support | "Rewrite this as a calm customer support reply." |
+| Grammar only | "Fix grammar and punctuation. Do not change the meaning." |
+| Remove filler | "Remove filler and false starts. Keep my voice." |
+
+### Common problems (and fixes)
+
+**The edit rewrites the whole email when you only hated one paragraph.** Select a smaller region. Voice editors usually operate on the selection, not the entire document—unless you selected everything.
+
+**The tone becomes generic "AI bland."** Add a constraint: "Keep it casual," "sound like a Slack message," "do not add corporate filler."
+
+**Names, product terms, or jargon get "corrected."** Add those terms to a custom dictionary if your tool has one, or say "keep the product name exactly as written."
+
+**It fails inside a web app.** Some browser fields block system accessibility hooks. Click into a standard text field, try a different browser, or paste into a temporary Docs/Notes window, edit by voice, then paste back—as a fallback, not the default.
+
+**You are still in pain after switching to voice.** Dictation and editing reduce keyboard load; they are not medical treatment. If you have wrist, hand, or shoulder pain, also look at ergonomics and clinical advice. VoiceOS's RSI-oriented guide covers the health-adjacent workflow angle separately.
+
+### Where VoiceOS fits (Edit mode)
+
+Once the workflow above is clear, here is the VoiceOS-specific path—useful if you want the select-and-rewrite loop in almost any text field on Mac and Windows, without the chatbot paste round trip.
+
+VoiceOS splits voice into modes that match the job:
+
+- **Dictate** — speak new text into the focused field; filler cleaned up; tone nudged toward the app you are in.
+- **Edit** — select existing text, speak a rewrite instruction, replace the selection.
+- **Agent** — ask about what is on screen or take actions in connected apps, with confirmation before consequential sends.
+
+**Try an edit in VoiceOS:** 1. Install VoiceOS on Mac or Windows and grant microphone (and any accessibility permissions your OS requests for typing into apps). 2. Open the draft in the app where it lives—Mail, Slack, Docs, Notion, a browser box, and so on. 3. Select the text you want changed. 4. Invoke Edit mode with your VoiceOS trigger (the shortcut you set in the app). 5. Speak one clear instruction from the table above—for example, "Can you make this shorter?" 6. Review the replacement. Undo or run a second pass if needed. 7. Send only when you are satisfied—especially for external email or customer replies.
+
+Here is that loop in Google Docs: text selected, VoiceOS showing the selection chip, and the edit instruction spoken in.
+
+![VoiceOS Edit mode with selected Google Docs text and the instruction "Can you make this shorter?"](https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/docs-edit-shorter.png)
+Select text in Google Docs, invoke VoiceOS Edit mode, and speak the change you want.
+
+![VoiceOS Edit mode ready on the same Google Docs selection](https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/docs-edit-shorter-2.png)
+The edited text replaces the selection in place.
+
+The same loop works in email. Select the draft in Gmail, speak the tone change you want—for example, "Can you make this more formal?"—and replace the selection in place.
+
+![VoiceOS Edit mode on a Gmail draft with "Can you make this more formal?"](https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/gmail-edit-more-formal.png)
+Select the draft in Gmail, invoke Edit mode, and speak the change.
+
+![VoiceOS Edit mode on the same Gmail draft after requesting a more formal rewrite](https://www.voiceos.com/blogs/rewrite-edit-text-by-voice-mac-windows/gmail-edit-more-formal-2.png)
+The rewritten draft replaces the selection.
+
+The product path is select → speak the change → replace in place. You stay in Docs, Gmail, Slack, Notion, or whichever field has the cursor. You do not paste into a separate chatbot window.
+
+VoiceOS is not a replacement for ChatGPT or Claude when you want a long brainstorming conversation. It is the layer that applies a short spoken edit *where the cursor already is*. Many people use both: think in a chatbot when needed, edit and ship in the real app with voice.
+
+For the broader "talk to run the computer" picture, see [hands-free voice control on Mac and Windows](/blog/hands-free-voice-control-mac-windows) and [what a voice operating system is](/blog/what-is-a-voice-operating-system). For injury-aware typing reduction, see [voice typing for RSI and carpal tunnel](/blog/voice-typing-for-rsi-and-carpal-tunnel).
+
+### Sources
+
+1. [VoiceOS Edit Mode: select, speak, replace](https://www.voiceos.com/features/edit) — VoiceOS
+2. [VoiceOS Dictation Mode: voice writing and formatting](https://www.voiceos.com/features/dictation) — VoiceOS
+3. [Dictate messages and documents on Mac](https://support.apple.com/en-gb/guide/mac-help/mh40584/mac) — Apple Support
+4. [Use voice typing to talk instead of type on your PC](https://support.microsoft.com/en-us/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc) — Microsoft Support
+
+---
+
+## [Voice dictation privacy: what each app stores](https://www.voiceos.com/blog/voice-dictation-privacy)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-19T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS compares the privacy controls that change where your words go. A vendor’s storage policy, a training opt-in, and offline processing answer different questions.
+
+Method: Read the vendors’ published privacy and configuration documentation. Summaries distinguish processing, retention, and model improvement; they do not reproduce broad marketing assurances.
+
+Limitations: We did not independently inspect vendor infrastructure, contracts, or network traffic. Policies and feature-specific exceptions can change.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Compare controls, not privacy adjectives
+
+Before you dictate a sensitive sentence, identify its route: microphone, speech recognition, any AI editing, history, and the destination app. For an agent, add screenshots, attachments, and connected-service responses. A tool can avoid storing audio on its servers and still need to send that audio to a processor.
+
+The table below summarizes vendor documents checked on September 30, 2026. It is not a security audit or a legal conclusion about which service your organization may use. We make VoiceOS and apply the same questions to it. Unknown or contract-dependent details should remain questions, not checkmarks.
+
+### What the published policies say
+
+| Product | Processing | Storage and improvement controls |
+| --- | --- | --- |
+| VoiceOS | Cloud-connected | Help Improve VoiceOS off: audio/transcripts deleted after processing; on: those collected may be retained indefinitely for training |
+| Superwhisper | Local and cloud configurations | Speech and optional rewriting models are configured separately; a local speech model alone does not keep rewriting local |
+| Wispr Flow | Cloud transcription | Separate controls govern model improvement, dictation cloud storage, and local history; meeting features have their own retention |
+| Aqua Voice | Online dictation service | Policy allows server transcript storage for product improvement when Privacy Mode is disabled |
+| Willow | Cloud processing | Default Private Mode does not retain dictated content; optional improvement mode permits eligible anonymized text, not audio |
+| Typeless | Cloud processing | Policy says audio and contextual data are processed transiently and discarded; account and submitted feedback data are separate categories |
+
+![Follow voice data through capture, processing, retention, and model training.](https://www.voiceos.com/blogs/guides/privacy.svg)
+Trace the whole data path when reading a product’s privacy documentation.
+
+These rows deliberately do not score every vendor “safe” or “unsafe.” The same service can be appropriate for one class of work and prohibited for another. A personal note and a regulated client record can require different decisions even when the technical processing is identical.
+
+### The VoiceOS setting that changes the answer
+
+With Help Improve VoiceOS off, the published VoiceOS policy says raw audio and transcripts are deleted immediately after processing, and user content is not used to train VoiceOS models. Turning the setting on permits evaluation and allows collected audio and transcripts to be retained indefinitely for training. Turning it off later stops future collection under that setting; it does not retrospectively erase earlier contributions.
+
+Local history is a separate consideration. A copy on your computer can still be visible to someone with access to that computer or included in a backup. Account data, personalization, and integration credentials have their own purposes and retention rules. Read the policy by data category instead of applying the audio rule to every piece of information in the product.
+
+### Three switches that are easy to confuse
+
+Processing: where is audio turned into text, and where is text edited? Storage: which parts remain after the request, and for how long? Improvement: may any retained content be used to evaluate or train models? Turning off one switch does not necessarily change the other two.
+
+![Ask separately where audio is processed, what audio or text is retained, and whether data is used to train models.](https://www.voiceos.com/blogs/guides/editorial/privacy-controls.svg)
+Processing location, retention, and training are separate questions; a single setting may cover only one.
+
+Wispr’s documentation is an example of why that distinction matters: its model-improvement control and Dictation Cloud Storage control are separate. Superwhisper illustrates a different distinction: the speech model and optional language model can run in different places. Read the setting for the exact feature you plan to use.
+
+Screenshots and selected text need the same scrutiny as speech. Context can include a customer’s message, an internal document, or information visible behind the window you meant to discuss. Close unrelated sensitive material and check which context the feature requests. More context is a capability with a data consequence, not a free accuracy upgrade.
+
+### A practical privacy review before daily use
+
+- Write down which kinds of content are allowed: public writing, internal work, client material, or restricted records.
+- Record the current privacy mode and any model-improvement switch. Do not rely on the setting you remember from installation.
+- Check speech, rewriting, local history, cloud sync, and connected-service permissions separately.
+- Read deletion rules for previously collected content; turning off collection is not the same as deleting past data.
+- For a workplace deployment, ask who can enforce the configuration and what the agreement covers.
+
+Test with non-sensitive examples first. A successful draft proves the workflow can work; it does not prove compliance. For a cloud service, ask for the applicable data-processing terms, provider list, and any required report. For a local setup, include backups, logging, and the destination application in the review.
+
+### Questions worth sending to a vendor
+
+A specific question is easier to answer than “Are you private?” Ask: “For this plan, with this mode enabled, do you or a processor retain raw audio, intermediate transcripts, final text, screen context, or prompts after the request? Which exception applies to each?” Request a current answer linked to the policy or agreement.
+
+Then ask what changes when you enable optional improvement, meeting capture, synchronization, or a connected account. These features may cross a boundary that basic dictation does not. The feature you are buying should be the feature your security reviewer evaluates.
+
+If the requirement is that audio never leaves the device, use the offline guide to build a local shortlist. If the requirement is a completed report, request that report and verify its scope. Neither a friendly privacy paragraph nor an audit roadmap satisfies a requirement for evidence.
+
+### Sources
+
+1. [VoiceOS Privacy Policy](https://www.voiceos.com/privacy) — VoiceOS
+2. [Sensitive Data Best Practices](https://superwhisper.com/docs/security/sensitive-data) — Superwhisper
+3. [Privacy and data controls](https://wisprflow.ai/privacy) — Wispr Flow
+4. [Privacy Policy](https://aquavoice.com/info/privacy) — Aqua Voice
+5. [Privacy Policy](https://willowvoice.com/privacy-policy) — Willow
+6. [Privacy Policy](https://www.typeless.com/privacy) — Typeless
+7. [VoiceOS security and privacy](https://www.voiceos.com/security) — VoiceOS
+
+---
+
+## [How to capture an idea without losing your place](https://www.voiceos.com/blog/capture-ideas-without-losing-focus)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-17T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS can help turn a spoken thought into text or a supported note action. The hard part is often deciding what to capture and where it should land.
+
+Method: Original workflow design using VoiceOS dictation and integration documentation. The example requests are authored examples, not transcripts from a user study.
+
+Limitations: No measured context-switching reduction or universal success rate is claimed.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Capture enough to restart the thought
+
+A useful quick note has three parts: the idea, why it matters, and the next move. “Pricing idea” is quick to save but difficult to recover. “Pricing page: explain annual billing beside the monthly equivalent; ask Maya to review the wording” contains a reason and an action. That second note gives your future self something to work with.
+
+Choose one capture destination before the interruption happens. It can be a local note, a page in your existing workspace, or a task inbox. The point is that capture should not require a fresh decision about folders and tags every time. This is a suggested workflow, not a measured reduction in context-switching time.
+
+### A short template you can say naturally
+
+| Part | What to include | Illustrative example |
+| --- | --- | --- |
+| Idea | The actual thought, not only a topic label | Show the annual total beside the monthly equivalent |
+| Context | What you were looking at or why it matters | On the pricing page, the billing period is easy to miss |
+| Next move | One small action or a reason to revisit it | Ask Maya to check the copy tomorrow |
+
+![Example note titled Pricing page: show the annual total beside the monthly price. An unchecked task says, Ask Maya to review it tomorrow.](https://www.voiceos.com/blogs/guides/editorial/capture-note.svg)
+One thought and one follow-up. An illustrative note.
+
+You do not need to speak those labels aloud. Say the thought as one or two sentences, then save it. Include a document title or stable link when the idea depends on a particular source. “This paragraph” will not help when the paragraph is no longer on your screen.
+
+Keep interpretation out of the first capture when it is unnecessary. If you already know the words, dictating them into a note is often easier to verify than asking an agent to infer and summarize your intention. Use an agent when the destination action is the part you want help with.
+
+### Two ways to capture with VoiceOS
+
+For direct dictation, place the cursor in your chosen note and speak. For an app action, check that the destination has a supported VoiceOS integration, connect it, and ask for a specific note or task operation. The catalog includes Notes, Notion, Obsidian, and Reminders, with different actions and platform requirements.
+
+An illustrative request is: “Create a note titled Pricing copy review with this text: show the annual total beside the monthly equivalent; ask Maya to review the wording.” Whether that exact phrasing succeeds depends on the connected tool and context. Check the created note in the intended account or vault before returning to work.
+
+The Notes example below shows the same capture pattern with a shopping list: speak the items, review a titled note with bullets, then create it. Keeping each item on its own line makes it easier to check what was captured.
+
+![VoiceOS previews a Shopping List note with visible bullets for eggs, tomatoes, and bread, plus a Create Note button.](https://www.voiceos.com/blogs/guides/workflows/voiceos-apple-notes.png)
+A spoken shopping list becomes a note preview with a title and separate bullet points. Review the full list before creating it.
+
+A reminder is different from a note. Use a reminder when there is a time or trigger you actually need. Use a note when you are keeping material for later thinking. Turning every idea into a timed notification replaces one interruption with another.
+
+![VoiceOS previews an Apple Reminder titled “Join the meeting” for tomorrow at 1:30 PM, with an Add Reminder button.](https://www.voiceos.com/blogs/guides/workflows/voiceos-reminders.png)
+“Remind me at 1:30 tomorrow to join the meeting.” The reminder preview puts the title, date, and time together.
+
+### Leave yourself a place to resume
+
+Before switching away from demanding work, write or dictate a brief resumption cue: “Next: compare the second table with the source” or “Return to the failing test after this note.” Keep the cue attached to the original task, not buried inside the new idea. It should answer what to do when you return.
+
+![Capture the idea with context, save it to one inbox, and return to the original task.](https://www.voiceos.com/blogs/guides/capture.svg)
+Choose the destination in advance so a quick thought does not become a filing exercise.
+
+Then capture the new thought, confirm it was saved, and return to the cue. Avoid expanding the quick note into research, scheduling, and messaging unless that work is now the priority. Voice can make capture more convenient; it cannot choose your priorities for you.
+
+If you use screen-aware help, provide only the context needed for the request. A screenshot can contain unrelated content. VoiceOS’s privacy policy explains the screen and integration data Agent Mode may process; use material your organization permits.
+
+### Make the inbox small enough to trust
+
+A capture system works only if its contents are reviewed. At a time that fits your work, decide whether each note becomes a task, reference material, a project idea, or something to delete. Rewrite vague entries while you still remember them. The inbox should be a temporary landing place, not a second archive you never open.
+
+You can evaluate the workflow without claiming a productivity breakthrough. Pick a few ordinary interruptions and note whether the idea was saved, whether the context was sufficient later, and whether you resumed the intended task. Compare with your previous method. A note that takes slightly longer to capture but is actually usable can be the better result.
+
+If talking breaks your concentration or disturbs coworkers, use a short typed note instead. The destination and template still work. The system should accommodate your day rather than demand that every thought become a voice command.
+
+### Sources
+
+1. [VoiceOS Dictation Mode](https://www.voiceos.com/features/dictation) — VoiceOS
+2. [VoiceOS official integration catalog](https://www.voiceos.com/app-store) — VoiceOS
+3. [VoiceOS Privacy Policy](https://www.voiceos.com/privacy) — VoiceOS
+
+---
+
+## [Best offline dictation tools and their trade-offs](https://www.voiceos.com/blog/best-offline-dictation)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-15T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS is a cloud-connected product. If your speech must stay on the computer, this guide helps you choose and verify a different processing setup.
+
+Method: Compared documented processing options and hardware requirements from Apple, Microsoft, Superwhisper, and whisper.cpp. The disconnected procedure is a proposed acceptance test.
+
+Limitations: No claim is made that we installed or network-audited each configuration. Offline support can vary with version, language, model, and device.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Offline is a property of the whole workflow
+
+A local speech model is only one part of offline dictation. If the transcript then goes to a cloud model for punctuation or rewriting, the finished workflow is not local. If the destination app syncs the document to a server, your words can leave the machine after dictation succeeds. Choose the processing path, not just a product with “private” in its description.
+
+The practical shortlist is built-in on-device dictation where supported, Windows Voice access for dictation and computer control, Superwhisper configured with local processing, and whisper.cpp for people comfortable assembling a technical workflow. Each solves a different problem.
+
+### Four routes to local speech-to-text
+
+| Option | Useful for | Important boundary |
+| --- | --- | --- |
+| Apple Dictation | Mac users who want a built-in starting point | Check the on-device notice for the selected language and device |
+| Windows Voice access | Windows 11 dictation and navigation | Download what setup requires before disconnecting; it is not Win+H voice typing |
+| Superwhisper with local models | Choosing speech and optional editing models | Confirm that both processing stages stay local |
+| whisper.cpp | Technical users building local transcription workflows | Model downloads, installation, and text insertion need setup |
+
+These are starting points rather than a claim to list every offline app. A smaller comparison with clear requirements is more useful than a long list that treats a command-line transcriber, a keyboard replacement, and a meeting recorder as equivalent.
+
+### Use built-in features when they cover the task
+
+On a Mac, enable Dictation and inspect the processing notice in Keyboard settings. Apple’s documentation makes that notice the way to confirm whether general text dictation stays on-device. A claim about one Mac, language, or type of input should not be generalized to every configuration.
+
+On Windows, start with Voice access if local speech recognition and voice navigation are important. Do not choose Windows voice typing just because it is also built in: Microsoft documents that feature as an online service.
+
+Try a paragraph in a local document before making this your travel setup. Confirm how you activate recognition, stop it, correct a word, and recover when text lands in the wrong field. A keyboard shortcut that is convenient at a desk may be awkward when you cannot keep a hand on the keyboard.
+
+### Check the speech model and the editing model
+
+Superwhisper separates speech recognition from optional AI processing. Its documentation describes fully local configurations and a transcription-only mode with no language-model step. On Windows, available local models and local AI editing depend on hardware; check the requirements for the exact machine you will use.
+
+![A local speech-to-text pipeline: microphone, local model, transcript, and review.](https://www.voiceos.com/blogs/guides/offline.svg)
+Local transcription is one part of the workflow. Check whether editing, translation, or sync still needs a connection.
+
+Begin with a mode whose behavior you can explain. Record the selected voice model, any editing model, and whether the mode changes automatically by application. A working local mode in a notes app does not prove that a separately configured email mode uses the same processing path.
+
+There are practical costs to moving computation onto the device. Model files take disk space; processing competes with other work; battery and heat can matter on a laptop. The size of those effects depends on the hardware, model, and recording. Measure them on your own machine instead of assuming “local” is always slower or always faster.
+
+### When a local engine is enough
+
+whisper.cpp is an open-source implementation with local model and example workflows. It can be a sensible foundation when you want to control the transcription pipeline. It is not, by itself, a finished replacement for all the shortcut, insertion, editing, and history behavior of a desktop dictation app.
+
+Choose this route if you already maintain scripts or need a repeatable file-transcription process. Include the time to install models, handle audio input, and get the text into its destination. Check the project’s current installation instructions and supported hardware before committing to a particular acceleration method.
+
+For a less technical colleague, hand over a complete workflow, not a terminal command that happens to produce text. They need a visible recording state, a reliable stop action, a way to review output, and a recovery path when something fails.
+
+### A disconnected test you can repeat
+
+- While online, install the app and download every required speech and editing model. Record the app version and chosen mode.
+- Open a local document that does not require a web connection. Close any sensitive material you do not want included as context.
+- Disconnect networking and restart the app. Dictate a fresh sample; do not just reopen a cached transcript.
+- Test the actual editing and insertion steps, then a second language if you use one. Record what fails.
+- Check history and export behavior. Decide whether local recordings should remain, and whether backups or document sync copy them elsewhere.
+
+![Prepare the model online, disconnect Wi-Fi and Ethernet, then record a new sample and check the text in a local app.](https://www.voiceos.com/blogs/guides/editorial/offline-test.svg)
+Run this check after setup, using a fresh recording and each language or feature you need.
+
+Passing this test demonstrates that the selected workflow can function while disconnected. It does not prove that the app never transmits anything when networking returns. For that stronger claim, you need to inspect its policy, configuration, and network behavior. Those are separate verification tasks.
+
+### What you may give up—and what you do not have to
+
+You do not have to give up good dictation just because you choose local processing. You do need to accept the constraints of the chosen model and device. Check your working languages, names, spoken corrections, and long passages. Keep transcription accuracy separate from the quality of any rewriting layer.
+
+Cloud-dependent features need a connection even if dictation itself is local. Searching the web, reading a cloud inbox, and saving to a remote workspace cannot be made offline merely by changing the speech model. A hybrid setup can be reasonable: local dictation for restricted material, connected tools for other work, with a clear boundary between the two.
+
+VoiceOS belongs on the connected side of that boundary. Its AI features require cloud processing. If you choose VoiceOS for app actions, use approved data and check the privacy settings; do not interpret its local transcript history as offline recognition.
+
+### Sources
+
+1. [Dictate messages and documents on Mac](https://support.apple.com/en-au/guide/mac-help/mh40584/26/mac/26) — Apple
+2. [Get started with voice access](https://support.microsoft.com/en-US/Accessibility/windows/voice-access/get-started-with-voice-access) — Microsoft
+3. [Sensitive Data Best Practices](https://superwhisper.com/docs/security/sensitive-data) — Superwhisper
+4. [whisper.cpp documentation](https://github.com/ggml-org/whisper.cpp) — ggml-org
+5. [Use voice typing to talk instead of type on your PC](https://support.microsoft.com/en-us/accessibility/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc) — Microsoft
+6. [Superwhisper on Windows](https://superwhisper.com/docs/get-started/windows) — Superwhisper
+7. [Intro to Modes](https://superwhisper.com/docs/modes/modes) — Superwhisper
+8. [VoiceOS Privacy Policy](https://www.voiceos.com/privacy) — VoiceOS
+
+---
+
+## [How to reduce typing fatigue during a working day](https://www.voiceos.com/blog/reduce-typing-fatigue)
+
+Author: Andrew Hoffmann
+
+Published: 2026-09-14T07:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS can move some writing from the keyboard to speech. The useful goal is a more manageable working day, with fewer repetitive inputs and a reliable way to review your work.
+
+Method: Used NHS and OSHA guidance for the limited health and workstation statements. Workflow suggestions are original practical examples, supported by VoiceOS documentation.
+
+Limitations: No symptom improvement, clinical effectiveness, or time-saving measurement is claimed. Individual input needs and medical conditions vary.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### Change the task before buying another device
+
+Start with the part of your day that produces the most repetitive input: long email replies, case notes, document drafts, repeated form fields, or revisions. Different tasks call for different changes. A text expansion may remove a repeated address; dictation may help with a new paragraph; a change of task may provide a break from computer input altogether.
+
+This is a workflow guide, not a treatment plan. If pain, numbness, weakness, or other symptoms persist or worsen, seek medical advice. The NHS recommends discussing ways of changing work with your employer and getting help for ongoing or worsening RSI symptoms.
+
+### Make a small inventory of keyboard-heavy work
+
+For one ordinary work session, note the work you actually do rather than counting total keystrokes. Write down the task, how long it takes, what repeats, and what you must check before it is finished. Do not keep logging if logging itself adds strain. A short list of the biggest tasks is enough to choose a first experiment.
+
+![Break a typing-heavy task into drafting, editing, actions, and review.](https://www.voiceos.com/blogs/guides/work.svg)
+Separate the parts of your work that require long stretches of typing from the parts that need careful review.
+
+| Task | Possible change | What still needs attention |
+| --- | --- | --- |
+| A new email reply | Dictate the body into an unsent draft | Recipient, names, dates, and tone |
+| The same address or boilerplate | Use an approved template or replacement | Whether the template is appropriate this time |
+| Rewriting a paragraph | Try a narrowly specified voice edit | Meaning and facts after the rewrite |
+| Scheduling or a reminder | Use a supported voice action | Calendar, date, time zone, and confirmation |
+| Fine pointer work | Review navigation tools and workstation setup | Whether every control remains reachable |
+
+Choose one frequent task with a forgiving recovery path. Drafting an internal note is a better first experiment than submitting a client record. Keep a copy of the original when trying an edit, and leave sending or submission until after review.
+
+### Review the workstation and activation method
+
+OSHA’s workstation guidance calls for a keyboard position that lets the shoulders relax and the wrists stay aligned with the forearms. It also encourages task variation and short pauses. Its evaluation checklist can help you identify something concrete to change with your employer or an ergonomics specialist.
+
+Check how your speech tool starts and stops recording. A shortcut you must hold for an entire paragraph may not fit your needs. VoiceOS provides a hands-free dictation shortcut that starts and stops on separate presses. Confirm your configured shortcut in the app and test stopping before using it for a long passage. This is an input option, not a claim that it treats symptoms.
+
+Speech has constraints too. Shared rooms, private information, and the effort of talking can make some sessions unsuitable. Keep other input methods available and do not turn a tool experiment into a demand to speak continuously.
+
+### Try one draft, with review included
+
+- Open an unsent draft or a local note and verify the cursor is in the intended field.
+- Dictate a short paragraph in your normal voice. Stop before editing.
+- Check names, numbers, dates, and anything that changed while you were speaking.
+- Correct one issue with the method that is easiest for you: voice edit, keyboard, or another assistive tool.
+- Record whether the whole task felt workable, including activation, correction, and saving.
+
+![Choose a low-stakes task, speak a first draft, review it, and record effort, corrections, and discomfort.](https://www.voiceos.com/blogs/guides/editorial/fatigue-trial.svg)
+Try one small workflow and record what changes. This is a work experiment, not treatment for pain.
+
+The amount you spoke is not the same as the amount of keyboard work you removed. If every sentence needs several difficult corrections, change the sample, microphone setup, vocabulary settings, or tool. Measure the whole loop before expanding it to more of your day.
+
+VoiceOS can dictate into standard text fields and revise selected writing. Supported Agent Mode actions can address a separate part of the task, such as creating a reminder. Review the individual integration and its platform requirements; dictation support in an app does not imply a native action integration.
+
+### Build a sustainable pattern
+
+Once one task works, add another task with a similar structure. Keep the checkpoints that prevent mistakes. It is reasonable for voice to handle first drafts while another method handles exact identifiers or table manipulation. You are choosing an input mix, not committing to a completely hands-free identity.
+
+At the end of a few sessions, ask what improved: less repetitive input, less time spent correcting, easier recovery from mistakes, or no useful change. Keep only the changes that help. If symptoms are part of the reason for the experiment, discuss the work pattern with a clinician or occupational therapist rather than using output volume as a health measure.
+
+For condition-specific context and the limits of dictation, see our existing RSI and carpal tunnel guide. For complete computer control, compare built-in Voice Control or Voice access with your required assistive setup. A dictation app alone does not establish that every part of your work is accessible.
+
+### Sources
+
+1. [Repetitive strain injury (RSI)](https://www.nhs.uk/conditions/repetitive-strain-injury-rsi/) — NHS
+2. [Computer Workstations: Keyboards](https://www.osha.gov/etools/computer-workstations/components/keyboards) — OSHA
+3. [Computer Workstations: Evaluation Checklist](https://www.osha.gov/etools/computer-workstations/checklists/evaluation) — OSHA
+4. [VoiceOS Dictation Mode](https://www.voiceos.com/features/dictation) — VoiceOS
+5. [VoiceOS official integration catalog](https://www.voiceos.com/app-store) — VoiceOS
+
+---
+
+## [How to Use GPT-6 Astra Voice to Control Your Computer](https://www.voiceos.com/blog/gpt-6-astra-voice-control-computer)
+
+Author: Kai Brokering
+
+Published: 2026-09-13T19:40:14.000Z
+Updated: 2026-09-03T22:34:38.000Z
+Content type: guide
+
+GPT-6 Astra can reason about visible software and carry out multistep work, but the voice experience depends on ChatGPT Voice, Computer Use, and the permissions around them. Here is the practical setup, prompt formula, and workflow.
+
+Method: Reviewed OpenAI's GPT-6 Astra announcement, official ChatGPT Voice and Computer Use instructions, launch posts on X, the linked Her film clip at 1:10, the VoiceOS Agent Mode page, and release-day search results. The guide prioritizes combined setup and troubleshooting questions that broad launch coverage does not answer in one place.
+
+Limitations: Astra access and product controls are rolling out and can vary by plan, region, workspace policy, operating system, and app version. Computer Use can make mistakes, and the launch film is not an independent reliability test. This guide does not claim that VoiceOS uses Astra or has an OpenAI partnership.
+
+Disclosure: Automated research and drafting tools assisted this article using published sources and VoiceOS product documentation. The VoiceOS editorial team reviews every article for accuracy and tone before publication.
+
+### How to use GPT-6 Astra voice: the quick answer
+
+- Select GPT-6 Astra where it is available, but remember that choosing the model does not automatically give it microphone or desktop control.
+- Start a voice chat in the ChatGPT desktop app, then enable Computer Use and approve the specific app you want Astra to operate.
+- Name the app, describe the finished result, state important constraints, and tell Astra where it must pause for your review.
+- Keep the first task narrow. Watch the initial actions, interrupt when the plan drifts, and review anything that sends, purchases, deletes, or changes an account.
+- If you want a dedicated voice shortcut for everyday work across connected apps, VoiceOS Agent Mode is built around the same speak-a-goal interaction pattern.
+
+**Want to start with voice-to-action now?:** Press the VoiceOS shortcut, say what you want done, and review consequential actions before they happen. Agent Mode works across supported apps and connected tools instead of keeping every request inside one chat window.
+
+### How to turn on GPT-6 Astra Voice and Computer Use
+
+Three separate pieces have to line up: GPT-6 Astra is the model, ChatGPT Voice is the conversation layer, and Computer Use is the capability that can see and operate approved software. If you can speak to Astra but it only answers, the missing piece is usually Computer Use, the target app, or an operating-system permission—not a special voice command.
+
+| Step | What to do |
+| --- | --- |
+| 1. Check access | Look for GPT-6 Astra in the model selector. Rollout can depend on your plan, account, region, and workspace administrator. |
+| 2. Enable Computer Use | In the ChatGPT desktop app, open Work or Codex, then install or enable the Computer Use plugin and its server and skill toggles if prompted. |
+| 3. Start Voice | Open the task you want to direct and select Start voice chat. On first use, allow microphone access and choose a voice. |
+| 4. Grant system access | On macOS, allow Screen Recording and Accessibility. On Windows, keep the target app visible on the active desktop. |
+| 5. Approve the app | Ask for @Computer or name the target app, then allow ChatGPT to use that app when the approval appears. |
+
+**If you do not see Astra yet:** OpenAI says Astra is rolling out first to a limited set of organizations and then to Plus, Pro, Business, and Enterprise users. Enterprise access is off by default until an administrator enables it. Update the desktop app, check the model selector, and confirm that your workspace permits Voice and Computer Use.
+
+### How to use GPT-6 Astra voice to do a computer task
+
+Start with a task that has one clear result and a visible finish line. Instead of saying “help with this spreadsheet,” say which spreadsheet to open, what should change, how the result should be checked, and whether Astra may save or send anything. That gives the model a goal while keeping its authority narrow.
+
+| Part | What to say | Why it helps |
+| --- | --- | --- |
+| App | Use @Computer to open Chrome and Google Sheets. | Names the environment Astra is allowed to operate. |
+| Outcome | Clean the duplicate rows and create a summary tab. | Defines a finished artifact instead of asking for advice. |
+| Context | The customer email column is the unique identifier. | Provides the rule Astra needs to make decisions. |
+| Boundary | Do not change the original tab or contact anyone. | Prevents routine ambiguity from expanding the task. |
+| Review point | Show me the duplicate count and wait before saving. | Creates a checkpoint before the consequential action. |
+
+**Copy this first prompt:** Use @Computer to open [app]. I want [finished result]. Use [source or rule] as context. Do not [important boundary]. When you reach [review point], stop and show me what changed before you save, send, purchase, or delete anything.
+
+Once Astra starts, keep the voice chat open. You can ask what it is doing, interrupt a response, add a constraint, or redirect the task without starting over. If it chooses the wrong window, stop it immediately, bring the correct app forward, and restate the target in one sentence.
+
+### GPT-6 Astra voice prompt examples for real work
+
+| Task | Example voice prompt |
+| --- | --- |
+| Research | Use @Chrome to compare these three vendors. Put pricing, contract terms, and missing information in a new document. Cite every claim and stop before sharing it. |
+| Spreadsheet | Open the Q3 workbook, standardize the date column, flag rows with missing owners, and create a summary tab. Preserve the original data and show me the checks before saving. |
+| Email | Read the launch notes in this document and draft a concise update in my email editor. Match the tone of the previous update, but do not send it. |
+| Browser workflow | Open the support dashboard, filter for unresolved billing tickets from this week, and summarize the repeated causes. Do not change any ticket status. |
+| Visual software | Open the current Blender project, make the rocket fins symmetrical, render one preview, and stop so I can inspect it before you overwrite any file. |
+
+The pattern is more important than the wording: name the software, describe the artifact, supply the decision rule, protect anything that should not change, and define the moment when human review is required. Astra is designed to fill routine gaps, but explicit boundaries make a computer-use task easier to verify.
+
+### What the GPT-6 Astra launch video teaches about voice work
+
+OpenAI's launch post makes the intended workflow unusually clear: the person states an outcome aloud, the computer remains visible, and Astra handles the interface steps. The film moves from the historic Put That There speech-and-pointing demo to modern workers directing projected software. Examples include turning a yellow circle into a rocket and then a 3D game, as well as creating an eBay listing from voice instructions.
+
+https://x.com/i/status/2095595741528125780
+
+![A seated person gestures toward a projected Blender workspace displaying a red-and-white 3D rocket.](https://www.voiceos.com/blogs/generated/gpt-6-astra-voice-control-computer/astra-blender-rocket-enhanced.png)
+An enhanced still from OpenAI's GPT-6 Astra launch film shows a spoken request becoming a 3D rocket inside Blender.
+
+The practical lesson is to speak at the level of the result, then use the visible screen to supervise. You do not need to dictate every click. Tell Astra what the rocket, listing, document, or spreadsheet should become; watch the first steps; and intervene when the screen shows that its interpretation differs from yours.
+
+That distinction separates voice control from dictation. Dictation turns speech into text. Astra's computer-use workflow can turn a spoken goal into actions across menus, fields, windows, and files when the product surface supplies the necessary tools and permissions. Voice becomes a way to direct work, not merely a faster keyboard.
+
+### Why GPT-6 Astra Voice sometimes answers instead of acting
+
+If Astra talks about the task but does not click, type, or navigate, Voice is working while the action layer is not engaged. Ask it explicitly to use @Computer or the named app, confirm that Computer Use is enabled, and approve the app. Screen context can help Astra understand what you mean, but context alone does not authorize it to operate the interface.
+
+| Layer | What it contributes | Example |
+| --- | --- | --- |
+| Voice | Captures the user's intent and lets them interrupt or redirect the work naturally. | Prepare this spreadsheet, then summarize the result in an email. |
+| Vision and screen context | Shows the agent which app, document, error, or interface state the person means. | Look at this chart and fix the labels. |
+| Computer use and tools | Carries out the clicks, typing, navigation, analysis, and file changes needed to finish. | Update the chart, save the workbook, and draft the message. |
+| Human control | Keeps permissions, confirmation, review, and correction attached to the workflow. | Show me the draft before anything is sent. |
+
+OpenAI's current ChatGPT Voice documentation already describes this broader role. Voice can start work, check progress, send follow-up instructions, and change direction without returning to the keyboard. On macOS, optional screen context can capture the frontmost app as visual and accessible-text context. Computer Use is documented separately for supported ChatGPT Work and Codex experiences on macOS and Windows. The combination is what makes the launch video's interaction pattern technically credible, even though access and exact behavior depend on the product surface, plan, region, and workspace settings.
+
+### Is GPT-6 Astra like Her? Yes in one important sense
+
+The Her comparison is compelling because the film's interface is conversational and spatial. At about 1:10 in the linked video-game scene, Theodore sits on a couch facing the projected experience, speaks naturally, and uses a small hand gesture to act inside it. He does not study a command language or live inside a chat window. The computer is present in the room, but operating it is not the center of his attention.
+
+[Videogame scene from Her](https://www.youtube.com/watch?v=Xr7aI0RqtXc)
+
+OpenAI's Astra launch video echoes that composition with people speaking toward projected screens while the system changes software and carries work forward. The resemblance is not a claim that Astra is Samantha. It is a visual argument for the same interface shift: the computer recedes, conversation becomes the control surface, and the person steers by expressing intent instead of manually operating every menu and field.
+
+The resemblance stops before the science-fiction character does. Today's voice agents still operate through accounts, apps, permissions, screen captures, connectors, and explicit product limits. They can misunderstand a request or fail partway through a workflow. OpenAI's own Computer Use guidance tells people to scope tasks and review permission prompts because actions can affect application and system state. Axios also noted that real-world reliability remains an open question despite the launch demonstrations and evaluation results.
+
+**A better way to use the Her comparison:** Treat Her as a design direction, not a capability claim. The useful idea is that people should be able to express intent in natural language while software handles interface mechanics. It does not mean today's products possess the film character's general understanding, emotional relationship, or independence.
+
+### When to use GPT-6 Astra Voice and when to use VoiceOS
+
+Use Astra Voice when the work already lives in a ChatGPT conversation, Work task, or Codex task and you want to discuss, delegate, inspect progress, and steer it aloud. Use Computer Use when that task must visually operate a particular desktop app or browser flow. The exact combination available to you depends on the ChatGPT surface, rollout, workspace, and permissions.
+
+Use VoiceOS when you want a dedicated desktop voice shortcut for everyday actions across supported apps and connected tools. Press fn, say the result you want, and let Agent Mode prepare the action. VoiceOS shows a confirmation before something consequential is sent, booked, or changed, and its separate Dictation Mode handles the simpler job of writing wherever your cursor is.
+
+**They are not the same product:** VoiceOS is not GPT-6 Astra, and this guide does not claim that VoiceOS is powered by Astra or partnered with OpenAI. The connection is the interaction model: speak an outcome, let software handle more of the mechanical steps, and keep the person in control of meaningful actions.
+
+### GPT-6 Astra Voice troubleshooting: when computer control does not work
+
+Most failures happen at a boundary between the model, Voice, Computer Use, the operating system, and the target app. Diagnose that boundary before rewriting your entire prompt.
+
+| Problem | What to check |
+| --- | --- |
+| Astra answers but does not act | Ask it to use @Computer or the specific app. Confirm that Computer Use is installed, enabled, and allowed for that app. |
+| Astra cannot see the window on Mac | Turn on screen context if needed, then check Screen Recording and Accessibility permissions in macOS Privacy & Security. |
+| Astra cannot control the Windows app | Keep the app visible on the active desktop. Windows Computer Use operates in the foreground and will take over pointer and keyboard input. |
+| Start voice chat is missing | Update the ChatGPT desktop app and the connected Codex host, check account and workspace availability, and make sure another voice chat is not already active. |
+| The task is using the wrong window | Stop immediately, bring the correct app forward, name it explicitly, and restart with one target app or flow. |
+| Astra pauses for approval | Review the requested app or sensitive action. Save Always allow only for applications you trust; system security prompts still require you. |
+
+**Know the hard limits:** Computer Use cannot automate terminal apps or ChatGPT itself, authenticate as an administrator, or approve operating-system security and privacy prompts. On Windows it works in the foreground; on macOS, locked use is a separate optional setting rather than a general remote-unlock feature.
+
+### How to use GPT-6 Astra Voice safely for real work
+
+- Start with one app or workflow instead of giving Astra open-ended access to the whole desktop.
+- Close windows containing secrets or unrelated sensitive information before enabling screen context or Computer Use.
+- Ask for a preview or summary before Astra saves, sends, purchases, deletes, publishes, or changes an account.
+- Stay present for payment, credential, security, privacy, network, and account-management tasks.
+- Cancel immediately if the pointer moves into the wrong app, the goal changes, or the requested action is unclear.
+- Treat a polished result as work to review, especially when the task depends on web content or ambiguous visual cues.
+
+Astra is designed to stay oriented when you steer a task and to exercise more care around consequential decisions, but no model removes the need for scope and review. The safest productive pattern is simple: speak the outcome, watch the first actions, correct early, and reserve final authority for the person at the computer.
+
+That is also the practical VoiceOS thesis: say what you want done, keep control of meaningful actions, and let the computer handle more of the mechanical work between intention and result. Astra makes the idea more visible; a good workflow makes it useful.
+
+### Sources
+
+1. [GPT-6 Astra: A new generation of intelligence](https://openai.com/index/gpt-6-astra/) — OpenAI
+2. [This is GPT-6 Astra](https://x.com/OpenAI/status/2095595741528125780) — OpenAI on X
+3. [Videogame scene from Her (1:10)](https://www.youtube.com/watch?v=Xr7aI0RqtXc&t=70s) — cyberspacepirate on YouTube
+4. [Astra computer workflow benchmark announcement](https://x.com/OpenAI/status/2095595744300503356) — OpenAI on X
+5. [Using GPT-6 Astra](https://developers.openai.com/api/docs/guides/latest-model) — OpenAI Developers
+6. [ChatGPT Voice](https://learn.chatgpt.com/docs/features/voice) — ChatGPT Learn
+7. [Computer Use](https://learn.chatgpt.com/docs/computer-use) — ChatGPT Learn
+8. [Welcome to the AGI era: OpenAI launches GPT-6 Astra](https://venturebeat.com/technology/welcome-to-the-agi-era-openai-launches-gpt-6-astra) — VentureBeat
+9. [OpenAI releases new model GPT-6 Astra, says it may represent AGI](https://www.axios.com/2026/09/03/openai-astra-gpt-6-agi-brockman) — Axios
+10. [AI Voice Agent for Mac and Windows](https://www.voiceos.com/features/agent) — VoiceOS
+
+---
+
+## [How to Use the New Siri for Work: Emails, Notes, and Tasks](https://www.voiceos.com/blog/new-siri-for-work)
+
+Author: Kai Brokering
+
+Published: 2026-09-13T19:40:14.000Z
+Updated: 2026-09-11T00:19:17.890Z
+Content type: guide
+
+Find the email you need, draft a reply, capture meeting notes, and set a follow-up. Start with practical Siri prompts, then see where VoiceOS fits into your desktop workflow.
+
+Method: Reviewed Apple’s announcements, its Siri product overview and Mac Dictation guide, and the VoiceOS product pages on September 10, 2026. The team supplied screenshots of Codex and Claude Code research tasks, an email request and draft, and connected apps. Recommendations combine documented capabilities with those visible workflow examples.
+
+Limitations: This is not an independent reliability comparison. Availability and supported actions can vary. The supplied screenshots show Codex working, Claude Code queued, and an email draft; they do not establish final research quality, completed code changes, email delivery, or performance. Coding and Siri prompts are illustrative.
+
+Disclosure: This article was prepared with AI assistance for the VoiceOS blog using linked official sources. VoiceOS makes one of the products discussed. No independent performance ranking is claimed.
+
+### How to start using the new Siri for work
+
+To use the new Siri for work, open Siri on a supported device with Siri AI enabled, give it a specific task, and name the result you want: an email draft, a saved note, or a reminder. Apple’s announced capabilities include writing, finding personal information, and actions in supported apps.
+
+Start with the prompts below. Give Siri the relevant details, ask for one outcome at a time, and review what it creates. For tasks that need connected desktop work apps, the later sections explain how VoiceOS can help.
+
+### What changed in the new Siri announcement?
+
+Apple’s September 9, 2026 event put Siri AI alongside its new iPhones. The U.S. release specifies a September 14 beta rollout with iOS 27 for supported devices set to English; French, Japanese, Korean, Portuguese, and Spanish are scheduled for October. As of this article’s September 10 update, that rollout is still ahead.
+
+Apple describes personal-context search, awareness of onscreen content, writing assistance, and actions in supported apps. Its Siri page also introduces a dedicated app for returning to conversations. These are relevant capabilities for a workday, not just a longer list of things to ask your phone.
+
+Our view: the interesting consequence is that more people may try speaking to their devices at work. Whether that becomes a habit will depend on what happens after the request. Does the information appear where it is useful? Does the action reach the right destination?
+
+### Siri commands for work: emails, notes, and reminders
+
+Once Siri AI is available and enabled on your device, open the Siri app or invoke Siri. Apple documents voice activation and the side button on iPhone, and integration with Spotlight on Mac. Use the relevant app or content as context, then try one of these prompts. These are examples to adapt, not reports of completed tests.
+
+**1. Find a work email:** Try: “Find the email about the revised project deadline.” Start with an email you can identify yourself. Check the sender, date, and whether the assistant found the latest revision. Finding an older deadline is a failure even if the answer sounds confident.
+
+**2. Draft a work email:** Try: “Draft an email to the project team from these notes: design is approved, implementation starts Monday, and the customer review is Thursday. Keep it under 100 words.” Read the draft, then ask for a specific change such as “Make the next step clearer.” Check that it preserves the facts and does not add commitments.
+
+**3. Capture meeting notes:** Try: “Create a note called Website review. The pricing page needs clearer plan names. Maya will send revised copy on Friday. We still need to choose a launch date.” Open the saved note and check that the unresolved decision stays separate from the assigned action.
+
+**4. Set a follow-up reminder:** Try: “Create a reminder to review the proposal tomorrow at 9 a.m.” Verify the date, time, and saved result. For other actions, name the destination explicitly. An instruction such as “put this in the project” leaves too much open to interpretation.
+
+When a request fails, identify the missing piece before repeating it. The assistant may lack the information, the app may not expose that action, or the instruction may be ambiguous. A clearer prompt helps with ambiguity; it cannot supply an integration that is absent.
+
+### Give your voice assistant a clear finish line
+
+A good work prompt includes the context, desired result, destination, and constraints. You can usually say all four in a few sentences. Leaving out the destination is a common reason a useful answer still leaves you with manual work.
+
+**For an engineering handoff:** “Use this bug report to draft a ticket for the website project. Include what happened, what should have happened, and the steps to reproduce it. Leave the assignee open.”
+
+**For a team update:** “Turn these notes into a short update for the launch channel. Put the blocker first and end with what we need from design. Show me the draft.”
+
+**For meeting preparation:** “Summarize these notes into three decisions we need to make in the review. Keep unresolved questions separate from agreed actions.”
+
+These templates are evaluation examples, not promises that every assistant supports every destination. Adapt them to the connected tools and context you have. If a task needs a missing account or document, provide it before expecting a complete answer.
+
+### If you just want to type by voice, try Apple Dictation
+
+Apple Dictation is separate from Siri. On a Mac, open System Settings, choose Keyboard, and enable Dictation. Place your cursor in a text field, then use the configured Dictation shortcut or choose Edit → Start Dictation. Speak your text and review the result.
+
+Apple documents punctuation commands, new paragraphs, and automatic punctuation in supported languages. Voice Control is its separate option for broader control of the Mac by speech; when Voice Control is enabled, it handles dictation instead of standard Dictation.
+
+This is a sensible first experiment for a short email or note. If the text is accurate and easy to edit, you have solved that part of the problem. If you routinely reorganize rough speech, fix specialist names, or move between different writing styles, evaluate a dedicated dictation tool on those specific difficulties.
+
+### Siri vs. Apple Dictation vs. VoiceOS: choose by task
+
+Start by separating three jobs: writing something you already know, finding something you need, and changing something in an app. Each calls for a different kind of help.
+
+| Your task | Starting point | What to check |
+| --- | --- | --- |
+| Help inside supported Apple experiences | Siri AI | Whether the required app action and information are available on your device. |
+| Speak text into a Mac text field | Apple Dictation | Whether the transcription and formatting meet your needs. |
+| Turn rough speech into usable work writing | VoiceOS Dictation Mode | How much editing remains before the text is ready. |
+| Act in connected work apps | VoiceOS Agent Mode | The connection, destination, proposed action, and final result. |
+
+These are starting points, not test scores. Siri and VoiceOS have overlapping ambitions. App coverage, account access, and your own working habits matter more than a broad claim that one assistant is smarter.
+
+### When VoiceOS is a useful Siri alternative for work
+
+VoiceOS is designed around speaking while working on your computer. Its Dictation Mode cleans up filler words and spelling and adapts writing to the app in use. That makes it worth evaluating when your bottleneck is getting a rough thought into an email, message, or document.
+
+Agent Mode addresses a different need: doing something in a connected app. VoiceOS documents connections for Gmail, Slack, Notion, Linear, Google Calendar, and other tools. Connections are enabled in Settings, and the product shows a proposed action before sending, booking, or changing something.
+
+For coding and deeper research, the team’s screenshots below show another workflow: dispatching a scoped task to Codex or Claude Code and following its status inside VoiceOS. That is the example to look at if you want voice to initiate a longer assignment.
+
+Consider the moment after a customer reports a bug. You need to describe the issue to engineering, record it in the right project, and reply to the customer. Those are three related deliverables. Evaluating them separately makes it easier to see where voice actually removes work.
+
+The reason to consider VoiceOS is this fit with daily work apps. You do not need to give up Siri to use it. You can use different tools for different tasks and keep the combination that requires the least correction.
+
+**A useful first VoiceOS task:** Connect the relevant work app, then ask for one concrete result: “Draft a reply to this customer explaining that we are investigating the sign-in issue. Ask which browser they use. Do not promise a fix date.” Review the wording and recipient before sending. This is an example to adapt to the context available to your assistant.
+
+### Use VoiceOS to dispatch research and coding tasks to Codex and Claude Code
+
+An email is a useful starting point. A more substantial example is giving an agent a research brief or a coding assignment and letting it work through the task. In the VoiceOS sessions shown below, the user dispatched research requests to Codex and Claude Code from the desktop overlay.
+
+The roles are straightforward: VoiceOS is the interface for handing off the task and viewing its status; Codex or Claude Code is the agent assigned to carry it out. This makes the workflow different from simply dictating a prompt into a text field.
+
+**Example 1: Dispatch a research brief to Codex:** The user asked Codex to research VoiceOS, including the company background, product offerings, competitors, market positioning, and architecture from the project context, and produce a summary report. The task card shows two attached reference images and a Working status.
+
+![VoiceOS displaying a Codex research task with a detailed brief, two attached reference images, and Working status.](https://www.voiceos.com/posts/voiceos-serious-work/codex-research-task.png)
+A research task dispatched through VoiceOS to Codex. The card shows the brief, attachments, and work in progress.
+
+**Example 2: Queue a Siri research task for Claude Code:** In a separate task, the user asked Claude Code to research the new Siri’s capabilities, architecture, features, privacy approach, personal context, app actions, and release roadmap. The requested deliverable was a detailed breakdown report. The screenshot shows that task queued in the project workspace.
+
+![VoiceOS displaying a queued Claude Code task to research Apple Siri, with connected apps visible behind the task card.](https://www.voiceos.com/posts/voiceos-serious-work/claude-code-research-task.png)
+A separate research brief queued for Claude Code in VoiceOS. Both assignments appear in the task sidebar.
+
+These examples give “serious work” a concrete meaning: a scoped assignment, relevant context, a chosen agent, and a deliverable to review. You can see which task is running and which is waiting, rather than losing track of the request after speaking it.
+
+**A coding brief to try with the same approach:** “Ask Claude Code to investigate why the sign-in form loses the email address after a failed login. Use this project, reproduce the problem, implement a fix, and run the relevant tests. Summarize what changed and what you verified.” This is an illustrative coding brief; the screenshots above show research assignments.
+
+For research, specify the questions, sources, and report format. For coding, specify the project, the behavior that needs to change, and how the agent should check its work. Give each task a clear scope so you can review the result against the original request.
+
+The screenshots document dispatch and task status. They do not show finished reports, merged code, or a measured productivity gain. When the agent returns a result, review its sources or code changes before relying on it.
+
+### A simpler example: draft an email with VoiceOS
+
+Here is the email workflow in VoiceOS on Mac. The screenshots show a request to tell Jonah the user will be late to a meeting, followed by a prepared email with the recipient, subject, and message available to review.
+
+![VoiceOS on Mac displaying a spoken request to email Jonah about being late to a meeting, with Gmail searching.](https://www.voiceos.com/posts/voiceos-email-workflow/voice-request.png)
+1. Speak the task. The VoiceOS overlay displays the request and searches Gmail.
+
+![VoiceOS Gmail draft showing Jonah as recipient, a running-late subject, and the prepared message for review.](https://www.voiceos.com/posts/voiceos-email-workflow/email-draft.png)
+2. Review the email. VoiceOS displays the recipient, subject, and body together. This screenshot shows a prepared draft, not a sent-email confirmation.
+
+![VoiceOS Apps settings on Mac showing connections for Gmail, Slack, Google Calendar, Google Drive, Linear, and Notion.](https://www.voiceos.com/posts/voiceos-email-workflow/connected-apps.png)
+3. Connect the apps you use. The Apps screen shows which services are enabled for Agent Mode.
+
+### Choose the assistant that finishes your work
+
+Pick three tasks from a normal day: one thing you wrote, one thing you searched for, and one thing you changed in an app. Repeat those tasks with the tools you are considering. Use the same source information and define a correct result before you start.
+
+- Count how often you repeat or clarify the request.
+- Check whether the result lands in the intended document, app, or account.
+- Include editing and correction in the time it takes to finish.
+- Confirm names, dates, recipients, and any commitments before using the output.
+
+Keep the tool that makes the repeated task easier. If built-in Siri and Dictation cover your needs, start there. If your work depends on writing and actions across connected desktop apps, give VoiceOS the same practical test. The goal is a finished task you trust enough to move on from.
+
+### Sources
+
+1. [Apple’s September 9 announcement and Siri AI rollout dates](https://www.apple.com/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/) — Apple
+2. [Apple Intelligence and Siri: announced capabilities](https://www.apple.com/apple-intelligence/) — Apple
+3. [Dictate messages and documents on Mac](https://support.apple.com/en-gb/guide/mac-help/mh40584/26/mac/26) — Apple Support
+4. [VoiceOS Agent Mode: connected apps and action review](https://www.voiceos.com/features/agent) — VoiceOS
+5. [VoiceOS Dictation Mode: voice writing and formatting](https://www.voiceos.com/features/dictation) — VoiceOS
+6. [Apple introduces Siri AI: access, writing, and app actions](https://www.apple.com/newsroom/2026/06/apple-introduces-siri-ai-a-profoundly-more-capable-and-personal-assistant/) — Apple
+
+---
+
+## [Typing with RSI or carpal tunnel: a practical voice guide](https://www.voiceos.com/blog/voice-typing-for-rsi-and-carpal-tunnel)
+
+Author: Kai Brokering
+
+Published: 2026-08-30T03:50:22.155Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS can reduce the typing needed for a draft, but the whole workflow matters: starting, stopping, correcting, and reviewing. Here is what the evidence supports and where dictation cannot replace medical care.
+
+Method: Read VoiceOS's public Dictation feature and pricing pages, and VoiceOS's internal Dictation Mode and shortcut documentation, to confirm the hold-to-talk default, the separate Hands-free toggle shortcut, Polishing tiers, and Replacements. Read official sources: the NHS page on repetitive strain injury, MedlinePlus's (National Library of Medicine, NIH) page on carpal tunnel syndrome, the Job Accommodation Network's Cumulative Trauma Conditions page, and CDC/NIOSH's ergonomics and work-related musculoskeletal disorders overview, to ground the medical and workplace-accommodation claims. No first-party dictation or symptom testing was performed.
+
+Limitations: No first-party test measured whether voice typing reduces RSI or carpal tunnel symptoms for any individual reader; that would require a controlled clinical study this guide does not attempt. MedlinePlus states researchers aren't certain long-term typing causes carpal tunnel syndrome in the first place, so voice typing is presented as reducing hand-specific repetitive motion, not as a proven treatment or cure. Recognition accuracy varies by accent, noise, and microphone and is unbenchmarked here. This is not medical advice; readers with persistent or worsening pain should see a doctor or occupational therapist rather than relying on a software change alone.
+
+Disclosure: AI-assisted research and drafting used the linked health guidance and VoiceOS product documentation. No clinical outcomes or symptom improvements were measured.
+
+### What RSI and Carpal Tunnel Actually Are
+
+Repetitive strain injury (RSI) is a broad, non-clinical term for pain from repeated movement of a body part, most often the shoulders, forearms, wrists, hands, and fingers, and the NHS lists typing among its common triggers alongside hairdressing, assembly work, and racket sports. Carpal tunnel syndrome (CTS) is a more specific, diagnosable condition: compression of the median nerve in the wrist, which MedlinePlus (the U.S. National Library of Medicine) links to wrist injuries, health conditions like diabetes and pregnancy, and repetitive hand motion generally, not typing specifically.
+
+Neither source treats typing as a proven cause on its own. The NHS notes that not everyone who does these activities gets RSI, and MedlinePlus states plainly that researchers aren't sure whether long-term typing or computer use leads to carpal tunnel syndrome. Voice typing is a way to reduce repetitive hand motion, not a verified treatment or cure for either condition.
+
+- RSI: aching, burning, stiffness, tingling, numbness, weakness, or swelling that usually starts gradually (NHS).
+- Carpal tunnel syndrome: numbness, tingling, or burning in the thumb and first three fingers, often worse at night, with grip weakness as it progresses (MedlinePlus, NIH).
+
+### Why Voice Typing Is a Recognized Workplace Accommodation
+
+The Job Accommodation Network (JAN), the U.S. Department of Labor-funded resource employers and employees use to work out disability accommodations, lists voice-to-text and speech recognition software as a standard accommodation for cumulative trauma conditions, including carpal tunnel syndrome and tendinitis. Separately, CDC's National Institute for Occupational Safety and Health (NIOSH) names sudden or sustained force, repetitive motion, vibration, and awkward postures as the core contributors to work-related musculoskeletal disorders. Voice typing addresses the repetitive-motion piece directly: dictating a sentence uses your vocal apparatus instead of dozens of individual keystrokes, cutting finger-specific repetition without cutting the work you produce.
+
+It doesn't remove every risk factor. You'll likely still use a mouse or trackpad for navigation, clicking, and scrolling, and an awkward desk setup contributes to strain regardless of how you produce text. Voice typing is one accommodation among several NIOSH and JAN both describe, not a replacement for an ergonomic workstation.
+
+### The Hold-to-Talk Catch Most Buying Guides Skip
+
+Here's a detail that matters more for hand pain than for anyone else: most dictation software, including tools built into major operating systems, activates with a held key. You press a modifier, keep it down for as long as you're speaking, and release it when you stop. For a five-minute dictation, that means sustaining a muscle contraction in your hand for the entire time you're talking, and sustained force is one of the exact contributors CDC/NIOSH names as a driver of musculoskeletal strain. A dictation tool that cuts keystrokes but asks you to hold a key down the whole time hasn't removed the sustained-load problem, it's moved it.
+
+VoiceOS's Dictation Mode defaults to that same hold-to-talk pattern (hold the shortcut, speak, release), but it also ships a separate Hands-free shortcut that works differently: press it once to start recording, speak normally with nothing held down, then press it again to stop, or hit Escape to cancel. Switching your default trigger from hold-to-talk to Hands-free is the single setup change in this guide that most directly answers the sustained-load problem above. As of this writing, that Hands-free behavior is documented in VoiceOS's in-app shortcut settings rather than spelled out on the public dictation feature page, so confirm your own shortcut under Settings, General, Shortcuts before relying on it.
+
+|  | Hold-to-talk (default) | Hands-free |
+| --- | --- | --- |
+| How you start it | Hold the shortcut down | Press the shortcut once |
+| How you stop it | Release the shortcut | Press the shortcut again, or press Escape |
+| Muscle load while speaking | Sustained hold for the whole dictation | None, hands can rest |
+
+### Setting Up Hands-Free Dictation Step by Step
+
+- Open the main VoiceOS window, go to your account menu, choose Settings, then the General tab, and find the Shortcuts section.
+- Set your Dictation trigger to Hands-free instead of the default hold-to-talk shortcut, and note the key combination shown (defaults vary by platform and may have been changed on your machine).
+- Click into whatever you're writing, press the Hands-free shortcut once, speak at a normal pace, then press it again when you're done, or press Escape to cancel without inserting anything.
+- On the Dictation tab, set Polishing to Light or Polished so you don't have to speak punctuation aloud; None keeps your words exactly as spoken if you'd rather clean up formatting yourself.
+- Save phrases you repeat often, a sign-off, a status update, a standard reply, as Replacements, so future dictations need fewer total words spoken, not just fewer keystrokes typed.
+
+If you also use VoiceOS's Agent Mode, actions like opening an app, searching the web, or sending a message you dictate the content of can cut some of the clicking and window-switching around your writing too, though Agent Mode still can't type into a text field for you, that's what Dictation Mode is for. The two modes are meant to be used together, not as substitutes for each other.
+
+### What Voice Typing Can't Fix
+
+- It isn't a diagnosis or a treatment. If pain persists, worsens, or includes numbness that doesn't go away, see a doctor or occupational therapist; NHS guidance recommends professional support when RSI symptoms persist rather than relying on any single tool.
+- It doesn't replace an ergonomic workstation. NIOSH's risk factors, sustained force, repetitive motion, vibration, and awkward posture, aren't fully solved by changing how you produce text; wrist position, chair height, and monitor placement still matter.
+- It doesn't remove mouse and trackpad use. Navigating, clicking, and scrolling still load the hand unless you also reduce those, and voice typing alone won't do that.
+- Recognition accuracy varies with accent, background noise, and microphone quality, unbenchmarked here, and a single VoiceOS dictation currently warns at four and a half minutes and stops on its own at five, so very long uninterrupted dictations need to be split up.
+
+### Try It This Week
+
+The lowest-risk way to test this is small: switch your Dictation trigger to Hands-free, pick a handful of emails, docs, or messages you'd normally type this week, and dictate them instead while keeping a normal typing session as your baseline for comparison. Review VoiceOS Pro pricing and billing terms before running that comparison yourself.
+
+### Sources
+
+1. [Cumulative Trauma Conditions](https://askjan.org/disabilities/Cumulative-Trauma-Conditions.cfm) — Job Accommodation Network (JAN)
+2. [Carpal Tunnel Syndrome](https://medlineplus.gov/carpaltunnelsyndrome.html) — MedlinePlus (National Library of Medicine, NIH)
+3. [Repetitive strain injury (RSI)](https://www.nhs.uk/conditions/repetitive-strain-injury-rsi/) — NHS
+4. [About Ergonomics and Work-Related Musculoskeletal Disorders](https://www.cdc.gov/niosh/ergonomics/about/index.html) — CDC / NIOSH
+5. [VoiceOS Dictation feature page](https://www.voiceos.com/features/dictation) — VoiceOS
+6. [VoiceOS Pricing](https://www.voiceos.com/pricing) — VoiceOS
+
+---
+
+## [Voice Typing for Customer Support: Faster, More Human Ticket Replies](https://www.voiceos.com/blog/voice-typing-customer-support-replies)
+
+Author: Kai Brokering
+
+Published: 2026-08-14T06:14:32.779Z
+Updated: 2026-08-30T21:21:26.675Z
+Content type: guide
+
+Typing slows every reply down and tempts agents toward canned macros. Here's a five-step workflow for dictating faster, more human ticket replies in your own words, plus the privacy and accuracy limits to know, without letting AI write the response for you.
+
+Method: Read the VoiceOS product knowledge base, the Dictation and Agent feature pages, pricing page, Privacy Policy, and Security page to confirm product, data-handling, and encryption facts and avoid cannibalizing existing articles. Searched for published data on typing speed (Aalto University / University of Cambridge / ETH Zurich, MobileHCI 2019), conversational speaking rate (National Center for Voice and Speech, via VirtualSpeech), and consumer sentiment toward AI in customer service (Zendesk CX Trends 2026; HubSpot/SurveyMonkey and Five9 surveys reported by Customer Experience Dive). No first-party dictation testing was performed; the billing and technical reply examples are illustrative sample phrasing written for this guide, not transcribed from real tickets.
+
+Limitations: No first-party test compared dictated, typed, and AI-drafted replies under identical conditions. Typing- and speaking-speed figures are general population averages, not agent-specific measurements. Consumer AI-sentiment stats describe attitudes toward AI in service broadly, not a controlled dictation-vs-AI-drafting test. Recognition accuracy varies by accent, noise, and hardware, unbenchmarked here. The billing and technical examples are illustrative sample phrasing, not real tickets or a first-party transcript. The privacy section summarizes VoiceOS's public Privacy Policy and Security page as of 2026-08-14, not legal or compliance advice.
+
+Disclosure: Automated research and drafting tools assisted in producing this article from published sources and VoiceOS product documentation. The VoiceOS editorial team reviews every article for accuracy and tone before it is published.
+
+### The speed-vs-empathy trap in ticket replies
+
+Every support agent hits the same wall: typing a genuinely thoughtful reply takes long enough that it's tempting to either keep it short or lean on a saved macro. Neither serves the customer well. The gap is bigger than it feels: people speak in natural conversation at roughly 120-150 words per minute, while typing on a physical keyboard tops out around 35-65 words per minute for most people, with a large 2019 study across three universities putting two-thumb phone typing at about 38 words per minute. That 3-4x gap is exactly why a rushed reply often gets a template pasted into it, and a considered one takes minutes an agent doesn't have during a busy queue.
+
+- Natural conversational speech: about 120-150 words per minute (National Center for Voice and Speech data, cited via VirtualSpeech).
+- Typical keyboard typing: about 35-65 words per minute; two-thumb phone typing averages 38 wpm (Aalto University, University of Cambridge and ETH Zurich, MobileHCI 2019, 37,000+ participants).
+- 82% of customers say they'd still rather deal with a human than a bot, even if the wait time and outcome are identical (HubSpot/SurveyMonkey survey, reported by Customer Experience Dive, Aug 2025).
+- 86% say empathy and human connection matter more to them than a fast reply (Five9 survey, reported by Customer Experience Dive, Aug 2025).
+
+### Why the fastest reply isn't always the safest one
+
+The instinct to answer a busy queue with saved macros makes sense: typing takes time, and a template is fast. But a copy-pasted answer is easiest to spot in exactly the moment it hurts most, when a customer is already frustrated and wants to feel heard rather than processed. Zendesk's 2026 CX Trends report, based on more than 11,000 consumers and business leaders across 22 countries, found that 75% of consumers are fine with agents using AI to help draft a response. That's a real, cited number about willingness, not a claim about whether anyone, human or automated, could detect the difference afterward; this guide doesn't measure or claim anything about AI-detection tools. What consumers are telling researchers is closer to a preference: most still say they'd rather deal with a human than a bot even when the wait time and outcome are identical, and most say empathy matters more to them than getting an answer fast. Consumers aren't rejecting speed itself. They're rejecting the feeling of being handled instead of helped, which is a different problem than word count, or detectability, can fix.
+
+### Voice typing your reply is not the same as letting AI write it
+
+This is the distinction that matters most for this workflow, and it's easy to blur, so it's worth stating plainly: an AI-drafted reply tool reads the ticket and generates the wording for the agent to review, edit, or send, the phrasing, structure, and empathetic language come from the model, not the person named on the reply. VoiceOS's Dictation Mode does the opposite. The agent composes the reply out loud, in their own words, deciding what to say and how to say it before a single sentence exists in text form, and the software's job is limited to turning that speech into clean text. Depending on the Polishing setting on the Dictation tab, it removes filler words and false starts, fixes punctuation and formatting, and, only at the highest 'Polished' tier, smooths awkward phrasing. It does not invent sentences, decide what to say, or generate empathy on the agent's behalf. This isn't a claim about whether a customer, or an AI-detection tool, could tell a dictated reply apart from a typed one after the fact; that's not something this guide measures, and it isn't the point. The point is upstream of detectability: who decided what the customer reads. What the customer reads is still the agent's own judgment call about how to handle their specific issue, just captured at speaking speed instead of typing speed.
+
+|  | AI-drafted reply | Voice-typed reply (VoiceOS Dictation) |
+| --- | --- | --- |
+| Who chooses the wording | The AI model, from the ticket content | The agent, spoken in their own words |
+| What the software does | Generates new sentences and structure | Transcribes speech; optionally cleans up filler, punctuation, and (on Polished) awkward phrasing |
+| Agent's role | Reviews and edits AI output before sending | Composes the reply in real time by speaking it |
+| Where the speed comes from | Generation is near-instant, but reviewing and editing still takes time | Speaking is roughly 3-4x faster than typing, so composing itself is faster |
+
+### The five-step workflow: from open ticket to sent reply
+
+Dictation Mode works anywhere there's a text cursor, including Slack, Gmail, Notion, and browser fields generally, which covers the reply box in Zendesk, Intercom, Freshdesk, or whatever helpdesk a team already uses, without a separate integration to set up. The mechanics stay the same for every ticket; only what you say changes. Here's the workflow, step by step:
+
+- Step 1 — Read before you speak: skim the ticket once for what the customer actually needs, plus any specifics you'll reference by name, an order number, an error message, a dollar amount, a plan tier.
+- Step 2 — Open the reply and start dictating: click into the reply field and hold the dictation shortcut (Fn on macOS, Ctrl+Shift on Windows) to start talking.
+- Step 3 — Speak the whole reply out loud: greeting, the specific answer or fix, and the next step, using the customer's name and the specifics from step 1 so it reads as theirs and not a template.
+- Step 4 — Release and read it back: check that dictated numbers landed correctly before sending; misheard digits in an order number, a refund amount, or a date are the most common dictation error, and they matter more in a support reply than almost anywhere else.
+- Step 5 — Send, and bank the boilerplate: if part of the reply was the same line you say on most tickets, a refund-policy note, a sign-off, save it as a Replacement so the next ticket needs less speaking, not more typing.
+
+The specifics change by ticket type, but the shape doesn't. Two illustrative examples, a billing issue and a technical issue, written for this guide to show the shape of a spoken reply, not transcribed from a real ticket:
+
+| Ticket type | What the agent sees | What the agent might dictate |
+| --- | --- | --- |
+| Billing | Customer reports being charged twice for their invoice. | "Hi Maria, thanks for flagging that. I can see your invoice was charged twice, so I've refunded the duplicate charge to the card on file. It usually takes a few business days to show back up on your statement. Let me know if it hasn't landed and I'll take another look." |
+| Technical | Customer reports a sync error after a recent update. | "Hi Sam, thanks for sending that error message. That usually happens when one of your devices is still on an older version. Can you check that everything is updated and try syncing again? If it still fails after that, reply here with a screenshot and I'll look into your account directly." |
+
+### Staying fast without turning into a macro
+
+The features that make Dictation Mode useful for support work aren't the transcription itself, they're the personalization tools sitting next to it on the Dictation tab, including the boilerplate step from the workflow above. Replacements let an agent save short spoken phrases that expand into a saved snippet, like a return-policy link or an email sign-off, up to 100 of them; the agent still says the empathetic opening and the specifics out loud, and only the boilerplate part is saved. Custom Prompts add per-app writing guidance, so the tone used in a Zendesk reply can differ from the tone used in an internal Slack note, without the agent having to remember to switch styles by hand. Spelling makes sure a customer's name or a product's actual name comes out right instead of being autocorrected into something generic, a small thing that matters more in a support reply than almost anywhere else.
+
+### Privacy and accuracy limitations
+
+Ticket replies often include a customer's name, order number, account email, or billing details, so it's worth knowing what happens to that audio. By default, VoiceOS does not use your raw audio, transcripts, or edited text to train its models, and raw audio and transcripts are deleted immediately after the processing needed to produce your text, unless the optional 'Help Improve VoiceOS' setting is turned on, in which case that content may be retained indefinitely for evaluation. Producing the transcript at all does require sending your audio to a speech-processing provider; that transmission is encrypted in transit (TLS 1.2+) and any stored data is encrypted at rest (AES-256). None of this replaces your own company's policy for customer information: treat a dictated reply with the same care as a typed one, and check your organization's rules on where customer details can be spoken aloud, especially in shared workspaces.
+
+On accuracy: speech-recognition performance varies with accent, background noise, and microphone quality, and this guide hasn't benchmarked any of that for a support-specific vocabulary of order numbers, product names, or error codes. Your Polishing setting also changes how closely the transcript matches what you said: 'None' preserves your phrasing word for word, while 'Polished' smooths phrasing enough that it's worth the same read-back Step 4 above calls out, especially on anything with a dollar figure, date, or account number. Treat the overall speed argument as directional, not a guarantee for your queue; actual gains depend on how much back-and-forth editing a reply needs regardless of how it was produced.
+
+### Try it on your next shift
+
+The easiest test is a small one: pick five tickets that would normally get a saved macro, and run the five-step workflow above on each instead, dictating a real, specific reply at whatever length the situation actually calls for. Time it against your usual typing pace, and read the reply back to check it still sounds like something you'd say out loud to that customer. Review VoiceOS Pro pricing and billing terms before running that comparison on your own queue.
+
+### Sources
+
+1. [Smartphone typing speeds catching up with keyboards](https://www.aalto.fi/en/news/smartphone-typing-speeds-catching-up-with-keyboards) — Aalto University
+2. [Average Speaking Rate and Words per Minute](https://virtualspeech.com/blog/average-speaking-rate-words-per-minute) — VirtualSpeech
+3. [59 AI customer service statistics for 2026](https://www.zendesk.com/blog/ai-customer-service-statistics/) — Zendesk
+4. [Customers still don't love AI in customer service](https://www.customerexperiencedive.com/news/customers-dislike-ai-customer-service/757711/) — Customer Experience Dive
+5. [VoiceOS Dictation feature page](https://www.voiceos.com/features/dictation) — VoiceOS
+6. [VoiceOS Privacy Policy](https://www.voiceos.com/privacy) — VoiceOS
+7. [VoiceOS Security](https://www.voiceos.com/security) — VoiceOS
+
+---
+
+## [Best dictation software for Mac and Windows in 2026](https://www.voiceos.com/blog/best-dictation-software)
+
+Author: Andrew Hoffmann
+
+Published: 2026-06-01T00:00:00.000Z
+Updated: 2026-09-30T07:00:00.000Z
+Content type: guide
+
+VoiceOS compares the tools by the job you need to finish: getting words into a document, keeping speech offline, or turning an instruction into an action. Sources checked September 30, 2026.
+
+Method: Vendor documentation and support pages checked on September 30, 2026. Recommendations reflect documented workflow fit, not affiliate placement or numerical product scores.
+
+Limitations: No controlled cross-product benchmark, security audit, or hands-on platform certification was performed. Features and billing terms can change.
+
+Disclosure: Published by VoiceOS, which makes one of the products discussed. AI-assisted research and drafting used the linked sources and VoiceOS product documentation. Recommendations are editorial judgments; examples are illustrative unless explicitly labeled as measured.
+
+### The short answer
+
+Start with the dictation already on your computer if you mostly need occasional text entry. Shortlist Superwhisper if choosing local models is central to your workflow. Compare Wispr Flow, Aqua Voice, Willow, and Typeless if polished dictation is the main purchase. Consider VoiceOS when you want desktop dictation plus supported actions in connected apps. Those are different priorities, so a single accuracy podium would hide more than it explains.
+
+This is a source-based buying guide, not a laboratory ranking. We make VoiceOS, and our recommendation for it is limited to the workflows its product supports. We have not run a controlled head-to-head accuracy or latency test of these applications. The guide replaces our older April list and removes its unsupported overall ranking.
+
+### A shortlist built around your requirements
+
+| Tool | Why it belongs on the shortlist | What to check first |
+| --- | --- | --- |
+| Apple Dictation | Built-in Mac text entry | The processing notice for your selected language and device |
+| Windows voice typing | Built-in Windows text entry with Win+H | An internet connection; this is separate from Voice access |
+| Superwhisper | Local or cloud model selection, configurable modes | Hardware requirements and the model used for rewriting |
+| Wispr Flow | Polished dictation across desktop and mobile | Separate cloud-storage and model-improvement settings |
+| Aqua Voice | Dictation into existing text boxes | Your real application fields and Privacy Mode |
+| Willow | Dictation with personal terms and writing support | The privacy mode and context settings you enable |
+| Typeless | Polished dictation across several platforms | Support for your actual device, language, and workflow |
+| VoiceOS | Dictation, selected-text editing, and connected app actions | Cloud processing, required integrations, and paid sign-up |
+
+Read the final column before comparing subscription prices. An application that fails a required language, a managed-device rule, or the particular editor you use has no useful price advantage. Test the difficult field first: a browser editor, remote desktop, issue form, or specialist business application may behave differently from a plain text document.
+
+### First, establish a built-in baseline
+
+Apple Dictation enters text where the cursor is placed. Apple tells users to check Keyboard settings for whether general dictation is processed on-device. Windows voice typing uses online recognition; Windows Voice access is a separate accessibility feature with on-device recognition. Do not treat those two Windows features as interchangeable.
+
+Try your ordinary email reply before installing another app. Include a colleague’s name, a product name, a date, and one correction made while speaking. Keep the result. It becomes a useful baseline: a paid tool needs to improve the part that bothered you, whether that was formatting, vocabulary, the activation shortcut, or moving from the draft to the next task. If the built-in result is good enough, you may already have what you need.
+
+### When a dedicated dictation app is worth trying
+
+Dedicated tools become interesting when you spend time fixing the same errors or changing the same formatting. A personal dictionary helps with recurring terms; a correction or replacement feature handles repeated output patterns; an application-specific mode can make one workflow less fiddly. These are useful differences even when two apps use related speech models.
+
+Superwhisper exposes a choice of speech models and optional language-model processing per mode. That makes it a candidate for users who want to configure the pipeline. Wispr Flow emphasizes polished dictation and has desktop and mobile availability. Aqua Voice provides dictation in text boxes; Willow documents a Mac and Windows setup; Typeless advertises several desktop and mobile platforms. These are feature and availability observations, not a measured speed order.
+
+For a short evaluation, choose two apps with materially different strengths. Comparing seven similar free trials at once makes it easy to lose track of which settings produced which result. Save the raw result and the corrected draft for each. Keep microphone placement, the application, and your sample text consistent, and write down any automatic rewriting you enabled.
+
+### When VoiceOS is the better fit—and when it is not
+
+VoiceOS combines Dictation Mode, selected-text editing, and Agent Mode on Mac and Windows. Its official integration catalog lists supported actions for email, calendars, notes, issue trackers, and other services. The useful question is whether one of those actions belongs in your daily workflow: for example, drafting a response and preparing a calendar event from the same piece of work.
+
+![VoiceOS product illustration showing a custom dictionary, text replacements, and automatic polishing.](https://www.voiceos.com/feature-graphics/dictation-personalization-visual-v2.png)
+VoiceOS product illustration: dictionary entries, replacements, and polishing address different parts of a dictation workflow.
+
+It is a weaker fit when your non-negotiable requirement is offline speech processing, when you only want a meeting recorder, or when you need complete voice navigation of every control. A full accessibility workflow should also evaluate the operating system’s voice-control tools. An app that inserts text is not automatically an accessible replacement for the mouse.
+
+VoiceOS offers Pro and Enterprise. There is no free plan for new sign-ups. The limited allowance after a canceled Pro subscription ends is an existing-account entitlement, not a trial plan to choose. Check current prices and billing terms on the pricing page rather than relying on an old comparison screenshot.
+
+### Run a small test that reflects your work
+
+- A normal paragraph: does the output preserve what you meant without unnecessary rewriting?
+- A detail-heavy sentence: check names, amounts, identifiers, and dates individually.
+- A revision: correct one phrase without having the app replace the surrounding meaning.
+- A real destination: verify cursor placement, insertion, and the ability to undo.
+- A complete task: include review and corrections in the time, not just speech recognition.
+
+![Choose a dictation tool by its job, platform, privacy requirements, and the cost of a finished task.](https://www.voiceos.com/blogs/guides/choose.svg)
+A useful shortlist starts with your task and constraints, before individual products.
+
+Count severe errors separately from cosmetic ones. A missing comma and a changed meeting date are both edits, but their consequences are different. If a tool writes something fluent that you did not say, the draft may take longer to trust than a less polished transcript. You can use our dictation test worksheet to keep those distinctions visible.
+
+### Set privacy and purchasing requirements before the trial
+
+For each candidate, answer four questions: does audio leave the device, can transcripts be stored, can content be used for training, and can the app access other content? “Local history” only answers where a copy of your past text is kept. It does not answer how recognition was performed. Our privacy comparison separates those questions.
+
+A team trial should also record the owner of the account, approved data types, and what happens when the trial ends. Review the actual report before treating an audit or security badge as a procurement requirement satisfied.
+
+### Sources
+
+1. [Dictate messages and documents on Mac](https://support.apple.com/en-au/guide/mac-help/mh40584/26/mac/26) — Apple
+2. [Use voice typing to talk instead of type on your PC](https://support.microsoft.com/en-us/accessibility/windows/use-voice-typing-to-talk-instead-of-type-on-your-pc) — Microsoft
+3. [Voice models](https://superwhisper.com/docs/models/voice) — Superwhisper
+4. [Privacy and data controls](https://wisprflow.ai/privacy) — Wispr Flow
+5. [User guide](https://aquavoice.com/guide) — Aqua Voice
+6. [Install and Setup Willow Voice](https://help.willowvoice.com/en/articles/10876111-install-and-setup-willow-voice-mac-windows) — Willow
+7. [Typeless platform and feature overview](https://www.typeless.com/) — Typeless
+8. [VoiceOS Agent Mode](https://www.voiceos.com/features/agent) — VoiceOS
+9. [VoiceOS Dictation Mode](https://www.voiceos.com/features/dictation) — VoiceOS
+10. [VoiceOS pricing](https://www.voiceos.com/pricing) — VoiceOS
+11. [Get started with voice access](https://support.microsoft.com/en-US/Accessibility/windows/voice-access/get-started-with-voice-access) — Microsoft
+12. [Intro to Modes](https://superwhisper.com/docs/modes/modes) — Superwhisper
+13. [VoiceOS official integration catalog](https://www.voiceos.com/app-store) — VoiceOS
+14. [VoiceOS security and privacy](https://www.voiceos.com/security) — VoiceOS

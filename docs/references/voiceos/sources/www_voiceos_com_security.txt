@@ -1,0 +1,81 @@
+Security | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+VoiceOS Security
+Last updated: August 2026
+Our Commitment
+At VoiceOS (operated by WakoAI Inc.), security is foundational to everything we build. We handle sensitive voice data and understand the trust our users place in us. This page outlines how we protect your data and maintain the integrity of our platform.
+Compliance
+SOC 2 Type I — WakoAI Inc. is working toward a SOC 2 Type I examination. Contact us for our current compliance status and available security documentation.
+Privacy Policy — voiceos.com/privacy
+Terms of Use — voiceos.com/terms
+Infrastructure Security
+Cloud Provider: Amazon Web Services (AWS), deployed across multiple regions (US West, EU Frankfurt, Asia Tokyo) for redundancy and low latency.
+Encryption in Transit: All data transmitted between your device and our servers is encrypted using TLS 1.2+ (FIPS-compliant).
+Encryption at Rest: All stored data (databases, file storage, backups) is encrypted using AES-256.
+Network Isolation: Production workloads run in isolated VPCs with strict security group rules. No public SSH access.
+Container Security: Services run on AWS ECS Fargate with no persistent host access. Container images are scanned for vulnerabilities via AWS ECR and Dependabot.
+Data Handling
+Audio Processing: Voice recordings are processed in real-time for transcription and are not retained beyond the active session unless explicitly saved by the user.
+Data Residency: Data is processed in the region closest to the user.
+Data Deletion: Users can delete their account and all associated data at any time. Deletion is completed within 40 days. See our Privacy Policy for full details.
+Subprocessors: We maintain a list of third-party subprocessors that handle user data. Available upon request.
+Access Controls
+Least Privilege: Team members are granted the minimum access necessary to perform their roles.
+Multi-Factor Authentication (MFA): Required on all infrastructure and administrative accounts.
+Access Reviews: Conducted regularly to ensure appropriate access levels.
+Background Checks: Completed for all employees with access to production systems.
+Application Security
+Secure Development: All code changes require peer review via pull requests before merging to production.
+Automated Security Scanning: Dependabot monitors dependencies for known vulnerabilities. Critical and high-severity findings are remediated within defined SLAs.
+CI/CD Pipeline: Automated build, test, and deployment pipeline with security checks integrated.
+Branch Protection: Enforced on all production branches.
+Monitoring & Incident Response
+24/7 Monitoring: CloudWatch dashboards and automated alerts monitor system health, error rates, and performance across all regions.
+Public Status Page: Real-time system status available at statuspage.incident.io/voiceos.
+Incident Response Plan: We maintain a documented incident response plan with defined roles, escalation procedures, and communication protocols.
+Uptime: We target 99.8% monthly availability.
+Employee Security
+Security Training: All team members complete security awareness training upon onboarding and annually thereafter.
+Confidentiality Agreements: All employees and contractors sign NDAs with security and breach notification clauses.
+Code of Conduct: All personnel acknowledge and adhere to our Code of Conduct.
+Vulnerability Disclosure
+If you discover a security vulnerability in VoiceOS, please report it responsibly to:
+security@voiceos.com
+We appreciate responsible disclosure and will acknowledge receipt within 48 hours. We do not pursue legal action against researchers who report vulnerabilities in good faith.
+Contact
+For security inquiries, compliance documentation requests, or to ask about our SOC 2 progress:
+security@voiceos.com
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

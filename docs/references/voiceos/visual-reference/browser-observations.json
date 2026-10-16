@@ -1,0 +1,21 @@
+{
+  "mode": "offline replay of TLS-verified public page resources; demo videos omitted",
+  "pages": [
+    {
+      "name": "home",
+      "status": "captured_static_replay",
+      "title": "VoiceOS – AI Voice Assistant for Mac & Windows"
+    },
+    {
+      "name": "dictation",
+      "status": "captured_static_replay",
+      "title": "Voice Dictation for Mac and Windows - VoiceOS"
+    },
+    {
+      "name": "agent",
+      "status": "captured_static_replay",
+      "title": "AI Voice Agent for Mac and Windows - VoiceOS"
+    }
+  ],
+  "unavailable": []
+}

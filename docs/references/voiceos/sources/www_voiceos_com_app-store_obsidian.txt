@@ -1,0 +1,75 @@
+Obsidian voice control — 4 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Obsidian
+Beta
+Read, create, and append vault notes
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+4
+voice actions
+Category
+Note Taking
+Platforms
+macOS · Windows
+Try saying
+“Append this idea to my Ideas note”“Read my note on pricing”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect ObsidianOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Runs locally on your Mac — nothing to sign into, and your data stays on your device.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Search your vault
+Find notes by what's written in them.
+Read a note
+Open one note from the vault.
+Create a note
+Add a new note to the vault.
+Add to a note
+Append text to a note you already have.
+More from the App Store
+All integrations
+NotesRead, create, and append notes6 voice actions · macOSNotionManage pages and databases9 voice actions · macOS · WindowsiMessageRead and send iMessages5 voice actions · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

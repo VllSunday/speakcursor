@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    
+  <url>
+    <loc>https://docs.voiceos.com/integrations/branding</loc>
+    <lastmod>2026-08-08T21:30:45.010Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/build-with-ai</loc>
+    <lastmod>2026-08-08T21:30:45.014Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/build-with-code</loc>
+    <lastmod>2026-09-18T21:50:31.600Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/confirmations</loc>
+    <lastmod>2026-08-08T21:30:45.016Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/distribution</loc>
+    <lastmod>2026-08-09T10:03:50.377Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/hooks</loc>
+    <lastmod>2026-09-22T22:08:27.972Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/how-it-works</loc>
+    <lastmod>2026-09-18T21:50:31.597Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations</loc>
+    <lastmod>2026-09-25T23:18:52.341Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/intents</loc>
+    <lastmod>2026-09-25T23:18:52.342Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/quickstart</loc>
+    <lastmod>2026-08-08T21:30:45.008Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/reference/glance-blocks</loc>
+    <lastmod>2026-09-22T22:08:27.974Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/reference/limits</loc>
+    <lastmod>2026-09-22T22:08:27.975Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/reference/manifest</loc>
+    <lastmod>2026-09-22T22:08:27.976Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/reference/ui-blocks</loc>
+    <lastmod>2026-09-22T22:08:27.968Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/reference/widget-bridge</loc>
+    <lastmod>2026-09-25T23:18:52.324Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/result-cards</loc>
+    <lastmod>2026-09-25T23:18:52.325Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/setup-fields</loc>
+    <lastmod>2026-08-08T21:30:45.011Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/testing</loc>
+    <lastmod>2026-09-18T21:50:31.602Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/tools</loc>
+    <lastmod>2026-09-22T22:08:27.971Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/widget-confirmations</loc>
+    <lastmod>2026-09-22T22:08:27.968Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/widget-kit</loc>
+    <lastmod>2026-09-22T22:08:27.973Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://docs.voiceos.com/integrations/widgets</loc>
+    <lastmod>2026-09-22T22:08:27.972Z</lastmod>
+  </url>
+</urlset>

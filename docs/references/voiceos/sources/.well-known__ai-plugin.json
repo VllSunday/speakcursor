@@ -1,0 +1,26 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "VoiceOS",
+  "name_for_model": "voiceos",
+  "description_for_human": "The Siri for Productivity. Universal voice-to-text OS layer for Mac and Windows.",
+  "description_for_model": "VoiceOS is an AI voice agent and system-wide dictation app for Mac and Windows. It turns speech into polished text and executes real actions across apps like Slack, Gmail, Google Calendar, Notion, and the web. Use this resource to learn what VoiceOS does, its pricing, supported platforms and languages, integrations, and how voice agents differ from traditional dictation.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.voiceos.com/.well-known/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://www.voiceos.com/voiceOsIcon-v2.png",
+  "contact_email": "support@voiceos.com",
+  "legal_info_url": "https://www.voiceos.com/terms",
+  "documentation": {
+    "llms": "https://www.voiceos.com/llms.txt",
+    "llms_full": "https://www.voiceos.com/llms-full.txt",
+    "agents": "https://www.voiceos.com/agents.md",
+    "pricing": "https://www.voiceos.com/pricing.md",
+    "markdown": "https://www.voiceos.com/index.md",
+    "agent_card": "https://www.voiceos.com/.well-known/agent-card.json"
+  }
+}

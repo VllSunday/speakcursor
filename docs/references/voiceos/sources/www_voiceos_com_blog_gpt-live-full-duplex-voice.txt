@@ -1,0 +1,158 @@
+GPT-Live Is Here: ChatGPT's Voice Now Listens and Talks at…
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+10 min read
+Table of contents
+Key TakeawaysWhat OpenAI actually releasedFull-duplex vs. half-duplex: what actually changedWhy it suddenly feels humanFrom 'Her' and JARVIS to your desktopVoice is becoming the operating systemTalking to a chatbot vs. doing your work by voiceWhere VoiceOS fitsFrequently Asked Questions (FAQ)
+All posts
+News
+GPT-Live Is Here: ChatGPT's Voice Now Listens and Talks at Once, Just Like 'Her' and JARVIS
+On July 8, 2026, OpenAI replaced Advanced Voice Mode with GPT-Live, a full-duplex voice that listens and speaks at the same time. Here is what changed, how full-duplex differs from the old turn-based voice, and why it means voice is becoming the operating system for real work.
+Written by
+Kai Brokering
+Last updated
+July 9, 2026
+Key Takeaways
+On July 8, 2026, OpenAI launched GPT-Live, a new generation of ChatGPT Voice built on a full-duplex architecture that can listen and speak at the same time. It replaces Advanced Voice Mode for everyone.
+Two models rolled out globally on iOS, Android, and the web: GPT-Live-1 is the default for Go, Plus, and Pro subscribers, and GPT-Live-1 mini is the default for free users.
+The old voice was half-duplex, a speech-to-text, language, and text-to-speech pipeline that forced strict turn-taking. GPT-Live listens while it talks, backchannels with cues like "mhmm" and "yeah," and handles interruptions without losing the thread.
+For hard questions, GPT-Live hands the work to a frontier model, GPT-5.5 at launch, in the background and keeps the conversation flowing. In OpenAI's testing, people preferred it to Advanced Voice Mode 75.7% of the time.
+The bigger story is the interface. Talking is becoming a primary way to operate a computer, the science-fiction assistants from Her and Iron Man's JARVIS are turning into everyday software, and voice is becoming the new operating system for work.
+What OpenAI actually released
+On July 8, 2026, OpenAI introduced GPT-Live, a new generation of voice models that replaces the default ChatGPT Voice experience. It comes in two versions, GPT-Live-1 and GPT-Live-1 mini, and it is rolling out to ChatGPT users around the world across iOS, Android, and ChatGPT.com on the web.
+The split is simple. GPT-Live-1 becomes the default voice for paid users on the Go, Plus, and Pro plans, while GPT-Live-1 mini becomes the default for free users. Both retire the old Advanced Voice Mode, so this is not an optional beta buried in settings. It is the new default way ChatGPT talks.
+What makes it different is not that it sounds a little better. It is a different architecture. GPT-Live is built to listen and speak at the same time, and when a question needs a real answer, a web search, or multi-step work, it quietly hands that off to a stronger model in the background, GPT-5.5 at launch, and keeps the conversation going while the answer is prepared.
+Here is the announcement, straight from OpenAI:
+Related: Claude voice mode gets Opus and Sonnet · ChatGPT Voice comes to the desktop: control your computer by voice · Google Gemini for Mac makes voice the primary input · Apple's new Siri AI on Mac · The new Siri in iOS 27
+Full-duplex vs. half-duplex: what actually changed
+If you have used ChatGPT Voice before GPT-Live, you have used a half-duplex system, even if nobody called it that. Half-duplex means the line only runs one way at a time, like a walkie-talkie: one side talks, then the other side talks. Under the hood, the old Advanced Voice Mode chained three separate models together, one to turn your speech into text, one to generate a reply, and one to turn that reply back into speech.
+That pipeline is why the old experience felt like taking turns with a machine. You spoke, you waited, it answered, and if you tried to jump in, the whole turn often reset. It was impressive, but you never quite forgot you were talking to software that was patiently waiting for its cue.
+Full-duplex means both directions are open at once, like a real phone call where you can laugh, interrupt, and finish each other's sentences. GPT-Live is a single model that processes what you are saying while it is speaking, and it decides many times per second whether to keep talking, pause, listen, jump in, or call a tool. That one change, from a chain of turn-taking models to a single always-listening one, is what makes it feel less like a command line for your mouth and more like a conversation.
+Advanced Voice Mode — half-duplex
+GPT-Live — full-duplex
+Architecture
+Three models chained: speech-to-text, then a language model, then text-to-speech.
+One model that listens and speaks at the same time.
+Turn-taking
+Strictly one at a time. You talk, it waits, then it replies.
+Continuous. It decides whether to talk, listen, or pause many times a second.
+Interruptions
+Clumsy. Jumping in often resets the whole turn.
+Natural. Interrupt mid-sentence and it adapts without losing the thread.
+Listening cues
+Silent until it is your turn.
+Backchannels with "mhmm," "yeah," and "got it" while you speak.
+Hard questions
+One model does everything, so depth and speed trade off.
+Delegates to GPT-5.5 in the background and keeps talking while it works.
+Why it suddenly feels human
+The tell is in the small stuff. GPT-Live does the things people do without thinking. It drops in a quick "mhmm" or "got it" while you are still talking, so you know it is following. It waits through a natural pause instead of barreling in the moment you take a breath. And when you interrupt to correct yourself, it adjusts instead of starting over.
+Those micro-behaviors, called backchanneling, are most of what separates a real conversation from dictating into a form. They are also exactly what the old turn-based pipeline could not do, because it was structurally incapable of listening and speaking at the same time. In OpenAI's own human preference testing, people chose GPT-Live over Advanced Voice Mode in 75.7% of comparisons.
+Even Sam Altman, who has said he prefers typing to talking to an AI, framed the launch as a turning point:
+And it is not just English. Here is a demo of GPT-Live speaking Japanese that native speakers are calling almost indistinguishable from a person (video — turn the sound on):
+From 'Her' and JARVIS to your desktop
+"Jarvis, wake up, Daddy's home."
+Tony Stark, Iron Man
+It is hard to hear GPT-Live and not think of the movies. In Spike Jonze's 2013 film Her, the main character falls into conversation with an operating system that talks like a person, listens without judgment, and is simply present. In Iron Man, Tony Stark walks into his workshop and says, "Jarvis, wake up, Daddy's home," and a calm voice answers and gets to work. For years those were the reference points precisely because no real product came close.
+The comparison is not new to OpenAI. When it demoed a voice called Sky in 2024, listeners thought it sounded like Scarlett Johansson, who voiced the AI in Her, and the company pulled the voice after she objected. The fantasy has always been the same: a computer you talk to like a person. What changed in 2026 is that the conversation finally feels real enough that the comparison is about the experience, not just the voice.
+We wrote a whole piece on the JARVIS idea and why it stopped being fiction. GPT-Live is the clearest sign yet that the talking-computer scene from those films has quietly become a shipping feature, available on the phone in your pocket.
+Related: Real-Life Jarvis: Control your computer with your voice · From personal assistant to voice agent
+Voice is becoming the operating system
+Every major shift in computing has moved the interface closer to human intent. The command line let us type exact instructions. The graphical interface let us point and click instead of memorizing commands. Touch let us use our fingers. Each step removed friction between what a person wanted and what the machine did. Voice is the natural next layer, because talking is the most human interface there is.
+OpenAI is saying this out loud. Atty Eleti, the product lead for ChatGPT Voice, put it plainly: "Over time, we think this will also unlock the ability to use voice as a kind of primary interface to computing." That is a striking thing for the company to say about a voice feature. It is not describing a better dictation tool. It is describing voice as a primary way to operate a computer.
+This is the thesis we have been writing about for a year: voice is not just a new input, it is a new operating layer. When the machine understands intent, you stop operating software one click at a time and start directing it. You say what you want, and the computer arranges itself around you.
+Related: What is a voice operating system? · Voice is the new interface · The voice operating system: from thought to action · Voice is the final interface: the world of 'Her'
+Talking to a chatbot vs. doing your work by voice
+Here is the honest limit. GPT-Live is a spectacular conversation partner inside the ChatGPT app. It can chat, reason, translate, and answer. But most of your work does not happen inside ChatGPT. It happens in Gmail, Slack, Notion, your browser, your calendar, and your code editor, and it involves actually doing things, not just talking about them.
+A great voice inside one app is a great chatbot. A voice that works everywhere, that can type into any field, rewrite the text you already have, read what is on your screen, and take real actions across your apps, is an operating system. That is the difference between talking to a computer and getting your computer to do the work.
+This is exactly the line between dictation, voice agents, and a true voice layer that we have broken down before. GPT-Live makes the conversation feel human. The next question is what that conversation can actually do across everything you already use.
+Related: Voice AI agents vs dictation · Send emails and Slack messages by voice · Hands-free voice control for Mac and Windows
+Where VoiceOS fits
+VoiceOS is that system-wide voice layer for your Mac and Windows computer. It is not trapped inside one app. You press your trigger, speak naturally, and VoiceOS turns your words into the right output wherever your cursor is: a polished Slack message, a clean email, or a prompt to another AI tool, all in the tone of the app you are in.
+It also goes past talking into doing. With Agent Mode you can ask about what is on your screen, reshape text you already wrote, and take real actions across connected apps like Gmail, Slack, and Google Calendar, with a confirmation step before anything important is sent. GPT-Live shows how natural the conversation can feel. VoiceOS is about turning that conversation into work across every app you use.
+The GPT-Live launch is the strongest signal yet that the whole industry is converging on the same idea we started with: you should be able to talk to your computer and have it understand and act. If that future excites you, the fastest way to feel it across your real work today is to start speaking to your own machine.
+Frequently Asked Questions (FAQ)
+What is GPT-Live?
+GPT-Live is OpenAI's new generation of ChatGPT Voice, launched on July 8, 2026. It is a full-duplex voice model, meaning it can listen and speak at the same time, which makes talking to ChatGPT feel much more like a real conversation. It comes in two versions, GPT-Live-1 and GPT-Live-1 mini, and replaces the older Advanced Voice Mode.
+When was GPT-Live released and where can I use it?
+OpenAI released GPT-Live on July 8, 2026. It is rolling out globally inside the ChatGPT app on iOS and Android and on ChatGPT.com on the web, where it becomes the default voice experience. OpenAI said support in the API is coming soon.
+How is GPT-Live different from Advanced Voice Mode?
+Advanced Voice Mode was half-duplex: it chained a speech-to-text model, a language model, and a text-to-speech model, which forced strict turn-taking. GPT-Live is full-duplex, a single model that listens and speaks simultaneously, adds natural cues like "mhmm" and "yeah," handles interruptions gracefully, and hands hard questions to a stronger model (GPT-5.5 at launch) in the background. In OpenAI's testing, people preferred GPT-Live 75.7% of the time.
+Which ChatGPT plans get GPT-Live-1 versus GPT-Live-1 mini?
+GPT-Live-1 is the default voice model for paid subscribers on the Go, Plus, and Pro plans. GPT-Live-1 mini is the default for free users. Both replace Advanced Voice Mode as the standard ChatGPT Voice experience.
+Is ChatGPT's new voice like the movie Her?
+That is the comparison many people reach for. Like the AI in the 2013 film Her, GPT-Live holds a flowing, natural conversation, listens while it talks, and responds without the awkward pauses of older assistants. OpenAI has drawn Her comparisons before, including the Sky voice it pulled in 2024. GPT-Live is the closest a mainstream product has come to that experience.
+Does this mean I can have a real-life JARVIS?
+A natural voice like GPT-Live is one half of the JARVIS idea. The other half is a computer that can actually take action across your apps, not just talk. For that you need a system-wide voice layer. VoiceOS brings a JARVIS-style assistant to Mac and Windows: you talk, and it dictates, edits, answers questions about your screen, and takes actions across apps like Gmail, Slack, and Calendar.
+Is voice really becoming the new operating system?
+The direction is clear. OpenAI's own ChatGPT Voice lead described voice as becoming "a kind of primary interface to computing." As AI learns to understand intent rather than fixed commands, talking becomes a primary way to operate a computer, alongside the keyboard and mouse. Tools like VoiceOS take that further by letting your voice act across every app on your desktop, not just inside one chatbot.
+Turn the conversation into work
+GPT-Live makes talking to AI feel natural. VoiceOS makes it useful everywhere, letting you dictate, edit, ask, and take action across your Mac or Windows apps just by speaking.
+Try VoiceOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA
+Sam Altman
+@sama
+·Follow
+GPT-live (next-generation voice) launches today in ChatGPT.
+it feels magical and 'real'.
+i have always preferred typing to talking to an AI, now i think that's going to shift.
+5:30 PM · Jul 8, 2026
+10.9K
+Reply
+Copy link
+Read 917 replies
+OpenAI
+@OpenAI
+·Follow
+Introducing GPT-Live, a new generation of voice models for natural human-AI interaction.
+Rolling out in ChatGPT starting today.
+You’ll want to turn the sound on for this one.
+Watch on X
+5:22 PM · Jul 8, 2026
+24.4K
+Reply
+Copy link
+Read 1.3K replies
+あむ
+@Rabbuttz
+·Follow
+ChatGPTの新しい音声モデルのGPT‑Live、本当にすごい、もうしゃべりの違和感がほとんどなくなってて驚き屋になってしまう
+マジですごいから一瞬観てみてほしい（1.2倍速です）
+Watch on X
+4:22 AM · Jul 9, 2026
+51.1K
+Reply
+Copy link
+Read 369 replies

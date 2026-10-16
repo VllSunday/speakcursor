@@ -1,0 +1,83 @@
+Claude Code voice control — 8 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Claude Code
+Beta
+Run coding tasks with the Claude Code CLI on your computer
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+8
+voice actions
+Category
+Productivity
+Platforms
+macOS · Windows
+Try saying
+“Have Claude Code fix the failing tests”“Start a coding task: add dark mode to settings”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect Claude CodeOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Runs locally on your Mac — nothing to sign into, and your data stays on your device.
+These actions are safe and easy to undo, so VoiceOS runs them right away — no confirmation needed.
+What it can do
+What Agent Mode can do with this integration.
+Start a coding task
+Hand a task to Claude Code in one of your project folders.
+See running tasks
+Check which sessions are going and how far along they are.
+Read a task result
+Pull up what a finished session changed and said.
+Answer a session
+Reply by voice when the agent stops to ask you something mid-run.
+Run several agents at once
+Split one job across parallel sessions in the same repo.
+See parallel runs
+Check the status of every agent in a parallel run.
+Read a parallel run
+Pull up the combined result once the agents finish.
+Answer a parallel run
+Reply to whichever agent in the run is waiting on you.
+More from the App Store
+All integrations
+RemindersRead, create, and complete reminders5 voice actions · macOSFinderSearch, read, and organize files on your Mac12 voice actions · macOSGoogle MapsSearch places, get directions, and things nearby1 voice action · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

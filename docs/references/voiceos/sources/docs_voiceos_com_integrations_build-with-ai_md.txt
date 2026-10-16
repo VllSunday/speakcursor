@@ -1,0 +1,122 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Build with AI
+
+> The Integration Studio turns a sentence into an installed, working integration.
+
+The **Integration Studio** is the no-code path. You describe what you want;
+VoiceOS plans it, writes it, designs its cards, installs a live draft on your
+Mac, and lets you test it by voice — all inside the app. A typical build takes
+two to three minutes.
+
+Everything it produces is a real integration folder, identical in kind to one
+built [by hand](/integrations/build-with-code). Start with AI, move to your
+editor whenever you outgrow the Studio.
+
+<Note>
+  New here? The [quickstart](/integrations/quickstart) walks this flow with
+  screenshots. This page is the depth behind it.
+</Note>
+
+## Starting a build
+
+**Integrations → Custom → Build anything.** One input box takes two kinds of
+input:
+
+| Input | What happens |
+| - | - |
+| A plain-English brief — *"Track my water intake: log glasses, show today vs my 2L goal, weekly chart."* | Starts an AI build. |
+| An MCP server URL or launch command — `https://…`, or `npx\|uvx\|bunx\|node\|deno\|docker …` | Connects it directly as a custom MCP server. No AI build. |
+
+Brief it like a contractor: what to track or fetch, what each action should do,
+what you want to see in the notch.
+
+## Quick decisions
+
+Before writing any code, the Studio researches the service behind your brief —
+real endpoints, auth model, gotchas — and asks up to four multiple-choice
+questions about anything that would change what gets built.
+
+* The recommended answer is listed first; every question also takes free text.
+* **Start building** turns your answers into build requirements.
+* **Skip — build as described** is fine for simple briefs.
+
+Planning is best-effort by design: if it fails or times out, the build proceeds
+from your brief.
+
+## While it builds
+
+The modal splits — log and tools on the left, a live **notch preview** on the
+right where cards appear as they're designed. Phases are visible: planning,
+generating, validating (with automatic fix rounds), installing the draft,
+drawing an icon, design review.
+
+| | |
+| - | - |
+| **A draft installs mid-build** | *"Draft installed — try it live on the right"* means the preview is running your real server, not a mock. |
+| **Closing the modal is safe** | The build continues; a progress row stays in My Integrations. Cancelling is explicit (hover the progress card). |
+| **One build at a time** | Starting a new one supersedes the current build. |
+
+### The design pass
+
+The Studio makes it match the brand, not just work. It resolves the company
+behind your integration, fetches the **real logo** for the icon, screenshots the
+service's site, picks one accent color, and designs each action's card against
+VoiceOS's card-design rules.
+
+Then it screenshots every card exactly as the notch renders it, critiques the
+result, and applies styling fixes — up to three rounds, on first builds only.
+
+## Test-driving
+
+The preview runs **real agent turns** scoped to your draft: type or say an
+utterance, the agent picks a tool, acting tools park on their real confirmation
+cards, approved tools execute against your draft server.
+
+* **Click any row in Tools** to stage that action's card — confirmation cards
+  for acting tools, live results for reads.
+* **Required fields** (API keys and options your integration declared) sit above
+  the tools list. Fill them and the draft relaunches with the values — then the
+  Studio quietly runs each read tool once to show real data.
+* Each action has an **Asks first** toggle controlling its confirmation.
+
+## Refining
+
+The footer field takes change requests: *"add a delete action"*, *"show the
+streak too"*. Each refine rebuilds the integration with your feedback while
+keeping its identity — name, icon, and your setup values survive.
+
+<Tip>
+  Select a tool first and the refine is **scoped to that action's card** — a
+  chip shows *"Editing the '…' card"*, and the Studio changes only that card.
+</Tip>
+
+## Saving, editing, and the handoff
+
+| Action | What it does |
+| - | - |
+| **Save** | Installs to My Integrations. You get *"try saying …"* suggestions; it's live in every conversation from then on. |
+| **Edit with AI** | Reopens any Studio-built integration as a draft. Same refine loop; saving updates it in place. |
+| **Keep building** | Opens the folder in Cursor, copies a ready-made Claude/Codex terminal command, or reveals it in Finder. |
+
+Every generated folder ships with an `AGENTS.md` that teaches the whole
+integration contract — so the Studio and your editor can take turns on the same
+folder.
+
+## Name and icon
+
+* **Name** — editable in the modal header while a draft is open.
+* **Icon** — hover it for a regenerate prompt. Describe exactly what you want
+  (*"hand-drawn orange cat on cream, no gradient"*), or ask for a real brand
+  mark (*"use the Notion logo"*, or just paste `linear.app`). See
+  [Branding](/integrations/branding).
+
+<Card title="Under the hood" icon="folder-code" href="/integrations/how-it-works">
+  Everything the Studio generates uses the same manifest, tools, and cards
+  documented in the rest of this section.
+</Card>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

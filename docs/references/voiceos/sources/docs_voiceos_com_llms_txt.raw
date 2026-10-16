@@ -1,0 +1,29 @@
+# VoiceOS API
+
+> Context Aware ASR for voice agents and developer products.
+
+- [Build for VoiceOS](https://docs.voiceos.com/integrations/index.md): Add tools to the VoiceOS agent and answer with native cards in the Mac notch.
+- [How it works](https://docs.voiceos.com/integrations/how-it-works.md): The architecture of a VoiceOS integration, in one page.
+- [Quickstart](https://docs.voiceos.com/integrations/quickstart.md): Build your first integration in about three minutes — no code, right inside VoiceOS.
+- [Build with AI](https://docs.voiceos.com/integrations/build-with-ai.md): The Integration Studio turns a sentence into an installed, working integration.
+- [Build with code](https://docs.voiceos.com/integrations/build-with-code.md): Hand-build, verify, and install an integration in about ten minutes.
+- [Defining tools](https://docs.voiceos.com/integrations/tools.md): Descriptions the agent routes on, schemas it fills, and handlers that behave.
+- [Fast intents](https://docs.voiceos.com/integrations/intents.md): Give short Agent Mode commands a faster route to your existing tools.
+- [Result cards](https://docs.voiceos.com/integrations/result-cards.md): Attach a native glance card to any tool result — the easy way to look great in the notch.
+- [Confirmation cards](https://docs.voiceos.com/integrations/confirmations.md): Anything that acts gets approved first — declare the card the user approves on.
+- [Setup fields](https://docs.voiceos.com/integrations/setup-fields.md): Ask the user for API keys and options — VoiceOS collects, stores, and injects them.
+- [Hooks](https://docs.voiceos.com/integrations/hooks.md): Tap the voice pipeline — see the transcript before the agent, your tool calls before they run, the finished turn after it lands.
+- [Custom widgets](https://docs.voiceos.com/integrations/widgets.md): When blocks aren't enough — your own HTML, sandboxed, with a strict bridge.
+- [Widget Kit](https://docs.voiceos.com/integrations/widget-kit.md): The dependency-free design system behind every Studio-built card.
+- [Widget confirmations](https://docs.voiceos.com/integrations/widget-confirmations.md): Fully custom confirmation cards — your pixels, VoiceOS's confirm button.
+- [Branding](https://docs.voiceos.com/integrations/branding.md): Name, icon, and the mark on every card — make your integration feel official.
+- [Testing & debugging](https://docs.voiceos.com/integrations/testing.md): Verify like VoiceOS does — before your users do.
+- [Install & share](https://docs.voiceos.com/integrations/distribution.md): The folder is the unit — install it, manage it, hand it to anyone.
+- [Manifest reference](https://docs.voiceos.com/integrations/reference/manifest.md): Every field of voiceos.integration.json, with the validation rules that apply.
+- [Glance block reference](https://docs.voiceos.com/integrations/reference/glance-blocks.md): Every result-card block — props, caps, and rendering behavior.
+- [UI block reference](https://docs.voiceos.com/integrations/reference/ui-blocks.md): Every confirmation-view block — layout, display, inputs, actions, and bindings.
+- [Widget bridge reference](https://docs.voiceos.com/integrations/reference/widget-bridge.md): The exact postMessage protocol between VoiceOS and a sandboxed widget.
+- [Limits & stability](https://docs.voiceos.com/integrations/reference/limits.md): Every cap in one place, the security model, and the compatibility promise.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

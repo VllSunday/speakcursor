@@ -1,0 +1,58 @@
+What is a wake word? | VoiceOS Glossary
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Glossary
+What is a wake word?
+Definition
+A wake word is a chosen phrase, such as "Hey Siri" or "Alexa," that a voice system listens for continuously in order to know when to start processing what you say. Detection runs as a small, dedicated model, typically on the device itself, and only after the wake word is recognized does the system begin handling the actual request.
+Why wake words exist
+An assistant that processed everything it heard would be unacceptable for both privacy and accuracy. The wake word acts as a spoken push-to-talk: a low-power local detector watches for one phrase and gates everything else behind it, which is how always-available assistants avoid being always-recording services.
+Wake words on the desktop
+Phones and smart speakers made wake words familiar, but desktop voice tools often prefer a hotkey instead: at a keyboard, a key press is faster and unambiguous. Hands-free desktop modes may use a wake word, open listening with visible state, or voice activity detection, depending on the product.
+Common failure modes
+False accepts (the assistant wakes to a similar-sounding phrase or the TV) and false rejects (it misses you in noise) are the classic trade-off pair. Vendors tune sensitivity between them, which is why wake words are multi-syllable and phonetically distinctive.
+Frequently asked questions
+Is a wake-word device recording everything?
+The wake-word detector runs continuously by design, but mainstream implementations process that audio locally in a short rolling buffer and transmit or store audio only after the wake word triggers. Product documentation and OS indicators are the place to verify specifics.
+Do I need a wake word on a computer?
+Usually not: a hotkey is faster at a keyboard, which is why desktop tools like VoiceOS center on press-to-talk with hands-free modes for when your hands are unavailable.
+Keep exploring
+What is the difference between push-to-talk and hands-free voice input?
+What is a voice agent?
+Hands-free voice control for Mac and Windows
+Hear it in practice
+VoiceOS puts dictation, editing, and voice-to-action in one layer on Mac and Windows.
+Try VoiceOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

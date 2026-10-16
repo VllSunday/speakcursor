@@ -1,0 +1,85 @@
+Apple Mail voice control — 7 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Apple Mail
+macOS only
+Read, search, send, and reply to email
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+7
+voice actions
+Category
+Email
+Platforms
+macOS
+Try saying
+“Reply to Jake’s email saying Thursday works”“Find the invoice email from Stripe”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect Apple MailOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Runs locally on your Mac — nothing to sign into, and your data stays on your device.
+macOS will ask for Full Disk Access when you connect — it's how VoiceOS reads your messages on this Mac.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Unread email
+List what's unread across every account in Mail, newest first.
+Read an email
+Open one message in full, body and recipients included.
+Search mail
+Find messages by subject, sender, mailbox, or date.
+Search inside emails
+Look through message bodies when the subject line won't find it.
+Send an email
+Asks first
+Compose and send a new message from your account.
+Reply to an email
+Asks first
+Answer a thread in place, keeping its recipients.
+Move to another mailbox
+Asks first
+File a message into a different mailbox.
+More from the App Store
+All integrations
+GmailSend, read, and manage emails7 voice actions · macOS · WindowsOutlookEmail, calendar, and contacts in Microsoft 36511 voice actions · macOS · WindowsiMessageRead and send iMessages5 voice actions · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

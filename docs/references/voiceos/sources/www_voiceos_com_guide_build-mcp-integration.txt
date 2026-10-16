@@ -1,0 +1,271 @@
+Build Your Own MCP Integration | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Guide
+Build your own integration
+Create a custom MCP server and connect it to VoiceOS in 3 steps.
+PythonTypeScript
+1
+Install dependencies
+pip install mcpCopy
+npm install @modelcontextprotocol/sdk zodCopy
+pip install mcpCopy
+npm install @modelcontextprotocol/sdk zodCopy
+pip install mcpCopy
+npm install @modelcontextprotocol/sdkCopy
+pip install mcpCopy
+npm install @modelcontextprotocol/sdk zodCopy
+2
+Create your server
+An MCP server exposes tools that VoiceOS can call by voice. Pick an example to start from:
+Quick StartHome ControlSpotifySystem Control
+A minimal MCP server with one tool. The fastest way to understand the pattern.
+Control HomeKit devices via Apple Shortcuts. Say "turn off the lights" or "set thermostat to 72".
+Control Spotify playback with AppleScript. Say "skip this song" or "what's playing?".
+Control macOS settings. Say "set volume to 50", "open Safari", or "turn on Do Not Disturb".
+my_mcp_server.pyCopy
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("my-tools")
+@mcp.tool()
+def greet(name: str) -> str:
+"""Say hello to someone by name."""
+return f"Hello, {name}!"
+# Add more tools with the @mcp.tool() decorator
+if __name__ == "__main__":
+mcp.run(transport="stdio")
+my-mcp-server.tsCopy
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+const server = new McpServer({
+name: "my-tools",
+version: "1.0.0",
+});
+server.tool(
+"greet",
+"Say hello to someone by name",
+{ name: z.string().describe("Person to greet") },
+async ({ name }) => ({
+content: [{ type: "text", text: `Hello, ${name}!` }],
+})
+);
+// Add more tools with server.tool(name, description, schema, handler)
+const transport = new StdioServerTransport();
+await server.connect(transport);
+home_control.pyCopy
+import subprocess
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("home-control")
+def run_shortcut(name: str, input_text: str = "") -> str:
+cmd = ["shortcuts", "run", name]
+if input_text:
+cmd += ["-i", input_text]
+result = subprocess.run(cmd, capture_output=True, text=True, timeout=15)
+return result.stdout.strip() or "Done"
+@mcp.tool()
+def lights_on() -> str:
+"""Turn on the lights."""
+return run_shortcut("Lights On")
+@mcp.tool()
+def lights_off() -> str:
+"""Turn off the lights."""
+return run_shortcut("Lights Off")
+@mcp.tool()
+def set_thermostat(temperature: int) -> str:
+"""Set the thermostat to a specific temperature."""
+return run_shortcut("Set Thermostat", str(temperature))
+if __name__ == "__main__":
+mcp.run(transport="stdio")
+home-control.tsCopy
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+import { execFile } from "child_process";
+import { promisify } from "util";
+const exec = promisify(execFile);
+const server = new McpServer({ name: "home-control", version: "1.0.0" });
+async function runShortcut(name: string, input?: string) {
+const args = ["run", name, ...(input ? ["-i", input] : [])];
+const { stdout } = await exec("shortcuts", args);
+return stdout.trim() || "Done";
+}
+server.tool("lights_on", "Turn on the lights", {},
+async () => ({ content: [{ type: "text", text: await runShortcut("Lights On") }] }));
+server.tool("lights_off", "Turn off the lights", {},
+async () => ({ content: [{ type: "text", text: await runShortcut("Lights Off") }] }));
+server.tool("set_thermostat", "Set the thermostat temperature",
+{ temperature: z.number().describe("Target temperature") },
+async ({ temperature }) => ({
+content: [{ type: "text", text: await runShortcut("Set Thermostat", String(temperature)) }],
+}));
+await server.connect(new StdioServerTransport());
+spotify_mcp.pyCopy
+import subprocess
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("spotify")
+def osascript(cmd: str) -> str:
+result = subprocess.run(
+["osascript", "-e", f'tell application "Spotify" to {cmd}'],
+capture_output=True, text=True,
+)
+return result.stdout.strip() or "Done"
+@mcp.tool()
+def play() -> str:
+"""Resume Spotify playback."""
+return osascript("play")
+@mcp.tool()
+def pause() -> str:
+"""Pause Spotify playback."""
+return osascript("pause")
+@mcp.tool()
+def skip_track() -> str:
+"""Skip to the next track."""
+return osascript("next track")
+@mcp.tool()
+def current_track() -> str:
+"""Get the currently playing track name and artist."""
+name = osascript("name of current track")
+artist = osascript("artist of current track")
+return f"{name} by {artist}"
+if __name__ == "__main__":
+mcp.run(transport="stdio")
+spotify-mcp.tsCopy
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { execFile } from "child_process";
+import { promisify } from "util";
+const exec = promisify(execFile);
+const server = new McpServer({ name: "spotify", version: "1.0.0" });
+async function osascript(cmd: string) {
+const { stdout } = await exec("osascript", ["-e", `tell application "Spotify" to ${cmd}`]);
+return stdout.trim() || "Done";
+}
+server.tool("play", "Resume Spotify playback", {},
+async () => ({ content: [{ type: "text", text: await osascript("play") }] }));
+server.tool("pause", "Pause Spotify playback", {},
+async () => ({ content: [{ type: "text", text: await osascript("pause") }] }));
+server.tool("skip_track", "Skip to the next track", {},
+async () => ({ content: [{ type: "text", text: await osascript("next track") }] }));
+server.tool("current_track", "Get the currently playing track", {},
+async () => {
+const name = await osascript("name of current track");
+const artist = await osascript("artist of current track");
+return { content: [{ type: "text", text: `${name} by ${artist}` }] };
+});
+await server.connect(new StdioServerTransport());
+system_control.pyCopy
+import subprocess
+from mcp.server.fastmcp import FastMCP
+mcp = FastMCP("system-control")
+def osascript(script: str) -> str:
+result = subprocess.run(
+["osascript", "-e", script],
+capture_output=True, text=True,
+)
+return result.stdout.strip() or "Done"
+@mcp.tool()
+def set_volume(level: int) -> str:
+"""Set the system volume (0-100)."""
+return osascript(f"set volume output volume {level}")
+@mcp.tool()
+def toggle_do_not_disturb() -> str:
+"""Toggle Do Not Disturb / Focus mode."""
+script = 'tell application "System Events" to keystroke "D" ' \
+'using {command down, shift down, option down}'
+return osascript(script)
+@mcp.tool()
+def open_app(app_name: str) -> str:
+"""Open an application by name."""
+subprocess.run(["open", "-a", app_name])
+return f"Opened {app_name}"
+@mcp.tool()
+def get_battery() -> str:
+"""Get the current battery level."""
+result = subprocess.run(
+["pmset", "-g", "batt"],
+capture_output=True, text=True,
+)
+return result.stdout.strip()
+if __name__ == "__main__":
+mcp.run(transport="stdio")
+system-control.tsCopy
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+import { execFile } from "child_process";
+import { promisify } from "util";
+const exec = promisify(execFile);
+const server = new McpServer({ name: "system-control", version: "1.0.0" });
+async function osascript(script: string) {
+const { stdout } = await exec("osascript", ["-e", script]);
+return stdout.trim() || "Done";
+}
+server.tool("set_volume", "Set the system volume (0-100)",
+{ level: z.number().min(0).max(100).describe("Volume level") },
+async ({ level }) => ({
+content: [{ type: "text", text: await osascript(`set volume output volume ${level}`) }],
+}));
+server.tool("toggle_do_not_disturb", "Toggle Do Not Disturb", {},
+async () => ({
+content: [{ type: "text", text: await osascript(
+'tell application "System Events" to keystroke "D" using {command down, shift down, option down}'
+) }],
+}));
+server.tool("open_app", "Open an application by name",
+{ app_name: z.string().describe("Application name") },
+async ({ app_name }) => {
+await exec("open", ["-a", app_name]);
+return { content: [{ type: "text", text: `Opened ${app_name}` }] };
+});
+server.tool("get_battery", "Get the current battery level", {},
+async () => {
+const { stdout } = await exec("pmset", ["-g", "batt"]);
+return { content: [{ type: "text", text: stdout.trim() }] };
+});
+await server.connect(new StdioServerTransport());
+Each function decorated with @mcp.tool() (Python) or registered via server.tool() (TypeScript) becomes a tool VoiceOS can call.
+3
+Connect to VoiceOS
+Open VoiceOS, go to Settings → Integrations → Custom Integrations, click Add, give it a name, and set the launch command to:
+python3 /path/to/my_mcp_server.pyCopy
+npx tsx /path/to/my-mcp-server.tsCopy
+python3 /path/to/home_control.pyCopy
+npx tsx /path/to/home-control.tsCopy
+python3 /path/to/spotify_mcp.pyCopy
+npx tsx /path/to/spotify-mcp.tsCopy
+python3 /path/to/system_control.pyCopy
+npx tsx /path/to/system-control.tsCopy
+Replace /path/to/ with the actual path to your file.
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

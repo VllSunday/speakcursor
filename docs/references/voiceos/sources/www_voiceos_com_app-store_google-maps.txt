@@ -1,0 +1,69 @@
+Google Maps voice control — 1 voice action | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Google Maps
+macOS only
+Search places, get directions, and things nearby
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+1
+voice actions
+Category
+Productivity
+Platforms
+macOS
+Try saying
+“Pull up the nearest pharmacy”“Show me the way to the airport”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect Google MapsOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Runs locally on your Mac — nothing to sign into, and your data stays on your device.
+These actions are safe and easy to undo, so VoiceOS runs them right away — no confirmation needed.
+What it can do
+What Agent Mode can do with this integration.
+Open in Maps
+Open a place, an address, or a route in Google Maps.
+More from the App Store
+All integrations
+RemindersRead, create, and complete reminders5 voice actions · macOSFinderSearch, read, and organize files on your Mac12 voice actions · macOSGoogle DriveManage Files, Sheets, and Docs17 voice actions · macOS · Windows
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

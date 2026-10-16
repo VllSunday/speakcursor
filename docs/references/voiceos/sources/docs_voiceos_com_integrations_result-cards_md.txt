@@ -1,0 +1,220 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Result cards
+
+> Attach a native glance card to any tool result — the easy way to look great in the notch.
+
+When your tool returns, the model narrates the data. A **glance card** is the
+visual half of that answer: native blocks — headers, lists, stats, charts —
+rendered by VoiceOS's own components. It's the same block language the VoiceOS
+agent itself answers with, so your card is automatically on-brand, dark-glass
+themed, and restyle-proof.
+
+<Frame caption="Design target: a two-second read. Not a dashboard — the one thing the user wants to see.">
+  <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/elevenlabs-voices.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=ff6ef758cf4579824a336fb67b211347" alt="The notch showing 'What voices do I have?' and an ElevenLabs Voices card listing Rachel with a green Default badge, Adam, Bella, and Antoni." width="1952" height="1494" data-path="images/integrations/elevenlabs-voices.png" />
+</Frame>
+
+## Attaching a card
+
+Spread `glanceResult([...])` into your tool's JSON result:
+
+```ts theme={null}
+return {
+  content: [
+    {
+      type: "text",
+      text: JSON.stringify({
+        stories,                       // what the model reads
+        ...glanceResult([              // what the user sees
+          { type: "header", title: "Hacker News", icon: "globe" },
+          {
+            type: "list",
+            rows: stories.map((s) => ({ title: s.title, trailing: `${s.score}▲` })),
+          },
+        ]),
+      }),
+    },
+  ],
+};
+```
+
+That adds a `_voiceos_glance: { blocks }` key to your payload. VoiceOS lifts it
+out **before the model sees the result** — the model reads your data, never your
+UI JSON.
+
+<Warning>
+  **Never put information only in the card.** The model narrates from the JSON
+  data. A card-only fact is a fact the agent can't say out loud.
+</Warning>
+
+## Background completion
+
+[Background tools](/integrations/tools#sync-vs-background) return the same
+card format. Await the work in your handler, then include `glanceResult` in
+the final result:
+
+```ts theme={null}
+const exported = await exportRecords(args);
+return {
+  content: [{
+    type: "text",
+    text: JSON.stringify({
+      summary: `Exported ${exported.rowCount} records`,
+      downloadUrl: exported.url,
+      ...glanceResult([
+        { type: "header", title: "Export complete", icon: "check" },
+        { type: "stats", items: [{ label: "Records", value: String(exported.rowCount) }] },
+      ]),
+    }),
+  }],
+};
+```
+
+For [custom widgets](/integrations/widgets), replace `glanceResult(...)` with
+`widgetResult(html, { height: 240, data: exported })`. Background completion
+also accepts the card in MCP `structuredContent`.
+
+VoiceOS chimes on completion and queues the card until the top notch is idle.
+Clicking the completed task in the side notch restores the same card,
+including widget HTML and data. Attach the card through `_voiceos_glance`;
+Markdown UI fences do not support custom widgets. Keep your summary data
+alongside the card for fallback.
+
+## The budget
+
+| Limit | Rule |
+| - | - |
+| Blocks per card | **1–3.** `glanceResult` throws outside that range. |
+| Charts per card | **1** (`bars`, `line`, or `splitBar`). Extras are dropped at render time. |
+| String lengths | Per-field caps (titles ≤ 60 chars, list subtitles ≤ 72, …). **Pre-trim your strings** — over-cap blocks are dropped, not truncated. |
+| Off-schema blocks | Silently dropped, never rendered broken. |
+
+Your folder's `bun verify.ts` catches shape mistakes before users do.
+
+## The vocabulary
+
+| Block | Use it for |
+| - | - |
+| `header` | Who's talking: icon or app logo + title + a trailing detail. Usually your first block. |
+| `list` | Up to 6 rows — title, subtitle, trailing text or a status badge, optional icons. |
+| `stats` | 1–3 big numbers with labels, optional deltas (`+3%`) and tones. |
+| `keyValue` | Up to 5 label/value pairs — flight details, order fields, settings. |
+| `bars` | 2–7 labeled bars. Every bar carries its value. |
+| `line` | A 2–60 point trend with optional baseline and start/end labels. |
+| `splitBar` | One bar split into 2–4 composition segments with a legend. |
+| `progress` | A bar or ring toward a goal (`value`, `max` — **`max` defaults to 100**). |
+| `clock` | A live analog or digital clock, any IANA timezone. |
+| `countdown` | A live countdown to an ISO time (`until`) or from `seconds` (≤ 30 days). |
+| `badges` | 1–3 quiet status chips. |
+| `divider` | A hairline rule. |
+| `row` | Lay 2–3 leaf blocks side by side (e.g. ring + stats). Rows never nest. |
+| `widget` | Your own sandboxed HTML — see [Custom widgets](/integrations/widgets). |
+
+Every prop, cap, and edge case:
+[glance block reference](/integrations/reference/glance-blocks).
+
+## Four patterns that work
+
+### The lookup — header + list
+
+The bread and butter.
+
+```json theme={null}
+[
+  { "type": "header", "icon": "globe", "title": "Hacker News", "trailing": "Front page" },
+  { "type": "list", "rows": [
+    { "title": "Show HN: I built a tiny ASR rig", "subtitle": "jdoe · 128 comments", "trailing": "412▲" },
+    { "title": "The case for boring tech", "subtitle": "kt · 89 comments", "trailing": "301▲" },
+    { "title": "SQLite as an application file format", "subtitle": "mg · 64 comments", "trailing": "245▲" }
+  ] }
+]
+```
+
+<Frame caption="Rows carry a subtitle and a trailing value — enough to scan, never enough to read.">
+  <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/pattern-lookup.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=b6cca6c139b069d5a09d47b39b224cd8" alt="A Hacker News card in the notch: globe icon, 'Front page' trailing label, and three story rows with authors, comment counts, and point scores." width="1952" height="1078" data-path="images/integrations/pattern-lookup.png" />
+</Frame>
+
+### The metric card — header + stats + one chart
+
+```json theme={null}
+[
+  { "type": "header", "icon": "coffee", "title": "Coffee Tracker", "trailing": "This week" },
+  { "type": "stats", "items": [
+    { "label": "This week", "value": "12" },
+    { "label": "All time", "value": "87" }
+  ] },
+  { "type": "bars", "labels": ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"], "values": [2,3,1,2,2,1,1] }
+]
+```
+
+<Frame caption="The full three-block budget: identity, the numbers, the shape of the numbers.">
+  <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/coffee-stats.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=9aa23c60b2a4b1c1cc31d94f4ded899c" alt="A Coffee Tracker card with two stat tiles — 12 this week, 87 all time — and a labeled bar chart Monday through Sunday." width="1952" height="1174" data-path="images/integrations/coffee-stats.png" />
+</Frame>
+
+### The status glance — a `row`
+
+Puts a ring beside its caption.
+
+```json theme={null}
+[
+  { "type": "row", "children": [
+    { "type": "progress", "style": "ring", "value": 51, "icon": "car", "tone": "good" },
+    { "type": "stats", "items": [{ "label": "911 Carrera", "value": "51% · 189 mi" }] }
+  ] }
+]
+```
+
+<Frame caption="One block, two things side by side — the smallest card worth showing.">
+  <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/pattern-status.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=685b80f482b1843a907df4d0efdae405" alt="A compact notch card with a green progress ring containing a car icon beside the stat '51% · 189 mi' labeled 911 Carrera." width="1952" height="476" data-path="images/integrations/pattern-status.png" />
+</Frame>
+
+### The composition — `splitBar`
+
+What something is made of.
+
+```json theme={null}
+[
+  { "type": "header", "icon": "bed", "title": "Sleep", "trailing": "7 h 58 min" },
+  { "type": "splitBar", "unit": "m", "segments": [["Deep", 29], ["Core", 235], ["REM", 92], ["Awake", 62]] }
+]
+```
+
+<Frame caption="Segment colors are assigned by index, never by you — so composition can't read as good or bad.">
+  <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/pattern-split.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=7d51c41a1b36524dfbeca6a9ed0f9887" alt="A Sleep card with a bed icon, '7 h 58 min' trailing label, and a segmented bar splitting the night into Deep, Core, REM, and Awake with a color-dot legend." width="1952" height="576" data-path="images/integrations/pattern-split.png" />
+</Frame>
+
+## Tones, glyphs, and app icons
+
+* **`tone` is a meaning, not a color.** `good`, `bad`, or `neutral` — the
+  renderer owns the hues. You never pick colors; that's how every card stays
+  on-brand.
+* **Glyphs** come from a fixed allowlist of 34 names (`calendar`, `clock`,
+  `mail`, `globe`, `coffee`, `sparkle`, …) — see the
+  [full list](/integrations/reference/glance-blocks#glyphs). Unknown names
+  invalidate the block.
+* **`appIcon`** renders a real app logo (e.g. `"notion"`) in headers and list
+  rows, and wins over `icon`. It only renders when the row's visible title
+  starts with that app's name — so one brand can never masquerade as another.
+* **Numbers are strings you format.** `stats.value` caps at 20 chars — send
+  `"5 hr 56 min"`, not `21360`. Deltas color by sign: leading `-` is red, `+` is
+  green.
+
+## How cards behave
+
+* Blocks animate in with the notch's staggered blur-in; charts rise and wipe.
+  All motion respects `prefers-reduced-motion`.
+* `clock` and `countdown` tick once per second. Prefer `until` (an ISO
+  timestamp) over `seconds` — an absolute target survives re-renders.
+* Cards render in the notch's answer column and scroll internally if the
+  viewport is tight. On small screens, less is more.
+* One failing block never sinks the card — every block renders inside its own
+  error boundary.
+
+<Card title="Next: Confirmation cards" icon="shield-check" href="/integrations/confirmations">
+  Tools that act need approval first — declare the card the user approves on.
+</Card>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

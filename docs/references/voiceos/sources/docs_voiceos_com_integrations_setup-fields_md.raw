@@ -1,0 +1,137 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Setup fields
+
+> Ask the user for API keys and options — VoiceOS collects, stores, and injects them.
+
+Most useful integrations need something from the user: an API key, an account
+id, a default voice, a toggle. Declare those needs in the manifest and VoiceOS
+does the rest — it asks **in the notch, right when the value is first needed**,
+stores it encrypted, and injects it into your server as an environment variable.
+
+You never build a settings screen, and secrets never pass through the agent
+transcript.
+
+## Declaring fields
+
+Two manifest sections feed one setup form:
+
+```json theme={null}
+"auth": {
+  "kind": "apiKey",
+  "fields": [
+    { "key": "ELEVENLABS_API_KEY", "label": "ElevenLabs API key", "secret": true }
+  ]
+},
+"preferences": [
+  {
+    "name": "ELEVENLABS_VOICE_ID",
+    "title": "Default voice",
+    "description": "Voices → any voice → ID, in your ElevenLabs dashboard.",
+    "type": "text",
+    "default": "21m00Tcm4TlvDq8ikWAM"
+  },
+  {
+    "name": "SPICY_MODE",
+    "title": "Allow spicy summaries",
+    "type": "boolean",
+    "default": "false"
+  }
+]
+```
+
+Field types: `text`, `password`, `number`, `boolean`, `select` (which must
+declare `options: [{ label, value }]`).
+
+### Requiredness is asymmetric, on purpose
+
+| | Default |
+| - | - |
+| `auth.apiKey` fields | **Required** unless you set `required: false`. |
+| `preferences` | **Optional** unless you set `required: true`. |
+| Any field with a `default` | Never considered missing. |
+| Booleans | `"false"` is a real answer — only *unanswered* blocks a required field. |
+
+Auth fields and preferences share one namespace; declaring the same name in both
+is a validation error.
+
+## Reaching your code
+
+Values are injected as **environment variables named exactly after each field**:
+
+```ts theme={null}
+const key = process.env.ELEVENLABS_API_KEY;
+if (!key) throw new Error("ELEVENLABS_API_KEY is not configured.");
+```
+
+Three rules keep this honest:
+
+1. **Name fields in `SCREAMING_SNAKE_CASE`** so the manifest reads like the env
+   it produces.
+2. **Declare every env var you read.** An undeclared `process.env.X` is silently
+   empty at runtime — the Studio's validator rejects builds that read undeclared
+   vars, and your own code should too.
+3. **Never hardcode keys.** Secrets come from the user.
+
+And the inverse: don't declare fields your code never reads, don't mark a field
+required when a sensible `default` exists, and if the API works without a key,
+declare no credential at all.
+
+## What the user sees
+
+The first time the agent picks one of your tools while a required field is
+missing, the turn pauses and the notch shows a setup card containing **only the
+missing fields** — `password` renders as a secure field, `boolean` as a toggle,
+`select` as a picker.
+
+<Frame caption="Built entirely from your declarations. You write zero UI.">
+  <img src="https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/elevenlabs-setup.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=ab85dec09db5d34be62bfe85eb2a5529" alt="An 'ElevenLabs needs setup' card in the notch with the help text 'Settings → API Keys in your ElevenLabs dashboard.', a secure API key field with an sk_ placeholder, and Not now / Save and continue buttons." width="1952" height="938" data-path="images/integrations/elevenlabs-setup.png" />
+</Frame>
+
+* **On save**, VoiceOS persists the values (secrets encrypted), relaunches your
+  server with the new environment, and runs the tool — same turn.
+* **The card is patient.** If the user takes too long the turn ends honestly
+  (the model is told setup is required and not to retry), but the card stays up.
+  Finishing the form still saves the values, and the next request just works.
+* **Values persist per user.** Setup happens once, not per call.
+
+<Tip>
+  Write each field's `description` for that card: say **where to get the value**
+  ("Settings → API Keys in your ElevenLabs dashboard"), not what the field is
+  called.
+</Tip>
+
+## Editing values later
+
+* **Configure** on the integration's detail page reopens the form. Secret fields
+  prefill empty — leaving one blank keeps the stored value; VoiceOS never echoes
+  secrets back to the UI.
+* In the [Integration Studio](/integrations/build-with-ai), a **Required
+  fields** section sits above the tools list. Filling it relaunches the draft
+  server, so a key-gated integration is test-drivable immediately — and once
+  everything required is filled, the Studio quietly runs each read-only tool
+  once and shows real results in the preview.
+
+## SDK helpers
+
+If you're building with the SDK package, `@voiceos/integration-sdk` exports the
+same logic VoiceOS runs — useful in tests:
+
+```ts theme={null}
+import {
+  setupFields,            // normalized list: auth fields + preferences
+  missingRequiredSetupFields,
+  isSetupComplete,
+  setupDefaults,          // { name: default } for everything with a default
+  setupToView,            // compile a setup form as a UiView
+} from "@voiceos/integration-sdk";
+```
+
+<Card title="Next: Custom widgets" icon="frame" href="/integrations/widgets">
+  The built-in blocks cover most cards. When they don't, take over the pixels.
+</Card>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

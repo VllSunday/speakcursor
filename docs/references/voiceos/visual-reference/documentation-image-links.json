@@ -1,0 +1,52 @@
+{
+  "note": "Reference links retained. A sample download from this CDN returned proxy HTTP 403; these links were not downloaded.",
+  "images": {
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/gallery-official.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=4d472003dfdf108cc1f40833ec780c93": [
+      "docs_voiceos_com_integrations_quickstart_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-custom-tab.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=e5e589386102c49278135d095a63ec0f": [
+      "docs_voiceos_com_integrations_quickstart_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-composer.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=24a1c06404521151ec9c7f7cb8408d1f": [
+      "docs_voiceos_com_integrations_quickstart_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-plan.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=5bf69f006bdea70f2753e74008d67268": [
+      "docs_voiceos_com_integrations_quickstart_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/studio-build.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=0444328fa061f70c10328f3616fa0811": [
+      "docs_voiceos_com_integrations_quickstart_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/pattern-lookup.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=b6cca6c139b069d5a09d47b39b224cd8": [
+      "docs_voiceos_com_integrations_quickstart_md.txt",
+      "docs_voiceos_com_integrations_result-cards_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/elevenlabs-setup.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=ab85dec09db5d34be62bfe85eb2a5529": [
+      "docs_voiceos_com_integrations_setup-fields_md.txt",
+      "docs_voiceos_com_integrations_how-it-works_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/coffee-confirm.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=80a32da379422ba7f381e821f410d4d1": [
+      "docs_voiceos_com_integrations_build-with-code_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/coffee-logged.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=2a1672404d4b98edb4cad2c3ee5d66a5": [
+      "docs_voiceos_com_integrations_build-with-code_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/coffee-stats.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=9aa23c60b2a4b1c1cc31d94f4ded899c": [
+      "docs_voiceos_com_integrations_build-with-code_md.txt",
+      "docs_voiceos_com_integrations_result-cards_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/elevenlabs-voices.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=ff6ef758cf4579824a336fb67b211347": [
+      "docs_voiceos_com_integrations_result-cards_md.txt",
+      "docs_voiceos_com_integrations_how-it-works_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/pattern-status.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=685b80f482b1843a907df4d0efdae405": [
+      "docs_voiceos_com_integrations_result-cards_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/pattern-split.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=7d51c41a1b36524dfbeca6a9ed0f9887": [
+      "docs_voiceos_com_integrations_result-cards_md.txt"
+    ],
+    "https://mintcdn.com/voiceos/KVsJZgZq4ypscj2j/images/integrations/elevenlabs-confirm.png?fit=max&auto=format&n=KVsJZgZq4ypscj2j&q=85&s=77db66a04aa42d377007f7a78b2b667e": [
+      "docs_voiceos_com_integrations_confirmations_md.txt",
+      "docs_voiceos_com_integrations_how-it-works_md.txt"
+    ]
+  }
+}

@@ -1,0 +1,237 @@
+Privacy Policy | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Privacy Policy
+Effective date: August 7, 2026
+Last updated: August 7, 2026
+1. Who We Are and What This Policy Covers
+VoiceOS is operated by WakoAI Inc., located at 35 Buckelew Street, Sausalito, California 94965, United States.
+This Privacy Policy explains how WakoAI Inc. collects, uses, retains, protects, and shares personal information when you use the VoiceOS website, macOS application, Windows application, dashboard, Team plans, Enterprise plans, and affiliate or referral program. Together, these are the Service.
+This Privacy Policy does not cover a separate VoiceOS mobile application. If WakoAI Inc. launches a mobile application, it will provide the notice applicable to that product before launch.
+If you have questions about this policy or want to exercise a privacy choice, contact us at support@voiceos.com.
+2. Plain Language Summary
+VoiceOS lets you dictate text and use Agent Mode to carry out user-directed tasks. To provide those features, VoiceOS processes the audio, text, and limited context you choose to provide.
+By default, VoiceOS does not use your raw audio, transcripts, edited text, Agent prompts, Agent responses, data supplied to Agent Mode, or Agent outputs to evaluate, train, or improve VoiceOS models. Raw audio and transcripts are deleted immediately after processing needed to provide the requested feature and are not saved when Help Improve VoiceOS is off.
+If you affirmatively enable Help Improve VoiceOS, VoiceOS may use the content categories described in Section 4 for evaluation. Raw audio and transcripts collected under that setting may be retained indefinitely for training. Turning the setting off later stops future collection under that setting but does not delete information already collected under it.
+VoiceOS retains limited operational information needed to run, secure, support, measure, and administer the Service. This can include account identifiers, subscription status, usage counters, consent records, security logs, crash reports, diagnostics, user-submitted support communications, and limited referral information.
+3. Information We Collect and Why
+CategoryExamplesWhy We Use ItRetention Approach
+Account and profile information
+Name, email address, account ID, login information, settings
+Create and secure your account, provide the Service, communicate with you, prevent fraud, and provide support
+Retained while your account is active and deleted as described in Section 9 after account deletion, subject to lawful exceptions
+Subscription information
+Plan selection, subscription status, renewal date, billing events, receipts, and transaction status
+Provide paid features, administer trials and subscriptions, respond to billing requests, and prevent fraud
+Account-linked records are deleted as described in Section 9, except for aggregate numerical records and any records we must retain by law
+Payment information
+Payment information submitted at checkout
+Process payments and subscriptions through our payment processor
+Payment-card information is processed by the payment processor. VoiceOS does not store payment-card information
+Voice and transcript content
+Raw audio, transcripts, edited text, and spoken Agent instructions
+Convert speech to text, provide Dictation Mode and Agent Mode, and return requested outputs
+See Sections 4 and 9
+Agent Mode context
+Selected text, screenshots you allow, regions you draw, attachments, connected-service responses, tool inputs, and tool outputs
+Perform the task you direct Agent Mode to perform
+VoiceOS retains only limited non-content operational metadata after processing, as described below
+Personalization and configuration data
+Memories, knowledge entries, dictionary entries, replacements, writing styles, and Team-shared resources
+Personalize outputs and provide user and Team features
+Stored on your device and, for some features, on VoiceOS servers. Deleted within 40 days after account deletion, subject to lawful exceptions
+Integration information
+Integration permissions, encrypted connection tokens, and user-authorized requests
+Connect services you choose and perform actions you request
+Retained only as needed to maintain the active connection and provide the requested feature, then handled under Section 9
+Operational and security data
+Request counts, output counts, request type, error indicators, security logs, crash reports, diagnostics, device or app version, and consent records
+Operate, measure, secure, troubleshoot, and improve Service reliability
+Account-linked logs and similar records are deleted within 40 days after account deletion. Deidentified or aggregated numerical statistics may be retained indefinitely
+Support and referral data
+Support messages or attachments you submit, referral code, referral count, reward-calculation information, and referral attribution information
+Respond to support requests and administer referral or affiliate programs
+Retained as needed for the support or referral purpose, then deleted with account-linked data as described in Section 9 unless a lawful exception applies
+Website and campaign information
+Cookie or device identifiers, browser information, campaign and referral parameters, UTM parameters, and conversion events
+Operate the website, measure campaigns, attribute referrals, and understand product usage
+Retained under the applicable provider settings and our operational retention practices
+Account and profile information
+Examples
+Name, email address, account ID, login information, settings
+Why We Use It
+Create and secure your account, provide the Service, communicate with you, prevent fraud, and provide support
+Retention Approach
+Retained while your account is active and deleted as described in Section 9 after account deletion, subject to lawful exceptions
+Subscription information
+Examples
+Plan selection, subscription status, renewal date, billing events, receipts, and transaction status
+Why We Use It
+Provide paid features, administer trials and subscriptions, respond to billing requests, and prevent fraud
+Retention Approach
+Account-linked records are deleted as described in Section 9, except for aggregate numerical records and any records we must retain by law
+Payment information
+Examples
+Payment information submitted at checkout
+Why We Use It
+Process payments and subscriptions through our payment processor
+Retention Approach
+Payment-card information is processed by the payment processor. VoiceOS does not store payment-card information
+Voice and transcript content
+Examples
+Raw audio, transcripts, edited text, and spoken Agent instructions
+Why We Use It
+Convert speech to text, provide Dictation Mode and Agent Mode, and return requested outputs
+Retention Approach
+See Sections 4 and 9
+Agent Mode context
+Examples
+Selected text, screenshots you allow, regions you draw, attachments, connected-service responses, tool inputs, and tool outputs
+Why We Use It
+Perform the task you direct Agent Mode to perform
+Retention Approach
+VoiceOS retains only limited non-content operational metadata after processing, as described below
+Personalization and configuration data
+Examples
+Memories, knowledge entries, dictionary entries, replacements, writing styles, and Team-shared resources
+Why We Use It
+Personalize outputs and provide user and Team features
+Retention Approach
+Stored on your device and, for some features, on VoiceOS servers. Deleted within 40 days after account deletion, subject to lawful exceptions
+Integration information
+Examples
+Integration permissions, encrypted connection tokens, and user-authorized requests
+Why We Use It
+Connect services you choose and perform actions you request
+Retention Approach
+Retained only as needed to maintain the active connection and provide the requested feature, then handled under Section 9
+Operational and security data
+Examples
+Request counts, output counts, request type, error indicators, security logs, crash reports, diagnostics, device or app version, and consent records
+Why We Use It
+Operate, measure, secure, troubleshoot, and improve Service reliability
+Retention Approach
+Account-linked logs and similar records are deleted within 40 days after account deletion. Deidentified or aggregated numerical statistics may be retained indefinitely
+Support and referral data
+Examples
+Support messages or attachments you submit, referral code, referral count, reward-calculation information, and referral attribution information
+Why We Use It
+Respond to support requests and administer referral or affiliate programs
+Retention Approach
+Retained as needed for the support or referral purpose, then deleted with account-linked data as described in Section 9 unless a lawful exception applies
+Website and campaign information
+Examples
+Cookie or device identifiers, browser information, campaign and referral parameters, UTM parameters, and conversion events
+Why We Use It
+Operate the website, measure campaigns, attribute referrals, and understand product usage
+Retention Approach
+Retained under the applicable provider settings and our operational retention practices
+4. Help Improve VoiceOS
+4.1 When Help Improve VoiceOS Is Off
+When Help Improve VoiceOS is off, VoiceOS does not use your raw audio, transcripts, edited text, Agent prompts, Agent responses, data you provide to Agent Mode, or Agent outputs to evaluate, train, fine tune, benchmark, or otherwise improve VoiceOS models.
+VoiceOS still processes information necessary to provide a feature you request. For example, it may transmit audio to a speech-processing provider or transmit a prompt and context to an AI-processing provider so that Dictation Mode or Agent Mode can work. This service-delivery processing is separate from using content for VoiceOS evaluation or training.
+When Help Improve VoiceOS is off, raw audio and transcripts are deleted immediately after processing and are not saved by VoiceOS.
+4.2 When Help Improve VoiceOS Is On
+Help Improve VoiceOS is an optional setting. If you turn it on, VoiceOS may use raw audio, transcripts, edited text, Agent prompts, Agent responses, data you provide to Agent Mode, and Agent outputs for evaluation of VoiceOS.
+Raw audio and transcripts collected while Help Improve VoiceOS is on may be retained indefinitely for training. Before you enable the setting, VoiceOS will present the setting and its effect in the product.
+4.3 Turning the Setting Off
+If you turn Help Improve VoiceOS off after previously enabling it, VoiceOS stops future collection under that setting. Information collected while the setting was on remains retained under the applicable Help Improve VoiceOS retention rule. Turning the setting off does not retrospectively delete content already collected for training or evaluation.
+5. Agent Mode, Context, and Integrations
+5.1 Agent Mode Context
+Agent Mode may process selected text, screenshots you choose to allow, drawn screen regions, files you attach, connected-service content, web-search results, and tool inputs and outputs when needed to complete a task you request.
+After processing, VoiceOS does not retain the details of those requests, screens, tool calls, MCP interactions, outputs, or other Agent Mode content. VoiceOS may retain limited non-content operational metadata, such as the number of requests, number of outputs, error indicators, and the request type, such as a search, screen-view, or specific MCP request.
+5.2 Connected Services
+You may connect third-party services, such as email, chat, calendar, files, notes, and issue-tracking services. When you connect a service, VoiceOS uses the permissions and credentials you grant to carry out the actions you request.
+You can disconnect a connected service through VoiceOS and may also revoke VoiceOS access through the third-party service. Third-party services you connect are governed by their own terms and privacy notices.
+5.3 Custom MCP Servers
+You may add your own Model Context Protocol, or MCP, servers as local commands or remote URLs. Custom MCP servers are third-party tools and services that you choose to enable. VoiceOS does not control, operate, or secure them. When Agent Mode uses a custom MCP server, your instruction and any context needed for that tool call may be transmitted to the endpoint you configured.
+6. How We Share Information
+VoiceOS shares personal information only as needed to provide the Service, conduct a transaction you request, operate the business, or comply with law. We may share information with the following categories of recipients:
+cloud infrastructure, database, and authentication providers;
+speech-recognition, AI-processing, and text-to-speech providers;
+payment and subscription processors;
+integration and OAuth providers that help connect services you choose;
+analytics, error-monitoring, referral, attribution, and advertising-measurement providers;
+email, support, community, search, maps, and media providers when you use the relevant feature;
+professional advisors, insurers, auditors, and service providers under appropriate confidentiality obligations;
+authorities or other parties when required by law or necessary to protect rights, safety, security, or the Service; and
+a successor or acquirer in connection with a merger, financing, acquisition, restructuring, or sale of assets, subject to appropriate protections.
+We use service providers that may include AWS, Supabase, Stripe, AI and voice-processing providers, Composio, PostHog, Sentry, Resend, Dub, Google Tag Manager, OpenAI Ads measurement tools, Exa, maps providers, Spotify, Discord, and software-signing or distribution providers. A provider receives information only when it is needed for the relevant feature, transaction, or operational function.
+7. Website Analytics, Advertising, and Referrals
+VoiceOS uses PostHog, Sentry, Dub, Google Tag Manager, OpenAI Ads measurement tools, UTM parameters, and similar technologies to operate the website, understand product use, measure campaigns, attribute referrals, and diagnose errors.
+VoiceOS does not use PostHog session replay and does not record screen sessions through PostHog. UTM parameters are used for campaign attribution and do not include your voice, transcript, Agent Mode content, or screen content.
+VoiceOS responds to browser Do Not Track and Global Privacy Control signals. You can manage cookies through your browser settings.
+8. Team and Enterprise Plans
+If you use VoiceOS through a Team or Enterprise plan, organization administrators may manage seats and billing. Administrators can access shared dictionaries, replacements, shared Memories, and integrations made available to the organization. Administrators do not receive access to your individual activity or aggregate usage through the ordinary Team or Enterprise administrative surfaces.
+Enterprise customers may request a separate Enterprise Agreement or Data Processing Agreement. If WakoAI Inc. and an Enterprise customer sign one, its privacy and data-handling terms may supplement this policy and control to the extent of a conflict.
+9. Retention and Account Deletion
+VoiceOS retains personal information for as long as necessary to provide the Service and fulfill the purposes described in this policy, unless a longer period is required or permitted by law.
+When you delete your account, VoiceOS deletes account-linked stored data, including applicable Memories, knowledge entries, dictionary entries, replacements, writing styles, Team-shared data associated with your account, and account-linked logs, within 40 days. This does not require VoiceOS to delete deidentified or aggregated numerical statistics, such as total request counts or total subscription counts, that no longer identify you.
+The Help Improve VoiceOS rules in Section 4 apply separately to raw audio and transcripts collected while that setting is on. In particular, turning off the setting does not delete information previously collected under the setting.
+10. Data Deletion Procedure
+You may request deletion of your personal information at any time by:
+Deleting your account through Settings in VoiceOS, which triggers automatic deletion of account-linked data as described in Section 9; or
+Submitting a deletion request by emailing support@voiceos.com with the subject line "Data Deletion Request" and enough information for us to identify your account.
+Upon receiving a verified deletion request, WakoAI Inc. will:
+Delete your account-linked stored data, including Memories, knowledge entries, dictionary entries, replacements, writing styles, transcripts, and session data, within 40 days.
+Delete associated audio recordings stored in our file storage systems within 40 days.
+Cancel any active subscription and remove payment method references from our systems (payment history retained by our payment processor as required by financial regulations).
+Remove your data from active analytics systems. Deidentified or aggregated statistics that no longer identify you may be retained.
+Retain a minimal record (email address and deletion timestamp) solely for fraud prevention and trial-abuse detection, as disclosed in Section 9.
+We will confirm completion of the deletion by email. If we cannot fulfill a request due to a legal obligation or legitimate exception, we will inform you of the reason and the specific data retained.
+The Help Improve VoiceOS rules in Section 4 apply separately. Content collected while that setting was on is not deleted by account deletion or a deletion request, as described in Section 4.3.
+11. Security
+VoiceOS uses reasonable administrative, technical, and organizational safeguards designed to protect personal information. No system is perfectly secure, and we cannot guarantee absolute security.
+12. Your Choices and Privacy Requests
+You may:
+turn Help Improve VoiceOS on or off;
+delete account-linked data by closing your account;
+manage or disconnect connected services;
+remove custom MCP servers;
+manage Memories, knowledge entries, dictionaries, replacements, writing styles, and shared resources available to you;
+use browser controls to manage cookies and similar technologies; and
+contact support to request access to, correction of, or deletion of personal information, subject to applicable law and verification.
+To make a privacy request, contact support@voiceos.com and include enough information for us to identify your account and process the request.
+13. Children and Eligibility
+VoiceOS is not directed to children under 13. You must be at least 13 years old to use the Service, or older if the law where you live requires a higher minimum age, such as 16 in certain regions. If you believe a child has provided personal information to VoiceOS in violation of this policy, contact us at support@voiceos.com.
+14. Changes to This Policy
+We may update this Privacy Policy from time to time. When we make a material change, we will update the Last updated date and may provide additional notice through the Service or by email when appropriate.
+15. Contact Us
+WakoAI Inc.
+35 Buckelew Street
+Sausalito, California 94965
+United States
+Support and privacy requests: support@voiceos.com
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

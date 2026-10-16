@@ -1,0 +1,88 @@
+X (Twitter) voice control — 9 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+X (Twitter)
+Beta
+Post, search, and engage on X
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+9
+voice actions
+Category
+Social
+Platforms
+macOS · Windows
+Try saying
+“Post: shipping the new voice assistant today”“What are people saying about WWDC?”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect X (Twitter)One click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Connects to your X (Twitter) account — you sign in with X (Twitter) in your browser, and VoiceOS never sees your password.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Post
+Asks first
+Publish a new post from your account.
+Like a post
+Like someone else's post.
+Repost
+Asks first
+Share someone else's post to your followers.
+Your timeline
+Read posts from the accounts you follow.
+Search posts
+Find recent posts, including your own mentions.
+Followers and following
+See who follows an account and who it follows.
+Send a DM
+Asks first
+Message someone directly.
+Read DMs
+Catch up on your recent direct messages.
+Look up a profile
+Resolve a username or account id to the person behind it.
+More from the App Store
+All integrations
+iMessageRead and send iMessages5 voice actions · macOSApple MailRead, search, send, and reply to email7 voice actions · macOSRemindersRead, create, and complete reminders5 voice actions · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

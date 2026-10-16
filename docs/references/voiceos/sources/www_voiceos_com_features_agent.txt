@@ -1,0 +1,95 @@
+AI Voice Agent for Mac and Windows - VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Say it, and it gets done
+The moment you think of it, just say it. VoiceOS takes care of it, without you opening another app.
+It works with your favorite apps
+Say it once and the reply is sent, the event is scheduled, without you opening a single app.
+My Calendar
+Tomorrow, Mar 27
+10:00 AM–30 min
+jonah@voiceos.com
+andrew@voiceos.com
+9 AM
+10 AM
+11 AM
+12 PM
+1 PM
+2 PM
+Design review11:00 – 12:00
+Lunch w/ Sarah12:30 – 1:30
+1:1 with PM
+Cafe Meetup
+Save
+Nothing sends until you say so
+Anything that sends, books, or changes something stops and shows you what it will do. Fix it or let it go.
+Before it sends
+Send message
+To
+David Chen
+Message
+I'll be ten minutes late. Can we move our 3pm to Thursday?
+CancelSend
+Plug in anything you use
+Turn on Slack, Gmail, Notion, Linear and the rest in Settings. After that, just ask out loud and VoiceOS uses them for you. Built your own tool? It can use that too.
+$voiceos add mcp
+Your own MCP server
+Every tool on it, by voice
+Say it and consider it done
+Long tasks keep running at the side of your screen. The answer comes back on its own.
+Osaka offsite
+We land Thursday morning, so the team dinner has to be that evening. Kenji offered to book the izakaya near the station.
+Friday is the workshop. Two sessions before lunch, then the demo, then we let people go early.
+Saturday is open. A few people want to stay on, so I will keep the group booking flexible until Wednesday.
+I will lock the hotel in once the flights are
+Search
+Draft the recap email
+Compare flights to Osaka
+Today, 2:14 PM
+Compare flights to Osaka
+Summarize the Q3 doc
+Rename the files on my desktop
+Add dinner Thursday to my calendar
+Yesterday, 5:40 PM
+Find the Figma invoice
+Send Kai the launch notes
+Pull the numbers from the Notion doc
+Check what is on my calendar tomorrow
+Remind me to renew the domain
+Pressfn
+and start speaking.
+Let your voice do the work.
+Download for Mac
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

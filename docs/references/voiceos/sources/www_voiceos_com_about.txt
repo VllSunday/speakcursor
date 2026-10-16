@@ -1,0 +1,65 @@
+About VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Voice is the futureof operating systems
+We believe the way humans interact with computers is about to fundamentally change.
+Our thesis
+The next interface should move at the speed of thought.
+For the last half century, operating systems have asked humans to become operators. We learned their windows, commands, shortcuts, file trees, settings panels, and rituals.
+That made sense when computers could only follow explicit instructions. It makes less sense now. AI systems can understand language, context, uncertainty, and goals. The limiting factor is no longer whether software can do the work. It is how much friction sits between human intent and computer action.
+Voice is the most natural way to close that distance. It carries intention before it has been flattened into menu labels or typed prompts. It lets people explain, revise, point, ask, and decide in the same breath.
+We do not believe voice replaces every interface. We believe it becomes the connective tissue across them. The keyboard, mouse, touchscreen, and camera still matter. Voice gives them a shared layer of meaning.
+Our Core Principles
+01
+Stay with the thought.
+Every click is a small tax. Every tab switch breaks the sentence in your head. The next OS should stop making you leave the thought just to operate the machine around it.
+02
+Works where work happens.
+Real work is scattered across messages, calendars, docs, browsers, code, and half-finished drafts. Voice only matters if it can cross those boundaries without asking you to start over in every app.
+03
+Move fast, stay in control.
+Typing every step by hand is slow. Letting software act blindly is worse. A voice OS should prepare the work, show what will happen, and ask before anything important is done.
+Founders
+Jonah Daian
+Co-Founder
+Jonah has spent nearly a decade exploring the idea that voice will become a primary layer of computing. Long before AI became mainstream, he was building voice systems around a simple belief: today's interface paradigm is temporary. At VoiceOS, he leads product and company direction with a focus on making spoken intent feel as natural and powerful as thought itself.
+Profile and articlesLinkedInX / Twitter
+Kai Brokering
+Co-Founder
+Kai focuses on making advanced AI systems feel immediate, seamless, and human. His work centers on reducing the invisible friction between intention and execution: the app switching, context gathering, and manual coordination that slows people down. At VoiceOS, he builds the product systems that make voice feel fast, contextual, and reliable across everyday desktop workflows.
+Profile and articlesLinkedInX / Twitter
+“Speech is the ultimate natural user interface.”
+Steve Jobs
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

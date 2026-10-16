@@ -1,0 +1,308 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Defining tools
+
+> Descriptions the agent routes on, schemas it fills, and handlers that behave.
+
+Tools are the whole interface between the agent and your code. Each one is
+declared in the manifest and implemented in your MCP server under the same name.
+VoiceOS namespaces them per integration, so your `send_message` never collides
+with anyone else's.
+
+```json theme={null}
+{
+  "name": "top_stories",
+  "title": "Top stories",
+  "description": "Fetch the current Hacker News front page. Use when the user asks what's on Hacker News, tech news headlines, or what's trending on HN.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "count": {
+        "type": "number",
+        "description": "How many stories (1-8, default 5)"
+      }
+    }
+  }
+}
+```
+
+## Descriptions are routing rules
+
+The normal agent uses tool descriptions to discover relevant actions and
+decide what to call. Write each description in two parts:
+
+1. **What it does** — one sentence.
+2. **When to use it** — literally *"Use when the user asks …"*, with the
+   phrasings people actually say.
+
+<Warning>
+  A vague description doesn't make your tool a fallback. It makes it invisible.
+</Warning>
+
+`name` must be `snake_case` starting with a letter. Keep `title` short — it's
+what users see in the UI.
+
+## Faster selection with intents
+
+Declare optional [fast intents](/integrations/intents) alongside `tools` for
+common, short Agent Mode commands. An intent supplies example utterances,
+slots or fixed arguments, and a mapping to an existing tool. VoiceOS can select
+that action in parallel with the normal agent, then use the same handler,
+hooks, confirmation policy, and result card.
+
+Keep useful tool descriptions: the normal agent handles requests that do not
+qualify for an intent or whose selection does not win the race. Intents do not
+require additional MCP tools.
+
+## Action availability and visibility
+
+Use these optional manifest fields when an app exposes capabilities that
+should not all appear as editable actions in its detail modal:
+
+| Configuration | In the action list | Agent and widget execution |
+| - | - | - |
+| Omitted, or `visibility: "user"` | Visible; normal permission controls | Available under the usual confirmation policy |
+| `disabled: true` | Visible and read-only; no “Ask permission” control | Unavailable, including direct calls |
+| `visibility: "agent"` | Omitted from the list and its count | Available; existing permissions and confirmations still apply |
+| Both `disabled: true` and `visibility: "agent"` | Omitted | Unavailable |
+
+```json theme={null}
+{
+  "name": "export_report",
+  "title": "Export report",
+  "description": "Export the current report.",
+  "inputSchema": { "type": "object", "properties": {} },
+  "disabled": true,
+  "disabledReason": "Exports are unavailable during maintenance."
+}
+```
+
+`disabledReason` is optional, trimmed, and limited to 200 characters. Without
+it, the action displays “Unavailable.” Users cannot enable a disabled action
+through a permission override. Remove `disabled` or set it to `false` in the
+manifest and reload the app to restore access.
+
+For an internal helper such as `resolve_customer_id`, set
+`visibility: "agent"` on its normal tool definition. Keep its description and
+input schema: the agent still needs them. Hiding an action does not hide a
+required confirmation, grant access, or automatically opt it into
+[`uiCallable`](/integrations/widgets).
+
+These fields are additive within manifest schema version 1 and require a
+VoiceOS host that supports them. Older hosts may ignore unknown fields; enforce
+sensitive backend authorization in your handler as well.
+
+## Input schemas
+
+`inputSchema` is standard JSON Schema (draft 2020-12).
+
+* **Describe every property.** Descriptions steer the model's argument-filling
+  the same way the tool description steers routing.
+* Mark true requirements in `required`.
+* **Validate again in your handler.** Treat arguments as user input.
+* For acting tools, the user can **edit any bound argument** on the
+  [confirmation card](/integrations/confirmations) before it reaches you.
+
+## Handlers
+
+Your server is a standard MCP server. Handlers receive the validated arguments
+and return an MCP result:
+
+```ts theme={null}
+server.registerTool(
+  "top_stories",
+  { title, description, inputSchema: { count: z.number().min(1).max(8).optional() } },
+  async ({ count }) => {
+    const stories = await fetchTopStories(count ?? 5);
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          stories,                    // data — the model narrates from this
+          ...glanceResult([...]),     // card — the user sees this
+        }),
+      }],
+    };
+  },
+);
+```
+
+Three conventions:
+
+* **Return data *and* a card.** The model reads the JSON; the user sees the
+  [glance card](/integrations/result-cards). A result the user can't see isn't
+  finished — and a card the model can't read from isn't either.
+* **Configuration arrives as environment variables** named after your
+  [setup fields](/integrations/setup-fields). There is no context object.
+* **Throw on failure.** Never fabricate data or claim success. A tool error ends
+  the agent's attempt and your message is what the model explains to the user,
+  so make it actionable:
+  `"ELEVENLABS_API_KEY was rejected (401). Check the key in Configure."`
+
+## Sync vs background
+
+| Mode | Contract | Use for |
+| - | - | - |
+| `sync` (default) | Return within the turn — target well under 30 s. Put `AbortSignal.timeout(8000)` on your fetches so a slow API fails fast instead of hanging the turn. | Lookups, quick actions. |
+| `background` | VoiceOS returns a handle to the agent immediately. Your handler awaits the work and returns its final data and card. VoiceOS tracks the task in the side notch, then chimes and presents the completed card when the top notch is idle. | Anything over \~20 s: exports, long jobs, polling. |
+
+Background tools declare both the mode and the permission:
+
+```json theme={null}
+"execution": { "mode": "background", "estimatedDurationMs": 30000 },
+...
+"permissions": [{ "kind": "background" }]
+```
+
+Declaring the mode without the permission is a validation error.
+
+Return `glanceResult([...])` or `widgetResult(html, { data })` in the final
+MCP result, exactly as with a synchronous tool. A custom widget's HTML and
+data survive completion and reopening from the side notch. See
+[background completion cards](/integrations/result-cards#background-completion).
+
+VoiceOS creates the task handle itself. If your service starts an external
+job, await or poll it in the handler until it finishes, then return the final
+card. Returning only a started/job-id response completes the VoiceOS task at
+that point.
+
+## Reminders with buttons
+
+Use `triggerReminder` to show a message from your app even when no agent turn
+is active. Add `{ "kind": "notify" }` to the manifest's `permissions`.
+Register button handlers once, before connecting your MCP server:
+
+```ts theme={null}
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import {
+  defineReminderActions,
+  triggerReminder,
+} from "@voiceos/integration-sdk";
+import { z } from "zod";
+
+const server = new McpServer({ name: "review-app", version: "1.0.0" });
+const reminderData = z.object({ reportId: z.string().min(1) });
+
+defineReminderActions(server, {
+  async archive_report({ notificationId, actionId, data }) {
+    const { reportId } = reminderData.parse(data);
+    const response = await fetch(
+      `https://api.example.com/reports/${encodeURIComponent(reportId)}/archive`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.REPORTS_API_KEY}`,
+          "Idempotency-Key": `${notificationId}:${actionId}`,
+        },
+        signal: AbortSignal.timeout(8_000),
+      },
+    );
+    if (!response.ok) throw new Error("Could not archive the report.");
+  },
+});
+
+await server.connect(new StdioServerTransport());
+
+// Call after your app finishes the work, including from a background callback.
+await triggerReminder(server, {
+  message: "Your report is ready. Archive it when you are finished.",
+  speak: false,
+  actions: [{ id: "archive_report", label: "Archive report" }],
+  data: { reportId: "report-42" },
+});
+```
+
+The example uses a placeholder API; replace it with your service, declare its
+network permission, and collect credentials through [setup fields](/integrations/setup-fields).
+The same helpers work with remote MCP servers.
+
+### The click lifecycle
+
+VoiceOS saves the message, button IDs, labels, and optional `data` before
+returning `{ notificationId }`. The receipt means queued, not seen. The card
+appears below the notch when the user is free, with the installed app's name
+and icon. Buttons remain visible without hovering over the card.
+
+A click invokes the matching handler in **your MCP server process**. It does
+not evaluate a JavaScript string inside VoiceOS. The click authorizes that
+specific button's behavior without a separate tool-confirmation prompt;
+choose a label that clearly describes the effect and keep the handler limited
+to that effect.
+After the handler resolves, VoiceOS marks the notification read and closes it.
+If the handler fails or the app is unavailable, the card remains and displays
+an error. VoiceOS never retries an action automatically.
+
+| Field | Contract |
+| - | - |
+| `message` | Required; 1–2,000 characters after trimming |
+| `speak` | Optional; defaults to `true` |
+| `actions` | Optional; up to 3 buttons with unique IDs |
+| `actions[].id` | 1–64 letters, digits, underscores, or hyphens; matches a registered handler |
+| `actions[].label` | 1–32 characters after trimming |
+| `data` | Optional JSON object, at most 8,192 serialized characters and 12 levels deep |
+
+Keep handler IDs stable and register them on every server startup. The
+notification is persisted; a closure captured only when the message was sent
+would be lost after reconnecting. Put the record ID in `data` and load current
+state in the handler. Do not put secrets in `data`: it is stored in notification
+history.
+
+### Failures and duplicate delivery
+
+VoiceOS permits one in-flight action per notification. `defineReminderActions`
+also reuses the first outcome for a repeated `notificationId`/`actionId` pair
+within that server process, including a rejected outcome. Up to 10,000 pairs
+are retained; further new actions fail until the connection's server restarts.
+Use the same pair as a **durable idempotency key** in your backend for effects
+that must survive process restarts.
+
+The host waits up to 30 seconds. A timeout does not prove the operation failed:
+the handler may still finish. Check the app's state before retrying an
+uncertain effect. A failed acknowledgement after a successful handler is
+retried without calling the handler again while VoiceOS remains running.
+
+Delivery and clicks require a signed-in user and a saved, enabled, connected
+app with `notify` permission. A reminder survives app or VoiceOS restarts, but
+its buttons cannot wake an offline server. Reconnect the same app to use them.
+Removing the permission or disabling the app blocks clicks. Omitting
+`actions` preserves the existing message-only behavior.
+
+### Calling the wire protocol directly
+
+Without the SDK helper, send `voiceos/reminders/trigger` with the same options
+and validate the `notificationId` receipt. Register a request handler on
+`server.server` for `voiceos/reminders/action`. Its `params` are
+`{ notificationId, actionId, data? }`; validate them, dispatch only registered
+IDs, deduplicate effects, and return `{ ok: true }` after success. Throw an MCP
+error on failure. Keep callback data and routing out of the renderer; the
+host chooses the originating connection from the persisted notification.
+
+## Network
+
+Declare an egress allowlist and keep it minimal:
+
+```json theme={null}
+"permissions": [{ "kind": "network", "domains": ["api.elevenlabs.io"] }]
+```
+
+Permissions are shown to the user at install time — a short list reads as
+trustworthy, a long one reads as a liability.
+
+## Acting vs reading
+
+The most important tool-design rule:
+
+| Tool | Rule |
+| - | - |
+| **Acts** — send, create, delete, post, pay, book | **Must** declare a [`confirmation`](/integrations/confirmations). |
+| **Reads** — get, list, search, fetch, check | **Must not**. The agent runs these freely; that's what makes lookups feel instant. |
+
+<Card title="Next: Result cards" icon="layout-grid" href="/integrations/result-cards">
+  Make every result worth glancing at.
+</Card>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

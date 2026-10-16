@@ -1,0 +1,80 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Install & share
+
+> The folder is the unit — install it, manage it, hand it to anyone.
+
+An integration ships as its folder. No build step, no packaging, no store
+account: send the folder (or its git repo) and anyone can install it the same
+way you do.
+
+## Installing
+
+**Settings → Agent Mode → Integrations → Install from folder.**
+
+VoiceOS validates the manifest and shows a consent sheet first: the
+integration's name, publisher, version, its tools, and its declared permissions
+— along with the honest caveat that its code runs on this Mac and wasn't
+reviewed by VoiceOS.
+
+<Warning>
+  Only install folders from people you trust.
+</Warning>
+
+Once installed, the integration appears under **Custom → My Integrations**, its
+tools join the agent on the next turn, and Studio-built ones keep their **Edit
+with AI** button.
+
+## Managing an installed integration
+
+Open any integration's detail page:
+
+| Control | What it does |
+| - | - |
+| **On/off switch** | Disables it without uninstalling — its server stops and its tools leave the agent. |
+| **Reload** | Re-reads the manifest and restarts the server. Use after editing the folder. |
+| **Configure** | Reopens the [setup fields](/integrations/setup-fields) form. Secrets never echo back; a blank secret field keeps the stored value. |
+| **Open folder** | Reveals the installed folder. |
+| **Asks first** (per action) | Per-tool confirmation override. Your manifest's `confirmation` is the default. |
+| **Uninstall** | Removes the integration and its server. |
+
+## Sharing
+
+* **Send the folder**, or push it to a git repo and share that. The scaffold is
+  standalone (`bun add @modelcontextprotocol/sdk zod` is the only setup), and
+  `AGENTS.md` rides along so the recipient's AI tooling understands it
+  immediately.
+* **Version it.** Bump the manifest `version` (semver) when you ship changes;
+  recipients reinstall or reload to pick them up.
+* **Keep `repository` pointing at the source** — it renders as a trust signal on
+  the detail page.
+
+<Warning>
+  **Never change the `id`.** Settings, setup values, and per-tool preferences
+  all hang off it. A changed id is a different integration.
+</Warning>
+
+## Hosting your own server
+
+Folders run locally (`local-mcp`) — zero infrastructure, and the default for
+anything personal or shareable.
+
+Teams that own infra can ship `runtime: { "kind": "remote-mcp", "url": … }`
+instead: VoiceOS connects to your Streamable-HTTP MCP server and brokers auth.
+Same manifest, same cards, different home.
+
+## The App Store
+
+The contract already defines the publishing lifecycle — draft → in review →
+published — and the `hosted` runtime for VoiceOS-operated integrations, but the
+cloud App Store itself isn't live yet.
+
+Today, distribution is folders and repos, and integrations show a **Developer
+Preview** label in the app. Manifests you write now will publish as-is when the
+App Store ships — that's the
+[stability promise](/integrations/reference/limits#stability).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

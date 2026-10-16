@@ -1,0 +1,434 @@
+Changelog | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+What's new
+Every VoiceOS release, newest first. The same notes you get in the app when you update.
+Latest release 0.1.37·Oct 5, 2026·27 releases
+0.1.37
+Oct 5, 2026
+Manus integration: connect your account, launch tasks, follow their progress, and continue conversations in VoiceOS
+Fixed several issues across the Grok Bot integration
+Codex integration updates
+See the status of background tasks at a glance in the side notch preview
+Navigate side-notch tasks with Option + Tab on Mac or Alt + ` on Windows
+Connect Manus from Integrations with a guided setup flow, then create AI tasks from Agent Mode and follow their progress in the side notch
+Manus tasks stay available after they start, with persistent conversation history, completion notifications, and replies scoped to the selected task
+Grok Bot conversations, message recipients, and chat handling are now more reliable
+The side-notch switcher opens with Option + Tab on Mac and Alt + ` on Windows. Keep the modifier held while you cycle through tasks, then release it to select
+0.1.33
+Oct 2, 2026
+Grok Bot integration (Mac only): talk to your bots and follow their conversations in VoiceOSMac
+Let research run in the background and get notified when your results are ready
+Open the agent’s response in a larger window and save it as a PDF
+Fixed an issue where the dictation transcript could disappear
+Fixed an issue on Windows where starting dictation could move focus away from your app
+Connect the Grok Bot Mac app to send messages to your bots by voice and view their conversations in VoiceOS. Requires Grok Bot installed and signed in on your MacMac
+Longer web research can continue while you use VoiceOS for other requests. Track its progress, cancel it if needed, and revisit completed results in your history
+Use Open answer to read the agent’s response and sources in a larger window, keep your reading position, and save the response as a PDF
+Wide tables now stay inside the answer with horizontal scrolling, so you can read every column without leaving the conversation
+When a new foreground answer contains a single draft or code block, VoiceOS automatically copies it for pasting. Answers with multiple options leave your clipboard unchanged
+VoiceOS retries transcription when speech is detected but no text is returned, and preserves the recording in local history for recovery if the retry fails
+Clearer Codex connection errors help you identify problems and sign in again when your session has expired
+0.1.32
+Sep 28, 2026
+Smoother dictation with clearer progress and more reliable pasting
+Fixed the dictation arrow button sometimes failing to paste
+Apple Music now shows your Up Next queue and available lyricsMac
+Manage your plan and payment methods in VoiceOS
+Weather remembers your preferred °C/°F and km/h/mph units
+Japanese dictation handles lists, paragraphs, and corrections better
+VoiceOS remembers your weather preferences: Celsius or Fahrenheit for temperature, and kilometers per hour (km/h) or miles per hour (mph) for wind. Unless you choose otherwise, Celsius uses km/h and Fahrenheit uses mph
+Clicking the arrow button to finish dictation now returns focus to your app before pasting, so the text reaches the field you were writing in
+The dictation progress indicator now stays in sync with text insertion, with smoother transitions between states
+Fixed an issue that could discard dictated names, addresses, or lists when they also appeared on screen
+Clicking the dictation bar, notch, or agent notifications no longer brings the dashboard forward unexpectedly on MacMac
+0.1.31
+Sep 21, 2026
+Dictate for up to 20 minutes in a single session, with a one-minute warning before VoiceOS finishes and pastes your text
+Weekly weather forecasts now appear in Agent Mode and follow your preferred temperature unit
+On Windows, VoiceOS can now launch quietly in the background when you sign in
+App integrations reconnect more reliably, with more stable widgets and local actions
+Corrections made in Edit Mode keep improving your dictionary, and the paste shortcut works reliably again
+VoiceOS now warns you at 19 minutes, automatically finishes at 20 minutes, and pastes the completed dictation so long sessions do not end without notice
+If the primary transcription service ends a long session early, VoiceOS now recovers the complete recording before producing the final text
+Weather cards now show the days ahead in one view and remember whether you prefer Celsius or Fahrenheit
+On Windows, a new Start in background option keeps the dashboard hidden at login until you open VoiceOS from the system tray
+On Windows, reading selected text no longer changes the clipboard when the copy shortcut cannot be sent safely
+Claude Code tasks now recover more clearly from usage-credit limits and make it easier to continue with another available model
+Agent Mode now recovers malformed result cards more gracefully instead of leaving an incomplete response
+Apple Music playback controls and preview cards now stay in sync more reliably on MacMac
+Hosted checkout now recovers correctly after a failed subscription payment
+0.1.30
+Sep 16, 2026
+Use your voice to control Spotify, plus Apple Music on Mac, with new interactive playback cards
+Windows is more reliable after sleep, with blank-window recovery and a smoother, more responsive pill
+Recording starts faster, and dictation now recovers if Windows misses a trigger-key release
+Spoken Agent Mode replies now play smoothly without gaps or cutoffs
+Agent Mode keeps selected text, clipboard attachments, and saved personal details more reliably
+Connect Spotify to search your library and playlists, start playback on an available device, and control the live player directly from VoiceOS
+On Mac, Apple Music now works with the account already signed in on your computer, including search, playback, queue, favorites, library, and playlist actionsMac
+New Spotify and Apple Music cards show artwork, track details, progress, and live controls for play, pause, skip, seek, shuffle, and repeat
+On Windows, VoiceOS now detects and reloads a blank dashboard after sleep or resume without disrupting its other windows
+On Windows, popup clicks no longer get stuck and hovering over the pill causes less flicker or movement
+Windows media controls and background-audio ducking now use native helpers for more consistent behavior
+VoiceOS now shows the correct active-app icon in the pill more consistently
+Starting a recording no longer waits on slow microphone discovery, and interrupted audio startup recovers more cleanly
+Agent Mode can keep working in the background when dictation takes over, while leaving the pill visible so you can return to the result
+During initial setup, you can now review, edit, and remove detected names and specialist terms before adding them to your dictionary
+Available app updates now stay accessible from the dashboard and the notch until you install or dismiss them
+0.1.29
+Sep 11, 2026
+All voices now sound clearer and more premium
+Faster startup and smoother performance, especially on Windows
+Use Space normally in hands-free mode and customize double-tap controls
+Agent Mode remembers tool confirmation settings after app restarts
+Microphone issues now include clearer recovery guidance
+Fixed a bug that could insert dictated text in the wrong place
+VoiceOS does less repeated work in the background, reducing pauses when reading settings and keeping windows in position
+On Windows, dashboard animations and the Apps page now recover correctly after moving or resizing an unfocused window
+VoiceOS can now restart stopped audio capture and selected-text helpers automatically, so a temporary failure does not keep interrupting later requests
+VoiceOS now keeps your selected microphone in sync more reliably when audio devices change
+Typing spaces during hands-free recording works correctly, stopping no longer accidentally starts a new recording, and Escape cancellation is more reliable on macOS
+Agent Mode now follows your enabled language choices more consistently, avoiding unexpected switches to languages you have not selected
+Dictation now spells common AI model names more accurately
+Custom app background tasks can now show rich result cards when they finish
+Links in custom app widgets now open in your default browser
+0.1.28
+Sep 5, 2026
+Agent Mode is now 2.4× faster — quick requests fly, spoken replies start sooner, and it puts less strain on your computer
+When creating a prompt in Agent Mode, drawing now starts faster and feels smoother
+Finder searches are now much faster and surface more relevant filesMac
+Dictation now handles punctuation, quotes, and cursor boundaries correctly across 24 more languages
+Agent Mode's double-tap recording and Escape cancellation are now more reliable
+Finder now ranks strong filename matches first and searches inside matching folders for the requested file typeMac
+Finder results now appear sooner, while stale searches and late previews are ignoredMac
+Images captured in Create Prompt now stay attached to the finished prompt
+Simple Agent Mode requests now take a faster route, while complex and research-heavy work still gets the deeper reasoning it needs
+Agent Mode prepares its tools while opening speech is generated, reducing the quiet wait before a spoken answer
+Approved confirmation cards now reach the action that needs to run more reliably
+Writing styles preserve technical text more carefully, apply punctuation selectively, and stay in sync with the right account
+On macOS, dictation now keeps the insertion point correct after paragraph breaks, emoji, and other rich textMac
+On Windows, the top and side overlays now share one cursor update path, reducing flicker and hover jitter
+Payment-failed and subscription-ending banners now lead straight to the right recovery action, in English and Japanese
+New subscriptions can be completed inside initial setup with supported wallet options, with an automatic browser fallback if the embedded checkout cannot load
+0.1.27
+Sep 1, 2026
+Attach screenshots and reference images directly in conversations with the custom integration builder
+Agent Mode now shows your polished request first, instead of briefly flashing the raw transcript
+Screenshots attached to a created prompt remain visible while you review and refine the draft
+Spoken Agent Mode replies and card summaries now play without dropped or repeated lines
+The recording start sound now plays only after microphone audio is actually flowing, reducing false starts
+VoiceOS now releases a stale pre-warmed microphone stream cleanly when your computer wakes
+Initial setup now offers a skip after 12 seconds and keeps its ambient soundtrack quieter
+Screenshots stay attached across revisions to staged Agent Mode cards, so visual context is not lost while you make changes
+0.1.26
+Aug 30, 2026
+X (Twitter) is back in Agent Mode — post, search, read your timeline, and check DMs by voice
+Jarvis now speaks with a proper British butler delivery, and a new Midnight voice keeps the previous Jarvis sound
+Hovering a screenshot in the notch now shows a preview big enough to actually read
+Quick questions stay in front instead of being handed off to a background task you never asked for
+Fixed agent replies occasionally showing raw internal data, and agent voice going silent on Windows after switching speakers or headphones
+X results now arrive as readable cards — your home timeline, profiles, and DM threads laid out as a conversation — with clear confirmations before anything is posted or sent
+X reads and DMs depend on your X API tier, so the integration is marked beta
+Five agent voices are now available: Sky, Dawn, Dusk, Midnight, and Jarvis. Anyone already using Jarvis keeps it and moves to the new delivery automatically
+Screenshot previews now match each shot's shape, flip above the pointer when there's more room, and no longer get clipped by the bottom of the notch window
+In Create Prompt, the circle you draw now appears only in the captured screenshot, not on the frame that flies into the notch
+0.1.25
+Aug 27, 2026
+Talk through what you want and circle anything on screen — VoiceOS turns it into a ready-to-paste prompt with numbered screenshots
+Double-tap your Agent Mode key to keep talking hands-free
+Agent Mode is now 12% faster, with more natural spoken replies that start sooner and light up word by word in the notch
+Polished mode is better at recognizing names and terms visible in the app you're using
+Custom integrations can now use Hooks to react to your voice, add context, reshape requests and results, and ask for confirmation when needed
+Reply notifications now open in the notch with an inline message preview and actions
+Integrations that use Hooks must ask for transcript access, and you can turn that access off at any time from the integration's settings
+The custom integration builder now shows every build step, live terminal output, and readable action logs, with clearer setup previews and automatic crash fixes
+On Windows, circling now captures the hovered window correctly without freezing the trail
+Capturing screenshots and drawing circles no longer slows down the rest of VoiceOS
+Spoken Agent Mode replies stay reliable through longer answers, with smoother voice playback and fewer cutoffs
+First-run setup has been rebuilt into one smoother flow, with a clearer intro, language and profile steps, permission guidance, and hands-on practice
+Fixed duplicate reminders after reconnecting, restored clipboard contents when a paste fails, and improved Windows overlay reliability
+Subscription controls now explain trial cancellation more clearly, and eligible returning subscribers can accept an 80%-off offer in one click
+Live support now handles attachments and update feedback more reliably
+0.1.24
+Aug 18, 2026
+Double-tap your dictation key to dictate hands-free — no holding. One more tap ends it
+Claude Code and Codex are now on Windows too — still in beta, tell us what you think
+The custom app builder got a redesign — build and refine your app in a simple chat
+Custom apps now run out of the box, no extra installs needed
+Plus three more small bug fixes and improvements
+Studio now begins with a conversation: describe the integration, review the plan, and keep refining it in the same thread instead of restarting a form
+A new Preview shows what the generated app will do before you install it, including the setup fields and actions it will expose
+Build progress, terminal output, and readable debug logs are visible inside Studio, and common runtime crashes can be diagnosed and fixed automatically
+Custom apps include their own runtime, so shared integrations can start on a new Mac or Windows PC without asking the recipient to install Node.js or Bun
+First-run accessibility setup now includes a guided drag-to-grant flow, with clearer feedback when macOS still needs permissionMac
+Japanese dictation now uses VoiceOS's hosted Whisper path, and Polished mode keeps spoken English product names in Latin characters instead of katakana
+Agent Mode can show verified YouTube preview cards, and map results open named places individually instead of losing the selected destination
+The Windows tray icon now stays sharp on scaled and high-density displays
+0.1.23
+Aug 13, 2026
+Fixed dictation failing with connection errors on some networks and VPNs, and it now reconnects on its own
+Fixed Agent Mode running slow on Windows
+Fixed Agent Mode getting stuck on the loading state after canceling with Escape
+Fixed dictations coming back empty when the microphone glitches
+Fixed the dictation shortcut reverting silently when you changed it during setup
+Added an Appearance section with light, dark, and system themes plus live previews for supported notch materials
+Scheduled reminders now appear as a compact timeline, with clearer app identity, times, and actions in the notch
+Claude Code and Codex gained guided one-click setup plus clearer local or synced session controls, attachments, and task status cards
+The app builder keeps its chat after the window closes and can answer questions about a draft without rebuilding it
+Dispatched tasks automatically open the side notch, while cancelled sessions and long-running results reset more cleanly
+Polished dictation filters false-start markers and letter-by-letter garbles, and switches to a fallback model when polishing goes silent
+Screen drawings are captured at a more readable weight and resolution so Agent Mode can understand the area you pointed to
+Help Center live chat was restored, and Gmail actions gained a more reliable direct-send path with model failover
+0.1.21
+Aug 8, 2026
+Build anything: describe the app you want and VoiceOS builds it — test it, save it, share it
+Claude Code and Codex integrations are here — they're in beta, and we'd love your feedback
+Agent Mode is now 30% lighter
+Some dictation improvements
+Apps now have a dedicated dashboard section where you can browse first-party and custom integrations, reorder My Apps, and paste an image directly onto an app icon
+Studio can build from a screenshot, keep multiple builds running at once, and show integrations shared with you
+Generated integrations can be shared by link, with a polished install page, per-tool permission choices, and consistent product pages for built-in apps
+Integrations can report live background-task progress directly into VoiceOS, so active work stays visible without blocking the conversation
+Claude Code and Codex tasks gained durable activity cards, editable queued follow-ups, result and prompt views, effort controls, and visibility into external sessions
+English Polished mode now formats speech for readability while preserving contractions, and Japanese cleanup removes stutters, doubled punctuation, and misheard product names
+Connecting an app from the notch resumes the request that needed it, and disconnected apps now explain why they turned off instead of silently changing state
+Agent Mode added stop controls for active work, kept History open while tasks are inspected, and fixed long answers being clipped before they could scroll
+Map answers now use Google Maps, while coding and integration cards carry the correct app branding throughout the notch
+0.1.20
+Aug 2, 2026
+Fixed clicks not registering on the notch and sidebar on Windows
+Fixed reminder cards you couldn't click on Windows
+VoiceOS now tells you when Windows is blocking microphone access, and opens the right setting for you
+The Windows overlay now recovers its mouse-forwarding hook automatically when the operating system drops it, restoring clicks without a relaunch
+Microphone checks no longer report a false muted state, and real capture failures now surface a clear error instead of silently producing nothing
+Reminder and notification windows keep their action areas clickable after expanding on Windows
+Denied microphone access now links directly to the relevant Windows privacy setting so you can restore recording quickly
+This release also hardened overlay recovery around the notch and sidebar after display, focus, or input-hook changes
+0.1.19
+Aug 1, 2026
+New Insights tab. See how fast you speak, the time you save, where you rank, and discover your Voice Type
+Fixed dictation cutting off your first words
+Fixed lag and freezes on Windows when VoiceOS captures your screen
+Cancel your trial or switch plans right from the app
+Fixed notifications that couldn't be dismissed
+Insights turns your history into speaking-speed, words-dictated, time-saved, and percentile metrics once enough sessions are available
+Voice Type gives your dictation style a shareable identity card with a redesigned, privacy-conscious summary
+When you ask about the screen, Agent Mode can request screen access by voice and capture the relevant context for that turn
+Hotkey capture starts faster, and macOS allows more time for slow apps to confirm a completed paste instead of marking it failed too early
+Screen recordings now include the trail you draw for Agent Mode, while Windows screen-context work uses less CPU and causes fewer freezes
+Subscription controls correctly distinguish trials and active plans, and notification handoffs keep their dismiss and action buttons responsive
+0.1.18
+Jul 30, 2026
+Outlook mail and calendar, plus Apple Mail on Mac
+Long tasks keep running while you work — you're notified when they're done
+With Polishing set to Polished, Japanese dictation formats lists and numbers properly
+Dictation pastes reliably again
+Plus several other bug fixes
+Long Agent Mode jobs can dispatch themselves into the background, show live activity in the side notch, and return the completed result without blocking your next task
+Queued reminders collect into an expandable notification stack, with smoother handoff between the card, side notch, and active conversation
+Outlook support covers both Microsoft 365 mail and calendar actions, while Apple Mail can search, draft, reply, and send locally on Mac
+Short dictations use VoiceOS's hosted Whisper service for a faster path, with processing-ring timing matched to the selected polishing style
+Japanese Polished mode now formats rather than rewrites: it preserves meaning while cleaning list structure, numbers, email recipients, and stray ASR break marks
+Screen context is captured behind one explicit consent, stays disabled when screen access is off, and can be refreshed for each Agent Mode turn
+Windows dictation paste and the Insert action in reply drafts were repaired across more desktop apps
+Custom URL-based integrations once again support remote MCP endpoints and Authorization headers in their setup form
+Background dispatch now preserves the original transcript and closes several races that could lose, duplicate, or prematurely present a result
+0.1.17
+Jul 24, 2026
+Reminders, just by asking
+Faster, more accurate dictation, especially on long takes
+Three polish styles: raw, light, or fully polished
+Hands-free starts on a tap again
+Ask for a reminder, scheduled action, or recurring email check in natural language; VoiceOS freezes the instruction and runs it at the requested time
+Reminder cards support links, update in place when a schedule changes, avoid covering an active notch, and stay aware of the notification already on screen
+The new App Store foundation adds manifest-backed integrations, a browse gallery, capability and permission pages, animated previews, and consistent confirmation cards
+Developers can scaffold an integration from one prompt, preview it in VoiceOS, and hand the generated project to a coding agent for further work
+The dictation pipeline now blends fast and high-accuracy speech recognition, then routes polishing by length and the selected Raw, Light, or Polished style
+An adaptive progress ring reflects the active transcription stage, and long Polished dictations use a model better suited to preserving structure over extended takes
+Files attached in Agent Mode can now be saved to disk for real, while location answers avoid pretending an IP estimate is an exact position
+Idle background work was reduced so VoiceOS uses less CPU when you are not interacting with it and allows the computer to sleep normally
+Agent voice speed is adjustable in Settings, and web answers can include multiple relevant image previews instead of a single thumbnail
+Verified students can access academic pricing, and the cancellation flow more clearly explains eligible retention offers
+0.1.16
+Jul 16, 2026
+New Finder integration. Ask VoiceOS to find, open, and organize files on your MacMac
+Changing your mind mid-request now works smoothly, just say the new instruction
+Improved Agent Mode reliability, with more accurate and consistent answers
+Fixed the mic indicator flickering when starting a recording
+Plus more fixes and improvements
+Finder results use a native-style gallery with thumbnails, drag-out support, Open With, editable names for created files, and clear confirmations before local changesMac
+Folder searches now handle large or truncated listings honestly, resolve familiar folders, and enforce stronger path privacy checksMac
+Agent answers can compose richer native blocks for stocks, charts, lists, files, and tool results while keeping typography aligned with the conversation
+The Home screen now centers tutorials in an edge-to-edge rail, includes English and Japanese subtitles, and remembers completed lessons across devices
+Weekly Agent Mode usage is visible in the dashboard and billing settings, with an upgrade card shown only when a turn is actually blocked by the plan
+Every voice turn refreshes its screen view, preventing answers based on a stale screenshot after the visible app changes
+Empty or stalled model rounds now recover through a fallback path instead of returning a placeholder or blank answer
+Integration connection status refreshes promptly after OAuth, and connect feedback appears as a clear toast instead of shifting the settings layout
+0.1.15
+Jul 8, 2026
+Draw with your cursor while talking to show the agent what you mean
+Pick your own keys for the hands-free dictation shortcut
+Fixed the agent sometimes replying in the wrong language
+Plus 9 more fixes and improvements
+Onboarding is now smoother and easier to follow, with a faster practice step, clearer waiting guidance, and better gating around the first Agent Mode experience
+Hold-to-draw follows the cursor continuously without requiring clicks, making it easier to point at a region while you explain what should change
+Reply drafting gained a dedicated screen-aware card with reliable Insert and Enter actions that collapse cleanly after the text is placed
+Conversation context now survives interruptions and barge-ins, while multiple preview images can stay attached to a visual web answer
+Audio capture detects and recovers streams that die during recording, and the clipboard is restored with all formats—not only text—after Agent Mode uses it
+Dictation defaults to prose unless you clearly ask for a list, with tighter cleanup that preserves the speaker's structure instead of over-formatting it
+Plan cards and the cancellation flow were simplified, with regional currency parity and clearer trial and yearly-offer terms
+Image previews, file confirmations, and integration suggestions were visually tightened so important actions remain visible in the notch
+0.1.14
+Jul 2, 2026
+Ask to find nearby places in the notch with Apple Maps
+Agent Mode no longer replaces text when you're just asking about it
+Cleaner dictation with better lists and fewer cut-off words
+Fixed Agent Mode loading issues and smoother audio ducking
+Plus 6 more bug fixes and improvements
+Nearby-place results preserve the exact map view shown in the notch when opened, with better place hours and smoother result browsing
+Selected text remains visibly attached to the Agent Mode turn until the next request, with improved Japanese bold and italic rendering around that context
+Secure Keyboard Entry is detected on Mac and explained instead of making the shortcut appear broken, while trigger-key choices are limited to reliable modifier keysMac
+Native microphone capture stays warm between recordings for faster starts and uses a lossless stop handshake to protect the end of the transcript
+Media ducking now lowers other audio instead of muting it, remains active through spoken Agent replies, and recovers cleanly on Windows
+Windows gained device location support with clear denied-permission guidance, enabling nearby-place requests beyond the coarse network fallback
+Email greetings capitalize the first body word correctly after a newline, and dictation list conversion now balances structure with wording fidelity
+You can hide the top notch, and long prompts collapse behind an expandable fade so the current answer keeps more room
+0.0.72
+Jun 28, 2026
+Find places near you on a live map in the notch
+Dictation starts instantly, no more clipped first words
+Opening an app now launches the app, not its website
+Apple Calendar improvements
+Hide the side notch when minimized
+Agent Mode moved into a responsive top-notch experience that can reveal your transcript immediately, stream answers into an inline result surface, and remain open until you click away
+The side notch gained a liquid-glass history view with click-to-open conversations, selected-session highlighting, haptics, and an Agent shortcut double-tap
+Answers reveal word by word, remain selectable and copyable, and show clearer source details for web and Google workspace results
+Continuous spoken sessions gained more natural language-aware voices, warmer realtime connections, coordinated start and completion lines, and a true mute control
+Apple Calendar moved to a native EventKit backend for recurring and multi-day events, meeting links, all-day events, and more reliable packaged-app accessMac
+Reminders also moved away from AppleScript to native APIs, improving access and reliability for created tasksMac
+A warm native microphone path makes push-to-talk feel immediate, protects the final audio during stop, and lowers background media while you speak instead of muting it
+Agent Mode can open websites in a named browser or the active Chrome profile, while open-app requests prefer an installed native app before falling back to its website
+Files and captured context can be dragged into the notch with clear attachment staging, and pending confirmation cards return from History after a relaunch
+Near-me requests use live geolocation and a map card, with Windows support and an exact-view handoff when the map opens
+Memory gained lockable core preferences, and confirmation settings were reframed as per-integration permission bypasses so action safety is easier to understand
+Windows focus, paste, and window-activation paths were hardened to avoid freezes, while hover and click geometry around both notches was stabilized
+0.0.71
+May 11, 2026
+Agent Mode confirmations are now clearer across Gmail, Slack, and Linear
+You can now paste images directly into Agent Mode chats
+Transcript quality is improved with better filtering of known hallucinated phrases
+Plus 12 more reliability and polish improvements across the app
+Selected text is captured at the right moment and passed into the current Agent Mode request without leaking into later turns
+Stacked previews animate more smoothly, expand based on their real contents, and keep confirmation buttons and overlays reachable in compact layouts
+Gmail, Slack, and Linear handoffs gained more consistent button placement, clearer labels, and better transitions into the native app or browser
+Writing-style instructions were restored and tightened, while transcript splitting became less aggressive so longer thoughts stay together
+Known ASR hallucinations are filtered with language-specific heuristics without removing ordinary phrases that happen to look similar
+Connection-gated tools no longer appear usable before their app is connected, reducing integration errors and misleading Agent responses
+0.0.70
+May 3, 2026
+In Agent Mode, you can now open Gmail or Google Calendar to review a draft before accepting it
+We've adjusted transcript accuracy. If anything feels worse than before, please let us know.
+Fixed an issue where Agent Mode integrations could throw an error
+Plus 4 more reliability and performance improvements across the app
+Agent Mode reset timing can be customized with localized timeout choices, and selected text reattaches correctly after a session transition
+Empty speech-recognition results skip polishing entirely, while low-quality audio gets stricter fallback handling instead of producing confident nonsense
+Dictated lists, spelled-out letters, and long paragraphs received dedicated formatting rules, including improved Japanese email structure
+Windows dead keys are handled correctly by the keyboard listener, reducing broken accents and shortcut interference on international layouts
+Screen Recording permission for Agent screenshots now follows a clearer recovery path, and screenshot previews no longer flash at the wrong opacity
+Calendar edits survive the confirmation form, and Slack thread previews render the correct message sequence before an action is approved
+Onboarding troubleshooting gained direct support actions so permission or setup problems can be reported without leaving the flow
+0.0.69
+Apr 25, 2026
+You can now bulk add keywords in Spelling
+Mouse buttons can now be used as voice trigger shortcuts
+Agent replies and action confirmations now feel smoother with less flashing
+You can now contact the founders directly from the dashboard
+Plus 4 more improvements across the app
+The new AI-assisted Spelling import accepts a batch of names or terms, turns them into dictionary entries, and presents the result in a compact review modal
+Restored dictionary entries keep their enabled state consistently, including data imported from earlier versions
+Writing-style cards have stronger contrast and more reliable instructions, reducing cases where dictation ignored the selected style
+Cancelling a dictation no longer leaves the Fn trigger blocked, so the next recording can begin normally
+Agent Mode now pastes the user's intended input instead of accidentally inserting the assistant's response into the active app
+Connected integrations are prioritized in setup and raw internal app links are hidden, producing cleaner confirmations and fewer dead ends
+The founder-contact experience was simplified and fully localized, making direct product feedback easier from the dashboard
+0.0.68
+Apr 22, 2026
+Math in Agent replies now renders properly instead of showing raw LaTeX
+You can now select and copy text directly from History sessions
+Agent replies now include more reliable Slack message and thread links
+Plus 12 more reliability and performance improvements across the app
+Onboarding was rebuilt with a clearer profile and typing-speed flow, animated time-savings guidance, persistent answers, and more natural Japanese copy
+History preserves paragraph and list formatting from the original dictation instead of flattening every saved session into plain text
+The macOS paste helper is prewarmed at launch and runs on a stable event loop, reducing beachballs and delays when text is insertedMac
+VoiceOS blocks overlapping dictations and suppresses the early recording sound while another capture is busy, preventing mixed or lost transcripts
+Voice Agent sessions are saved to History as soon as a reply begins, so a relaunch does not erase the conversation that just completed
+Gmail answers include robust, underlined links to the correct message thread with a clear external-open indicator
+Grammar handling now supports accented initial letters and preserves context-aware capitalization when text begins mid-sentence
+Synthetic copy shortcuts no longer leak a literal 'c' into terminals, and collapsed Agent sessions reset predictably after the configured idle period
+0.0.66
+Apr 15, 2026
+Pasted content is now handled more reliably in Agent Mode
+You can now set icons for custom integrations in Agent Mode
+Agent Mode usage is now shown more accurately in your dashboard stats
+Referral links now work more reliably
+Plus 8 more performance improvements and bug fixes
+Google Calendar confirmations now preserve timezone and event duration correctly, while Docs previews match the content that will actually be written
+Live support accepts an attachment in the very first message and uploads smaller diagnostic bundles with clearer delivery feedback
+Selected Agent text copies as clean plain text, and the selected-text chip has clearer visual contrast inside the conversation
+The iOS app and keyboard gained synchronized spelling keywords, stronger sign-in persistence, and more reliable dictation-state handoff
+Audio that was already muted before dictation remains muted afterward instead of being unintentionally turned back on
+Linear team resolution and confirmation controls were hardened so actions do not stall when team metadata is incomplete
+Custom integration icon previews persist across restarts, and their setup surfaces now keep the user's input in focus while showing clearer approval states
+0.0.65
+Apr 7, 2026
+Added "Show floating bar always" setting
+Added a thinking indicator while the agent works
+Agent chat state is now more reliable, including pinned selected text across follow-up turns
+Fixed an issue where interaction sounds could fail to play
+You can now attach multiple files at once in Agent Mode
+The first What's New system was added so returning users automatically see the release summary once after updating, with access to earlier entries
+Custom integrations gained URL-based MCP transport, an improved explainer, actionable connection logs, and clearer error hints when a server cannot start
+Files can be dragged into Agent Mode, and conversation History now includes Agent sessions with smoother collapse and follow-up behavior
+Pinned selected text survives follow-up turns, while Escape reliably clears the current input and starts a fresh Agent chat when requested
+Notion actions gained a schema-aware confirmation card, and Google Places results can appear as a map with rich location cards before you approve an action
+Agent follow-ups respond faster, maintain their context more reliably, and keep custom confirmation interfaces visible until the next voice transcript is ready
+Interaction sounds are unpacked correctly in production builds, and Windows avoids an infinite restart loop when the Visual C++ runtime is unavailable
+Cross-device spelling keywords synchronize automatically, and shortcut recording now accepts more keys without being blocked by a held modifier
+Pressfn
+and start speaking.
+Let your voice do the work.
+Download for Mac
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

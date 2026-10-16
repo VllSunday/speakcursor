@@ -1,0 +1,99 @@
+Features - VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Do more with your voice
+VoiceOS turns what you say into real actions across the apps you already use. Dictation is built in.
+Mac and Windows
+Agent Mode
+Say it, and it gets done
+Ask out loud and VoiceOS does the work inside your apps. It sends the message, books the time, finds the file, checks the web. Anything that sends or changes something shows you a confirmation first.
+See what it doesDictation Mode
+Talk instead of typing
+Speak anywhere you would otherwise type, in any app, in 100 languages. The filler comes out, the spelling gets fixed, and what lands on the page is what you meant.
+See what it does
+The short answer
+VoiceOS is an AI voice assistant for Mac and Windows with three connected capabilities: Dictation Mode turns speech into polished text, Edit Mode reshapes selected writing, and Agent Mode uses screen context to answer questions and prepare supported actions across your apps. Important actions remain reviewable before they are completed.
+What can VoiceOS do?
+VoiceOS gives your desktop a voice layer that works where the task is already happening. Instead of opening a separate chatbot, copying context into it, and moving the answer back, you can speak from the app in front of you. The product decides whether the request is best handled as text, an edit, a question about the screen, or a supported action that needs your review.
+The simplest workflow is dictation. Put the cursor in an email, document, message, prompt, issue, or code comment and speak naturally. VoiceOS removes verbal clutter, adds punctuation, and turns the thought into writing suited to the destination. From there, you can select text and ask for a revision, ask a question about the current screen, or use Agent Mode to prepare the next step.
+Dictate polished text into standard fields across Mac and Windows apps.
+Rewrite selected text by describing the result you want.
+Ask questions that depend on the screen in front of you.
+Search the web without breaking the current workflow.
+Prepare supported messages, calendar items, documents, and other connected actions.
+How does VoiceOS Agent Mode work?
+Agent Mode is the difference between voice as an input method and voice as a way to direct work. A traditional dictation tool returns text. An agent can interpret the outcome you described, use available context, choose an appropriate capability, and assemble a proposed result. You stay in the loop before consequential work is sent, created, or shared.
+For example, while reading an email you might ask VoiceOS to summarize the request and draft a concise reply. While looking at a dashboard, you can ask what changed and turn the explanation into a message for your team. With a supported service connected, you can ask it to prepare a calendar event or a cross-app follow-up. The exact capabilities depend on your integrations and permissions, but the interaction remains consistent: describe the outcome, inspect the proposal, and confirm it when it is right.
+This approach removes the manual glue between apps without pretending that judgment should be automated. VoiceOS is intended to handle context gathering, drafting, formatting, and orchestration while you decide what is accurate, appropriate, and ready to leave your computer.
+How is VoiceOS different from a dictation app?
+Dictation apps solve an important but narrow problem: they make words appear faster than you can type them. VoiceOS includes that capability, then keeps going. It can work with existing text through Edit Mode and with visible information through Agent Mode. That matters because most knowledge work does not end when a paragraph appears in a text field.
+Consider a customer email. Dictation can help you write the response, but you may first need to understand a long thread, find a detail, match the tone, and verify a date. A voice assistant can help with those surrounding steps from the same interface. The gain is not only words per minute; it is fewer interruptions between understanding, deciding, writing, and acting.
+VoiceOS also treats context as part of quality. The right output for Slack is usually shorter than the right output for a proposal. A message to a colleague can sound different from an executive update. By working where the writing will be used, VoiceOS can produce a more useful first draft and reduce the correction loop that often erases the time saved by raw transcription.
+Which apps does VoiceOS work with?
+Dictation and editing are designed to work in standard text fields across macOS and Windows, including browsers, email clients, chat tools, documents, note apps, project-management software, and code editors. If you can place a normal text cursor in an app, that is the first place to test VoiceOS. Protected fields and unusual custom controls can behave differently, so checking compatibility with your critical software is important.
+Agent Mode adds another layer through screen context and connected services. The VoiceOS App Store lists current integrations and the actions each one supports. Capabilities can include preparing messages, working with calendars, retrieving information, or creating content in supported destinations. You choose which services to connect rather than granting blanket access to everything on your computer.
+Browse the VoiceOS App StoreBuild an MCP integration
+How does VoiceOS keep voice actions under control?
+Speed is useful only when the result remains trustworthy. VoiceOS separates preparation from confirmation for important actions. The assistant can draft the message, assemble the event, or plan the requested work, but you can inspect what will happen before it is completed. If something is wrong, edit the proposal or cancel it without sending the mistake downstream.
+Permissions are also scoped by the operating system and the services you connect. Microphone access enables speech input. Accessibility permissions support interaction with desktop text fields. Screen context and integrations are used for the features that require them. Teams evaluating VoiceOS should review the current security page, retention choices, and administrative controls against their own policies before deployment.
+The goal is a practical balance: less manual coordination, visible intent, and a human decision at the point where an action becomes consequential. That makes Agent Mode useful for daily work without asking users to trust an invisible automation chain.
+Read VoiceOS security information
+Who is VoiceOS for?
+VoiceOS is useful for people whose work moves through language and software all day: founders, developers, operators, sales teams, support teams, students, writers, and anyone who repeatedly turns thoughts into messages, documents, prompts, plans, or app updates. It is especially valuable when the cost of the work comes from context switching rather than from one difficult task.
+Developers can dictate prompts, issues, documentation, and code-review notes without leaving the editor. Customer-facing teams can draft replies from visible context and keep a consistent tone. Managers can turn a spoken update into a structured message or meeting follow-up. People who experience fatigue or discomfort from heavy typing may also benefit from moving more language work to voice, although specialized accessibility needs should always be tested directly.
+You do not need to replace the keyboard and mouse. Voice works best as another input layer: use it for intent, drafting, revision, and multi-step direction; keep precise manual controls for the moments that demand them. The product is designed to shorten the distance between deciding what should happen and having a reviewable result ready.
+How do you get started with VoiceOS?
+Install the Mac or Windows desktop app, grant the permissions required for the modes you plan to use, and begin with a low-risk writing task. Dictate a note, an email draft, or a prompt in an app you know well. This establishes how the shortcut, microphone, and text insertion feel in your normal environment.
+Next, select a piece of text and ask Edit Mode to shorten it, change the tone, or turn it into a list. Then try a screen-aware question on a document or webpage. Finally, connect one supported service and test a small Agent Mode workflow with confirmation enabled. Evaluating the product in layers makes it clear which part saves time and where your own permissions or app setup need adjustment.
+To evaluate VoiceOS, use complete workflows rather than isolated demo sentences: start with the context you receive, produce the writing, prepare the follow-up, and count how many app switches and manual steps remain.
+VoiceOS feature FAQ
+What are the main VoiceOS features?
+VoiceOS includes system-wide AI dictation, voice editing for selected text, screen-aware questions, web search, custom vocabulary and writing context, plus Agent Mode for supported connected actions. It runs on Mac and Windows and is designed to keep important actions reviewable before completion.
+Is VoiceOS only a dictation app?
+No. Dictation Mode is one part of VoiceOS. Edit Mode changes existing text from a spoken instruction, and Agent Mode can use screen context, answer questions, search, and prepare actions through supported integrations. The product is designed around the full task rather than transcription alone.
+Can VoiceOS control every app on my computer?
+VoiceOS can dictate into standard text fields across many desktop apps, while Agent Mode supports specific actions through screen context and connected services. It does not promise universal command-level control of every interface. Check the App Store and test the exact workflows you depend on.
+Does VoiceOS work on Windows as well as Mac?
+Yes. VoiceOS provides desktop apps for macOS and Windows. The website selects an installer based on the visitor’s operating system, and the alternate desktop download remains available. App behavior can depend on operating-system permissions and the controls exposed by each destination app.
+Does VoiceOS send actions without asking?
+VoiceOS is designed to present consequential actions for review before completion. You can inspect, edit, confirm, or cancel the proposed work. The exact confirmation flow depends on the action and connected service, but maintaining user control is a core part of Agent Mode.
+How do I get started with VoiceOS?
+Download the Mac or Windows app and choose a plan. Begin with dictation in a familiar text field, then use Edit Mode, ask a question about your screen, and connect one supported integration. Using real tasks will show whether VoiceOS reduces corrections and context switching in your workflow.
+0,000,000 hours saved for our users
+Pressfn
+and start speaking.
+Let your voice do the work.
+Download for Mac
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

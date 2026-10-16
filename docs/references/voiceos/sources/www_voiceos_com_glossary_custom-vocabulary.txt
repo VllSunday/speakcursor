@@ -1,0 +1,58 @@
+What is custom vocabulary in dictation? | VoiceOS Glossary
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Glossary
+What is custom vocabulary in dictation?
+Definition
+Custom vocabulary (or a custom dictionary) is a user-maintained list of words a dictation system should recognize and spell exactly as specified: names, company terms, jargon, and invented words that generic speech recognition would otherwise mistranscribe. It is the highest-leverage fix for the recurring errors that accuracy percentages hide.
+Why it matters more than headline accuracy
+General speech models are trained on common language, so their errors concentrate exactly where your writing is most specific: colleague names, product names, technical terms. A system at 97% overall can still miss your company’s name every single time. Custom vocabulary converts those repeated errors into permanent correct spellings.
+How modern tools implement it
+Entries can bias recognition toward the term, fix its capitalization and spelling, and sometimes map spoken shorthand to expanded text. Better tools also learn from your corrections, promoting repeatedly fixed words into the dictionary with little manual work.
+Building yours quickly
+Seed it with the proper nouns of your work: team names, clients, products, tools. Add terms the first time you correct them rather than batching later. In multilingual work, keep the terms of both languages present, so a Japanese sentence can carry an English product name cleanly, and vice versa.
+Frequently asked questions
+How many terms should I add?
+Start with the ten to twenty proper nouns you type most, then grow it organically from real corrections. A short, accurate list beats a huge speculative one.
+Does custom vocabulary work across languages?
+In tools with multilingual support, entries typically apply regardless of the sentence’s language, which is exactly what mixed-language dictation, such as English product names inside Japanese text, requires.
+Keep exploring
+What is word error rate?
+What is dictation software?
+The complete voice input guide
+Hear it in practice
+VoiceOS puts dictation, editing, and voice-to-action in one layer on Mac and Windows.
+Try VoiceOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

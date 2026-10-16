@@ -1,0 +1,13 @@
+# Frozen public research snapshots are data, not application code.
+docs/**/*.md text eol=lf
+docs/references/voiceos/tools/*.py text eol=lf
+docs/development/cloud/*.sh text eol=lf
+docs/references/voiceos/SHA256SUMS text eol=lf
+docs/references/voiceos/sources/** -diff -text linguist-documentation
+docs/references/voiceos/visual-reference/website-source/** -diff -text linguist-documentation
+
+# Preserve original media checksums across Windows and Unix checkouts.
+docs/references/voiceos/visual-reference/screenshots/** -text
+docs/references/voiceos/visual-reference/videos/** -text
+docs/references/voiceos/visual-reference/images/** -text
+docs/references/voiceos/visual-reference/icons/** -text

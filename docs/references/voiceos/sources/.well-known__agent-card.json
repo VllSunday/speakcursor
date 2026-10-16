@@ -1,0 +1,52 @@
+{
+  "name": "VoiceOS",
+  "description": "VoiceOS is a cloud-connected voice assistant and dictation app for Mac and Windows. It provides text input, selected-text editing, and supported actions in connected apps.",
+  "url": "https://www.voiceos.com",
+  "provider": {
+    "name": "WakoAI Inc.",
+    "url": "https://www.voiceos.com/about"
+  },
+  "contact": {
+    "email": "support@voiceos.com"
+  },
+  "documentation": {
+    "llms": "https://www.voiceos.com/llms.txt",
+    "llmsFull": "https://www.voiceos.com/llms-full.txt",
+    "agents": "https://www.voiceos.com/agents.md",
+    "pricing": "https://www.voiceos.com/pricing.md",
+    "markdown": "https://www.voiceos.com/index.md",
+    "docs": "https://docs.voiceos.com/",
+    "security": "https://www.voiceos.com/security"
+  },
+  "capabilities": [
+    "system-wide AI dictation",
+    "voice-to-action workflows",
+    "context-aware drafting",
+    "voice editing",
+    "web search from Agent Mode",
+    "multi-step action chaining",
+    "desktop app voice control"
+  ],
+  "platforms": [
+    "macOS",
+    "Windows"
+  ],
+  "languages": [
+    "100 supported languages; see the current language list in the app"
+  ],
+  "pricing": {
+    "newCustomers": "Pro or custom Enterprise; no free sign-up plan",
+    "pro": "USD 29.99 billed monthly or USD 143.88 billed annually (11.99 per month equivalent)",
+    "checkout": "Availability of trial offers, local currency, and the first charge are shown at checkout.",
+    "enterprise": "Contact sales"
+  },
+  "integrations": [
+    "See https://www.voiceos.com/app-store for supported actions, platforms, and permissions. Text entry into an app does not imply a dedicated action integration."
+  ],
+  "safety": {
+    "actionConfirmation": "Varies by tool; the integration catalog marks actions that ask first.",
+    "processing": "Cloud processing is required.",
+    "retention": "With Help Improve VoiceOS off, raw audio and transcripts are deleted after processing and are not used for VoiceOS model training. Opting in changes retention and training permissions.",
+    "policy": "https://www.voiceos.com/privacy"
+  }
+}

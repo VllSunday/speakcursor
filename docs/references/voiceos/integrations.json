@@ -1,0 +1,1045 @@
+[
+  {
+    "name": "Apple Calendar",
+    "platforms": "macOS",
+    "count": 7,
+    "source": "https://www.voiceos.com/app-store/apple-calendar",
+    "actions": [
+      {
+        "name": "Your calendars",
+        "confirmation_listed": false,
+        "description": "See every calendar in the Calendar app."
+      },
+      {
+        "name": "See your schedule",
+        "confirmation_listed": false,
+        "description": "Read what's on for a day or a range of days."
+      },
+      {
+        "name": "Search events",
+        "confirmation_listed": false,
+        "description": "Find an event by what it's called."
+      },
+      {
+        "name": "Find open time",
+        "confirmation_listed": false,
+        "description": "Look for gaps you could book something into."
+      },
+      {
+        "name": "Create an event",
+        "confirmation_listed": false,
+        "description": "Add an event with a time, a place, and invitees."
+      },
+      {
+        "name": "Update an event",
+        "confirmation_listed": false,
+        "description": "Change the time, title, or details of one you have."
+      },
+      {
+        "name": "Delete an event",
+        "confirmation_listed": false,
+        "description": "Take an event off your calendar."
+      }
+    ]
+  },
+  {
+    "name": "Apple Mail",
+    "platforms": "macOS",
+    "count": 7,
+    "source": "https://www.voiceos.com/app-store/apple-mail",
+    "actions": [
+      {
+        "name": "Unread email",
+        "confirmation_listed": false,
+        "description": "List what's unread across every account in Mail, newest first."
+      },
+      {
+        "name": "Read an email",
+        "confirmation_listed": false,
+        "description": "Open one message in full, body and recipients included."
+      },
+      {
+        "name": "Search mail",
+        "confirmation_listed": false,
+        "description": "Find messages by subject, sender, mailbox, or date."
+      },
+      {
+        "name": "Search inside emails",
+        "confirmation_listed": false,
+        "description": "Look through message bodies when the subject line won't find it."
+      },
+      {
+        "name": "Send an email",
+        "confirmation_listed": true,
+        "description": "Compose and send a new message from your account."
+      },
+      {
+        "name": "Reply to an email",
+        "confirmation_listed": true,
+        "description": "Answer a thread in place, keeping its recipients."
+      },
+      {
+        "name": "Move to another mailbox",
+        "confirmation_listed": true,
+        "description": "File a message into a different mailbox."
+      }
+    ]
+  },
+  {
+    "name": "Notes",
+    "platforms": "macOS",
+    "count": 6,
+    "source": "https://www.voiceos.com/app-store/apple-notes",
+    "actions": [
+      {
+        "name": "Your folders",
+        "confirmation_listed": false,
+        "description": "See the folders you have in Notes."
+      },
+      {
+        "name": "See notes",
+        "confirmation_listed": false,
+        "description": "List the notes in a folder, newest first."
+      },
+      {
+        "name": "Search notes",
+        "confirmation_listed": false,
+        "description": "Find a note by its title or what's written in it."
+      },
+      {
+        "name": "Read a note",
+        "confirmation_listed": false,
+        "description": "Open one note in full."
+      },
+      {
+        "name": "Create a note",
+        "confirmation_listed": false,
+        "description": "Start a new note in the folder you name."
+      },
+      {
+        "name": "Add to a note",
+        "confirmation_listed": false,
+        "description": "Append text to the end of a note you already have."
+      }
+    ]
+  },
+  {
+    "name": "Canvas",
+    "platforms": "macOS · Windows",
+    "count": 13,
+    "source": "https://www.voiceos.com/app-store/canvas",
+    "actions": [
+      {
+        "name": "Your courses",
+        "confirmation_listed": false,
+        "description": "See what you're enrolled in this term."
+      },
+      {
+        "name": "Assignments",
+        "confirmation_listed": false,
+        "description": "Read what's been set, and when it's due."
+      },
+      {
+        "name": "Grades and submissions",
+        "confirmation_listed": false,
+        "description": "Check what you've handed in and what came back."
+      },
+      {
+        "name": "Submit an assignment",
+        "confirmation_listed": true,
+        "description": "Hand work in, or save it as a draft first."
+      },
+      {
+        "name": "What's due next",
+        "confirmation_listed": false,
+        "description": "See your to-do list and what's coming up."
+      },
+      {
+        "name": "Course calendar",
+        "confirmation_listed": false,
+        "description": "Read the events on your course calendars."
+      },
+      {
+        "name": "Add a calendar event",
+        "confirmation_listed": true,
+        "description": "Put something on your Canvas calendar."
+      },
+      {
+        "name": "Course material",
+        "confirmation_listed": false,
+        "description": "Work through modules and see recent course activity."
+      },
+      {
+        "name": "Announcements and discussions",
+        "confirmation_listed": false,
+        "description": "Catch up on what instructors and classmates posted."
+      },
+      {
+        "name": "Post to a discussion",
+        "confirmation_listed": true,
+        "description": "Reply in a course discussion thread."
+      },
+      {
+        "name": "Your Canvas inbox",
+        "confirmation_listed": false,
+        "description": "Read the messages sitting in Canvas."
+      },
+      {
+        "name": "Send a message",
+        "confirmation_listed": true,
+        "description": "Message an instructor or a classmate."
+      },
+      {
+        "name": "Your profile",
+        "confirmation_listed": false,
+        "description": "Confirm which Canvas account is connected."
+      }
+    ]
+  },
+  {
+    "name": "Claude Code",
+    "platforms": "macOS · Windows",
+    "count": 8,
+    "source": "https://www.voiceos.com/app-store/claude-code",
+    "actions": [
+      {
+        "name": "Start a coding task",
+        "confirmation_listed": false,
+        "description": "Hand a task to Claude Code in one of your project folders."
+      },
+      {
+        "name": "See running tasks",
+        "confirmation_listed": false,
+        "description": "Check which sessions are going and how far along they are."
+      },
+      {
+        "name": "Read a task result",
+        "confirmation_listed": false,
+        "description": "Pull up what a finished session changed and said."
+      },
+      {
+        "name": "Answer a session",
+        "confirmation_listed": false,
+        "description": "Reply by voice when the agent stops to ask you something mid-run."
+      },
+      {
+        "name": "Run several agents at once",
+        "confirmation_listed": false,
+        "description": "Split one job across parallel sessions in the same repo."
+      },
+      {
+        "name": "See parallel runs",
+        "confirmation_listed": false,
+        "description": "Check the status of every agent in a parallel run."
+      },
+      {
+        "name": "Read a parallel run",
+        "confirmation_listed": false,
+        "description": "Pull up the combined result once the agents finish."
+      },
+      {
+        "name": "Answer a parallel run",
+        "confirmation_listed": false,
+        "description": "Reply to whichever agent in the run is waiting on you."
+      }
+    ]
+  },
+  {
+    "name": "Codex",
+    "platforms": "macOS · Windows",
+    "count": 8,
+    "source": "https://www.voiceos.com/app-store/codex",
+    "actions": [
+      {
+        "name": "Start a coding task",
+        "confirmation_listed": false,
+        "description": "Hand a task to Codex in one of your project folders."
+      },
+      {
+        "name": "See running tasks",
+        "confirmation_listed": false,
+        "description": "Check which sessions are going and how far along they are."
+      },
+      {
+        "name": "Read a task result",
+        "confirmation_listed": false,
+        "description": "Pull up what a finished session changed and said."
+      },
+      {
+        "name": "Answer a session",
+        "confirmation_listed": false,
+        "description": "Reply by voice when the agent stops to ask you something mid-run."
+      },
+      {
+        "name": "Run several agents at once",
+        "confirmation_listed": false,
+        "description": "Split one job across parallel sessions in the same repo."
+      },
+      {
+        "name": "See parallel runs",
+        "confirmation_listed": false,
+        "description": "Check the status of every agent in a parallel run."
+      },
+      {
+        "name": "Read a parallel run",
+        "confirmation_listed": false,
+        "description": "Pull up the combined result once the agents finish."
+      },
+      {
+        "name": "Answer a parallel run",
+        "confirmation_listed": false,
+        "description": "Reply to whichever agent in the run is waiting on you."
+      }
+    ]
+  },
+  {
+    "name": "Finder",
+    "platforms": "macOS",
+    "count": 12,
+    "source": "https://www.voiceos.com/app-store/finder",
+    "actions": [
+      {
+        "name": "Search for files",
+        "confirmation_listed": false,
+        "description": "Find files by name, kind, or date anywhere on this Mac."
+      },
+      {
+        "name": "Browse a folder",
+        "confirmation_listed": false,
+        "description": "List what's inside a folder."
+      },
+      {
+        "name": "Read a file",
+        "confirmation_listed": false,
+        "description": "Read a document's contents into an answer."
+      },
+      {
+        "name": "Get file info",
+        "confirmation_listed": false,
+        "description": "Check size, kind, and dates for a file or folder."
+      },
+      {
+        "name": "Recent files",
+        "confirmation_listed": false,
+        "description": "See what you've worked on lately."
+      },
+      {
+        "name": "Open a file",
+        "confirmation_listed": true,
+        "description": "Open a file or folder in the app it belongs to."
+      },
+      {
+        "name": "Create a folder",
+        "confirmation_listed": true,
+        "description": "Make a new folder where you ask for it."
+      },
+      {
+        "name": "Create a file",
+        "confirmation_listed": true,
+        "description": "Write a new text file to disk."
+      },
+      {
+        "name": "Save an attached file",
+        "confirmation_listed": true,
+        "description": "Put a file you attached in the notch somewhere on disk."
+      },
+      {
+        "name": "Move or rename",
+        "confirmation_listed": true,
+        "description": "Move a file to another folder, or give it a new name."
+      },
+      {
+        "name": "Copy",
+        "confirmation_listed": true,
+        "description": "Duplicate a file or folder somewhere else."
+      },
+      {
+        "name": "Move to Trash",
+        "confirmation_listed": true,
+        "description": "Send it to the Trash — recoverable until you empty it."
+      }
+    ]
+  },
+  {
+    "name": "Gmail",
+    "platforms": "macOS · Windows",
+    "count": 7,
+    "source": "https://www.voiceos.com/app-store/gmail",
+    "actions": [
+      {
+        "name": "Send an email",
+        "confirmation_listed": true,
+        "description": "Compose and send a new message from your Gmail account."
+      },
+      {
+        "name": "Reply to a thread",
+        "confirmation_listed": true,
+        "description": "Answer an existing conversation in place."
+      },
+      {
+        "name": "Read and search mail",
+        "confirmation_listed": false,
+        "description": "Find messages and read them in full, by search or thread."
+      },
+      {
+        "name": "Organize with labels",
+        "confirmation_listed": true,
+        "description": "Label a message, and see which labels you already have."
+      },
+      {
+        "name": "Move to trash",
+        "confirmation_listed": true,
+        "description": "Trash a message or a whole thread, or pull one back out."
+      },
+      {
+        "name": "Delete permanently",
+        "confirmation_listed": true,
+        "description": "Erase a message or thread for good — no undo."
+      },
+      {
+        "name": "Look up contacts",
+        "confirmation_listed": false,
+        "description": "Find someone's address from the contacts on your account."
+      }
+    ]
+  },
+  {
+    "name": "Google Calendar",
+    "platforms": "macOS · Windows",
+    "count": 7,
+    "source": "https://www.voiceos.com/app-store/google-calendar",
+    "actions": [
+      {
+        "name": "Create an event",
+        "confirmation_listed": true,
+        "description": "Add a timed event with guests and a location."
+      },
+      {
+        "name": "Create an all-day event",
+        "confirmation_listed": true,
+        "description": "Add something that takes the whole day."
+      },
+      {
+        "name": "See your schedule",
+        "confirmation_listed": false,
+        "description": "Read what's on, and find one event in particular."
+      },
+      {
+        "name": "Find open time",
+        "confirmation_listed": false,
+        "description": "Look for gaps you could book something into."
+      },
+      {
+        "name": "Update an event",
+        "confirmation_listed": true,
+        "description": "Change the time, the title, or who's invited."
+      },
+      {
+        "name": "Delete an event",
+        "confirmation_listed": true,
+        "description": "Take an event off your calendar."
+      },
+      {
+        "name": "Your calendars",
+        "confirmation_listed": false,
+        "description": "See which calendars on the account it can work with."
+      }
+    ]
+  },
+  {
+    "name": "Google Drive",
+    "platforms": "macOS · Windows",
+    "count": 17,
+    "source": "https://www.voiceos.com/app-store/google-drive",
+    "actions": [
+      {
+        "name": "Find files and folders",
+        "confirmation_listed": false,
+        "description": "Search Drive and check what a file is."
+      },
+      {
+        "name": "Create a file",
+        "confirmation_listed": true,
+        "description": "Put a new text file into Drive."
+      },
+      {
+        "name": "Create a folder",
+        "confirmation_listed": true,
+        "description": "Make a new folder in Drive."
+      },
+      {
+        "name": "Upload a file",
+        "confirmation_listed": true,
+        "description": "Send a file from this computer up to Drive."
+      },
+      {
+        "name": "Download a file",
+        "confirmation_listed": false,
+        "description": "Pull a file down from Drive."
+      },
+      {
+        "name": "Edit a file",
+        "confirmation_listed": true,
+        "description": "Change the contents of a file already in Drive."
+      },
+      {
+        "name": "Move or copy a file",
+        "confirmation_listed": true,
+        "description": "Put it in another folder, or duplicate it."
+      },
+      {
+        "name": "Share a file",
+        "confirmation_listed": true,
+        "description": "Give someone access to a file or folder."
+      },
+      {
+        "name": "Delete a file or folder",
+        "confirmation_listed": true,
+        "description": "Remove it from Drive."
+      },
+      {
+        "name": "Create a spreadsheet",
+        "confirmation_listed": true,
+        "description": "Start a new Google Sheet."
+      },
+      {
+        "name": "Read a spreadsheet",
+        "confirmation_listed": false,
+        "description": "Find sheets, read cells, and look up rows."
+      },
+      {
+        "name": "Update cells and rows",
+        "confirmation_listed": true,
+        "description": "Write values, add rows, or clear a range."
+      },
+      {
+        "name": "Add or remove sheets",
+        "confirmation_listed": true,
+        "description": "Change the tabs, rows, and columns of a spreadsheet."
+      },
+      {
+        "name": "Format cells",
+        "confirmation_listed": false,
+        "description": "Change how cells look in a spreadsheet."
+      },
+      {
+        "name": "Create a document",
+        "confirmation_listed": true,
+        "description": "Start a new Google Doc from text you dictate."
+      },
+      {
+        "name": "Read a document",
+        "confirmation_listed": false,
+        "description": "Find a doc and read what's in it."
+      },
+      {
+        "name": "Edit a document",
+        "confirmation_listed": true,
+        "description": "Insert text, replace it, or rewrite the whole doc."
+      }
+    ]
+  },
+  {
+    "name": "Google Maps",
+    "platforms": "macOS",
+    "count": 1,
+    "source": "https://www.voiceos.com/app-store/google-maps",
+    "actions": [
+      {
+        "name": "Open in Maps",
+        "confirmation_listed": false,
+        "description": "Open a place, an address, or a route in Google Maps."
+      }
+    ]
+  },
+  {
+    "name": "iMessage",
+    "platforms": "macOS",
+    "count": 5,
+    "source": "https://www.voiceos.com/app-store/imessage",
+    "actions": [
+      {
+        "name": "Recent conversations",
+        "confirmation_listed": false,
+        "description": "See who you've been messaging and the latest message in each."
+      },
+      {
+        "name": "Read a conversation",
+        "confirmation_listed": false,
+        "description": "Pull up the recent messages in one thread."
+      },
+      {
+        "name": "Search messages",
+        "confirmation_listed": false,
+        "description": "Find messages by what they say, across your history."
+      },
+      {
+        "name": "Unread messages",
+        "confirmation_listed": false,
+        "description": "Check what came in while you were away."
+      },
+      {
+        "name": "Send a message",
+        "confirmation_listed": false,
+        "description": "Write and send an iMessage to a contact or a group."
+      }
+    ]
+  },
+  {
+    "name": "Jira",
+    "platforms": "macOS · Windows",
+    "count": 11,
+    "source": "https://www.voiceos.com/app-store/jira",
+    "actions": [
+      {
+        "name": "Create an issue",
+        "confirmation_listed": true,
+        "description": "File a new issue in a project, with the right fields."
+      },
+      {
+        "name": "Edit an issue",
+        "confirmation_listed": true,
+        "description": "Change its summary, description, or fields."
+      },
+      {
+        "name": "Delete an issue",
+        "confirmation_listed": true,
+        "description": "Remove an issue from Jira — this can't be undone."
+      },
+      {
+        "name": "Find issues",
+        "confirmation_listed": false,
+        "description": "Search with JQL and read an issue in full."
+      },
+      {
+        "name": "Comment on an issue",
+        "confirmation_listed": true,
+        "description": "Read the discussion, and add to it."
+      },
+      {
+        "name": "Move an issue's status",
+        "confirmation_listed": true,
+        "description": "Push it to In Progress, Done, or wherever it goes next."
+      },
+      {
+        "name": "Assign an issue",
+        "confirmation_listed": true,
+        "description": "Hand it to someone on the project."
+      },
+      {
+        "name": "Attach a file",
+        "confirmation_listed": true,
+        "description": "Add an attachment to an existing issue."
+      },
+      {
+        "name": "Projects",
+        "confirmation_listed": true,
+        "description": "See the projects in this site, and start a new one."
+      },
+      {
+        "name": "Find people",
+        "confirmation_listed": false,
+        "description": "Resolve a name to the account you want to assign."
+      },
+      {
+        "name": "Boards and sprints",
+        "confirmation_listed": true,
+        "description": "See the boards and sprints, and move an issue into one."
+      }
+    ]
+  },
+  {
+    "name": "Linear",
+    "platforms": "macOS · Windows",
+    "count": 10,
+    "source": "https://www.voiceos.com/app-store/linear",
+    "actions": [
+      {
+        "name": "Create an issue",
+        "confirmation_listed": true,
+        "description": "File a new issue on a team, with a title and details."
+      },
+      {
+        "name": "Update an issue",
+        "confirmation_listed": true,
+        "description": "Change its state, assignee, priority, or description."
+      },
+      {
+        "name": "Delete an issue",
+        "confirmation_listed": true,
+        "description": "Move an issue to Linear's trash."
+      },
+      {
+        "name": "Find issues",
+        "confirmation_listed": false,
+        "description": "Search your team's issues and read one in full."
+      },
+      {
+        "name": "Comment on an issue",
+        "confirmation_listed": true,
+        "description": "Add a comment to the thread."
+      },
+      {
+        "name": "Manage labels",
+        "confirmation_listed": true,
+        "description": "Create a label, or take one off an issue."
+      },
+      {
+        "name": "Attach a file",
+        "confirmation_listed": true,
+        "description": "Add an attachment to an existing issue."
+      },
+      {
+        "name": "Teams and people",
+        "confirmation_listed": false,
+        "description": "Look up a team or a teammate to assign work to."
+      },
+      {
+        "name": "Projects and states",
+        "confirmation_listed": false,
+        "description": "See the projects and workflow states you can use."
+      },
+      {
+        "name": "Cycles and sprints",
+        "confirmation_listed": false,
+        "description": "Check which cycle a team is in."
+      }
+    ]
+  },
+  {
+    "name": "Notion",
+    "platforms": "macOS · Windows",
+    "count": 9,
+    "source": "https://www.voiceos.com/app-store/notion",
+    "actions": [
+      {
+        "name": "Create a page",
+        "confirmation_listed": true,
+        "description": "Start a new page under a parent you name."
+      },
+      {
+        "name": "Add content to a page",
+        "confirmation_listed": true,
+        "description": "Append blocks of text to a page you already have."
+      },
+      {
+        "name": "Update a page",
+        "confirmation_listed": true,
+        "description": "Change a page's title or its properties."
+      },
+      {
+        "name": "Search and read",
+        "confirmation_listed": false,
+        "description": "Find a page in your workspace and read what's on it."
+      },
+      {
+        "name": "Query a database",
+        "confirmation_listed": false,
+        "description": "Filter and read rows out of a Notion database."
+      },
+      {
+        "name": "Add a database row",
+        "confirmation_listed": true,
+        "description": "Insert a new row with its properties filled in."
+      },
+      {
+        "name": "Comment on a page",
+        "confirmation_listed": true,
+        "description": "Leave a comment where the team will see it."
+      },
+      {
+        "name": "Upload a file",
+        "confirmation_listed": true,
+        "description": "Put a file into a page."
+      },
+      {
+        "name": "Find people",
+        "confirmation_listed": false,
+        "description": "Resolve a name before setting a person property."
+      }
+    ]
+  },
+  {
+    "name": "Obsidian",
+    "platforms": "macOS · Windows",
+    "count": 4,
+    "source": "https://www.voiceos.com/app-store/obsidian",
+    "actions": [
+      {
+        "name": "Search your vault",
+        "confirmation_listed": false,
+        "description": "Find notes by what's written in them."
+      },
+      {
+        "name": "Read a note",
+        "confirmation_listed": false,
+        "description": "Open one note from the vault."
+      },
+      {
+        "name": "Create a note",
+        "confirmation_listed": false,
+        "description": "Add a new note to the vault."
+      },
+      {
+        "name": "Add to a note",
+        "confirmation_listed": false,
+        "description": "Append text to a note you already have."
+      }
+    ]
+  },
+  {
+    "name": "Outlook",
+    "platforms": "macOS · Windows",
+    "count": 11,
+    "source": "https://www.voiceos.com/app-store/outlook",
+    "actions": [
+      {
+        "name": "Send an email",
+        "confirmation_listed": true,
+        "description": "Compose and send a new message from your account."
+      },
+      {
+        "name": "Reply to an email",
+        "confirmation_listed": true,
+        "description": "Answer a message without leaving the thread."
+      },
+      {
+        "name": "Draft an email",
+        "confirmation_listed": true,
+        "description": "Write a new draft, or a draft reply, for you to review."
+      },
+      {
+        "name": "Read and search mail",
+        "confirmation_listed": false,
+        "description": "List, search, and open messages in your mailbox."
+      },
+      {
+        "name": "Move an email",
+        "confirmation_listed": true,
+        "description": "File it into another folder — deleting means Deleted Items."
+      },
+      {
+        "name": "Create a calendar event",
+        "confirmation_listed": true,
+        "description": "Add an event with a time and attendees."
+      },
+      {
+        "name": "Update a calendar event",
+        "confirmation_listed": true,
+        "description": "Change the time, the title, or the attendees."
+      },
+      {
+        "name": "Delete a calendar event",
+        "confirmation_listed": true,
+        "description": "Take an event off the calendar."
+      },
+      {
+        "name": "See your schedule",
+        "confirmation_listed": true,
+        "description": "Read your calendar and check when you're free."
+      },
+      {
+        "name": "Create a contact",
+        "confirmation_listed": true,
+        "description": "Save someone new to your contacts."
+      },
+      {
+        "name": "Look up contacts",
+        "confirmation_listed": false,
+        "description": "Find someone's details in your contacts."
+      }
+    ]
+  },
+  {
+    "name": "Reminders",
+    "platforms": "macOS",
+    "count": 5,
+    "source": "https://www.voiceos.com/app-store/reminders",
+    "actions": [
+      {
+        "name": "Your lists",
+        "confirmation_listed": false,
+        "description": "See every Reminders list on this Mac."
+      },
+      {
+        "name": "See reminders",
+        "confirmation_listed": false,
+        "description": "Read what's due, what's coming up, and what's done."
+      },
+      {
+        "name": "Search reminders",
+        "confirmation_listed": false,
+        "description": "Find a reminder by what it says."
+      },
+      {
+        "name": "Create a reminder",
+        "confirmation_listed": false,
+        "description": "Add one with a due date and the list it belongs in."
+      },
+      {
+        "name": "Complete a reminder",
+        "confirmation_listed": false,
+        "description": "Tick one off once it's done."
+      }
+    ]
+  },
+  {
+    "name": "Slack",
+    "platforms": "macOS · Windows",
+    "count": 9,
+    "source": "https://www.voiceos.com/app-store/slack",
+    "actions": [
+      {
+        "name": "Send a message",
+        "confirmation_listed": true,
+        "description": "Post to a channel or DM someone directly."
+      },
+      {
+        "name": "Schedule a message",
+        "confirmation_listed": true,
+        "description": "Queue a message to go out at a later time."
+      },
+      {
+        "name": "Read conversations",
+        "confirmation_listed": false,
+        "description": "Catch up on a channel or a thread you've missed."
+      },
+      {
+        "name": "Search messages",
+        "confirmation_listed": false,
+        "description": "Find what someone said, across the workspace."
+      },
+      {
+        "name": "Find channels and people",
+        "confirmation_listed": false,
+        "description": "Look up a channel or a teammate by name or email."
+      },
+      {
+        "name": "Open a DM",
+        "confirmation_listed": false,
+        "description": "Start a direct message with someone."
+      },
+      {
+        "name": "React to a message",
+        "confirmation_listed": true,
+        "description": "Add an emoji reaction to something."
+      },
+      {
+        "name": "Set a Slack reminder",
+        "confirmation_listed": true,
+        "description": "Have Slack nudge you about something later."
+      },
+      {
+        "name": "Upload a file",
+        "confirmation_listed": true,
+        "description": "Share a file into a channel or a DM."
+      }
+    ]
+  },
+  {
+    "name": "Spotify",
+    "platforms": "macOS",
+    "count": 9,
+    "source": "https://www.voiceos.com/app-store/spotify",
+    "actions": [
+      {
+        "name": "What's playing",
+        "confirmation_listed": false,
+        "description": "Check the current track, its artist, and how far in."
+      },
+      {
+        "name": "Play something",
+        "confirmation_listed": false,
+        "description": "Start a song, artist, album, or playlist."
+      },
+      {
+        "name": "Pause",
+        "confirmation_listed": false,
+        "description": "Pause whatever is playing."
+      },
+      {
+        "name": "Skip forward",
+        "confirmation_listed": false,
+        "description": "Jump to the next track."
+      },
+      {
+        "name": "Skip back",
+        "confirmation_listed": false,
+        "description": "Go back to the previous track."
+      },
+      {
+        "name": "Set the volume",
+        "confirmation_listed": false,
+        "description": "Turn Spotify up or down."
+      },
+      {
+        "name": "Shuffle",
+        "confirmation_listed": false,
+        "description": "Turn shuffle on or off."
+      },
+      {
+        "name": "Repeat",
+        "confirmation_listed": false,
+        "description": "Repeat one track, the whole queue, or nothing."
+      },
+      {
+        "name": "Seek",
+        "confirmation_listed": false,
+        "description": "Jump to a point in the current track."
+      }
+    ]
+  },
+  {
+    "name": "X (Twitter)",
+    "platforms": "macOS · Windows",
+    "count": 9,
+    "source": "https://www.voiceos.com/app-store/x",
+    "actions": [
+      {
+        "name": "Post",
+        "confirmation_listed": true,
+        "description": "Publish a new post from your account."
+      },
+      {
+        "name": "Like a post",
+        "confirmation_listed": false,
+        "description": "Like someone else's post."
+      },
+      {
+        "name": "Repost",
+        "confirmation_listed": true,
+        "description": "Share someone else's post to your followers."
+      },
+      {
+        "name": "Your timeline",
+        "confirmation_listed": false,
+        "description": "Read posts from the accounts you follow."
+      },
+      {
+        "name": "Search posts",
+        "confirmation_listed": false,
+        "description": "Find recent posts, including your own mentions."
+      },
+      {
+        "name": "Followers and following",
+        "confirmation_listed": false,
+        "description": "See who follows an account and who it follows."
+      },
+      {
+        "name": "Send a DM",
+        "confirmation_listed": true,
+        "description": "Message someone directly."
+      },
+      {
+        "name": "Read DMs",
+        "confirmation_listed": false,
+        "description": "Catch up on your recent direct messages."
+      },
+      {
+        "name": "Look up a profile",
+        "confirmation_listed": false,
+        "description": "Resolve a username or account id to the person behind it."
+      }
+    ]
+  }
+]

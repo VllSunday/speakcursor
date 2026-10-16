@@ -22,6 +22,8 @@
 
 [Русская версия](README.ru.md)
 
+Planning the next version: [project handoff and decisions](docs/handoff.md) · [specifications](docs/README.md) · [VoiceOS visual references](docs/references/voiceos/README.md).
+
 ## Features
 
 | Feature                          | What it does                                                                         |

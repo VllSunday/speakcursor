@@ -1,0 +1,155 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Limits & stability
+
+> Every cap in one place, the security model, and the compatibility promise.
+
+## Size limits
+
+### Cards
+
+| Limit | Value |
+| - | - |
+| Blocks per glance card | 3 |
+| Charts per card (and per `row`) | 1 |
+| Glance payload (serialized `{ blocks }`) | 32,000 chars — 300,000 when a widget block is present |
+| Hook `view` (serialized) | 300,000 chars; individual block limits still apply |
+| Per-field string caps | See the [glance](/integrations/reference/glance-blocks) and [UI](/integrations/reference/ui-blocks) block references |
+
+### Widgets (identical as a result block and as a confirmation view)
+
+| Limit | Value |
+| - | - |
+| `html` | 300,000 chars |
+| `data` (serialized) | 16,384 chars |
+| Height | 60–420 px (default 180) |
+| `label` / `confirmLabel` | 60 chars |
+| Confirm-button reserve (confirmation mode) | \~150 × 44 px, bottom-right |
+| Outer corner radius | 26 px (a host with a concentric clip may send its own) — read `--k-radius`, never hardcode |
+
+### Widget Kit asset budgets
+
+| Limit | Value |
+| - | - |
+| One inlined image | 32,768 data-URI chars (\~24 KB source) |
+| One inlined font (pre-subsetted WOFF2) | 42,000 data-URI chars |
+| All inlined images combined | 150,000 chars by default (half the HTML budget) |
+
+Character limits use JavaScript `.length` (UTF-16 code units), not UTF-8 bytes
+or token counts. JSON quotes, escapes, property names, and `data` count toward
+the serialized card limit. Host-generated capability IDs do not consume the
+author's budget. The SDK's `glanceResult` and `widgetResult` reject oversized
+envelopes before sending. Check `JSON.stringify({ blocks }).length` when
+constructing a payload directly. A 300,000-character HTML document will need
+to be smaller to fit inside a result envelope.
+
+### SDK reminders
+
+| Limit | Value |
+| - | - |
+| Message | 1–2,000 trimmed characters |
+| Buttons | 0–3; IDs unique within the reminder |
+| Button ID | 1–64 ASCII letters, digits, underscores, or hyphens |
+| Button label | 1–32 trimmed characters |
+| Callback `data` | JSON object, 8,192 serialized characters, at most 12 levels deep |
+| Callback deadline | 30 seconds; no automatic retry |
+| SDK callback deduplication | 10,000 notification/action pairs per server process |
+
+See [Reminders with buttons](/integrations/tools#reminders-with-buttons) for
+registration, persistence, idempotency, and reconnect behavior.
+
+### Bridge messages
+
+| Limit | Value |
+| - | - |
+| `updateInput.key` | 256 chars |
+| `updateInput.value` | 16,384 chars |
+| `openUrl` | https URLs only |
+
+### Fast intents and speech hints
+
+| Limit | Value |
+| - | - |
+| Intents per app | 30 |
+| Intent name | 64 characters, unique `snake_case` starting with a letter |
+| Intent description | 1,000 characters |
+| Languages per `utterances` or `response` map | 20 BCP-47 language tags |
+| Utterance examples per language | 20, at most 500 characters each |
+| Response per language | 500 characters |
+| Choices per enum slot | 30 nonempty strings, at most 200 characters each |
+| Request eligible for intent selection | 300 characters |
+| Static `asr.vocabulary` per app | 50 terms, 1–80 characters each; no commas or control characters |
+| App vocabulary included by the host | Up to 10 unique terms / 1 KiB across enabled apps; provider limits also apply |
+
+See [Fast intents](/integrations/intents) for dynamic choices, fallback behavior,
+and testing. These limits apply to the fast path; a longer or ineligible request
+can still use the normal agent. Background tools are not eligible for fast
+intent dispatch.
+
+## Degradation order
+
+Nothing on the card surface fails loudly, and nothing vanishes without a
+rule:
+
+1. An **off-schema block** is dropped individually; its siblings render.
+2. **Over-budget blocks** (4th block, 2nd chart) are dropped in declaration
+   order.
+3. A Widget-Kit card over the HTML budget sheds **content images first**
+   (never the integration mark), then **trailing blocks** — the header goes
+   last. (`renderCustom` throws instead, so you find out in your test run.)
+4. A card with zero valid blocks is dropped whole — the spoken answer still
+   happens.
+
+`bun verify.ts` is how you catch all of this before a user does.
+
+## Timing
+
+| Budget | Value |
+| - | - |
+| `sync` tool | Return within the turn; target well under 30 s, with \~8 s timeouts on your own fetches. |
+| Anything longer than \~20 s | Declare `execution.mode: "background"` + the `background` permission. |
+| Setup-field prompt | The user gets \~75 s to fill the notch card within the turn; the card survives past that and saves late answers for the next turn. |
+| Intent selection | 600 ms selection budget alongside the normal agent. A timeout leaves the normal agent running. This is not an end-to-end response-time guarantee; speech recognition, tool execution, and confirmation time are separate. |
+
+## Security model
+
+* **Process isolation.** Integration code never runs inside VoiceOS
+  processes and never sees VoiceOS secrets. `local-mcp` servers run as child
+  processes on the user's machine; `remote-mcp` runs on your infra.
+* **UI is data.** Declarative blocks can't reach host APIs, and `markdown`
+  is sanitized. Anything off-schema degrades to a safe placeholder.
+* **Widgets are sandboxed.** Opaque origin, no network egress, validated
+  postMessage only, clamped heights — and **no approve leg**: only VoiceOS's
+  own button (or the user's voice) can approve an action.
+* **The model never sees your UI, and can never author a widget.** Glance
+  payloads are stripped from tool results before the model reads them, and
+  the parser refuses `widget` blocks outside integration surfaces.
+* **Secrets stay out of band.** Setup values are stored encrypted, injected
+  as env vars, never echoed to the UI, and never enter the agent transcript.
+* **Consent at the edges.** Permissions are declared in the manifest and
+  shown at install; acting tools confirm before running; users hold per-tool
+  "Asks first" overrides.
+
+## Stability
+
+Two version gates cover the whole contract:
+
+| Constant | Current |
+| - | - |
+| `MANIFEST_SCHEMA_VERSION` | 1 |
+| `UI_SCHEMA_VERSION` | 1 |
+
+The promise (the "Minecraft rule"): **additive changes never bump them**. New
+blocks, new fields, and new permissions arrive without breaking existing
+manifests, and hosts render unknown future blocks as safe placeholders. An
+integration authored today keeps working across years of VoiceOS updates.
+
+Reserved-but-declared surfaces you'll see in the types — `hosted` runtime,
+`store` and `webhook` permissions, `canvas` blocks, `role: "custom"`
+actions, brokered `oauth2` — exist so that when they ship, nothing you wrote
+changes.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

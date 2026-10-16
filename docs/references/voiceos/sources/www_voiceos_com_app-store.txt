@@ -1,0 +1,65 @@
+VoiceOS App Store — Official Integrations
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+App Store
+The app ecosystem
+powered by voice
+Official integrations, built into VoiceOS and maintained by us. Connect the apps you live in, then just say what you want done.
+All21Messaging2Email3Calendar2Productivity9Note Taking3Media1Social1
+iMessageRead and send iMessages5 voice actions · macOSApple MailRead, search, send, and reply to email7 voice actions · macOSRemindersRead, create, and complete reminders5 voice actions · macOSFinderSearch, read, and organize files on your Mac12 voice actions · macOSNotesRead, create, and append notes6 voice actions · macOSBetaSpotifyControl playback, volume, and tracks in the desktop app9 voice actions · macOSBetaSlackRead and send messages9 voice actions · macOS · WindowsGmailSend, read, and manage emails7 voice actions · macOS · WindowsGoogle CalendarView and create calendar events7 voice actions · macOS · WindowsApple CalendarView and create events on your Mac7 voice actions · macOSGoogle MapsSearch places, get directions, and things nearby1 voice action · macOSOutlookEmail, calendar, and contacts in Microsoft 36511 voice actions · macOS · WindowsGoogle DriveManage Files, Sheets, and Docs17 voice actions · macOS · WindowsLinearCreate, manage, and track issues10 voice actions · macOS · WindowsJiraCreate, update, search, and manage Jira issues and projects11 voice actions · macOS · WindowsBetaClaude CodeRun coding tasks with the Claude Code CLI on your computer8 voice actions · macOS · WindowsBetaCodexRun coding tasks with the Codex app or CLI on your computer8 voice actions · macOS · WindowsNotionManage pages and databases9 voice actions · macOS · WindowsBetaObsidianRead, create, and append vault notes4 voice actions · macOS · WindowsCanvasView courses and assignments13 voice actions · macOS · WindowsBetaX (Twitter)Post, search, and engage on X9 voice actions · macOS · Windows
+FAQ
+Questions we get asked
+Which apps can VoiceOS connect to?
+21 official integrations ship inside VoiceOS, covering messaging, email, calendars, productivity tools, note taking, media and social. Together they add up to 175 separate voice actions. We build and maintain every one of them, so none of this rests on a third-party plugin that stops working next month.
+How do I use Slack with my voice?
+Connect Slack once in the VoiceOS app, then just say what you want. You can send a message, schedule one for later, search your history, find a channel or a person, open a DM, react, set a reminder, or upload a file. Say "tell the design channel the build is ready" and VoiceOS writes it, then shows you the message before it posts.
+Can I book a meeting with my voice?
+Yes, through Google Calendar or Apple Calendar. VoiceOS can create an event, block out a full day, move or cancel something, read your schedule back to you, and find open time before it books anything. "Find thirty minutes on Thursday afternoon and put it on my calendar" is one sentence instead of six clicks.
+Is VoiceOS a good Siri alternative?
+They are built for different jobs. Siri is strongest on phone-sized tasks and system settings. VoiceOS works inside the desktop apps you actually get work done in, with 175 concrete actions across 21 of them, and it will dictate into any text field on your Mac. If you have ever asked Siri to send a Slack message or move a meeting and hit a wall, that is the gap this fills.
+Do I have to set up each app before it works?
+Cloud apps like Gmail, Slack, Notion and Linear ask you to sign in once and then remember it. The Apple apps go through macOS permissions instead, so you approve access the first time VoiceOS reaches for them and never again.
+Do all of these work on Windows?
+Not all of them. 8 are macOS only, because they drive native Apple apps such as iMessage, Apple Mail, Reminders, Notes and Finder. The cloud integrations run on both, including Gmail, Slack, Notion, Jira, Linear and Google Drive. Every listing on this page says which.
+Will it send things without asking me first?
+Most actions that write something stop and confirm. Posting to Slack or uploading a file shows you what is about to happen first. Reading and searching simply answer you. A few integrations where confirming every time would only get in the way, like Spotify and Google Maps, act straight away. Each integration page marks exactly which of its actions ask first.
+What if the app I use is not listed?
+You can still wire it up yourself. VoiceOS speaks MCP, so any MCP server you point it at becomes a set of voice actions, and the build guide walks through it. If you would rather we ship it as an official integration, there is a form at the bottom of this page.
+Publish on the App Store
+Got an integration to share?
+Publish your integration to the VoiceOS App Store.
+Apply to publish
+Reviewed by hand before anything is listed. Read the build guide
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

@@ -1,0 +1,215 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Fast intents
+
+> Give short Agent Mode commands a faster route to your existing tools.
+
+Add optional `intents` alongside `tools` in `voiceos.integration.json` to make
+common voice and typed commands eligible for faster selection. An intent maps a
+clear request, such as "Show Hacker News", to one of your existing MCP tools
+and the arguments it needs. You keep the same handler, confirmation, and result
+card.
+
+VoiceOS starts its normal agent and a dedicated intent selector in parallel.
+If the selector finds a valid action before the agent commits to an answer or
+action, VoiceOS runs that tool through the usual hooks and confirmation policy.
+If selection is uncertain, invalid, or too slow, the normal agent continues.
+
+<Note>
+  Fast intents require a supporting VoiceOS desktop and an enabled server
+  rollout. Declaring an intent makes it eligible; it does not guarantee that
+  every request takes the fast path or finishes within a particular time.
+  Keep `schemaVersion: 1` and continue declaring ordinary tools.
+</Note>
+
+## Add your first intent
+
+The [Defining tools](/integrations/tools) example already declares a
+`top_stories` tool with an optional numeric `count`. Add this top-level field to
+that integration's manifest, keeping its existing `tools` array:
+
+```json theme={null}
+{
+  "intents": [
+    {
+      "name": "front_page",
+      "tool": "top_stories",
+      "description": "Show the current Hacker News front page. Use for top stories, not search, posting, or opening a specific story.",
+      "utterances": {
+        "en": ["Show Hacker News", "What is on Hacker News"],
+        "es": ["Muéstrame la portada de Hacker News"]
+      },
+      "fixedArgs": { "count": 5 },
+      "response": {
+        "en": "Getting the Hacker News front page.",
+        "es": "Buscando la portada de Hacker News."
+      }
+    }
+  ]
+}
+```
+
+`name` identifies the intent within your app. `tool` is the original name in
+your manifest and MCP server, without a VoiceOS namespace. `fixedArgs` supplies
+values the selector cannot change. `utterances` gives localized examples;
+`response` supplies a short localized acknowledgement. VoiceOS displays the
+acknowledgement after successful execution and renders your usual result card.
+
+Reload the installed integration after changing its manifest. You do not need
+to register a second MCP tool for the intent.
+
+## Extract arguments with slots
+
+A slot names a property in the tool's `inputSchema`. Use `string` for free text,
+`number` for a numeric argument, or `enum` for a limited set of strings. For
+example, this alternative intent lets the user specify the story count:
+
+```json theme={null}
+{
+  "name": "front_page_count",
+  "tool": "top_stories",
+  "description": "Show a requested number of Hacker News front-page stories.",
+  "utterances": { "en": ["Show {count} Hacker News stories"] },
+  "slots": { "count": { "type": "number", "required": true } },
+  "response": { "en": "Getting {count} Hacker News stories." }
+}
+```
+
+Put numeric bounds such as `minimum: 1` and `maximum: 8` in the tool's input
+schema. VoiceOS validates extracted arguments against that schema. Every required
+tool input must come from either `fixedArgs` or a slot with `required: true`.
+Every utterance must include each required slot as a single-brace placeholder,
+such as `{count}`. Confirmation views still use double braces, such as
+`{{count}}`.
+
+For a tool with a string input named `bot`, a static choice list looks like this:
+
+```json theme={null}
+{
+  "slots": {
+    "bot": { "type": "enum", "values": ["Sam", "Tim"], "required": true }
+  }
+}
+```
+
+Give descriptions a clear scope and include phrases people actually say.
+Utterances are examples for model selection, not a list of the only accepted
+phrases. The selector can extract free text and numbers. It does not use the
+offline template matcher to execute production commands, and the legacy
+`minConfidence` field does not affect selection.
+
+## Keep choices current
+
+For recipients, devices, or other names that change, declare an enum with
+`valuesFrom: "tool"` instead of static `values`:
+
+```json theme={null}
+{
+  "slots": {
+    "bot": { "type": "enum", "valuesFrom": "tool", "required": true }
+  }
+}
+```
+
+Publish the current choices in that tool's MCP `tools/list` metadata. Here,
+`registeredTool` is the handle returned by your existing
+`server.registerTool(...)` call:
+
+```ts theme={null}
+import { INTENT_SLOT_VALUES_META_KEY } from "@voiceos/integration-sdk";
+
+registeredTool.update({
+  _meta: { [INTENT_SLOT_VALUES_META_KEY]: { bot: ["Sam", "Tim"] } },
+});
+```
+
+The metadata key is `voiceos/intent-slot-values`. Each slot's list must contain
+1–30 nonempty strings of at most 200 characters. Publish at connection and when
+your app's data changes. MCP's `registeredTool.update()` emits
+`notifications/tools/list_changed`, so VoiceOS can refresh its cached choices.
+
+If metadata for a slot is absent, VoiceOS can use a string `enum` from that
+property in the live tool input schema. Missing, empty, invalid, or oversized
+choices make the entire intent ineligible; they do not turn it into free text.
+When both the intent choices and the tool schema restrict values, only their
+intersection is allowed. A changed choice list invalidates pending proposals.
+
+VoiceOS also sends the optional
+`notifications/voiceos/refresh_intent_values` notification when Agent recording
+is triggered. The SDK exports this as `INTENT_REFRESH_NOTIFICATION_METHOD`.
+If you handle it, start a read-only background refresh; recording and the
+normal agent do not wait for a reply. Recheck the selected entity in your tool
+handler before acting, because cached choices can become stale.
+
+Choice names are sent to the selector provider. Do not put credentials or
+secrets in them. Intent restrictions also apply to edited confirmation
+arguments; your ordinary tool schema can remain broader for normal agent or UI
+calls.
+
+## When the normal agent continues
+
+Fast intents work best for a short request with one clear action and all its
+required inputs. Current selection is limited to 300 characters and has a
+600 ms selection budget. That budget excludes speech recognition, tool
+execution, and time spent waiting for user confirmation.
+
+The selector can use up to two recent user messages to resolve clear context.
+It is instructed to abstain for negation, hypothetical or how-to questions,
+separate actions in one request, ambiguous targets, or missing inputs. Requests
+with attachments, selected text, explicit screenshots, pending confirmations,
+or transcript-hook rewrites/context use the normal pipeline. Background tools
+are excluded from the intent catalog.
+
+Only one path wins the turn. Normal tool availability, schema validation,
+pre/post hooks, and the user's confirmation settings still apply. A failed
+intent action can return control to the normal agent with the failure context
+and a replay guard. Cancellation or declined confirmation does not trigger
+that recovery. Report failures honestly through MCP errors or `isError: true`;
+never return a success result for an action that failed.
+
+## Help speech recognition with app vocabulary
+
+If your app uses unusual names, add optional recognition hints alongside
+`tools` and `intents`:
+
+```json theme={null}
+{
+  "asr": { "vocabulary": ["Hacker News", "Grok Bot"] }
+}
+```
+
+These hints apply to Agent voice commands while the app is enabled. They do not
+change Dictate mode, typed input, tool arguments, or the user's dictionary, and
+they do not grant your app access to audio or transcripts. Recognition remains
+probabilistic.
+
+Declare up to 50 terms, each 1–80 characters, without commas or control
+characters. Put useful names first. The host takes up to 10 unique terms / 1 KiB
+across enabled apps; speech providers may impose smaller limits. Reload after
+editing this static list. Disabling or uninstalling the app removes its hints
+from subsequent recordings.
+
+## Test the declaration and the real command
+
+Run manifest validation and an offline template check from a repository checkout:
+
+```bash theme={null}
+bun voiceos-integration-sdk/src/cli.ts validate path/to/voiceos.integration.json
+bun voiceos-integration-sdk/src/cli.ts intents test "Show Hacker News" --manifest path/to/voiceos.integration.json
+```
+
+The second command prints matched intent IDs, tools, and arguments without
+executing them. It checks exact phrases and static enum templates only. It
+does not simulate semantic selection, extract free text/numeric slots, or fetch
+live choices. An empty offline result for those cases is not evidence that the
+live selector will reject them.
+
+Then reload your app and test voice and typed requests against safe data. Check
+positive phrases, missing inputs, negation, ambiguous names, confirmation edits,
+and changed choice lists. See [Testing & debugging](/integrations/testing#testing-fast-intents)
+and the [manifest field reference](/integrations/reference/manifest#intents).
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

@@ -22,6 +22,8 @@
 
 [English version](README.md)
 
+Проектирование новой версии: [состояние проекта и точка продолжения](docs/handoff.md) · [спецификации](docs/README.md) · [визуальные референсы VoiceOS](docs/references/voiceos/README.md).
+
 ## Возможности
 
 | Возможность                     | Как работает                                                                          |

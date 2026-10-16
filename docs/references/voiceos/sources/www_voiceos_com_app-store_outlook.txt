@@ -1,0 +1,97 @@
+Outlook voice control — 11 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Outlook
+Email, calendar, and contacts in Microsoft 365
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+11
+voice actions
+Category
+Email
+Platforms
+macOS · Windows
+Try saying
+“Send the proposal to procurement”“What’s on my Outlook calendar on Friday?”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect OutlookOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Connects to your Outlook account — you sign in with Outlook in your browser, and VoiceOS never sees your password.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Send an email
+Asks first
+Compose and send a new message from your account.
+Reply to an email
+Asks first
+Answer a message without leaving the thread.
+Draft an email
+Asks first
+Write a new draft, or a draft reply, for you to review.
+Read and search mail
+List, search, and open messages in your mailbox.
+Move an email
+Asks first
+File it into another folder — deleting means Deleted Items.
+Create a calendar event
+Asks first
+Add an event with a time and attendees.
+Update a calendar event
+Asks first
+Change the time, the title, or the attendees.
+Delete a calendar event
+Asks first
+Take an event off the calendar.
+See your schedule
+Asks first
+Read your calendar and check when you're free.
+Create a contact
+Asks first
+Save someone new to your contacts.
+Look up contacts
+Find someone's details in your contacts.
+More from the App Store
+All integrations
+Apple MailRead, search, send, and reply to email7 voice actions · macOSGmailSend, read, and manage emails7 voice actions · macOS · WindowsiMessageRead and send iMessages5 voice actions · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

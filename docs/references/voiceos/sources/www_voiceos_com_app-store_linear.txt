@@ -1,0 +1,92 @@
+Linear voice control — 10 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Linear
+Create, manage, and track issues
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+10
+voice actions
+Category
+Productivity
+Platforms
+macOS · Windows
+Try saying
+“File a bug: login button unresponsive”“What’s assigned to me this cycle?”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect LinearOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Connects to your Linear account — you sign in with Linear in your browser, and VoiceOS never sees your password.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Create an issue
+Asks first
+File a new issue on a team, with a title and details.
+Update an issue
+Asks first
+Change its state, assignee, priority, or description.
+Delete an issue
+Asks first
+Move an issue to Linear's trash.
+Find issues
+Search your team's issues and read one in full.
+Comment on an issue
+Asks first
+Add a comment to the thread.
+Manage labels
+Asks first
+Create a label, or take one off an issue.
+Attach a file
+Asks first
+Add an attachment to an existing issue.
+Teams and people
+Look up a team or a teammate to assign work to.
+Projects and states
+See the projects and workflow states you can use.
+Cycles and sprints
+Check which cycle a team is in.
+More from the App Store
+All integrations
+RemindersRead, create, and complete reminders5 voice actions · macOSFinderSearch, read, and organize files on your Mac12 voice actions · macOSGoogle MapsSearch places, get directions, and things nearby1 voice action · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

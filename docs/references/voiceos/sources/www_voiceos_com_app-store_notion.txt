@@ -1,0 +1,90 @@
+Notion voice control — 9 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Notion
+Manage pages and databases
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+9
+voice actions
+Category
+Note Taking
+Platforms
+macOS · Windows
+Try saying
+“Add today’s standup notes to Notion”“Find the roadmap page”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect NotionOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Connects to your Notion account — you sign in with Notion in your browser, and VoiceOS never sees your password.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Create a page
+Asks first
+Start a new page under a parent you name.
+Add content to a page
+Asks first
+Append blocks of text to a page you already have.
+Update a page
+Asks first
+Change a page's title or its properties.
+Search and read
+Find a page in your workspace and read what's on it.
+Query a database
+Filter and read rows out of a Notion database.
+Add a database row
+Asks first
+Insert a new row with its properties filled in.
+Comment on a page
+Asks first
+Leave a comment where the team will see it.
+Upload a file
+Asks first
+Put a file into a page.
+Find people
+Resolve a name before setting a person property.
+More from the App Store
+All integrations
+NotesRead, create, and append notes6 voice actions · macOSBetaObsidianRead, create, and append vault notes4 voice actions · macOS · WindowsiMessageRead and send iMessages5 voice actions · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

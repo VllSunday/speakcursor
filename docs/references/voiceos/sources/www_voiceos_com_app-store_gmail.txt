@@ -1,0 +1,85 @@
+Gmail voice control — 7 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Gmail
+Send, read, and manage emails
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+7
+voice actions
+Category
+Email
+Platforms
+macOS · Windows
+Try saying
+“Email Maya the deck and cc Sam”“Find the Stripe invoice and label it Receipts”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect GmailOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Connects to your Gmail account — you sign in with Gmail in your browser, and VoiceOS never sees your password.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Send an email
+Asks first
+Compose and send a new message from your Gmail account.
+Reply to a thread
+Asks first
+Answer an existing conversation in place.
+Read and search mail
+Find messages and read them in full, by search or thread.
+Organize with labels
+Asks first
+Label a message, and see which labels you already have.
+Move to trash
+Asks first
+Trash a message or a whole thread, or pull one back out.
+Delete permanently
+Asks first
+Erase a message or thread for good — no undo.
+Look up contacts
+Find someone's address from the contacts on your account.
+More from the App Store
+All integrations
+Apple MailRead, search, send, and reply to email7 voice actions · macOSOutlookEmail, calendar, and contacts in Microsoft 36511 voice actions · macOS · WindowsiMessageRead and send iMessages5 voice actions · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

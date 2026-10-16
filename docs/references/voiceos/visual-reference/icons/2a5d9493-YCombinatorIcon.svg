@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Icon-only Y Combinator mark, cropped from YCombinatorLogo.svg.
+     The full lockup bakes the "Combinator" wordmark in as vector outlines, so it
+     can never match the page font. The badge renders that word as real text and
+     uses this square in place of the letter "Y". Brand orange #FB651E. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Y Combinator">
+  <polygon fill="#FB651E" points="0,320 320,320 320,0 0,0 "/>
+  <polygon fill="#FFFFFF" points="173,175.9 173,247 146,247 146,175.9 77.1,73 110,73 159.6,149 209,73 241.9,73 "/>
+</svg>

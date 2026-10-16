@@ -1,0 +1,84 @@
+Google Calendar voice control — 7 voice actions | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+←All integrations
+Google Calendar
+View and create calendar events
+Download VoiceOS
+Version
+1.0.0
+Built in
+Developer
+VoiceOS
+First-party
+Tools
+7
+voice actions
+Category
+Calendar
+Platforms
+macOS · Windows
+Try saying
+“Schedule coffee with Alex on Tuesday at 10”“Find 30 minutes with Maya this week”
+Getting started
+1Download VoiceOSFree to start, on Mac and Windows.
+2Connect Google CalendarOne click in the dashboard's Integrations tab.
+3Just say itSpeak — VoiceOS does the rest.
+Connects to your Google Calendar account — you sign in with Google Calendar in your browser, and VoiceOS never sees your password.
+VoiceOS asks you to confirm before it sends, changes, or deletes anything — every action marked “Asks first” below.
+What it can do
+What Agent Mode can do with this integration.
+Create an event
+Asks first
+Add a timed event with guests and a location.
+Create an all-day event
+Asks first
+Add something that takes the whole day.
+See your schedule
+Read what's on, and find one event in particular.
+Find open time
+Look for gaps you could book something into.
+Update an event
+Asks first
+Change the time, the title, or who's invited.
+Delete an event
+Asks first
+Take an event off your calendar.
+Your calendars
+See which calendars on the account it can work with.
+More from the App Store
+All integrations
+Apple CalendarView and create events on your Mac7 voice actions · macOSiMessageRead and send iMessages5 voice actions · macOSApple MailRead, search, send, and reply to email7 voice actions · macOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

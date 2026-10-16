@@ -1,0 +1,115 @@
+Circle to Search, But for Your Whole Computer
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+6 min read
+Table of contents
+Key TakeawaysWhat Circle to Search actually doesYour laptop never got the trickThe same gesture, on your Mac, with your voice attachedHow to do it, step by stepThings worth saying out loudThree things the laptop version does that a phone cannotWhat it is not doingFrequently Asked Questions (FAQ)
+All posts
+Guide
+Circle to Search, But for Your Whole Computer
+On a phone you draw a circle around something on screen and ask about it. Laptops never got that trick. Here is the same gesture on your Mac, and because you can talk while you do it, it goes further.
+Written by
+Kai Brokering
+Last updated
+July 29, 2026
+Key Takeaways
+Circle to Search is the phone trick where you draw a circle around something on screen and get an answer without leaving the app.
+Laptops never got it. Search for a Mac version and you will find people suggesting an Android emulator.
+VoiceOS gives you the same gesture. Hold Control and Option, sweep your mouse over the thing, and it becomes the subject of your question.
+The difference is your voice. Instead of getting search results back, you ask a real question in your own words.
+It works on top of any app, including full screen windows, and across two or three monitors at once.
+What Circle to Search actually does
+If you have an Android phone you may already know this one. You hold the home button, draw a circle around something on the screen, and results appear for whatever you circled. A jacket in a photo. A word in a language you do not read. A plant. A pair of shoes.
+What people love is not the search. It is that you never left what you were doing. No copying text out, no switching apps, no trying to describe a jacket in words.
+The gesture solved one very specific problem, and it is a problem every computer has: it is hard to tell a machine which part of the screen you mean.
+Your laptop never got the trick
+Search for a way to do this on a Mac and you will find people recommending that you install an Android emulator. That is how wide the gap is.
+So on laptops we all improvised. Screenshot, crop, open a chat app, drag the image in, then type a sentence explaining what you just sent. It works. It is also five more steps than circling something with your finger.
+The strange part is that a laptop should be better at this than a phone. You already have a pointer, a keyboard, and a microphone sitting right there. Nobody had wired them together.
+Related: Stop Sending Screenshots to ChatGPT Just to Ask a Question
+The same gesture, on your Mac, with your voice attached
+Here is what it looks like in VoiceOS. You hold two keys, Control and Option. Your cursor turns into a crosshair and a small label appears beside it that reads “Point to show VoiceOS”.
+Now move your mouse over whatever you care about. A blue trail follows your cursor like a highlighter. Loop it around a chart, run a line under a sentence, or drop a single dot on a button.
+While you do that, you talk. This is the part the phone gesture does not have. You are not stuck with “what is this”. You can ask whether the price is any good, what the error means, how to reply to the message, or which of two options is better.
+Let go of the keys and your question arrives together with a picture of your screen and your mark on it. That is the whole reason the word “this” starts working.
+“Can you find his LinkedIn”
+The same gesture as a phone, on a Mac: sweep the cursor over the thing, then say what you want to know.
+Related: Google’s AI Pointer and the reinvented cursor · The AI That Helps You With Whatever’s on Your Screen
+How to do it, step by step
+First, switch it on once. In VoiceOS settings, turn on “Ask about your screen”. Your Mac asks for screen permission at that moment. That is the only setup.
+After that, any time you want it: hold Control and Option, wait for the crosshair, then move your mouse over the thing you mean while you say your question out loud.
+Let go of the keys when you stop talking. You never click and you never drag. Moving the mouse is the entire gesture.
+Things worth saying out loud
+Each of these assumes you are sweeping over something while you speak.
+Say
+“What is this, and is that a good price?”
+Loop around a product on any shopping page.
+Say
+“Translate this for me.”
+Menus, forms, and screenshots people send you.
+Say
+“Which of these two is the better deal?”
+Sweep across both options in one go.
+Say
+“Explain this chart like I have never seen one before.”
+Point at the confusing axis, not the whole page.
+Three things the laptop version does that a phone cannot
+It reaches apps a phone does not have. Spreadsheets, design tools, code editors, PDF readers, video calls, full screen video. It sits on top of whatever is already open, so there is no list of supported apps to check first.
+It spans more than one screen. With two monitors you can mark a chart on one and a table on the other inside the same question, and ask about both together.
+It can act instead of only answering. You are talking to an assistant, not a search box, so the next thing you say can be “draft a reply to this” rather than another search.
+Related: How to Talk to Your Computer to Get Work Done
+What it is not doing
+It is not watching your screen. The screen is captured while you hold the keys and ask, and that is the end of it. Nothing records in the background, and no history of your day is being built.
+It also arrives switched off. Until you turn on “Ask about your screen” yourself and grant permission, the feature does nothing at all.
+The blue trail is only for you. It does not show up in screen recordings or screen shares, so you can use it in the middle of a meeting and nobody sees it.
+Frequently Asked Questions (FAQ)
+Is there a Circle to Search for Mac?
+Not as a built in Mac feature from Apple or Google. VoiceOS brings the same idea to macOS: hold Control and Option, sweep your cursor over anything on screen, and ask about it out loud. It works on top of any app rather than inside one browser.
+Do I need an Android emulator to get Circle to Search on my computer?
+No. That advice exists only because there was no desktop version for years. Running a phone app inside an emulator cannot see your actual Mac apps anyway, which is the whole point. A desktop tool that reads your real screen is a better fit.
+How is this different from Circle to Search on a phone?
+The phone version hands you search results. Here you ask a question in your own words and get an answer about your specific situation, then keep going. You can follow up, or ask it to write a reply based on what you circled.
+Do I have to draw an actual circle?
+No. Any movement over the thing is enough. A loop, a line under a sentence, or one dot on a button all work the same way. There is no drawing skill involved.
+Does it work in every app?
+Yes. It is not built into one app, it draws over whatever is on your screen. Browsers, email, PDFs, spreadsheets, chat apps, and full screen apps all behave the same, with no per app setup.
+Does this work on Windows?
+VoiceOS runs on both Mac and Windows. The point and ask gesture is built and tested on Mac today. On Windows, start with voice typing and Agent Mode, which work there now.
+How much does it cost?
+Pro starts at $11.99 per month when billed annually. Pointing at your screen and asking is part of Agent Mode and is included in Pro.
+Circle something on your screen and just ask about it
+VoiceOS runs on Mac and Windows. Download VoiceOS and use it in every app.
+Download VoiceOS
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

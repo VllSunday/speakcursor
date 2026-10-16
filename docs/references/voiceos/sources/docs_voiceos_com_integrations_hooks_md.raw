@@ -1,0 +1,151 @@
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.voiceos.com/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Hooks
+
+> Tap the voice pipeline — see the transcript before the agent, your tool calls before they run, the finished turn after it lands.
+
+Tools let the agent call your app. **Hooks let your app hear the pipeline**:
+the user's transcript before the agent acts on it, dictation before it is
+pasted, your own tool calls before and after they execute, and a receipt when
+the turn finishes. With hooks, VoiceOS can become the voice front-end for an
+app you already built — your handler recognizes an intent, does the work in
+your own backend, and answers in the notch. The agent never runs.
+
+Hooks are ordinary MCP tools with reserved names (`voiceos_hook_*`) that
+VoiceOS calls with a hard deadline. They are hidden from the agent — the model
+can never see or invoke them.
+
+## The events
+
+| Hook | Fires | Your handler can |
+| - | - | - |
+| `transcript` | Final agent-mode input, before the agent stream opens | observe · rewrite · add context · block · **answer the turn** |
+| `dictation` | Polished dictation text, just before it is pasted | observe · rewrite · consume (nothing is pasted) |
+| `preToolUse` | Before one of **your own** tools executes | observe · rewrite args · deny · escalate to a confirmation |
+| `postToolUse` | After your tool ran, before the model reads the result | observe · replace the result |
+| `turnComplete` | Turn teardown (fire-and-forget) | observe a receipt: transcript, response, tools used |
+
+## Declaring hooks
+
+Two manifest additions: a `hooks` block, and the `transcript` permission —
+the grant that makes the access loud at install and at share review.
+
+```json theme={null}
+"permissions": [
+  { "kind": "transcript", "scope": "agent" }
+],
+"hooks": {
+  "transcript": { "apps": ["com.acme.desktop"] },
+  "preToolUse": { "scope": "own" },
+  "turnComplete": {}
+}
+```
+
+Rules the validator enforces:
+
+* **Any hook requires the `transcript` permission.** Scope `"agent"` covers
+  `transcript`, `preToolUse`, `postToolUse`, and `turnComplete`; scope
+  `"dictation"` covers `dictation`; `"all"` covers both.
+* **`dictation` hooks must name their apps.** There is no global dictation
+  listening — the hook fires only while one of the listed bundle ids is the
+  frontmost app. `apps` is optional (but encouraged) on every other hook.
+* **Tool taps are scoped to your own tools.** `scope: "own"` is the only v1
+  value.
+
+Users see a dedicated callout on the install sheet when a manifest declares
+hooks, and can switch any integration's hooks off at any time with the
+**Transcript access** toggle on its page — without uninstalling it.
+
+## Writing handlers
+
+`defineHooks` registers the reserved tools on your MCP server:
+
+```ts theme={null}
+import { defineHooks } from "@voiceos/integration-sdk";
+
+defineHooks(server, {
+  async transcript({ transcript, frontmostApp }) {
+    if (!looksLikeOrderIntent(transcript)) return {}; // continue untouched
+    const order = await createDraftOrder(transcript);
+    return {
+      decision: "handled",
+      responseText: "Draft order created.",
+      view: { blocks: [orderCard(order)] }, // glance blocks, widget allowed
+    };
+  },
+
+  async preToolUse({ toolName, args }) {
+    if (toolName === "delete_records" && args.count > 100) {
+      return { requireConfirmation: true, reason: "Deletes over 100 records." };
+    }
+    return {};
+  },
+});
+```
+
+Every handler receives one typed input object and returns the same envelope:
+
+```ts theme={null}
+interface HookResult {
+  decision?: "continue" | "block" | "handled"; // default "continue"
+  updatedText?: string; // transcript / dictation rewrite
+  updatedArgs?: object; // preToolUse arg rewrite
+  updatedResult?: unknown; // postToolUse result replacement
+  additionalContext?: string; // transcript: extra context for the model
+  requireConfirmation?: true; // preToolUse: escalate to a user card
+  responseText?: string; // shown in the notch when handled/blocked
+  view?: { blocks: unknown[] }; // notch card when handled (glance contract)
+  reason?: string; // logged, never shown to the model
+}
+```
+
+Returning `{}` — or nothing — means "continue untouched".
+
+A handled `view` may contain up to 300,000 serialized characters. Widget HTML
+shares the same 300,000-character ceiling; leave room for the surrounding JSON
+and any widget data. See [Limits & stability](/integrations/reference/limits).
+An oversized view is discarded while the response text remains available.
+
+For an event that completes after the hook returns, call
+[`triggerReminder`](/integrations/tools#reminders-with-buttons) from your
+connected server. Its optional buttons invoke registered JavaScript handlers;
+they do not consume the hook's short execution budget.
+
+## Deadlines and fail-open
+
+Hooks are called with a **hard budget, shared across every subscribed
+integration**, and always fail open: a handler that is slow, broken, or
+disconnected behaves exactly like no handler at all.
+
+| Event | Budget | On timeout |
+| - | - | - |
+| `dictation` | 250 ms | the original text is pasted |
+| `transcript` | 500 ms | the turn proceeds unmodified |
+| `preToolUse` / `postToolUse` | 2 000 ms | the tool runs / result passes through |
+| `turnComplete` | not awaited | — |
+
+Keep handlers fast. Do the quick check inline; kick real work to your own
+backend and return.
+
+## What hooks can never do
+
+* **Approve anything.** `requireConfirmation` is one-way: a hook can add a
+  confirmation, never remove, soften, or answer one. The user's per-tool
+  lock pills always win.
+* **See other apps' tools.** v1 tool taps cover your own tools only.
+* **Outlive the user's consent.** The Transcript access toggle silences every
+  hook of an integration instantly, and hooks stripped of the `transcript`
+  permission never load at all.
+
+## Review
+
+Published integrations that declare hooks get extra scrutiny in the automated
+share review: transcripts forwarded beyond your stated purpose, or a
+listening app that doesn't present itself as one, are rejection criteria.
+Say what you listen for in your `summary` — an app that hears the user should
+read like one.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

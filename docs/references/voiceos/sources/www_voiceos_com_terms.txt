@@ -1,0 +1,141 @@
+Terms of Use | VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+Terms of Use
+Effective date: August 7, 2026
+Last updated: August 7, 2026
+1. Agreement and Scope
+These Terms of Use govern your access to and use of the VoiceOS website, macOS application, Windows application, dashboard, Team plans, Enterprise plans, affiliate or referral program, and related services offered by WakoAI Inc., located at 35 Buckelew Street, Sausalito, California 94965, United States.
+By downloading, installing, signing into, purchasing, or otherwise using VoiceOS, you agree to these Terms and the VoiceOS Privacy Policy. If you do not agree, do not use the Service.
+These Terms do not govern a separate VoiceOS mobile application. If WakoAI Inc. launches a mobile application, it may provide additional terms before that product is available.
+2. Eligibility, Accounts, and Organizations
+You must be at least 13 years old to use VoiceOS, or older if the law where you live requires a higher minimum age, such as 16 in certain regions. You must have the legal capacity to enter into these Terms.
+You are responsible for providing accurate account information, maintaining the security of your credentials, and notifying us promptly at support@voiceos.com of suspected unauthorized access.
+If you use VoiceOS on behalf of an organization, you represent that you have authority to bind that organization to these Terms. Team and Enterprise administrators may manage seats and billing and may access shared dictionaries, replacements, shared Memories, and organization integrations. Administrators do not receive access to an individual user’s activity or aggregate usage through the ordinary Team or Enterprise administrative surfaces.
+3. Software License and Acceptable Use
+Subject to your compliance with these Terms and payment of applicable fees, WakoAI Inc. grants you a limited, nonexclusive, nontransferable, nonsublicensable, revocable license to access and use VoiceOS for your personal or internal business productivity purposes.
+You must not, and must not permit another person to:
+copy, modify, distribute, sell, sublicense, rent, lease, or transfer VoiceOS except as expressly permitted by these Terms;
+reverse engineer, decompile, or disassemble VoiceOS except where applicable law prohibits that restriction;
+remove or obscure proprietary notices;
+use VoiceOS to build a competing service or train a machine-learning model;
+violate law, infringe another person’s rights, or use VoiceOS to harm others;
+interfere with, probe, overload, or compromise VoiceOS or related infrastructure;
+access another person’s account, data, or connected service without authorization;
+send spam, malware, or harmful, unlawful, or deceptive content;
+use VoiceOS to make legal, financial, medical, employment, housing, credit, insurance, safety, or other high-impact decisions about another person without appropriate human review; or
+use VoiceOS in violation of export-control, sanctions, or trade laws.
+We may provide updates, fixes, or changes to VoiceOS, including automatic updates where the platform supports them.
+4. AI Features and Agent Mode
+4.1 Nature of AI Output
+VoiceOS uses artificial intelligence to convert speech to text, polish text, generate responses, and help carry out tasks. AI output may be incomplete, incorrect, unavailable, or unsuitable for your purpose. You are responsible for reviewing generated content and proposed actions before relying on them or approving them.
+VoiceOS is not a substitute for professional judgment in legal, medical, financial, safety-critical, or other high-stakes matters. Do not use VoiceOS as the sole basis for those decisions.
+4.2 Your Instructions and Authorization
+When you use Agent Mode, you authorize VoiceOS to process your instructions and the context you choose to provide, including selected text, screenshots you allow, drawn screen regions, attachments, and information from connected services. Agent Mode may read or write content, send communications, create calendar events, search the web, use connected services, open or focus local applications, control supported native functions, edit selected text, and use tools you configure.
+You are responsible for the instructions you provide, the permissions and connected accounts you authorize, the recipients and content of actions, and the results of actions taken at your direction.
+4.3 Confirmation Settings and Background Tasks
+VoiceOS may provide confirmation settings for connected integrations, including settings that require approval for sensitive actions, require approval for all actions, or allow actions without a per-action preview. If you choose a setting that allows actions without a preview, you accept responsibility for the resulting actions.
+Agent Mode may run background or multi-step tasks. You are responsible for supervising those tasks and canceling them when appropriate.
+4.4 Custom MCP Servers
+You may add Model Context Protocol, or MCP, servers as local commands or remote URLs. Custom MCP servers are third-party code and services that you choose to enable. WakoAI Inc. does not control, operate, vet, or secure them. When Agent Mode uses a custom MCP server, your instructions and any context required for the tool call may be sent to the endpoint you configured. You are responsible for choosing, securing, and monitoring custom MCP servers and for complying with their terms.
+5. Third-Party Services and Integrations
+VoiceOS may allow you to connect third-party services, including email, chat, calendar, file, note, issue-tracking, map, search, media, and other services. Your use of those services is subject to their own terms and privacy notices.
+You are responsible for the permissions and scopes you grant to connected services. You can disconnect a service through VoiceOS and may revoke VoiceOS access through the third-party service. WakoAI Inc. is not responsible for third-party services, their content, availability, pricing, privacy practices, or compliance.
+6. Your Content and Help Improve VoiceOS
+You retain the rights you already have in content you provide to VoiceOS, including dictations, spoken instructions, transcripts, custom dictionaries, replacements, writing styles, knowledge entries, Memories, attachments, Agent Mode content, and content VoiceOS reads from or writes to connected services at your instruction. This is Your Content.
+You grant WakoAI Inc. a limited, worldwide, nonexclusive, royalty-free license to host, store, process, transmit, display, and modify Your Content only as needed to provide, secure, support, and improve the reliability of the Service for you. This includes converting speech to text, producing text, carrying out Agent Mode tasks, maintaining your settings and account, providing connected features, responding to support requests you initiate, and preventing abuse or fraud.
+When Help Improve VoiceOS is off, WakoAI Inc. does not use raw audio, transcripts, edited text, Agent prompts, Agent responses, data you provide to Agent Mode, or Agent outputs to evaluate, train, fine tune, benchmark, or otherwise improve VoiceOS models.
+If you affirmatively turn on Help Improve VoiceOS, you grant WakoAI Inc. permission to use the content categories described in the Privacy Policy for VoiceOS evaluation. Raw audio and transcripts collected while the setting is on may be retained indefinitely for training. Turning the setting off stops future collection under that setting but does not delete information previously collected under it.
+WakoAI Inc. does not claim ownership of Your Content. Our processing of Your Content and our retention practices are described further in the Privacy Policy.
+7. Subscriptions, Free Trials, Billing, Cancellation, and Refunds
+7.1 Plans and Prices
+VoiceOS may offer free, paid Pro, Team, and Enterprise plans. Current plan features, limits, pricing, currency, and promotional terms are shown at checkout and in the Service. The price and terms displayed at checkout control for the subscription you purchase.
+As of the effective date of these Terms, the displayed Pro pricing is US$29.99 per month, billed monthly, or US$11.99 per month, billed annually, which is US$143.88 per year before applicable tax. Enterprise plans have custom pricing and may be subject to a separate commercial agreement.
+VoiceOS may offer student, builder, affiliate, referral, or other promotional discounts. Eligibility, duration, and additional conditions are shown with the applicable offer.
+7.2 Seven-Day Free Trial
+Eligible users may receive a seven-day free trial of the selected paid Pro plan. A payment method is required to start the free trial.
+Unless you cancel before the end of the seven-day trial, the trial automatically converts to the Pro plan you selected at enrollment. You authorize WakoAI Inc. or its payment processor to charge the payment method on file for the selected plan after the trial ends and on each renewal date unless you cancel.
+We will send you a payment reminder seven days before the free trial ends.
+Before you complete enrollment, we will present the material subscription terms, including the plan, price, billing cadence, trial duration, and automatic-renewal terms. We will provide the acknowledgment, confirmation, and notices required by applicable law.
+7.3 Automatic Renewal and Price Changes
+Paid subscriptions renew automatically at the end of each billing period unless you cancel before the next renewal date. The charge will be for the plan and cadence you selected, plus applicable tax, unless we notify you of a price change as required by law.
+If we change a subscription price, we will provide advance notice as required by law. The new price will take effect at your next renewal after the applicable notice period unless you cancel before it takes effect.
+7.4 Cancellation
+You may cancel a free trial or paid subscription through Settings > Subscription in VoiceOS. Cancellation stops future renewal charges. You will continue to have access to the paid plan through the end of the current paid period unless the Service states otherwise at the time of cancellation.
+If you cancel during the seven-day free trial before it ends, the subscription will not convert to a paid plan. Any retention offer displayed during cancellation will not prevent or unreasonably delay your ability to cancel.
+7.5 Refunds
+Except where required by applicable law, VoiceOS does not offer refunds for partial subscription periods. Cancellation stops future renewal charges but does not provide a refund for the current subscription period.
+If you purchased through an app store or another third-party storefront, that platform may control cancellation and refund procedures under its own terms.
+7.6 Taxes and Billing Notices
+Prices may exclude applicable taxes, which may be added at checkout or on your invoice. You are responsible for applicable taxes and duties, except taxes based on WakoAI Inc. income.
+We may send billing receipts, renewal notices, price-change notices, cancellation confirmations, and other subscription communications to the email address associated with your account or through the Service. You are responsible for keeping your email address current.
+8. Intellectual Property and Feedback
+VoiceOS, including its software, interfaces, models, documentation, content, trademarks, and logos, is owned by WakoAI Inc. or its licensors and is protected by applicable intellectual-property laws. Except for the limited license in these Terms, all rights are reserved.
+If you submit feedback, ideas, suggestions, feature requests, or bug reports, you grant WakoAI Inc. a perpetual, irrevocable, worldwide, royalty-free, sublicensable license to use that feedback for any purpose without compensation or obligation to you.
+9. Disclaimers
+To the fullest extent permitted by law, VoiceOS is provided as is and as available. WakoAI Inc. and its licensors disclaim all warranties, whether express, implied, statutory, or otherwise, including warranties of merchantability, fitness for a particular purpose, noninfringement, accuracy, availability, and quiet enjoyment.
+We do not guarantee that VoiceOS will be uninterrupted, error-free, secure, compatible with every device or third-party service, or suitable for every purpose. We do not guarantee the accuracy, completeness, or availability of AI outputs, Agent Mode actions, third-party content, or custom MCP servers.
+Nothing in these Terms excludes or limits a right or remedy that cannot be excluded or limited under applicable law.
+10. Limitation of Liability
+To the fullest extent permitted by law, WakoAI Inc. and its licensors will not be liable for indirect, incidental, special, consequential, exemplary, or punitive damages, or for loss of profits, revenue, goodwill, data, or use, arising out of or related to VoiceOS or these Terms.
+To the fullest extent permitted by law, the total liability of WakoAI Inc. and its licensors for all claims arising out of or related to VoiceOS or these Terms will not exceed the amount you paid to WakoAI Inc. for VoiceOS during the twelve months before the event giving rise to the claim.
+The limitations in this section do not limit liability that cannot be limited under applicable law.
+11. Suspension and Termination
+You may stop using VoiceOS at any time and may delete your account through the available account settings.
+WakoAI Inc. may suspend or terminate access to VoiceOS if we reasonably believe you violated these Terms, if required by law, if necessary to protect security or prevent fraud, or if we discontinue the Service or a feature. Where reasonable and permitted, we will provide notice.
+Sections that by their nature should survive termination will survive, including intellectual property, feedback, disclaimers, limitation of liability, governing law, venue, and this section.
+12. Service Availability and Support
+12.1 Availability
+WakoAI Inc. uses commercially reasonable efforts to make VoiceOS available and operational. We target 99.8% monthly uptime for the VoiceOS platform and monitor availability continuously through automated systems. While we do not guarantee uninterrupted service, we strive to meet or exceed this target. Current service status and any ongoing incidents are reported on our public status page at https://statuspage.incident.io/voiceos (or such other URL as we may designate).
+Scheduled maintenance that may affect availability will be communicated in advance through the status page or by email when practicable.
+12.2 Support and Incident Communication
+If you experience a service disruption or need assistance, you may contact us at support@voiceos.com. We aim to acknowledge support requests within one business day.
+In the event of a significant service disruption, we will post updates on the public status page and, where appropriate, notify affected users by email. We will use reasonable efforts to restore service promptly.
+Enterprise customers may negotiate separate service-level commitments, response-time targets, and remedies through an Enterprise Agreement.
+13. Changes to These Terms
+We may update these Terms from time to time. If we make a material change, we will update the Last updated date and may provide notice through the Service or by email before the change takes effect when appropriate. Continued use of VoiceOS after the effective date of updated Terms constitutes acceptance of the updated Terms, to the extent permitted by law.
+14. Governing Law and Venue
+These Terms are governed by the laws of the State of California, without regard to conflict-of-laws principles. Subject to nonwaivable rights under applicable law, the state and federal courts located in San Francisco County, California have exclusive jurisdiction over disputes arising out of or related to VoiceOS or these Terms, and each party consents to personal jurisdiction and venue in those courts.
+Nothing in these Terms limits a nonwaivable consumer-protection right available in your place of residence.
+15. Miscellaneous
+These Terms, the Privacy Policy, and any offer-specific terms presented at checkout form the agreement between you and WakoAI Inc. about VoiceOS. Enterprise customers may request a separate Enterprise Agreement or Data Processing Agreement. If WakoAI Inc. and an Enterprise customer sign one, it controls to the extent of a conflict.
+If a provision of these Terms is unenforceable, the remaining provisions remain in effect. Failure to enforce a provision is not a waiver. You may not assign these Terms without our consent. WakoAI Inc. may assign these Terms in connection with a merger, acquisition, financing, restructuring, or sale of assets.
+16. Contact Us
+WakoAI Inc.
+35 Buckelew Street
+Sausalito, California 94965
+United States
+Support: support@voiceos.com
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA

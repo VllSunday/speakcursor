@@ -1,0 +1,89 @@
+Voice Dictation for Mac and Windows - VoiceOS
+VoiceOS
+Product
+AboutBlogsApp StoreAffiliatesDownload
+Agent ModeSay it, and it gets done
+Dictation ModeTalk instead of typing
+PricingPlans, trial, and discounts
+Agent Mode
+Dictation Mode
+Pricing
+About
+Blogs
+App Store
+Affiliates
+4x faster than typing
+Most people type around 55 words a minute. Speaking runs closer to 220, and VoiceOS keeps up with every word.
+Keyboard
+55 wpm
+I'm getting started with the projectporjectprojectporject. There are three things I need: repo access, the designdesgindesigndesgin files, and a staging key.
+VoiceOS
+220 wpm
+I'm getting started with the project. There are three things I need: repo access, the design files, and a staging key.
+I'm getting started with the project. There are three things I need:
+Repo access
+The design files
+A staging key
+I'm getting started with the project. There are three things I need: repo access, the design files, and a staging key.
+Say it messy, it lands clean
+Speak the way you actually think. VoiceOS drops the filler, fixes the spelling, learns the names you use, and writes down what you meant.
+so umRemoved filler can you take a look at the onboarding bug on the mobile app, there's like three separate things going wrong with it, PreyaPriyaAdded to dictionary's fix from last night did not take, the magic link still lands in spam, uh and the PostgressPostgresFixed spelling logs are full of timeouts, so let's move standup to ten.
+Can you take a look at the onboarding bug on the mobile app? Three separate things are going wrong with it: Priya's fix from last night did not take. The magic link still lands in spam. The Postgres logs are full of timeouts. Let's move standup to ten.
+Can you take a look at the onboarding bug on the mobile app? Three separate things are going wrong with it:
+Priya's fix from last night did not take.
+The magic link still lands in spam.
+The Postgres logs are full of timeouts.
+Let's move standup to ten.
+BIU
+It writes to fit where it lands
+Say it once. VoiceOS reads the app your cursor is in and writes to match, so the same thought arrives as a proper email, a quick text, or a clean list of notes.
+Mail
+Hi John,
+I'll send the deck over tonight.
+Best,
+Steve
+Messages
+sending the deck tonight
+Notion
+Today
+Send John the deck tonight
+Add the Q3 numbers to slide four
+Ask Priya for the revenue chart
+It spells them your way
+Names, products, acronyms. Say them however they come out and VoiceOS writes them the way you write them.
+“wako AI”
+WakoAIWakoAI
+Speak the language🌍あ한ñЖعह you think in
+Over 100 languages. Nothing to switch, nothing to set.
+Português
+English
+日本語
+Español
+Français
+Deutsch
+Pressfn
+and start speaking.
+Let your voice do the work.
+Download for Mac
+Product
+Agent Mode
+Dictation Mode
+Pricing
+App Store
+Blog
+Company
+About
+Contact
+Affiliates
+Resources
+All features
+Voice glossary
+Changelog
+Documentation
+Legal
+Terms of Use
+Privacy Policy
+Security
+Affiliate Policy
+Copyright © 2026 WakoAI, Inc. All Rights Reserved.
+ENJA
