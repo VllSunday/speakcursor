@@ -5,6 +5,7 @@ use std::{
     ffi::c_void,
     io,
     sync::atomic::{AtomicU32, Ordering},
+    sync::{Arc, Mutex},
     time::Duration,
 };
 
@@ -79,16 +80,136 @@ struct Binding {
     key: u32,
 }
 
+#[derive(Clone)]
+struct PendingRecovery {
+    recognized: String,
+    mode: DictationMode,
+    history_id: Option<u64>,
+    target: usize,
+}
+
+enum RetryError {
+    Processing(String),
+    Paste(String),
+}
+
 pub fn start(
     pill: slint::Weak<RecordingPill>,
     alert: slint::Weak<AssistantPanel>,
     settings_panel: slint::Weak<SettingsPanel>,
 ) {
+    let recovery = Arc::new(Mutex::new(None));
+    if let Some(panel) = alert.upgrade() {
+        let pending = Arc::clone(&recovery);
+        let alert_for_retry = alert.clone();
+        let pill_for_retry = pill.clone();
+        panel.on_retry_processing(move || {
+            let request = pending.lock().ok().and_then(|mut value| value.take());
+            let Some(request) = request else {
+                return;
+            };
+            let recovery = Arc::clone(&pending);
+            let alert = alert_for_retry.clone();
+            let pill = pill_for_retry.clone();
+            std::thread::spawn(move || retry_processing(request, recovery, alert, pill));
+        });
+        let pending = Arc::clone(&recovery);
+        let alert_for_insert = alert.clone();
+        panel.on_insert_original(move || {
+            let request = pending.lock().ok().and_then(|mut value| value.take());
+            if let Some(request) = request {
+                let alert = alert_for_insert.clone();
+                std::thread::spawn(move || insert_original(request, alert));
+            }
+        });
+    }
     std::thread::spawn(move || {
-        if let Err(error) = run(pill, alert.clone(), settings_panel) {
+        if let Err(error) = run(pill, alert.clone(), settings_panel, recovery) {
             show_error_at(&alert, format!("Горячие клавиши недоступны: {error}"), 2);
         }
     });
+}
+
+fn retry_processing(
+    request: PendingRecovery,
+    recovery: Arc<Mutex<Option<PendingRecovery>>>,
+    alert: slint::Weak<AssistantPanel>,
+    pill: slint::Weak<RecordingPill>,
+) {
+    let result = (|| -> Result<Option<String>, RetryError> {
+        let settings = Settings::load(&settings_ui::settings_path())
+            .map_err(|error| RetryError::Processing(error.to_string()))?;
+        let key = OpenAiKeyStore::new(settings_ui::key_path())
+            .load()
+            .map_err(|error| RetryError::Processing(error.to_string()))?;
+        let pipeline =
+            DictationPipeline::new().map_err(|error| RetryError::Processing(error.to_string()))?;
+        let output = pipeline
+            .process_recognized(&request.recognized, &settings, key.as_deref(), request.mode)
+            .map_err(|error| RetryError::Processing(error.to_string()))?;
+        let history_error = request.history_id.and_then(|id| {
+            History::open(settings_ui::history_path(), settings.keep_history_forever)
+                .and_then(|mut history| history.update_result(id, output.final_text.clone()))
+                .err()
+                .map(|error| error.to_string())
+        });
+        paste_text_if_foreground(&output.final_text, request.target)
+            .map_err(|error| RetryError::Paste(error.to_string()))?;
+        Ok(history_error)
+    })();
+    match result {
+        Ok(history_error) => {
+            show_pill(&pill, "Вставлено", false, true, request.target);
+            if let Some(error) = history_error {
+                show_error_at(
+                    &alert,
+                    format!("Текст вставлен, но историю не удалось обновить: {error}"),
+                    -1,
+                );
+            } else {
+                let _ = slint::invoke_from_event_loop(move || {
+                    if let Some(panel) = alert.upgrade() {
+                        panel.set_processing_failure(false);
+                        let _ = panel.hide();
+                    }
+                });
+            }
+        }
+        Err(error) => match error {
+            RetryError::Paste(error) => show_error_at(
+                &alert,
+                format!("Текст обработан, но вставка не удалась: {error}. Результат в буфере."),
+                -1,
+            ),
+            RetryError::Processing(error) => {
+                if let Ok(mut value) = recovery.lock() {
+                    *value = Some(request);
+                }
+                show_processing_failure(&alert, format!("Повтор не удался: {error}"), 4);
+            }
+        },
+    }
+}
+
+fn insert_original(request: PendingRecovery, alert: slint::Weak<AssistantPanel>) {
+    match copy_text(&request.recognized) {
+        Err(error) => show_error_at(&alert, format!("Не удалось скопировать текст: {error}"), -1),
+        Ok(()) => match paste_text_if_foreground(&request.recognized, request.target) {
+            Ok(()) => {
+                let _ = slint::invoke_from_event_loop(move || {
+                    if let Some(panel) = alert.upgrade() {
+                        panel.set_processing_failure(false);
+                        let _ = panel.hide();
+                    }
+                });
+            }
+            Err(error) => show_error_at(
+                &alert,
+                format!("Вставка не удалась: {error}. Исходный текст в буфере — нажми Ctrl+V."),
+                -1,
+            ),
+        },
+    }
 }
 
 pub fn reload() {
@@ -230,6 +351,7 @@ fn run(
     pill: slint::Weak<RecordingPill>,
     alert: slint::Weak<AssistantPanel>,
     settings_panel: slint::Weak<SettingsPanel>,
+    recovery: Arc<Mutex<Option<PendingRecovery>>>,
 ) -> io::Result<()> {
     let mut settings = Settings::load(&settings_ui::settings_path()).map_err(io::Error::other)?;
     let mut active = match register(&settings) {
@@ -318,6 +440,9 @@ fn run(
         };
         match action {
             DictationAction::BeginCapture(_) => {
+                if let Ok(mut pending) = recovery.lock() {
+                    *pending = None;
+                }
                 target = foreground_window();
                 let mut owner = 0;
                 if target != 0 {
@@ -364,6 +489,8 @@ fn run(
                     let request_mode = mode
                         .take()
                         .unwrap_or(DictationMode::Style(settings.default_style));
+                    let mut processing_failed = false;
+                    let mut failure_page = 4;
                     let result = recording.finish().map_err(|error| error.to_string()).and_then(|samples| {
                         let needs_key = settings.recognition_mode == RecognitionMode::OpenAi
                             || !matches!(request_mode, DictationMode::Style(DictationStyle::Raw));
@@ -375,7 +502,12 @@ fn run(
                             request_mode, |recognized| { let _ = copy_text(recognized); })
                             .map_err(|error| match error {
                                 PipelineError::Processing { recognized, source } => {
-                                    let _ = save_history(&recognized, None, request_mode, Some(source.to_string()), settings.keep_history_forever);
+                                    processing_failed = true;
+                                    failure_page = if matches!(source.as_ref(), PipelineError::NoApiKey) { 0 } else { 4 };
+                                    let history_id = save_history(&recognized, None, request_mode, Some(source.to_string()), settings.keep_history_forever).ok();
+                                    if let Ok(mut pending) = recovery.lock() {
+                                        *pending = Some(PendingRecovery { recognized: recognized.clone(), mode: request_mode, history_id, target });
+                                    }
                                     let _ = copy_text(&recognized);
                                     format!("Обработка не удалась: {source}. Исходный текст в буфере.")
                                 }
@@ -412,7 +544,11 @@ fn run(
                             }
                         }
                         Err(error) => {
-                            show_error(&alert, error);
+                            if processing_failed {
+                                show_processing_failure(&alert, error, failure_page);
+                            } else {
+                                show_error(&alert, error);
+                            }
                             show_pill(&pill, "Ошибка", false, true, target);
                         }
                     }
@@ -470,7 +606,7 @@ fn save_history(
     mode: DictationMode,
     error: Option<String>,
     keep_forever: bool,
-) -> io::Result<()> {
+) -> io::Result<u64> {
     let mut history = History::open(settings_ui::history_path(), keep_forever)?;
     let style = match mode {
         DictationMode::Style(style) => Some(style),
@@ -482,8 +618,7 @@ fn save_history(
         style,
         error,
         keep_forever,
-    )?;
-    Ok(())
+    )
 }
 
 fn show_pill(
@@ -528,6 +663,19 @@ fn show_error(alert: &slint::Weak<AssistantPanel>, message: String) {
 }
 
 fn show_error_at(alert: &slint::Weak<AssistantPanel>, message: String, page: i32) {
+    show_error_with_mode(alert, message, page, false);
+}
+
+fn show_processing_failure(alert: &slint::Weak<AssistantPanel>, message: String, page: i32) {
+    show_error_with_mode(alert, message, page, true);
+}
+
+fn show_error_with_mode(
+    alert: &slint::Weak<AssistantPanel>,
+    message: String,
+    page: i32,
+    processing_failure: bool,
+) {
     let alert = alert.clone();
     let _ = slint::invoke_from_event_loop(move || {
         if let Some(panel) = alert.upgrade() {
@@ -536,6 +684,7 @@ fn show_error_at(alert: &slint::Weak<AssistantPanel>, message: String, page: i32
             panel.set_panel_title("Ошибка".into());
             panel.set_answer_text(message.into());
             panel.set_error_page(page);
+            panel.set_processing_failure(processing_failure);
             panel.set_panel_footer(if page >= 0 {
                 "Нажми на сообщение, чтобы открыть нужный раздел настроек".into()
             } else {
@@ -549,14 +698,16 @@ fn show_error_at(alert: &slint::Weak<AssistantPanel>, message: String, page: i32
                     let _ = windows_focus::make_non_activating(panel.window());
                 }
             });
-            let weak = panel.as_weak();
-            slint::Timer::single_shot(Duration::from_secs(4), move || {
-                if let Some(panel) = weak.upgrade() {
-                    if panel.get_generation() == generation {
-                        let _ = panel.hide();
+            if !processing_failure {
+                let weak = panel.as_weak();
+                slint::Timer::single_shot(Duration::from_secs(4), move || {
+                    if let Some(panel) = weak.upgrade() {
+                        if panel.get_generation() == generation {
+                            let _ = panel.hide();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     });
 }

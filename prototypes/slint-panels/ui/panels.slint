@@ -12,9 +12,12 @@ export component AssistantPanel inherits Window {
     in-out property <string> panel-title: "SpeakCursor";
     in-out property <string> panel-footer: "";
     in-out property <int> error-page: -1;
+    in-out property <bool> processing-failure: false;
     in-out property <int> generation: 0;
     callback close-requested();
     callback open-error-settings();
+    callback retry-processing();
+    callback insert-original();
 
     Rectangle {
         x: 14px;
@@ -104,7 +107,7 @@ export component AssistantPanel inherits Window {
             height: 1px;
             background: #45474d;
         }
-        Text {
+        if !root.processing-failure: Text {
             x: 18px;
             y: 190px;
             width: 376px;
@@ -113,7 +116,22 @@ export component AssistantPanel inherits Window {
             font-size: 11px;
             color: #a3a9b4;
         }
-        if root.error-page >= 0: TouchArea {
+        if root.processing-failure: Button {
+            x: 18px; y: 184px; width: 120px; height: 32px;
+            text: "Повторить";
+            clicked => { root.retry-processing(); }
+        }
+        if root.processing-failure: Button {
+            x: 146px; y: 184px; width: 142px; height: 32px;
+            text: "Вставить исходный";
+            clicked => { root.insert-original(); }
+        }
+        if root.processing-failure: Button {
+            x: 296px; y: 184px; width: 98px; height: 32px;
+            text: "Настройки";
+            clicked => { root.open-error-settings(); }
+        }
+        if root.error-page >= 0 && !root.processing-failure: TouchArea {
             x: 0px; y: 38px; width: parent.width; height: parent.height - 38px;
             clicked => { root.open-error-settings(); }
         }
