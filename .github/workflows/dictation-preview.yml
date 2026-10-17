@@ -27,8 +27,8 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Path dictation-preview | Out-Null
-          Copy-Item target/release/speakcursor-slint-panels.exe dictation-preview/
-          Copy-Item prototypes/slint-panels/README.md dictation-preview/
+          Copy-Item target/release/speakcursor-slint-panels.exe dictation-preview/SpeakCursor.exe
+          Copy-Item prototypes/slint-panels/QUICK_START.md dictation-preview/
           Compress-Archive -Path dictation-preview/* -DestinationPath speakcursor-windows-dictation.zip
       - name: Publish prerelease
         shell: pwsh
