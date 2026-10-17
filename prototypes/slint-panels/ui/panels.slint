@@ -1,4 +1,4 @@
-import { Button, CheckBox, ComboBox, LineEdit, ListView, TextEdit } from "std-widgets.slint";
+import { AboutSlint, Button, CheckBox, ComboBox, LineEdit, ListView, TextEdit } from "std-widgets.slint";
 
 export component AssistantPanel inherits Window {
     width: 440px;
@@ -11,7 +11,10 @@ export component AssistantPanel inherits Window {
     in-out property <string> answer-text: "";
     in-out property <string> panel-title: "SpeakCursor";
     in-out property <string> panel-footer: "";
+    in-out property <int> error-page: -1;
+    in-out property <int> generation: 0;
     callback close-requested();
+    callback open-error-settings();
 
     Rectangle {
         x: 14px;
@@ -110,6 +113,10 @@ export component AssistantPanel inherits Window {
             font-size: 11px;
             color: #a3a9b4;
         }
+        if root.error-page >= 0: TouchArea {
+            x: 0px; y: 38px; width: parent.width; height: parent.height - 38px;
+            clicked => { root.open-error-settings(); }
+        }
     }
 }
 
@@ -122,6 +129,7 @@ export component RecordingPill inherits Window {
     title: "SpeakCursor — запись";
 
     in-out property <int> activity: 0;
+    in-out property <int> generation: 0;
     in-out property <bool> recording: false;
     in-out property <string> status-text: "Готово";
 
@@ -233,6 +241,7 @@ export component SettingsPanel inherits Window {
     callback save-requested();
     callback delete-key-requested();
     callback open-history();
+    callback choose-model-folder();
 
     Text {
         x: 24px; y: 16px; width: 590px; height: 30px;
@@ -250,7 +259,8 @@ export component SettingsPanel inherits Window {
         CheckBox { x: 0px; y: 0px; text: "Распознавание через OpenAI вместо локальной модели"; checked <=> root.use-cloud; }
         ComboBox { x: 400px; y: 34px; width: 180px; model: ["CPU", "NVIDIA GPU"]; current-value <=> root.compute-choice; }
         Text { x: 0px; y: 42px; text: "Каталог локальной модели CTranslate2"; color: white; }
-        LineEdit { x: 0px; y: 65px; width: 580px; text <=> root.local-model-path; }
+        LineEdit { x: 0px; y: 65px; width: 465px; text <=> root.local-model-path; }
+        Button { x: 470px; y: 65px; width: 110px; text: "Выбрать"; clicked => { root.choose-model-folder(); } }
         Text { x: 0px; y: 105px; text: "Ключ OpenAI (после сохранения скрыт)"; color: white; }
         LineEdit { x: 0px; y: 128px; width: 450px; text <=> root.api-key-input; input-type: password; }
         Button { x: 460px; y: 128px; width: 120px; text: "Удалить ключ"; clicked => { root.delete-key-requested(); } }
@@ -324,6 +334,16 @@ export component SettingsPanel inherits Window {
 
     Text { x: 24px; y: 517px; width: 430px; height: 42px; text: root.feedback-text; color: #ffcf73; wrap: word-wrap; }
     Button { x: 464px; y: 522px; width: 150px; text: "Сохранить"; clicked => { root.save-requested(); } }
+}
+
+export component AboutPanel inherits Window {
+    width: 360px;
+    height: 220px;
+    title: "SpeakCursor — о программе";
+    background: white;
+    Text { x: 24px; y: 20px; text: "SpeakCursor"; color: #202227; font-size: 24px; font-weight: 700; }
+    Text { x: 24px; y: 58px; text: "Голосовая диктовка для Windows"; color: #494f59; }
+    AboutSlint { x: 24px; y: 95px; width: 310px; height: 115px; }
 }
 
 export struct HistoryRow {

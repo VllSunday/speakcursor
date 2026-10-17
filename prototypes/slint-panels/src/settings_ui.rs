@@ -44,6 +44,17 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
     };
     fill(panel, &loaded);
     #[cfg(windows)]
+    {
+        let weak = panel.as_weak();
+        panel.on_choose_model_folder(move || {
+            if let Some(path) = rfd::FileDialog::new().pick_folder() {
+                if let Some(panel) = weak.upgrade() {
+                    panel.set_local_model_path(path.to_string_lossy().to_string().into());
+                }
+            }
+        });
+    }
+    #[cfg(windows)]
     if let Err(error) = speakcursor_windows::set_launch_at_login(loaded.launch_at_login) {
         panel.set_feedback_text(format!("Не удалось настроить автозапуск: {error}").into());
     }
@@ -255,6 +266,9 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
         "NVIDIA GPU" => LocalCompute::NvidiaCuda,
         _ => return Err("Неизвестное устройство для локального распознавания".into()),
     };
+    if settings.local_compute == LocalCompute::NvidiaCuda && !cfg!(feature = "cuda") {
+        return Err("Поддержка NVIDIA GPU не включена в эту сборку приложения".into());
+    }
     settings.launch_at_login = panel.get_launch_at_login();
     settings.language = panel.get_language_code().trim().to_owned();
     let model_path = panel.get_local_model_path().trim().to_owned();

@@ -54,9 +54,17 @@ unsafe extern "system" {
     fn RegisterHotKey(hwnd: *mut c_void, id: i32, mods: u32, key: u32) -> i32;
     fn UnregisterHotKey(hwnd: *mut c_void, id: i32) -> i32;
     fn GetMessageW(message: *mut Message, hwnd: *mut c_void, min: u32, max: u32) -> i32;
+    fn PeekMessageW(
+        message: *mut Message,
+        hwnd: *mut c_void,
+        min: u32,
+        max: u32,
+        remove: u32,
+    ) -> i32;
     fn PostThreadMessageW(thread: u32, message: u32, w_param: usize, l_param: isize) -> i32;
     fn SetTimer(hwnd: *mut c_void, id: usize, interval_ms: u32, callback: *mut c_void) -> usize;
     fn KillTimer(hwnd: *mut c_void, id: usize) -> i32;
+    fn GetWindowThreadProcessId(hwnd: *mut c_void, process_id: *mut u32) -> u32;
 }
 #[link(name = "kernel32")]
 unsafe extern "system" {
@@ -78,7 +86,7 @@ pub fn start(
 ) {
     std::thread::spawn(move || {
         if let Err(error) = run(pill, alert.clone(), settings_panel) {
-            show_error(&alert, format!("Горячие клавиши недоступны: {error}"));
+            show_error_at(&alert, format!("Горячие клавиши недоступны: {error}"), 2);
         }
     });
 }
@@ -207,7 +215,7 @@ fn reload_settings(
                 }
                 Err(error) => {
                     *active = register(settings).unwrap_or_default();
-                    show_error(alert, format!("Не удалось применить сочетания: {error}"));
+                    show_error_at(alert, format!("Не удалось применить сочетания: {error}"), 2);
                 }
             }
         }
@@ -224,9 +232,10 @@ fn run(
     let mut active = match register(&settings) {
         Ok(bindings) => bindings,
         Err(error) => {
-            show_error(
+            show_error_at(
                 &alert,
                 format!("Сочетания недоступны: {error}. Измени их в настройках."),
+                2,
             );
             Vec::new()
         }
@@ -240,9 +249,10 @@ fn run(
         )
     } == 0
     {
-        show_error(
+        show_error_at(
             &alert,
             "Не удалось назначить Ctrl+Alt+O для настроек".into(),
+            2,
         );
     }
     let mut pipeline = DictationPipeline::new().map_err(io::Error::other)?;
@@ -306,13 +316,33 @@ fn run(
         match action {
             DictationAction::BeginCapture(_) => {
                 target = foreground_window();
+                let mut owner = 0;
+                if target != 0 {
+                    unsafe { GetWindowThreadProcessId(target as *mut c_void, &mut owner) };
+                }
+                if target == 0 || owner == std::process::id() {
+                    controller.escape();
+                    mode = None;
+                    show_error(
+                        &alert,
+                        "Перейди в нужное поле другого приложения и начни диктовку снова".into(),
+                    );
+                    continue;
+                }
                 match AudioCapture::start_default() {
                     Ok(recording) => {
                         capture = Some(recording);
                         esc_active =
                             unsafe { RegisterHotKey(std::ptr::null_mut(), ESC_ID, NOREPEAT, 0x1b) }
                                 != 0;
-                        show_pill(&pill, "Запись", true, false);
+                        if !esc_active {
+                            capture = None;
+                            controller.escape();
+                            mode = None;
+                            show_error_at(&alert, "Esc недоступен для отмены записи. Закрой приложение, занявшее эту клавишу, и повтори.".into(), 2);
+                            continue;
+                        }
+                        show_pill(&pill, "Запись", true, false, target);
                     }
                     Err(error) => {
                         controller.escape();
@@ -326,7 +356,7 @@ fn run(
                     unsafe { UnregisterHotKey(std::ptr::null_mut(), ESC_ID) };
                     esc_active = false;
                 }
-                show_pill(&pill, "Обработка", false, false);
+                show_pill(&pill, "Обработка", false, false, target);
                 if let Some(recording) = capture.take() {
                     let request_mode = mode
                         .take()
@@ -358,30 +388,45 @@ fn run(
                                 None,
                                 settings.keep_history_forever,
                             ) {
-                                show_error(
+                                show_error_at(
                                     &alert,
                                     format!("Не удалось сохранить историю: {error}"),
+                                    -1,
                                 );
                             }
                             match paste_text_if_foreground(&output.final_text, target) {
-                                Ok(()) => show_pill(&pill, "Вставлено", false, true),
+                                Ok(()) => show_pill(&pill, "Вставлено", false, true, target),
                                 Err(error) => {
-                                    show_error(
+                                    show_error_at(
                                         &alert,
                                         format!(
                                             "Вставка не удалась: {error}. Текст в буфере — нажми Ctrl+V."
                                         ),
+                                        -1,
                                     );
-                                    show_pill(&pill, "Готово", false, true);
+                                    show_pill(&pill, "Готово", false, true, target);
                                 }
                             }
                         }
                         Err(error) => {
                             show_error(&alert, error);
-                            show_pill(&pill, "Ошибка", false, true);
+                            show_pill(&pill, "Ошибка", false, true, target);
                         }
                     }
                 }
+                // Key presses made while ASR/LLM was busy must not start an
+                // unexpected new recording when this worker becomes idle.
+                let mut queued = std::mem::MaybeUninit::<Message>::uninit();
+                while unsafe {
+                    PeekMessageW(
+                        queued.as_mut_ptr(),
+                        std::ptr::null_mut(),
+                        WM_HOTKEY,
+                        WM_HOTKEY,
+                        1,
+                    )
+                } != 0
+                {}
                 controller.finalization_ended();
                 if pending_reload {
                     reload_settings(&mut settings, &mut active, &alert);
@@ -395,7 +440,7 @@ fn run(
                 }
                 capture = None;
                 mode = None;
-                show_pill(&pill, "Отменено", false, true);
+                show_pill(&pill, "Отменено", false, true, target);
                 if pending_reload {
                     reload_settings(&mut settings, &mut active, &alert);
                     pending_reload = false;
@@ -438,14 +483,23 @@ fn save_history(
     Ok(())
 }
 
-fn show_pill(pill: &slint::Weak<RecordingPill>, label: &str, recording: bool, auto_hide: bool) {
+fn show_pill(
+    pill: &slint::Weak<RecordingPill>,
+    label: &str,
+    recording: bool,
+    auto_hide: bool,
+    target: usize,
+) {
     let pill = pill.clone();
     let label = label.to_owned();
     let _ = slint::invoke_from_event_loop(move || {
         if let Some(panel) = pill.upgrade() {
+            let generation = panel.get_generation() + 1;
+            panel.set_generation(generation);
             panel.set_status_text(label.into());
             panel.set_recording(recording);
             let _ = panel.show();
+            let _ = windows_focus::place_near_screen_edge(panel.window(), false, target);
             let weak = panel.as_weak();
             slint::Timer::single_shot(Duration::from_millis(10), move || {
                 if let Some(panel) = weak.upgrade() {
@@ -456,7 +510,9 @@ fn show_pill(pill: &slint::Weak<RecordingPill>, label: &str, recording: bool, au
                 let weak = panel.as_weak();
                 slint::Timer::single_shot(Duration::from_secs(2), move || {
                     if let Some(panel) = weak.upgrade() {
-                        let _ = panel.hide();
+                        if panel.get_generation() == generation {
+                            let _ = panel.hide();
+                        }
                     }
                 });
             }
@@ -465,15 +521,25 @@ fn show_pill(pill: &slint::Weak<RecordingPill>, label: &str, recording: bool, au
 }
 
 fn show_error(alert: &slint::Weak<AssistantPanel>, message: String) {
+    show_error_at(alert, message, 0);
+}
+
+fn show_error_at(alert: &slint::Weak<AssistantPanel>, message: String, page: i32) {
     let alert = alert.clone();
     let _ = slint::invoke_from_event_loop(move || {
         if let Some(panel) = alert.upgrade() {
+            let generation = panel.get_generation() + 1;
+            panel.set_generation(generation);
             panel.set_panel_title("Ошибка".into());
             panel.set_answer_text(message.into());
-            panel.set_panel_footer(
-                "Если текст сохранён в буфере, его можно вставить вручную".into(),
-            );
+            panel.set_error_page(page);
+            panel.set_panel_footer(if page >= 0 {
+                "Нажми на сообщение, чтобы открыть нужный раздел настроек".into()
+            } else {
+                "Если текст сохранён в буфере, его можно вставить вручную".into()
+            });
             let _ = panel.show();
+            let _ = windows_focus::place_near_screen_edge(panel.window(), true, 0);
             let weak = panel.as_weak();
             slint::Timer::single_shot(Duration::from_millis(10), move || {
                 if let Some(panel) = weak.upgrade() {
@@ -483,7 +549,9 @@ fn show_error(alert: &slint::Weak<AssistantPanel>, message: String) {
             let weak = panel.as_weak();
             slint::Timer::single_shot(Duration::from_secs(4), move || {
                 if let Some(panel) = weak.upgrade() {
-                    let _ = panel.hide();
+                    if panel.get_generation() == generation {
+                        let _ = panel.hide();
+                    }
                 }
             });
         }

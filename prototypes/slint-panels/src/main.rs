@@ -18,10 +18,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let recording = RecordingPill::new()?;
     let settings = SettingsPanel::new()?;
     let history = HistoryPanel::new()?;
+    #[cfg(windows)]
+    let about = AboutPanel::new()?;
     settings_ui::initialize(&settings)?;
     history_ui::initialize(&history, &settings);
     #[cfg(windows)]
-    let _tray = tray::initialize(settings.as_weak(), history.as_weak())?;
+    let _tray = tray::initialize(settings.as_weak(), history.as_weak(), about.as_weak())?;
 
     // These positions only make the two independent windows easy to inspect in
     // the prototype. Production placement will use the active monitor geometry.
@@ -47,6 +49,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let _ = panel.hide();
         }
     });
+    let settings_weak = settings.as_weak();
+    let assistant_weak = assistant.as_weak();
+    assistant.on_open_error_settings(move || {
+        if let (Some(settings), Some(alert)) = (settings_weak.upgrade(), assistant_weak.upgrade()) {
+            settings.set_page(alert.get_error_page());
+            let _ = settings.show();
+            let _ = alert.hide();
+        }
+    });
 
     #[cfg(windows)]
     let focus_probe = foreground_before.is_some();
@@ -68,7 +79,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     #[cfg(windows)]
-    {
+    if focus_probe {
         let assistant_weak = assistant.as_weak();
         let recording_weak = recording.as_weak();
         // Slint's native handles are available only after the event loop has

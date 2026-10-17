@@ -31,6 +31,8 @@ pub enum PipelineError {
     NoLocalModel,
     NoApiKey,
     NoModelFor(CloudTask),
+    EmptyTranscription,
+    EmptyResult,
     Audio(std::io::Error),
     Speech(SpeechError),
     Cloud(CloudError),
@@ -46,6 +48,8 @@ impl fmt::Display for PipelineError {
             Self::NoLocalModel => write!(f, "no local CTranslate2 Whisper model was found"),
             Self::NoApiKey => write!(f, "OpenAI API key is not configured"),
             Self::NoModelFor(task) => write!(f, "no OpenAI model selected for {task:?}"),
+            Self::EmptyTranscription => write!(f, "speech was not recognized"),
+            Self::EmptyResult => write!(f, "text processing returned no text"),
             Self::Audio(error) => write!(f, "audio preparation failed: {error}"),
             Self::Speech(error) => write!(f, "local recognition failed: {error}"),
             Self::Cloud(error) => write!(f, "cloud recognition failed: {error}"),
@@ -144,6 +148,9 @@ impl DictationPipeline {
             }
         };
         let recognized = apply_dictionary(&recognized, settings);
+        if recognized.trim().is_empty() {
+            return Err(PipelineError::EmptyTranscription);
+        }
         on_recognized(&recognized);
         self.process_recognized(&recognized, settings, api_key, mode)
     }
@@ -190,6 +197,12 @@ impl DictationPipeline {
             recognized: recognized.clone(),
             source: Box::new(source),
         })?;
+        if final_text.trim().is_empty() {
+            return Err(PipelineError::Processing {
+                recognized,
+                source: Box::new(PipelineError::EmptyResult),
+            });
+        }
         Ok(DictationResult {
             recognized,
             final_text,
@@ -252,5 +265,17 @@ mod tests {
             result,
             Err(PipelineError::Processing { recognized, .. }) if recognized == "проверь OpenAI"
         ));
+    }
+
+    #[test]
+    fn empty_result_cannot_be_pasted_over_selected_text() {
+        let pipeline = DictationPipeline::new().unwrap();
+        let result = pipeline.process_recognized(
+            "  ",
+            &Settings::default(),
+            None,
+            DictationMode::Style(DictationStyle::Raw),
+        );
+        assert!(matches!(result, Err(PipelineError::Processing { .. })));
     }
 }

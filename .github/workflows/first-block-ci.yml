@@ -36,5 +36,5 @@ jobs:
         run: cargo test --locked --manifest-path crates/speakcursor-speech/Cargo.toml
       - name: Check dictation pipeline
         run: cargo test --locked --manifest-path crates/speakcursor-dictation/Cargo.toml
-      - name: Check Windows application
-        run: cargo check --locked --manifest-path prototypes/slint-panels/Cargo.toml
+      - name: Build Windows executable
+        run: cargo build --release --locked --manifest-path prototypes/slint-panels/Cargo.toml

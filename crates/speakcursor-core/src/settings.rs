@@ -163,11 +163,12 @@ impl Settings {
         if self.language.trim().is_empty() {
             return Err(SettingsError::InvalidValue("language is empty".into()));
         }
-        if self.default_style == DictationStyle::Custom
+        if (self.default_style == DictationStyle::Custom
+            || self.style_shortcuts.contains_key(&DictationStyle::Custom))
             && self.custom_style_prompt.trim().is_empty()
         {
             return Err(SettingsError::InvalidValue(
-                "default custom style needs a prompt".into(),
+                "custom style needs a prompt".into(),
             ));
         }
         if self

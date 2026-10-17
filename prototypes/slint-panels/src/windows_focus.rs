@@ -15,6 +15,24 @@ const SWP_NOSIZE: u32 = 0x0001;
 const SWP_NOMOVE: u32 = 0x0002;
 const SWP_NOACTIVATE: u32 = 0x0010;
 const SWP_FRAMECHANGED: u32 = 0x0020;
+const MONITOR_DEFAULTTONEAREST: u32 = 2;
+
+#[repr(C)]
+#[derive(Clone, Copy, Default)]
+struct Rect {
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+}
+
+#[repr(C)]
+struct MonitorInfo {
+    size: u32,
+    monitor: Rect,
+    work: Rect,
+    flags: u32,
+}
 
 #[link(name = "user32")]
 unsafe extern "system" {
@@ -30,6 +48,42 @@ unsafe extern "system" {
         height: i32,
         flags: u32,
     ) -> i32;
+    fn MonitorFromWindow(hwnd: Hwnd, flags: u32) -> Hwnd;
+    fn GetMonitorInfoW(monitor: Hwnd, info: *mut MonitorInfo) -> i32;
+}
+
+pub fn place_near_screen_edge(
+    window: &slint::Window,
+    top: bool,
+    target_window: usize,
+) -> io::Result<()> {
+    let foreground = if target_window != 0 {
+        target_window as Hwnd
+    } else {
+        unsafe { GetForegroundWindow() }
+    };
+    let monitor = unsafe { MonitorFromWindow(foreground, MONITOR_DEFAULTTONEAREST) };
+    if monitor.is_null() {
+        return Err(io::Error::last_os_error());
+    }
+    let mut info = MonitorInfo {
+        size: std::mem::size_of::<MonitorInfo>() as u32,
+        monitor: Rect::default(),
+        work: Rect::default(),
+        flags: 0,
+    };
+    if unsafe { GetMonitorInfoW(monitor, &mut info) } == 0 {
+        return Err(io::Error::last_os_error());
+    }
+    let size = window.size();
+    let x = info.work.left + (info.work.right - info.work.left - size.width as i32) / 2;
+    let y = if top {
+        info.work.top + 10
+    } else {
+        info.work.bottom - size.height as i32 - 10
+    };
+    window.set_position(slint::PhysicalPosition::new(x, y));
+    Ok(())
 }
 
 pub fn foreground_window() -> isize {

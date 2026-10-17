@@ -5,7 +5,7 @@ use tray_icon::{
     menu::{Menu, MenuEvent, MenuItem},
 };
 
-use crate::{HistoryPanel, SettingsPanel};
+use crate::{AboutPanel, HistoryPanel, SettingsPanel};
 
 pub struct TrayRuntime {
     _icon: TrayIcon,
@@ -15,14 +15,17 @@ pub struct TrayRuntime {
 pub fn initialize(
     settings: slint::Weak<SettingsPanel>,
     history: slint::Weak<HistoryPanel>,
+    about: slint::Weak<AboutPanel>,
 ) -> Result<TrayRuntime, Box<dyn Error>> {
     let open_settings = MenuItem::new("Настройки", true, None);
     let open_history = MenuItem::new("История", true, None);
+    let open_about = MenuItem::new("О программе", true, None);
     let exit = MenuItem::new("Выход", true, None);
     let settings_id = open_settings.id().clone();
     let history_id = open_history.id().clone();
+    let about_id = open_about.id().clone();
     let exit_id = exit.id().clone();
-    let menu = Menu::with_items(&[&open_settings, &open_history, &exit])?;
+    let menu = Menu::with_items(&[&open_settings, &open_history, &open_about, &exit])?;
     let icon = TrayIconBuilder::new()
         .with_icon(make_icon()?)
         .with_tooltip("SpeakCursor")
@@ -45,6 +48,10 @@ pub fn initialize(
                         let _ = panel.show();
                         panel.set_search_query("".into());
                         panel.invoke_search_changed("".into());
+                    }
+                } else if event.id == about_id {
+                    if let Some(panel) = about.upgrade() {
+                        let _ = panel.show();
                     }
                 } else if event.id == exit_id {
                     let _ = slint::quit_event_loop();
