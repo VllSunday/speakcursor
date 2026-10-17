@@ -2,7 +2,7 @@ import { AboutSlint, Button, CheckBox, ComboBox, LineEdit, ListView, TextEdit } 
 
 export component AssistantPanel inherits Window {
     width: 440px;
-    height: 252px;
+    height: 220px;
     background: transparent;
     no-frame: true;
     always-on-top: true;
@@ -23,9 +23,9 @@ export component AssistantPanel inherits Window {
         x: 14px;
         y: 14px;
         width: 412px;
-        height: 224px;
-        background: #202227;
-        border-radius: 20px;
+        height: 192px;
+        background: #202938;
+        border-radius: 18px;
         drop-shadow-blur: 18px;
         drop-shadow-offset-y: 5px;
         drop-shadow-color: #00000055;
@@ -35,15 +35,15 @@ export component AssistantPanel inherits Window {
             y: 0px;
             width: parent.width;
             height: 38px;
-            background: #34363b;
-            border-radius: 20px;
+            background: #293a59;
+            border-radius: 18px;
         }
         Rectangle {
             x: 0px;
             y: 20px;
             width: parent.width;
             height: 18px;
-            background: #34363b;
+            background: #293a59;
         }
         Rectangle {
             x: 16px;
@@ -58,7 +58,7 @@ export component AssistantPanel inherits Window {
             y: 10px;
             width: 318px;
             height: 20px;
-            text: "SpeakCursor · ассистент";
+            text: "SpeakCursor";
             font-size: 13px;
             font-weight: 600;
             color: #f1f3f7;
@@ -92,9 +92,9 @@ export component AssistantPanel inherits Window {
         }
         Text {
             x: 18px;
-            y: 82px;
+            y: 78px;
             width: 374px;
-            height: 83px;
+            height: 76px;
             text: root.answer-text;
             wrap: word-wrap;
             font-size: 15px;
@@ -102,14 +102,14 @@ export component AssistantPanel inherits Window {
         }
         Rectangle {
             x: 18px;
-            y: 180px;
+            y: 158px;
             width: 376px;
             height: 1px;
-            background: #45474d;
+            background: #3a4961;
         }
         if !root.processing-failure: Text {
             x: 18px;
-            y: 190px;
+            y: 168px;
             width: 376px;
             height: 20px;
             text: root.panel-footer;
@@ -117,17 +117,17 @@ export component AssistantPanel inherits Window {
             color: #a3a9b4;
         }
         if root.processing-failure: Button {
-            x: 18px; y: 184px; width: 120px; height: 32px;
+            x: 18px; y: 162px; width: 120px; height: 28px;
             text: "Повторить";
             clicked => { root.retry-processing(); }
         }
         if root.processing-failure: Button {
-            x: 146px; y: 184px; width: 142px; height: 32px;
+            x: 146px; y: 162px; width: 142px; height: 28px;
             text: "Вставить исходный";
             clicked => { root.insert-original(); }
         }
         if root.processing-failure: Button {
-            x: 296px; y: 184px; width: 98px; height: 32px;
+            x: 296px; y: 162px; width: 98px; height: 28px;
             text: "Настройки";
             clicked => { root.open-error-settings(); }
         }
@@ -229,16 +229,17 @@ export component RecordingPill inherits Window {
 }
 
 export component SettingsPanel inherits Window {
-    width: 640px;
-    height: 610px;
+    width: 800px;
+    height: 650px;
     title: "SpeakCursor — настройки";
-    background: #202227;
+    background: #f3f6fb;
 
     in-out property <int> page: 0;
     in-out property <bool> use-cloud: false;
     in-out property <string> compute-choice: "CPU";
     in-out property <bool> launch-at-login: true;
     in-out property <string> local-model-path: "";
+    in-out property <string> model-status: "Локальная модель не выбрана";
     in-out property <string> api-key-input: "";
     in-out property <bool> show-api-key: false;
     in-out property <string> language-code: "auto";
@@ -266,110 +267,133 @@ export component SettingsPanel inherits Window {
     callback open-history();
     callback choose-model-folder();
 
-    Text {
-        x: 24px; y: 16px; width: 590px; height: 30px;
-        text: "Настройки диктовки";
-        color: white; font-size: 23px; font-weight: 700;
+    Rectangle { x: 0px; y: 0px; width: parent.width; height: 88px; background: #1e315b; }
+    Rectangle { x: 28px; y: 24px; width: 38px; height: 38px; border-radius: 12px; background: #689cff;
+        Text { x: 0px; y: 0px; width: parent.width; height: parent.height; text: "S"; color: white; font-size: 23px; font-weight: 700; horizontal-alignment: center; vertical-alignment: center; }
     }
-    Button { x: 24px; y: 55px; width: 132px; text: "Распознавание"; clicked => { root.page = 0; } }
-    Button { x: 160px; y: 55px; width: 100px; text: "Модели"; clicked => { root.page = 4; root.refresh-models(); } }
-    Button { x: 264px; y: 55px; width: 85px; text: "Стили"; clicked => { root.page = 1; } }
-    Button { x: 353px; y: 55px; width: 124px; text: "Сочетания"; clicked => { root.page = 2; } }
-    Button { x: 481px; y: 55px; width: 115px; text: "Приложение"; clicked => { root.page = 3; } }
+    Text { x: 78px; y: 20px; width: 510px; height: 30px; text: "SpeakCursor"; color: white; font-size: 24px; font-weight: 700; }
+    Text { x: 79px; y: 53px; width: 530px; height: 19px; text: "Диктовка и обработка речи · Windows"; color: #c8d8fa; font-size: 13px; }
+    Rectangle { x: 24px; y: 105px; width: 750px; height: 42px; border-radius: 12px; background: #e6ecf5; }
+    Rectangle { x: 29px; y: 109px; width: 147px; height: 34px; border-radius: 9px; background: root.page == 0 ? white : transparent;
+        Text { width: parent.width; height: parent.height; text: "Распознавание"; color: #223453; font-weight: root.page == 0 ? 700 : 500; horizontal-alignment: center; vertical-alignment: center; }
+        TouchArea { width: parent.width; height: parent.height; clicked => { root.page = 0; } }
+    }
+    Rectangle { x: 181px; y: 109px; width: 116px; height: 34px; border-radius: 9px; background: root.page == 4 ? white : transparent;
+        Text { width: parent.width; height: parent.height; text: "Модели API"; color: #223453; font-weight: root.page == 4 ? 700 : 500; horizontal-alignment: center; vertical-alignment: center; }
+        TouchArea { width: parent.width; height: parent.height; clicked => { root.page = 4; root.refresh-models(); } }
+    }
+    Rectangle { x: 302px; y: 109px; width: 102px; height: 34px; border-radius: 9px; background: root.page == 1 ? white : transparent;
+        Text { width: parent.width; height: parent.height; text: "Стили"; color: #223453; font-weight: root.page == 1 ? 700 : 500; horizontal-alignment: center; vertical-alignment: center; }
+        TouchArea { width: parent.width; height: parent.height; clicked => { root.page = 1; } }
+    }
+    Rectangle { x: 409px; y: 109px; width: 134px; height: 34px; border-radius: 9px; background: root.page == 2 ? white : transparent;
+        Text { width: parent.width; height: parent.height; text: "Сочетания"; color: #223453; font-weight: root.page == 2 ? 700 : 500; horizontal-alignment: center; vertical-alignment: center; }
+        TouchArea { width: parent.width; height: parent.height; clicked => { root.page = 2; } }
+    }
+    Rectangle { x: 548px; y: 109px; width: 142px; height: 34px; border-radius: 9px; background: root.page == 3 ? white : transparent;
+        Text { width: parent.width; height: parent.height; text: "Приложение"; color: #223453; font-weight: root.page == 3 ? 700 : 500; horizontal-alignment: center; vertical-alignment: center; }
+        TouchArea { width: parent.width; height: parent.height; clicked => { root.page = 3; } }
+    }
+
+    Rectangle { x: 24px; y: 158px; width: 750px; height: 422px; border-radius: 16px; background: white; border-width: 1px; border-color: #dfe7f1; }
 
     if root.page == 0: Rectangle {
-        x: 24px; y: 105px; width: 590px; height: 400px;
+        x: 48px; y: 180px; width: 704px; height: 380px;
         background: transparent;
-        CheckBox { x: 0px; y: 0px; text: "Распознавание через OpenAI вместо локальной модели"; checked <=> root.use-cloud; }
-        ComboBox { x: 400px; y: 34px; width: 180px; model: ["CPU", "NVIDIA GPU"]; current-value <=> root.compute-choice; }
-        Text { x: 0px; y: 42px; text: "Каталог локальной модели CTranslate2"; color: white; }
-        LineEdit { x: 0px; y: 65px; width: 465px; text <=> root.local-model-path; }
-        Button { x: 470px; y: 65px; width: 110px; text: "Выбрать"; clicked => { root.choose-model-folder(); } }
-        Text { x: 0px; y: 105px; text: "Ключ OpenAI (после сохранения скрыт)"; color: white; }
-        LineEdit { x: 0px; y: 128px; width: 340px; text <=> root.api-key-input; input-type: root.show-api-key ? text : password; }
-        Button { x: 345px; y: 128px; width: 110px; text: root.show-api-key ? "Скрыть" : "Показать"; clicked => { root.show-key-requested(); } }
-        Button { x: 460px; y: 128px; width: 120px; text: "Удалить ключ"; clicked => { root.delete-key-requested(); } }
-        Text { x: 0px; y: 170px; text: "Язык: auto или код языка"; color: white; }
-        LineEdit { x: 0px; y: 192px; width: 160px; text <=> root.language-code; }
-        Text { x: 0px; y: 238px; width: 580px; height: 70px; text: "Один ключ используется для облачного распознавания и всех стилей. Модель для каждой задачи выбирается отдельно в разделе «Модели»."; color: #c4c8d0; wrap: word-wrap; }
+        Text { x: 0px; y: 0px; text: "Источник речи"; color: #172846; font-size: 19px; font-weight: 700; }
+        Text { x: 0px; y: 29px; text: "Выбери, где распознавать речь. Обработка стилями настраивается отдельно."; color: #627188; font-size: 13px; }
+        CheckBox { x: 0px; y: 59px; text: "Распознавать через OpenAI"; checked <=> root.use-cloud; }
+        Text { x: 0px; y: 105px; text: "Локальная модель CTranslate2"; color: #172846; font-weight: 600; }
+        ComboBox { x: 518px; y: 99px; width: 170px; model: ["CPU", "NVIDIA GPU"]; current-value <=> root.compute-choice; }
+        LineEdit { x: 0px; y: 131px; width: 570px; text <=> root.local-model-path; edited(text) => { root.model-status = "Путь изменён · сохрани настройки для выбора модели"; } }
+        Button { x: 580px; y: 131px; width: 108px; text: "Выбрать…"; clicked => { root.choose-model-folder(); } }
+        Text { x: 0px; y: 173px; width: 680px; height: 48px; text: root.model-status; color: #2865ad; font-size: 13px; wrap: word-wrap; }
+        Rectangle { x: 0px; y: 223px; width: 688px; height: 1px; background: #e4eaf3; }
+        Text { x: 0px; y: 237px; text: "Ключ OpenAI"; color: #172846; font-weight: 600; }
+        LineEdit { x: 0px; y: 263px; width: 420px; text <=> root.api-key-input; input-type: root.show-api-key ? text : password; }
+        Button { x: 426px; y: 263px; width: 116px; text: root.show-api-key ? "Скрыть" : "Показать"; clicked => { root.show-key-requested(); } }
+        Button { x: 548px; y: 263px; width: 140px; text: "Удалить ключ"; clicked => { root.delete-key-requested(); } }
+        Text { x: 0px; y: 318px; text: "Язык речи"; color: #172846; }
+        LineEdit { x: 130px; y: 312px; width: 130px; text <=> root.language-code; }
+        Text { x: 280px; y: 319px; text: "auto — определить автоматически"; color: #627188; font-size: 12px; }
     }
 
     if root.page == 4: Rectangle {
-        x: 24px; y: 105px; width: 590px; height: 400px;
+        x: 48px; y: 182px; width: 704px; height: 380px;
         background: transparent;
         Button { x: 0px; y: 0px; width: 190px; text: "Обновить список"; clicked => { root.refresh-models(); } }
-        Text { x: 205px; y: 4px; width: 375px; text: "После выбора модель проверяется при сохранении"; color: #c4c8d0; }
-        Text { x: 0px; y: 55px; text: "Распознавание речи"; color: white; }
+        Text { x: 205px; y: 4px; width: 375px; text: "После выбора модель проверяется при сохранении"; color: #627188; }
+        Text { x: 0px; y: 55px; text: "Распознавание речи"; color: #172846; }
         LineEdit { x: 0px; y: 80px; width: 335px; text <=> root.asr-model; }
         ComboBox { x: 345px; y: 80px; width: 235px; model: root.transcription-model-options; selected(value) => { root.asr-model = value; } }
-        Text { x: 0px; y: 145px; text: "Обработка текста и стили"; color: white; }
+        Text { x: 0px; y: 145px; text: "Обработка текста и стили"; color: #172846; }
         LineEdit { x: 0px; y: 170px; width: 335px; text <=> root.processing-model; }
         ComboBox { x: 345px; y: 170px; width: 235px; model: root.text-model-options; selected(value) => { root.processing-model = value; } }
-        Text { x: 0px; y: 235px; text: "Промпт-инженер"; color: white; }
+        Text { x: 0px; y: 235px; text: "Промпт-инженер"; color: #172846; }
         LineEdit { x: 0px; y: 260px; width: 335px; text <=> root.prompt-model; }
         ComboBox { x: 345px; y: 260px; width: 235px; model: root.text-model-options; selected(value) => { root.prompt-model = value; } }
-        Text { x: 0px; y: 325px; width: 580px; height: 64px; text: "Список показывает подходящие семейства моделей из каталога OpenAI. Если нужной модели в списке нет, впиши её ID вручную: сохранение проверит реальный запрос к API."; color: #c4c8d0; wrap: word-wrap; }
+        Text { x: 0px; y: 325px; width: 580px; height: 64px; text: "Список показывает подходящие семейства моделей из каталога OpenAI. Если нужной модели в списке нет, впиши её ID вручную: сохранение проверит реальный запрос к API."; color: #627188; wrap: word-wrap; }
     }
 
     if root.page == 1: Rectangle {
-        x: 24px; y: 105px; width: 590px; height: 400px;
+        x: 48px; y: 182px; width: 704px; height: 380px;
         background: transparent;
-        Text { x: 0px; y: 0px; text: "Стиль для основного сочетания"; color: white; }
+        Text { x: 0px; y: 0px; text: "Стиль для основного сочетания"; color: #172846; }
         ComboBox {
             x: 0px; y: 28px; width: 340px;
             model: ["Без обработки", "Пунктуация и ошибки", "ТЗ / README", "Свой стиль"];
             current-value <=> root.default-style-name;
         }
-        Text { x: 0px; y: 83px; text: "Промпт своего стиля"; color: white; }
+        Text { x: 0px; y: 83px; text: "Промпт своего стиля"; color: #172846; }
         TextEdit { x: 0px; y: 111px; width: 580px; height: 76px; text <=> root.custom-prompt; }
         Text {
             x: 0px; y: 197px; width: 580px;
             text: "Без обработки работает без LLM. Другие стили используют выбранную модель обработки.";
-            color: #c4c8d0; wrap: word-wrap;
+            color: #627188; wrap: word-wrap;
         }
-        Text { x: 0px; y: 252px; text: "Словарь замен — по одной паре на строку: как услышано = как написать"; color: white; }
+        Text { x: 0px; y: 252px; text: "Словарь замен — по одной паре на строку: как услышано = как написать"; color: #172846; }
         TextEdit { x: 0px; y: 278px; width: 580px; height: 106px; text <=> root.dictionary-rules; }
     }
 
     if root.page == 2: Rectangle {
-        x: 24px; y: 105px; width: 590px; height: 400px;
+        x: 48px; y: 182px; width: 704px; height: 380px;
         background: transparent;
-        Text { x: 0px; y: 0px; text: "Основная диктовка"; color: white; }
+        Text { x: 0px; y: 0px; text: "Основная диктовка"; color: #172846; }
         LineEdit { x: 310px; y: 0px; width: 270px; text <=> root.general-shortcut; }
-        Text { x: 0px; y: 45px; text: "Без обработки"; color: white; }
+        Text { x: 0px; y: 45px; text: "Без обработки"; color: #172846; }
         LineEdit { x: 310px; y: 45px; width: 270px; text <=> root.raw-shortcut; }
-        Text { x: 0px; y: 90px; text: "Пунктуация и ошибки"; color: white; }
+        Text { x: 0px; y: 90px; text: "Пунктуация и ошибки"; color: #172846; }
         LineEdit { x: 310px; y: 90px; width: 270px; text <=> root.proofread-shortcut; }
-        Text { x: 0px; y: 135px; text: "ТЗ / README"; color: white; }
+        Text { x: 0px; y: 135px; text: "ТЗ / README"; color: #172846; }
         LineEdit { x: 310px; y: 135px; width: 270px; text <=> root.structure-shortcut; }
-        Text { x: 0px; y: 180px; text: "Свой стиль"; color: white; }
+        Text { x: 0px; y: 180px; text: "Свой стиль"; color: #172846; }
         LineEdit { x: 310px; y: 180px; width: 270px; text <=> root.custom-shortcut; }
-        Text { x: 0px; y: 225px; text: "Промпт-инженер"; color: white; }
+        Text { x: 0px; y: 225px; text: "Промпт-инженер"; color: #172846; }
         LineEdit { x: 310px; y: 225px; width: 270px; text <=> root.prompt-shortcut; }
         Text {
             x: 0px; y: 290px; width: 580px;
             text: "Повтор того же сочетания завершает запись. Esc отменяет.";
-            color: #c4c8d0;
+            color: #627188;
         }
     }
 
     if root.page == 3: Rectangle {
-        x: 24px; y: 105px; width: 590px; height: 400px;
+        x: 48px; y: 182px; width: 704px; height: 380px;
         background: transparent;
         CheckBox { x: 0px; y: 0px; text: "Запускать при входе в Windows"; checked <=> root.launch-at-login; }
         CheckBox { x: 0px; y: 35px; text: "Не удалять историю автоматически"; checked <=> root.keep-history-forever; }
-        Text { x: 0px; y: 80px; text: "Выгружать локальную модель после простоя (минуты)"; color: white; }
+        Text { x: 0px; y: 80px; text: "Выгружать локальную модель после простоя (минуты)"; color: #172846; }
         LineEdit { x: 0px; y: 108px; width: 160px; text <=> root.unload-minutes; }
         Text {
             x: 0px; y: 163px; width: 580px;
             text: "Пустое поле оставляет модель загруженной. Настройки сохраняются локально.";
-            color: #c4c8d0; wrap: word-wrap;
+            color: #627188; wrap: word-wrap;
         }
         Button { x: 0px; y: 230px; width: 190px; text: "Открыть историю"; clicked => { root.open-history(); } }
     }
 
-    Text { x: 24px; y: 517px; width: 430px; height: 42px; text: root.feedback-text; color: #ffcf73; wrap: word-wrap; }
-    Button { x: 464px; y: 522px; width: 150px; text: "Сохранить"; clicked => { root.save-requested(); } }
+    Text { x: 28px; y: 596px; width: 540px; height: 38px; text: root.feedback-text; color: #295f9d; wrap: word-wrap; }
+    Rectangle { x: 620px; y: 592px; width: 154px; height: 40px; border-radius: 10px; background: #2866d8; Text { width: parent.width; height: parent.height; text: "Сохранить"; color: white; font-weight: 700; horizontal-alignment: center; vertical-alignment: center; } TouchArea { width: parent.width; height: parent.height; clicked => { root.save-requested(); } } }
 }
 
 export component AboutPanel inherits Window {
@@ -393,7 +417,7 @@ export component HistoryPanel inherits Window {
     width: 740px;
     height: 580px;
     title: "SpeakCursor — история";
-    background: #202227;
+    background: #f3f6fb;
     in-out property <string> search-query: "";
     in-out property <[HistoryRow]> rows: [];
     in-out property <string> feedback-text: "";
@@ -404,24 +428,27 @@ export component HistoryPanel inherits Window {
     callback retry(int);
     callback clear-all();
 
-    Text { x: 24px; y: 16px; text: "История диктовки"; font-size: 23px; font-weight: 700; color: white; }
-    LineEdit { x: 24px; y: 58px; width: 520px; text <=> root.search-query; edited(text) => { root.search-changed(text); } }
-    Button { x: 554px; y: 58px; width: 160px; text: root.clear-armed ? "Подтвердить" : "Очистить всё"; clicked => { root.clear-all(); } }
-    Text { x: 24px; y: 108px; text: "Исходная расшифровка"; color: white; font-weight: 600; }
-    Text { x: 372px; y: 108px; text: "После обработки"; color: white; font-weight: 600; }
+    Rectangle { x: 0px; y: 0px; width: parent.width; height: 82px; background: #1e315b; }
+    Text { x: 24px; y: 18px; text: "История диктовки"; font-size: 23px; font-weight: 700; color: white; }
+    Text { x: 24px; y: 51px; text: "Найди запись и скопируй нужный вариант текста"; font-size: 13px; color: #c8d8fa; }
+    LineEdit { x: 24px; y: 104px; width: 520px; text <=> root.search-query; edited(text) => { root.search-changed(text); } }
+    Button { x: 554px; y: 104px; width: 160px; text: root.clear-armed ? "Подтвердить" : "Очистить всё"; clicked => { root.clear-all(); } }
+    Text { x: 24px; y: 154px; text: "Исходная расшифровка"; color: #172846; font-weight: 600; }
+    Text { x: 372px; y: 154px; text: "После обработки"; color: #172846; font-weight: 600; }
     ListView {
-        x: 24px; y: 135px; width: 690px; height: 380px;
+        x: 24px; y: 181px; width: 690px; height: 328px;
         for row in root.rows: Rectangle {
-            height: 105px;
+            height: 108px;
             width: parent.width;
-            background: #2b2e35;
+            background: white;
             border-radius: 10px;
-            Text { x: 10px; y: 8px; width: 245px; height: 76px; text: row.original; color: white; wrap: word-wrap; }
+            border-width: 1px; border-color: #e1e8f2;
+            Text { x: 10px; y: 8px; width: 245px; height: 76px; text: row.original; color: #172846; wrap: word-wrap; }
             Button { x: 265px; y: 8px; width: 65px; text: "⧉"; accessible-label: "Скопировать исходный текст"; clicked => { root.copy-original(row.id); } }
-            Text { x: 350px; y: 8px; width: 245px; height: 76px; text: row.processed; color: white; wrap: word-wrap; }
+            Text { x: 350px; y: 8px; width: 245px; height: 76px; text: row.processed; color: #172846; wrap: word-wrap; }
             Button { x: 605px; y: 8px; width: 65px; text: "⧉"; accessible-label: "Скопировать обработанный текст"; clicked => { root.copy-processed(row.id); } }
             if row.failed: Button { x: 350px; y: 75px; width: 130px; text: "Повторить"; clicked => { root.retry(row.id); } }
         }
     }
-    Text { x: 24px; y: 525px; width: 690px; text: root.feedback-text; color: #ffcf73; }
+    Text { x: 24px; y: 528px; width: 690px; text: root.feedback-text; color: #295f9d; }
 }

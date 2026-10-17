@@ -1,3 +1,4 @@
+#[cfg(windows)]
 use std::time::Duration;
 
 use slint::ComponentHandle;
@@ -106,20 +107,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             });
         }
     }
-
-    let mut activity = 0;
-    let recording_weak = recording.as_weak();
-    let timer = slint::Timer::default();
-    timer.start(
-        slint::TimerMode::Repeated,
-        Duration::from_millis(65),
-        move || {
-            if let Some(recording) = recording_weak.upgrade() {
-                activity = (activity + 1) % 8;
-                recording.set_activity(activity);
-            }
-        },
-    );
 
     slint::run_event_loop_until_quit()?;
     Ok(())

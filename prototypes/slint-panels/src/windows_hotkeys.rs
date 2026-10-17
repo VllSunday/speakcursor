@@ -389,6 +389,7 @@ fn run(
     let mut pending_reload = false;
     THREAD_ID.store(unsafe { GetCurrentThreadId() }, Ordering::Release);
     let idle_timer = unsafe { SetTimer(std::ptr::null_mut(), 1, 30_000, std::ptr::null_mut()) };
+    let level_timer = unsafe { SetTimer(std::ptr::null_mut(), 2, 100, std::ptr::null_mut()) };
 
     loop {
         let mut message = std::mem::MaybeUninit::<Message>::uninit();
@@ -398,6 +399,18 @@ fn run(
         let message = unsafe { message.assume_init() };
         if idle_timer != 0 && message.message == WM_TIMER && message.w_param == idle_timer {
             pipeline.unload_if_idle(settings.unload_after_minutes);
+            continue;
+        }
+        if level_timer != 0 && message.message == WM_TIMER && message.w_param == level_timer {
+            if let Some(recording) = &capture {
+                let level = recording.take_activity() as i32;
+                let pill = pill.clone();
+                let _ = slint::invoke_from_event_loop(move || {
+                    if let Some(panel) = pill.upgrade() {
+                        panel.set_activity(level);
+                    }
+                });
+            }
             continue;
         }
         if message.message == WM_RELOAD {
@@ -592,6 +605,9 @@ fn run(
     if idle_timer != 0 {
         unsafe { KillTimer(std::ptr::null_mut(), idle_timer) };
     }
+    if level_timer != 0 {
+        unsafe { KillTimer(std::ptr::null_mut(), level_timer) };
+    }
     if esc_active {
         unsafe { UnregisterHotKey(std::ptr::null_mut(), ESC_ID) };
     }
@@ -636,6 +652,7 @@ fn show_pill(
             panel.set_generation(generation);
             panel.set_status_text(label.into());
             panel.set_recording(recording);
+            panel.set_activity(0);
             let _ = panel.show();
             let _ = windows_focus::place_near_screen_edge(panel.window(), false, target);
             let weak = panel.as_weak();

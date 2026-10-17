@@ -54,6 +54,9 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
             if let Some(path) = rfd::FileDialog::new().pick_folder() {
                 if let Some(panel) = weak.upgrade() {
                     panel.set_local_model_path(path.to_string_lossy().to_string().into());
+                    panel.set_model_status(
+                        "Папка изменена · нажми «Сохранить», чтобы выбрать модель".into(),
+                    );
                 }
             }
         });
@@ -92,8 +95,24 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
                 }
                 Ok(())
             }) {
-                Ok(()) => panel.set_feedback_text("Настройки сохранены".into()),
-                Err(error) => panel.set_feedback_text(error.into()),
+                Ok(()) => {
+                    panel.set_feedback_text("Настройки сохранены".into());
+                    panel.set_model_status(if panel.get_use_cloud() {
+                        "Выбрано распознавание через OpenAI".into()
+                    } else {
+                        format!(
+                            "Выбрана: {} · файлы проверены · загрузится при первой диктовке",
+                            local_model_name(&panel.get_local_model_path())
+                        )
+                        .into()
+                    });
+                }
+                Err(error) => {
+                    panel.set_feedback_text(error.clone().into());
+                    if error.contains("model") || error.contains("модел") {
+                        panel.set_model_status(format!("Модель не выбрана: {error}").into());
+                    }
+                }
             }
         }
     });
@@ -299,13 +318,15 @@ fn fill(panel: &SettingsPanel, settings: &Settings) {
         .into(),
     );
     panel.set_launch_at_login(settings.launch_at_login);
-    let chosen_path = settings
+    let saved_path = settings
         .active_model_id
         .as_ref()
         .and_then(|id| settings.local_models.iter().find(|model| &model.id == id))
         .map(|model| model.path.to_string_lossy().to_string());
+    #[cfg(not(windows))]
+    let chosen_path = saved_path.clone();
     #[cfg(windows)]
-    let chosen_path = chosen_path.or_else(|| {
+    let chosen_path = saved_path.clone().or_else(|| {
         speakcursor_speech::default_hugging_face_hub_cache()
             .and_then(|cache| {
                 speakcursor_speech::find_cached_faster_whisper_model(&cache, "large-v3")
@@ -313,6 +334,32 @@ fn fill(panel: &SettingsPanel, settings: &Settings) {
                     .flatten()
             })
             .map(|path| path.to_string_lossy().to_string())
+    });
+    panel.set_model_status(if settings.recognition_mode == RecognitionMode::OpenAi {
+        "Выбрано распознавание через OpenAI".into()
+    } else if let Some(path) = &saved_path {
+        let folder = PathBuf::from(path);
+        let files_present = [
+            "model.bin",
+            "config.json",
+            "tokenizer.json",
+            "preprocessor_config.json",
+        ]
+        .iter()
+        .all(|name| folder.join(name).is_file());
+        if files_present {
+            format!(
+                "Выбрана: {} · файлы на месте · загрузится при первой диктовке",
+                local_model_name(path)
+            )
+            .into()
+        } else {
+            "Сохранённая модель недоступна · выбери папку с файлами CTranslate2".into()
+        }
+    } else if chosen_path.is_some() {
+        "Найдена модель faster-whisper large-v3 · нажми «Сохранить», чтобы выбрать её".into()
+    } else {
+        "Локальная модель не выбрана · укажи папку с моделью".into()
     });
     panel.set_local_model_path(chosen_path.unwrap_or_default().into());
     panel.set_language_code(settings.language.clone().into());
@@ -354,6 +401,20 @@ fn fill(panel: &SettingsPanel, settings: &Settings) {
     );
 }
 
+fn local_model_name(path: &str) -> String {
+    if let Some(name) = path
+        .split(['/', '\\'])
+        .find_map(|part| part.strip_prefix("models--Systran--faster-whisper-"))
+    {
+        return format!("faster-whisper {name}");
+    }
+    path.trim_end_matches(['/', '\\'])
+        .rsplit(['/', '\\'])
+        .next()
+        .unwrap_or("локальная модель")
+        .to_owned()
+}
+
 fn model(settings: &Settings, task: CloudTask) -> String {
     settings
         .cloud_models
@@ -388,6 +449,11 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
     settings.launch_at_login = panel.get_launch_at_login();
     settings.language = panel.get_language_code().trim().to_owned();
     let model_path = panel.get_local_model_path().trim().to_owned();
+    if settings.recognition_mode == RecognitionMode::Local && model_path.is_empty() {
+        return Err(
+            "Локальная модель не выбрана. Укажи папку CTranslate2 или включи OpenAI".into(),
+        );
+    }
     settings.local_models.retain(|model| model.id != "manual");
     if model_path.is_empty() && settings.active_model_id.as_deref() == Some("manual") {
         settings.active_model_id = None;
