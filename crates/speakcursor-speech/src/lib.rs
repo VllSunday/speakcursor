@@ -27,6 +27,7 @@ pub enum SpeechError {
     Io(std::io::Error),
     MissingModelFile(PathBuf),
     InvalidAudio(&'static str),
+    CudaUnavailable,
     Model(Box<dyn Error + Send + Sync>),
 }
 
@@ -36,6 +37,7 @@ impl fmt::Display for SpeechError {
             Self::Io(error) => write!(f, "model cache I/O error: {error}"),
             Self::MissingModelFile(path) => write!(f, "model file is missing: {}", path.display()),
             Self::InvalidAudio(message) => write!(f, "invalid audio: {message}"),
+            Self::CudaUnavailable => write!(f, "NVIDIA GPU support is not included in this build"),
             Self::Model(error) => write!(f, "speech model error: {error}"),
         }
     }
@@ -50,6 +52,10 @@ pub struct LocalWhisper {
 
 impl LocalWhisper {
     pub fn open(model_dir: &Path, device: ProcessingDevice) -> Result<Self, SpeechError> {
+        #[cfg(not(feature = "cuda"))]
+        if device == ProcessingDevice::Cuda {
+            return Err(SpeechError::CudaUnavailable);
+        }
         validate_model_directory(model_dir)?;
         let config = match device {
             ProcessingDevice::Cpu => Config {
@@ -171,6 +177,13 @@ mod tests {
             validate_model_directory(&path),
             Err(SpeechError::MissingModelFile(_))
         ));
+    }
+
+    #[cfg(not(feature = "cuda"))]
+    #[test]
+    fn gpu_selection_never_silently_runs_on_cpu() {
+        let error = LocalWhisper::open(Path::new("unused"), ProcessingDevice::Cuda);
+        assert!(matches!(error, Err(SpeechError::CudaUnavailable)));
     }
 
     #[test]

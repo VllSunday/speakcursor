@@ -7,5 +7,5 @@ pub use dictation::{
     DictationAction, DictationController, DictationPhase, DictationShortcut, DictationStyle,
 };
 pub use settings::{
-    CloudTask, DictionaryEntry, LocalModel, RecognitionMode, Settings, SettingsError,
+    CloudTask, DictionaryEntry, LocalCompute, LocalModel, RecognitionMode, Settings, SettingsError,
 };

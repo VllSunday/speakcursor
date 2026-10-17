@@ -29,6 +29,14 @@ pub enum RecognitionMode {
     OpenAi,
 }
 
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LocalCompute {
+    #[default]
+    Cpu,
+    NvidiaCuda,
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 pub struct DictionaryEntry {
     pub heard: String,
@@ -48,6 +56,7 @@ pub struct Settings {
     pub local_models: Vec<LocalModel>,
     pub active_model_id: Option<String>,
     pub recognition_mode: RecognitionMode,
+    pub local_compute: LocalCompute,
     pub language: String,
     pub unload_after_minutes: Option<u32>,
     pub default_style: DictationStyle,
@@ -67,6 +76,7 @@ impl Default for Settings {
             local_models: Vec::new(),
             active_model_id: None,
             recognition_mode: RecognitionMode::Local,
+            local_compute: LocalCompute::Cpu,
             language: "auto".into(),
             unload_after_minutes: None,
             default_style: DictationStyle::Raw,

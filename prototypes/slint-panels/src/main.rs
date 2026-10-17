@@ -7,6 +7,8 @@ slint::include_modules!();
 mod history_ui;
 mod settings_ui;
 #[cfg(windows)]
+mod tray;
+#[cfg(windows)]
 mod windows_focus;
 #[cfg(windows)]
 mod windows_hotkeys;
@@ -18,6 +20,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let history = HistoryPanel::new()?;
     settings_ui::initialize(&settings)?;
     history_ui::initialize(&history, &settings);
+    #[cfg(windows)]
+    let _tray = tray::initialize(settings.as_weak(), history.as_weak())?;
 
     // These positions only make the two independent windows easy to inspect in
     // the prototype. Production placement will use the active monitor geometry.

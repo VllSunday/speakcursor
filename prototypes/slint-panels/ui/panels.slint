@@ -210,6 +210,7 @@ export component SettingsPanel inherits Window {
 
     in-out property <int> page: 0;
     in-out property <bool> use-cloud: false;
+    in-out property <string> compute-choice: "CPU";
     in-out property <bool> launch-at-login: true;
     in-out property <string> local-model-path: "";
     in-out property <string> api-key-input: "";
@@ -247,6 +248,7 @@ export component SettingsPanel inherits Window {
         x: 24px; y: 105px; width: 590px; height: 400px;
         background: transparent;
         CheckBox { x: 0px; y: 0px; text: "Распознавание через OpenAI вместо локальной модели"; checked <=> root.use-cloud; }
+        ComboBox { x: 400px; y: 34px; width: 180px; model: ["CPU", "NVIDIA GPU"]; current-value <=> root.compute-choice; }
         Text { x: 0px; y: 42px; text: "Каталог локальной модели CTranslate2"; color: white; }
         LineEdit { x: 0px; y: 65px; width: 580px; text <=> root.local-model-path; }
         Text { x: 0px; y: 105px; text: "Ключ OpenAI (после сохранения скрыт)"; color: white; }

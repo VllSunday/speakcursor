@@ -16,6 +16,7 @@ speakcursor-audio = { path = "../../crates/speakcursor-audio" }
 speakcursor-dictation = { path = "../../crates/speakcursor-dictation" }
 speakcursor-cloud = { path = "../../crates/speakcursor-cloud" }
 speakcursor-speech = { path = "../../crates/speakcursor-speech" }
+tray-icon = { version = "0.26.1", default-features = false }
 
 [build-dependencies]
 slint-build = "=1.18.1"

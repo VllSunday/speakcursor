@@ -3,7 +3,7 @@ use std::path::PathBuf;
 
 use slint::ComponentHandle;
 use speakcursor_core::{
-    CloudTask, DictationStyle, DictionaryEntry, LocalModel, RecognitionMode, Settings,
+    CloudTask, DictationStyle, DictionaryEntry, LocalCompute, LocalModel, RecognitionMode, Settings,
 };
 
 use crate::SettingsPanel;
@@ -164,16 +164,30 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
 
 fn fill(panel: &SettingsPanel, settings: &Settings) {
     panel.set_use_cloud(settings.recognition_mode == RecognitionMode::OpenAi);
-    panel.set_launch_at_login(settings.launch_at_login);
-    panel.set_local_model_path(
-        settings
-            .active_model_id
-            .as_ref()
-            .and_then(|id| settings.local_models.iter().find(|model| &model.id == id))
-            .map(|model| model.path.to_string_lossy().to_string())
-            .unwrap_or_default()
-            .into(),
+    panel.set_compute_choice(
+        match settings.local_compute {
+            LocalCompute::Cpu => "CPU",
+            LocalCompute::NvidiaCuda => "NVIDIA GPU",
+        }
+        .into(),
     );
+    panel.set_launch_at_login(settings.launch_at_login);
+    let chosen_path = settings
+        .active_model_id
+        .as_ref()
+        .and_then(|id| settings.local_models.iter().find(|model| &model.id == id))
+        .map(|model| model.path.to_string_lossy().to_string());
+    #[cfg(windows)]
+    let chosen_path = chosen_path.or_else(|| {
+        speakcursor_speech::default_hugging_face_hub_cache()
+            .and_then(|cache| {
+                speakcursor_speech::find_cached_faster_whisper_model(&cache, "large-v3")
+                    .ok()
+                    .flatten()
+            })
+            .map(|path| path.to_string_lossy().to_string())
+    });
+    panel.set_local_model_path(chosen_path.unwrap_or_default().into());
     panel.set_language_code(settings.language.clone().into());
     panel.set_asr_model(model(settings, CloudTask::SpeechRecognition).into());
     panel.set_processing_model(model(settings, CloudTask::SpeechProcessing).into());
@@ -236,6 +250,11 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
     } else {
         RecognitionMode::Local
     };
+    settings.local_compute = match panel.get_compute_choice().as_str() {
+        "CPU" => LocalCompute::Cpu,
+        "NVIDIA GPU" => LocalCompute::NvidiaCuda,
+        _ => return Err("Неизвестное устройство для локального распознавания".into()),
+    };
     settings.launch_at_login = panel.get_launch_at_login();
     settings.language = panel.get_language_code().trim().to_owned();
     let model_path = panel.get_local_model_path().trim().to_owned();
@@ -244,6 +263,9 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
         settings.active_model_id = None;
     }
     if !model_path.is_empty() {
+        #[cfg(windows)]
+        speakcursor_speech::validate_model_directory(&PathBuf::from(&model_path))
+            .map_err(|error| error.to_string())?;
         settings.local_models.push(LocalModel {
             id: "manual".into(),
             name: "Выбранная модель".into(),

@@ -11,8 +11,8 @@ use std::{
 use slint::ComponentHandle;
 use speakcursor_audio::AudioCapture;
 use speakcursor_core::{
-    DictationAction, DictationController, DictationShortcut, DictationStyle, RecognitionMode,
-    Settings,
+    DictationAction, DictationController, DictationShortcut, DictationStyle, LocalCompute,
+    RecognitionMode, Settings,
 };
 use speakcursor_dictation::{DictationMode, DictationPipeline, PipelineError};
 use speakcursor_history::History;
@@ -202,7 +202,10 @@ fn reload_settings(
                     *settings = next;
                     *active = next_active;
                 }
-                Err(error) => show_error(alert, format!("Не удалось применить сочетания: {error}")),
+                Err(error) => {
+                    *active = register(settings).unwrap_or_default();
+                    show_error(alert, format!("Не удалось применить сочетания: {error}"));
+                }
             }
         }
         Err(error) => show_error(alert, format!("Не удалось загрузить настройки: {error}")),
@@ -215,7 +218,16 @@ fn run(
     settings_panel: slint::Weak<SettingsPanel>,
 ) -> io::Result<()> {
     let mut settings = Settings::load(&settings_ui::settings_path()).map_err(io::Error::other)?;
-    let mut active = register(&settings)?;
+    let mut active = match register(&settings) {
+        Ok(bindings) => bindings,
+        Err(error) => {
+            show_error(
+                &alert,
+                format!("Сочетания недоступны: {error}. Измени их в настройках."),
+            );
+            Vec::new()
+        }
+    };
     if unsafe {
         RegisterHotKey(
             std::ptr::null_mut(),
@@ -317,7 +329,8 @@ fn run(
                         let key = if needs_key {
                             OpenAiKeyStore::new(settings_ui::key_path()).load().map_err(|error| error.to_string())?
                         } else { None };
-                        pipeline.process(&samples, &settings, key.as_deref(), ProcessingDevice::Cpu,
+                        let device = match settings.local_compute { LocalCompute::Cpu => ProcessingDevice::Cpu, LocalCompute::NvidiaCuda => ProcessingDevice::Cuda };
+                        pipeline.process(&samples, &settings, key.as_deref(), device,
                             request_mode)
                             .map_err(|error| match error {
                                 PipelineError::Processing { recognized, source } => {
