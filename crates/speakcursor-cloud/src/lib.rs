@@ -7,6 +7,7 @@ use std::time::Duration;
 
 use reqwest::blocking::{Client, multipart};
 use serde_json::{Value, json};
+use speakcursor_audio::encode_wav_16khz_mono;
 use speakcursor_core::DictationStyle;
 
 const API_BASE: &str = "https://api.openai.com/v1";
@@ -103,6 +104,27 @@ impl OpenAiClient {
             .as_str()
             .map(str::to_owned)
             .ok_or(CloudError::UnexpectedResponse)
+    }
+
+    /// Performs a short real request so settings can reject a model that is
+    /// listed on the account but cannot perform speech transcription.
+    pub fn verify_transcription_model(&self, key: &str, model: &str) -> Result<(), CloudError> {
+        let wav = encode_wav_16khz_mono(&vec![0.0; 16_000])
+            .map_err(|_| CloudError::UnexpectedResponse)?;
+        self.transcribe_wav(key, model, wav, "auto").map(|_| ())
+    }
+
+    /// Verifies that the chosen model accepts a Responses API text request.
+    pub fn verify_text_model(&self, key: &str, model: &str) -> Result<(), CloudError> {
+        check_key_and_model(key, model)?;
+        let response = self
+            .http
+            .post(format!("{API_BASE}/responses"))
+            .bearer_auth(key)
+            .json(&json!({"model": model, "input": "Return OK.", "max_output_tokens": 64}))
+            .send()
+            .map_err(CloudError::Transport)?;
+        checked_json(response).map(|_| ())
     }
 
     pub fn process_dictation(

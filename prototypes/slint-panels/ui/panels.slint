@@ -1,4 +1,4 @@
-import { Button, CheckBox, ComboBox, LineEdit } from "std-widgets.slint";
+import { Button, CheckBox, ComboBox, LineEdit, ListView, TextEdit } from "std-widgets.slint";
 
 export component AssistantPanel inherits Window {
     width: 440px;
@@ -219,6 +219,7 @@ export component SettingsPanel inherits Window {
     in-out property <string> prompt-model: "";
     in-out property <string> default-style-name: "Без обработки";
     in-out property <string> custom-prompt: "";
+    in-out property <string> dictionary-rules: "";
     in-out property <string> general-shortcut: "Ctrl+Alt+F8";
     in-out property <string> raw-shortcut: "";
     in-out property <string> proofread-shortcut: "";
@@ -226,9 +227,11 @@ export component SettingsPanel inherits Window {
     in-out property <string> custom-shortcut: "";
     in-out property <string> prompt-shortcut: "Ctrl+Alt+F9";
     in-out property <string> unload-minutes: "";
+    in-out property <bool> keep-history-forever: false;
     in-out property <string> feedback-text: "";
     callback save-requested();
     callback delete-key-requested();
+    callback open-history();
 
     Text {
         x: 24px; y: 16px; width: 590px; height: 30px;
@@ -257,6 +260,7 @@ export component SettingsPanel inherits Window {
         LineEdit { x: 310px; y: 273px; width: 270px; text <=> root.processing-model; }
         Text { x: 0px; y: 321px; text: "Модель промпт-инженера"; color: white; }
         LineEdit { x: 310px; y: 316px; width: 270px; text <=> root.prompt-model; }
+        Text { x: 0px; y: 365px; width: 580px; height: 32px; text: "При сохранении выполняются короткие API-запросы для проверки выбранных моделей."; color: #c4c8d0; wrap: word-wrap; }
     }
 
     if root.page == 1: Rectangle {
@@ -275,6 +279,8 @@ export component SettingsPanel inherits Window {
             text: "Без обработки работает без LLM. Другие стили используют выбранную модель обработки.";
             color: #c4c8d0; wrap: word-wrap;
         }
+        Text { x: 0px; y: 220px; text: "Словарь замен — по одной паре на строку: как услышано = как написать"; color: white; }
+        TextEdit { x: 0px; y: 246px; width: 580px; height: 138px; text <=> root.dictionary-rules; }
     }
 
     if root.page == 2: Rectangle {
@@ -303,15 +309,61 @@ export component SettingsPanel inherits Window {
         x: 24px; y: 105px; width: 590px; height: 400px;
         background: transparent;
         CheckBox { x: 0px; y: 0px; text: "Запускать при входе в Windows"; checked <=> root.launch-at-login; }
-        Text { x: 0px; y: 62px; text: "Выгружать локальную модель после простоя (минуты)"; color: white; }
-        LineEdit { x: 0px; y: 90px; width: 160px; text <=> root.unload-minutes; }
+        CheckBox { x: 0px; y: 35px; text: "Не удалять историю автоматически"; checked <=> root.keep-history-forever; }
+        Text { x: 0px; y: 80px; text: "Выгружать локальную модель после простоя (минуты)"; color: white; }
+        LineEdit { x: 0px; y: 108px; width: 160px; text <=> root.unload-minutes; }
         Text {
-            x: 0px; y: 145px; width: 580px;
+            x: 0px; y: 163px; width: 580px;
             text: "Пустое поле оставляет модель загруженной. Настройки сохраняются локально.";
             color: #c4c8d0; wrap: word-wrap;
         }
+        Button { x: 0px; y: 230px; width: 190px; text: "Открыть историю"; clicked => { root.open-history(); } }
     }
 
     Text { x: 24px; y: 517px; width: 430px; height: 42px; text: root.feedback-text; color: #ffcf73; wrap: word-wrap; }
     Button { x: 464px; y: 522px; width: 150px; text: "Сохранить"; clicked => { root.save-requested(); } }
+}
+
+export struct HistoryRow {
+    id: int,
+    original: string,
+    processed: string,
+    failed: bool,
+}
+
+export component HistoryPanel inherits Window {
+    width: 740px;
+    height: 580px;
+    title: "SpeakCursor — история";
+    background: #202227;
+    in-out property <string> search-query: "";
+    in-out property <[HistoryRow]> rows: [];
+    in-out property <string> feedback-text: "";
+    in-out property <bool> clear-armed: false;
+    callback search-changed(string);
+    callback copy-original(int);
+    callback copy-processed(int);
+    callback retry(int);
+    callback clear-all();
+
+    Text { x: 24px; y: 16px; text: "История диктовки"; font-size: 23px; font-weight: 700; color: white; }
+    LineEdit { x: 24px; y: 58px; width: 520px; text <=> root.search-query; edited(text) => { root.search-changed(text); } }
+    Button { x: 554px; y: 58px; width: 160px; text: root.clear-armed ? "Подтвердить" : "Очистить всё"; clicked => { root.clear-all(); } }
+    Text { x: 24px; y: 108px; text: "Исходная расшифровка"; color: white; font-weight: 600; }
+    Text { x: 372px; y: 108px; text: "После обработки"; color: white; font-weight: 600; }
+    ListView {
+        x: 24px; y: 135px; width: 690px; height: 380px;
+        for row in root.rows: Rectangle {
+            height: 105px;
+            width: parent.width;
+            background: #2b2e35;
+            border-radius: 10px;
+            Text { x: 10px; y: 8px; width: 245px; height: 76px; text: row.original; color: white; wrap: word-wrap; }
+            Button { x: 265px; y: 8px; width: 65px; text: "Копия"; clicked => { root.copy-original(row.id); } }
+            Text { x: 350px; y: 8px; width: 245px; height: 76px; text: row.processed; color: white; wrap: word-wrap; }
+            Button { x: 605px; y: 8px; width: 65px; text: "Копия"; clicked => { root.copy-processed(row.id); } }
+            if row.failed: Button { x: 350px; y: 75px; width: 130px; text: "Повторить"; clicked => { root.retry(row.id); } }
+        }
+    }
+    Text { x: 24px; y: 525px; width: 690px; text: root.feedback-text; color: #ffcf73; }
 }

@@ -2,7 +2,9 @@ use std::error::Error;
 use std::path::PathBuf;
 
 use slint::ComponentHandle;
-use speakcursor_core::{CloudTask, DictationStyle, LocalModel, RecognitionMode, Settings};
+use speakcursor_core::{
+    CloudTask, DictationStyle, DictionaryEntry, LocalModel, RecognitionMode, Settings,
+};
 
 use crate::SettingsPanel;
 
@@ -22,6 +24,10 @@ pub fn settings_path() -> PathBuf {
     settings_dir().join("settings.json")
 }
 
+pub fn history_path() -> PathBuf {
+    settings_dir().join("history.json")
+}
+
 #[cfg(windows)]
 pub fn key_path() -> PathBuf {
     settings_dir().join("openai-key.dat")
@@ -37,6 +43,10 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
         }
     };
     fill(panel, &loaded);
+    #[cfg(windows)]
+    if let Err(error) = speakcursor_windows::set_launch_at_login(loaded.launch_at_login) {
+        panel.set_feedback_text(format!("Не удалось настроить автозапуск: {error}").into());
+    }
 
     let weak = panel.as_weak();
     let save_path = settings_path.clone();
@@ -50,6 +60,8 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
                     .map_err(|error| error.to_string())?;
                 #[cfg(windows)]
                 {
+                    speakcursor_windows::set_launch_at_login(settings.launch_at_login)
+                        .map_err(|error| error.to_string())?;
                     let new_key = panel.get_api_key_input().to_string();
                     if !new_key.trim().is_empty() {
                         speakcursor_windows::OpenAiKeyStore::new(
@@ -60,6 +72,7 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
                         panel.set_api_key_input("".into());
                     }
                     crate::windows_hotkeys::reload();
+                    verify_cloud_settings(settings, panel.as_weak());
                 }
                 Ok(())
             }) {
@@ -88,6 +101,67 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+#[cfg(windows)]
+fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) {
+    let tasks = [
+        CloudTask::SpeechRecognition,
+        CloudTask::SpeechProcessing,
+        CloudTask::PromptGeneration,
+    ];
+    if !tasks
+        .iter()
+        .any(|task| settings.cloud_models.contains_key(task))
+    {
+        return;
+    }
+    std::thread::spawn(move || {
+        let result = (|| -> Result<(), String> {
+            let key = speakcursor_windows::OpenAiKeyStore::new(key_path())
+                .load()
+                .map_err(|error| error.to_string())?
+                .ok_or("Ключ OpenAI не сохранён")?;
+            let client =
+                speakcursor_cloud::OpenAiClient::new().map_err(|error| error.to_string())?;
+            let available = client
+                .list_models(&key)
+                .map_err(|error| error.to_string())?;
+            let mut checked_text = std::collections::HashSet::new();
+            for task in tasks {
+                if let Some(model) = settings.cloud_models.get(&task) {
+                    if !available.contains(model) {
+                        return Err(format!("Модель {model} не видна для этого ключа"));
+                    }
+                    match task {
+                        CloudTask::SpeechRecognition => client
+                            .verify_transcription_model(&key, model)
+                            .map_err(|error| format!("Модель распознавания: {error}"))?,
+                        CloudTask::SpeechProcessing | CloudTask::PromptGeneration
+                            if checked_text.insert(model.clone()) =>
+                        {
+                            client
+                                .verify_text_model(&key, model)
+                                .map_err(|error| format!("Модель обработки текста: {error}"))?
+                        }
+                        _ => {}
+                    }
+                }
+            }
+            Ok(())
+        })();
+        let _ = slint::invoke_from_event_loop(move || {
+            if let Some(panel) = panel.upgrade() {
+                match result {
+                    Ok(()) => panel.set_feedback_text("Ключ и модели OpenAI проверены".into()),
+                    Err(error) => {
+                        panel.set_page(0);
+                        panel.set_feedback_text(format!("Проверка OpenAI: {error}").into());
+                    }
+                }
+            }
+        });
+    });
+}
+
 fn fill(panel: &SettingsPanel, settings: &Settings) {
     panel.set_use_cloud(settings.recognition_mode == RecognitionMode::OpenAi);
     panel.set_launch_at_login(settings.launch_at_login);
@@ -114,6 +188,16 @@ fn fill(panel: &SettingsPanel, settings: &Settings) {
         .into(),
     );
     panel.set_custom_prompt(settings.custom_style_prompt.clone().into());
+    panel.set_dictionary_rules(
+        settings
+            .dictionary
+            .iter()
+            .map(|entry| format!("{} = {}", entry.heard, entry.written))
+            .collect::<Vec<_>>()
+            .join("\n")
+            .into(),
+    );
+    panel.set_keep_history_forever(settings.keep_history_forever);
     panel.set_general_shortcut(settings.dictation_shortcut.clone().into());
     panel.set_raw_shortcut(shortcut(settings, DictationStyle::Raw).into());
     panel.set_proofread_shortcut(shortcut(settings, DictationStyle::Proofread).into());
@@ -186,6 +270,24 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
         _ => return Err("Неизвестный стиль диктовки".into()),
     };
     settings.custom_style_prompt = panel.get_custom_prompt().trim().to_owned();
+    settings.keep_history_forever = panel.get_keep_history_forever();
+    settings.dictionary = panel
+        .get_dictionary_rules()
+        .lines()
+        .filter(|line| !line.trim().is_empty())
+        .map(|line| {
+            let (heard, written) = line
+                .split_once('=')
+                .ok_or("В словаре каждую пару разделяй знаком =")?;
+            if heard.trim().is_empty() || written.trim().is_empty() {
+                return Err("В словаре обе части пары должны быть заполнены");
+            }
+            Ok(DictionaryEntry {
+                heard: heard.trim().into(),
+                written: written.trim().into(),
+            })
+        })
+        .collect::<Result<Vec<_>, _>>()?;
     settings.dictation_shortcut = panel.get_general_shortcut().trim().to_owned();
     settings.prompt_shortcut = panel.get_prompt_shortcut().trim().to_owned();
     for (style, value) in [

@@ -11,9 +11,11 @@ use std::{
 use slint::ComponentHandle;
 use speakcursor_audio::AudioCapture;
 use speakcursor_core::{
-    DictationAction, DictationController, DictationShortcut, DictationStyle, Settings,
+    DictationAction, DictationController, DictationShortcut, DictationStyle, RecognitionMode,
+    Settings,
 };
 use speakcursor_dictation::{DictationMode, DictationPipeline, PipelineError};
+use speakcursor_history::History;
 use speakcursor_speech::ProcessingDevice;
 use speakcursor_windows::{OpenAiKeyStore, copy_text, foreground_window, paste_text_if_foreground};
 
@@ -306,12 +308,20 @@ fn run(
                 }
                 show_pill(&pill, "Обработка", false, false);
                 if let Some(recording) = capture.take() {
+                    let request_mode = mode
+                        .take()
+                        .unwrap_or(DictationMode::Style(settings.default_style));
                     let result = recording.finish().map_err(|error| error.to_string()).and_then(|samples| {
-                        let key = OpenAiKeyStore::new(settings_ui::key_path()).load().map_err(|error| error.to_string())?;
+                        let needs_key = settings.recognition_mode == RecognitionMode::OpenAi
+                            || !matches!(request_mode, DictationMode::Style(DictationStyle::Raw));
+                        let key = if needs_key {
+                            OpenAiKeyStore::new(settings_ui::key_path()).load().map_err(|error| error.to_string())?
+                        } else { None };
                         pipeline.process(&samples, &settings, key.as_deref(), ProcessingDevice::Cpu,
-                            mode.take().unwrap_or(DictationMode::Style(settings.default_style)))
+                            request_mode)
                             .map_err(|error| match error {
                                 PipelineError::Processing { recognized, source } => {
+                                    let _ = save_history(&recognized, None, request_mode, Some(source.to_string()), settings.keep_history_forever);
                                     let _ = copy_text(&recognized);
                                     format!("Обработка не удалась: {source}. Исходный текст в буфере.")
                                 }
@@ -319,18 +329,32 @@ fn run(
                             })
                     });
                     match result {
-                        Ok(output) => match paste_text_if_foreground(&output.final_text, target) {
-                            Ok(()) => show_pill(&pill, "Вставлено", false, true),
-                            Err(error) => {
+                        Ok(output) => {
+                            if let Err(error) = save_history(
+                                &output.recognized,
+                                Some(&output.final_text),
+                                request_mode,
+                                None,
+                                settings.keep_history_forever,
+                            ) {
                                 show_error(
                                     &alert,
-                                    format!(
-                                        "Вставка не удалась: {error}. Текст в буфере — нажми Ctrl+V."
-                                    ),
+                                    format!("Не удалось сохранить историю: {error}"),
                                 );
-                                show_pill(&pill, "Готово", false, true);
                             }
-                        },
+                            match paste_text_if_foreground(&output.final_text, target) {
+                                Ok(()) => show_pill(&pill, "Вставлено", false, true),
+                                Err(error) => {
+                                    show_error(
+                                        &alert,
+                                        format!(
+                                            "Вставка не удалась: {error}. Текст в буфере — нажми Ctrl+V."
+                                        ),
+                                    );
+                                    show_pill(&pill, "Готово", false, true);
+                                }
+                            }
+                        }
                         Err(error) => {
                             show_error(&alert, error);
                             show_pill(&pill, "Ошибка", false, true);
@@ -365,6 +389,28 @@ fn run(
     }
     unregister(&active);
     unsafe { UnregisterHotKey(std::ptr::null_mut(), SETTINGS_ID) };
+    Ok(())
+}
+
+fn save_history(
+    original: &str,
+    processed: Option<&str>,
+    mode: DictationMode,
+    error: Option<String>,
+    keep_forever: bool,
+) -> io::Result<()> {
+    let mut history = History::open(settings_ui::history_path(), keep_forever)?;
+    let style = match mode {
+        DictationMode::Style(style) => Some(style),
+        DictationMode::PromptEngineer => None,
+    };
+    history.append(
+        original.to_owned(),
+        processed.map(str::to_owned),
+        style,
+        error,
+        keep_forever,
+    )?;
     Ok(())
 }
 

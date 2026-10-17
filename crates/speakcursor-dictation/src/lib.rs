@@ -132,7 +132,8 @@ impl DictationPipeline {
         self.process_recognized(&recognized, settings, api_key, mode)
     }
 
-    fn process_recognized(
+    /// Reprocesses a saved transcription without microphone capture or ASR.
+    pub fn process_recognized(
         &self,
         text: &str,
         settings: &Settings,

@@ -14,7 +14,8 @@ use windows_sys::Win32::System::DataExchange::{
 use windows_sys::Win32::System::Memory::{GMEM_MOVEABLE, GlobalAlloc, GlobalLock, GlobalUnlock};
 use windows_sys::Win32::System::Ole::CF_UNICODETEXT;
 use windows_sys::Win32::UI::Input::KeyboardAndMouse::{
-    INPUT, INPUT_0, INPUT_KEYBOARD, KEYBDINPUT, KEYEVENTF_KEYUP, SendInput, VK_CONTROL, VK_V,
+    GetAsyncKeyState, INPUT, INPUT_0, INPUT_KEYBOARD, KEYBDINPUT, KEYEVENTF_KEYUP, SendInput,
+    VK_CONTROL, VK_LWIN, VK_MENU, VK_RWIN, VK_SHIFT, VK_V,
 };
 use windows_sys::Win32::UI::WindowsAndMessaging::GetForegroundWindow;
 
@@ -69,6 +70,23 @@ pub fn copy_text(text: &str) -> io::Result<()> {
 /// paste failure the caller can tell the user that Ctrl+V will work manually.
 pub fn paste_text_if_foreground(text: &str, expected_window: usize) -> io::Result<()> {
     copy_text(text)?;
+    // A hotkey may finish quickly while Ctrl or Alt is still physically held.
+    // Sending Ctrl+V then could become another shortcut in the target app.
+    let modifiers = [VK_CONTROL, VK_MENU, VK_SHIFT, VK_LWIN, VK_RWIN];
+    let mut released = false;
+    for _ in 0..100 {
+        if modifiers
+            .iter()
+            .all(|key| unsafe { GetAsyncKeyState(*key as i32) } & i16::MIN == 0)
+        {
+            released = true;
+            break;
+        }
+        thread::sleep(Duration::from_millis(20));
+    }
+    if !released {
+        return Err(io::Error::other("hotkey modifiers are still pressed"));
+    }
     if expected_window == 0 || foreground_window() != expected_window {
         return Err(io::Error::other("original text field is no longer active"));
     }

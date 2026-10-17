@@ -4,6 +4,7 @@ use slint::ComponentHandle;
 
 slint::include_modules!();
 
+mod history_ui;
 mod settings_ui;
 #[cfg(windows)]
 mod windows_focus;
@@ -14,7 +15,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let assistant = AssistantPanel::new()?;
     let recording = RecordingPill::new()?;
     let settings = SettingsPanel::new()?;
+    let history = HistoryPanel::new()?;
     settings_ui::initialize(&settings)?;
+    history_ui::initialize(&history, &settings);
 
     // These positions only make the two independent windows easy to inspect in
     // the prototype. Production placement will use the active monitor geometry.
