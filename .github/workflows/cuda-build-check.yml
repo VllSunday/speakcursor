@@ -26,4 +26,14 @@ jobs:
           method: network
           sub-packages: '["nvcc", "cudart", "cublas"]'
       - name: Check Rust Windows application with NVIDIA CUDA
-        run: cargo check --locked --manifest-path prototypes/slint-panels/Cargo.toml --features cuda
+        shell: pwsh
+        run: |
+          cargo check --locked --manifest-path prototypes/slint-panels/Cargo.toml --features cuda *> cuda-check.log
+          $checkResult = $LASTEXITCODE
+          if ($checkResult -ne 0) {
+            Get-Content cuda-check.log -Tail 35 | ForEach-Object {
+              Write-Output "::error::$($_)"
+            }
+            exit $checkResult
+          }
+          Get-Content cuda-check.log -Tail 8
