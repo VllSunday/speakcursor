@@ -36,5 +36,27 @@ jobs:
         run: cargo test --locked --manifest-path crates/speakcursor-speech/Cargo.toml
       - name: Check dictation pipeline
         run: cargo test --locked --manifest-path crates/speakcursor-dictation/Cargo.toml
+      - name: Check Windows application
+        shell: pwsh
+        run: |
+          cargo check --locked --manifest-path prototypes/slint-panels/Cargo.toml *> windows-check.log
+          $checkResult = $LASTEXITCODE
+          if ($checkResult -ne 0) {
+            Get-Content windows-check.log -Tail 35 | ForEach-Object {
+              Write-Output "::error::$($_)"
+            }
+            exit $checkResult
+          }
+          Get-Content windows-check.log -Tail 8
       - name: Build Windows executable
-        run: cargo build --release --locked --manifest-path prototypes/slint-panels/Cargo.toml
+        shell: pwsh
+        run: |
+          cargo build --release --locked --manifest-path prototypes/slint-panels/Cargo.toml *> windows-build.log
+          $buildResult = $LASTEXITCODE
+          if ($buildResult -ne 0) {
+            Get-Content windows-build.log -Tail 35 | ForEach-Object {
+              Write-Output "::error::$($_)"
+            }
+            exit $buildResult
+          }
+          Get-Content windows-build.log -Tail 8
