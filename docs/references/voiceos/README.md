@@ -7,6 +7,7 @@
 ## Что открыть
 
 - [Полный разбор на русском](analysis.ru.md), включая все 175 инструментов каталога.
+- [Покадровый разбор жеста «Point anywhere on your screen»](point-anywhere.ru.md).
 - [Разбор визуального стиля](visual-reference/VISUAL_STYLE_RU.md).
 - [Локальная галерея](visual-reference/gallery.html): фильтры, поиск, изображения и видеоплееры. После клонирования её можно открыть в браузере; GitHub отображает HTML как исходный файл.
 - [Данные 21 интеграции](integrations.json).
