@@ -1,6 +1,9 @@
+use serde::{Deserialize, Serialize};
+
 /// The processing rule selected before a dictation session starts.
 /// The general hotkey's default style is resolved in settings, not here.
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
 pub enum DictationStyle {
     Raw,
     Proofread,
