@@ -55,7 +55,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         if let (Some(settings), Some(alert)) = (settings_weak.upgrade(), assistant_weak.upgrade()) {
             settings.set_page(alert.get_error_page());
             let _ = settings.show();
-            let _ = alert.hide();
+            if !alert.get_processing_failure() {
+                let _ = alert.hide();
+            }
         }
     });
 
