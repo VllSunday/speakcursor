@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   windows-cuda:
-    runs-on: windows-latest
+    runs-on: windows-2022
     timeout-minutes: 120
     env:
       CARGO_TARGET_DIR: ${{ github.workspace }}/target
