@@ -371,7 +371,7 @@ fn shortcut(settings: &Settings, style: DictationStyle) -> String {
 }
 
 fn read(panel: &SettingsPanel) -> Result<Settings, String> {
-    let mut settings = Settings::load(&settings_path()).unwrap_or_default();
+    let mut settings = Settings::load(&settings_path()).map_err(|error| error.to_string())?;
     settings.recognition_mode = if panel.get_use_cloud() {
         RecognitionMode::OpenAi
     } else {
