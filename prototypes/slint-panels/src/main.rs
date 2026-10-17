@@ -4,6 +4,7 @@ use slint::ComponentHandle;
 
 slint::include_modules!();
 
+mod settings_ui;
 #[cfg(windows)]
 mod windows_focus;
 #[cfg(windows)]
@@ -12,6 +13,8 @@ mod windows_hotkeys;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let assistant = AssistantPanel::new()?;
     let recording = RecordingPill::new()?;
+    let settings = SettingsPanel::new()?;
+    settings_ui::initialize(&settings)?;
 
     // These positions only make the two independent windows easy to inspect in
     // the prototype. Production placement will use the active monitor geometry.
@@ -31,14 +34,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         None
     };
 
-    assistant.on_close_requested(|| {
-        let _ = slint::quit_event_loop();
+    let assistant_weak = assistant.as_weak();
+    assistant.on_close_requested(move || {
+        if let Some(panel) = assistant_weak.upgrade() {
+            let _ = panel.hide();
+        }
     });
-    assistant.show()?;
-    recording.show()?;
 
     #[cfg(windows)]
-    windows_hotkeys::start(recording.as_weak());
+    let focus_probe = foreground_before.is_some();
+    #[cfg(not(windows))]
+    let focus_probe = false;
+    if focus_probe {
+        assistant.show()?;
+        recording.show()?;
+    } else {
+        settings.show()?;
+    }
+
+    #[cfg(windows)]
+    windows_hotkeys::start(recording.as_weak(), assistant.as_weak(), settings.as_weak());
 
     #[cfg(windows)]
     if let Some(expected) = foreground_before {
@@ -72,23 +87,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    let preview = "Напишите короткий ответ на письмо. Подтвердите встречу в четверг и предложите созвониться после обеда.";
-    let mut shown = 0;
     let mut activity = 0;
-    let assistant_weak = assistant.as_weak();
     let recording_weak = recording.as_weak();
     let timer = slint::Timer::default();
     timer.start(
         slint::TimerMode::Repeated,
         Duration::from_millis(65),
         move || {
-            if let Some(assistant) = assistant_weak.upgrade() {
-                if shown < preview.chars().count() {
-                    shown = (shown + 2).min(preview.chars().count());
-                    assistant
-                        .set_answer_text(preview.chars().take(shown).collect::<String>().into());
-                }
-            }
             if let Some(recording) = recording_weak.upgrade() {
                 activity = (activity + 1) % 8;
                 recording.set_activity(activity);
@@ -96,6 +101,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         },
     );
 
-    slint::run_event_loop()?;
+    slint::run_event_loop_until_quit()?;
     Ok(())
 }

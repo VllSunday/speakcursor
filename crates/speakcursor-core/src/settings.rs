@@ -72,9 +72,9 @@ impl Default for Settings {
             custom_style_prompt: String::new(),
             dictionary: Vec::new(),
             cloud_models: BTreeMap::new(),
-            dictation_shortcut: String::new(),
+            dictation_shortcut: "Ctrl+Alt+F8".into(),
             style_shortcuts: BTreeMap::new(),
-            prompt_shortcut: String::new(),
+            prompt_shortcut: "Ctrl+Alt+F9".into(),
             launch_at_login: true,
         }
     }

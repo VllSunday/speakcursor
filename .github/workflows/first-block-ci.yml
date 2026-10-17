@@ -31,3 +31,7 @@ jobs:
         env:
           RUSTFLAGS: -C target-feature=+crt-static
         run: cargo test --locked --manifest-path crates/speakcursor-dictation/Cargo.toml
+      - name: Check Windows application
+        env:
+          RUSTFLAGS: -C target-feature=+crt-static
+        run: cargo check --locked --manifest-path prototypes/slint-panels/Cargo.toml

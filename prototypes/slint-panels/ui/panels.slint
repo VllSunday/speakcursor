@@ -1,3 +1,5 @@
+import { Button, CheckBox, ComboBox, LineEdit } from "std-widgets.slint";
+
 export component AssistantPanel inherits Window {
     width: 440px;
     height: 252px;
@@ -7,6 +9,8 @@ export component AssistantPanel inherits Window {
     title: "SpeakCursor — ответ";
 
     in-out property <string> answer-text: "";
+    in-out property <string> panel-title: "SpeakCursor";
+    in-out property <string> panel-footer: "";
     callback close-requested();
 
     Rectangle {
@@ -75,7 +79,7 @@ export component AssistantPanel inherits Window {
             y: 54px;
             width: 376px;
             height: 20px;
-            text: "Черновик ответа";
+            text: root.panel-title;
             font-size: 13px;
             font-weight: 600;
             color: #d6d9e0;
@@ -102,7 +106,7 @@ export component AssistantPanel inherits Window {
             y: 190px;
             width: 376px;
             height: 20px;
-            text: "Ответ появляется по мере генерации";
+            text: root.panel-footer;
             font-size: 11px;
             color: #a3a9b4;
         }
@@ -190,10 +194,124 @@ export component RecordingPill inherits Window {
             y: 16px;
             width: 42px;
             height: 24px;
-            text: root.recording ? "Esc" : "ТЕСТ";
+            text: root.recording ? "Esc" : "";
             font-size: 12px;
             horizontal-alignment: center;
             color: #a3a9b4;
         }
     }
+}
+
+export component SettingsPanel inherits Window {
+    width: 640px;
+    height: 610px;
+    title: "SpeakCursor — настройки";
+    background: #202227;
+
+    in-out property <int> page: 0;
+    in-out property <bool> use-cloud: false;
+    in-out property <bool> launch-at-login: true;
+    in-out property <string> local-model-path: "";
+    in-out property <string> api-key-input: "";
+    in-out property <string> language-code: "auto";
+    in-out property <string> asr-model: "";
+    in-out property <string> processing-model: "";
+    in-out property <string> prompt-model: "";
+    in-out property <string> default-style-name: "Без обработки";
+    in-out property <string> custom-prompt: "";
+    in-out property <string> general-shortcut: "Ctrl+Alt+F8";
+    in-out property <string> raw-shortcut: "";
+    in-out property <string> proofread-shortcut: "";
+    in-out property <string> structure-shortcut: "";
+    in-out property <string> custom-shortcut: "";
+    in-out property <string> prompt-shortcut: "Ctrl+Alt+F9";
+    in-out property <string> unload-minutes: "";
+    in-out property <string> feedback-text: "";
+    callback save-requested();
+    callback delete-key-requested();
+
+    Text {
+        x: 24px; y: 16px; width: 590px; height: 30px;
+        text: "Настройки диктовки";
+        color: white; font-size: 23px; font-weight: 700;
+    }
+    Button { x: 24px; y: 55px; width: 140px; text: "Распознавание"; clicked => { root.page = 0; } }
+    Button { x: 168px; y: 55px; width: 120px; text: "Стили"; clicked => { root.page = 1; } }
+    Button { x: 292px; y: 55px; width: 140px; text: "Сочетания"; clicked => { root.page = 2; } }
+    Button { x: 436px; y: 55px; width: 160px; text: "Приложение"; clicked => { root.page = 3; } }
+
+    if root.page == 0: Rectangle {
+        x: 24px; y: 105px; width: 590px; height: 400px;
+        background: transparent;
+        CheckBox { x: 0px; y: 0px; text: "Распознавание через OpenAI вместо локальной модели"; checked <=> root.use-cloud; }
+        Text { x: 0px; y: 42px; text: "Каталог локальной модели CTranslate2"; color: white; }
+        LineEdit { x: 0px; y: 65px; width: 580px; text <=> root.local-model-path; }
+        Text { x: 0px; y: 105px; text: "Ключ OpenAI (после сохранения скрыт)"; color: white; }
+        LineEdit { x: 0px; y: 128px; width: 450px; text <=> root.api-key-input; input-type: password; }
+        Button { x: 460px; y: 128px; width: 120px; text: "Удалить ключ"; clicked => { root.delete-key-requested(); } }
+        Text { x: 0px; y: 170px; text: "Язык: auto или код языка"; color: white; }
+        LineEdit { x: 0px; y: 192px; width: 160px; text <=> root.language-code; }
+        Text { x: 0px; y: 235px; text: "Модель распознавания OpenAI"; color: white; }
+        LineEdit { x: 310px; y: 230px; width: 270px; text <=> root.asr-model; }
+        Text { x: 0px; y: 278px; text: "Модель обработки текста"; color: white; }
+        LineEdit { x: 310px; y: 273px; width: 270px; text <=> root.processing-model; }
+        Text { x: 0px; y: 321px; text: "Модель промпт-инженера"; color: white; }
+        LineEdit { x: 310px; y: 316px; width: 270px; text <=> root.prompt-model; }
+    }
+
+    if root.page == 1: Rectangle {
+        x: 24px; y: 105px; width: 590px; height: 400px;
+        background: transparent;
+        Text { x: 0px; y: 0px; text: "Стиль для основного сочетания"; color: white; }
+        ComboBox {
+            x: 0px; y: 28px; width: 340px;
+            model: ["Без обработки", "Пунктуация и ошибки", "ТЗ / README", "Свой стиль"];
+            current-value <=> root.default-style-name;
+        }
+        Text { x: 0px; y: 83px; text: "Промпт своего стиля"; color: white; }
+        LineEdit { x: 0px; y: 111px; width: 580px; text <=> root.custom-prompt; }
+        Text {
+            x: 0px; y: 165px; width: 580px;
+            text: "Без обработки работает без LLM. Другие стили используют выбранную модель обработки.";
+            color: #c4c8d0; wrap: word-wrap;
+        }
+    }
+
+    if root.page == 2: Rectangle {
+        x: 24px; y: 105px; width: 590px; height: 400px;
+        background: transparent;
+        Text { x: 0px; y: 0px; text: "Основная диктовка"; color: white; }
+        LineEdit { x: 310px; y: 0px; width: 270px; text <=> root.general-shortcut; }
+        Text { x: 0px; y: 45px; text: "Без обработки"; color: white; }
+        LineEdit { x: 310px; y: 45px; width: 270px; text <=> root.raw-shortcut; }
+        Text { x: 0px; y: 90px; text: "Пунктуация и ошибки"; color: white; }
+        LineEdit { x: 310px; y: 90px; width: 270px; text <=> root.proofread-shortcut; }
+        Text { x: 0px; y: 135px; text: "ТЗ / README"; color: white; }
+        LineEdit { x: 310px; y: 135px; width: 270px; text <=> root.structure-shortcut; }
+        Text { x: 0px; y: 180px; text: "Свой стиль"; color: white; }
+        LineEdit { x: 310px; y: 180px; width: 270px; text <=> root.custom-shortcut; }
+        Text { x: 0px; y: 225px; text: "Промпт-инженер"; color: white; }
+        LineEdit { x: 310px; y: 225px; width: 270px; text <=> root.prompt-shortcut; }
+        Text {
+            x: 0px; y: 290px; width: 580px;
+            text: "Повтор того же сочетания завершает запись. Esc отменяет.";
+            color: #c4c8d0;
+        }
+    }
+
+    if root.page == 3: Rectangle {
+        x: 24px; y: 105px; width: 590px; height: 400px;
+        background: transparent;
+        CheckBox { x: 0px; y: 0px; text: "Запускать при входе в Windows"; checked <=> root.launch-at-login; }
+        Text { x: 0px; y: 62px; text: "Выгружать локальную модель после простоя (минуты)"; color: white; }
+        LineEdit { x: 0px; y: 90px; width: 160px; text <=> root.unload-minutes; }
+        Text {
+            x: 0px; y: 145px; width: 580px;
+            text: "Пустое поле оставляет модель загруженной. Настройки сохраняются локально.";
+            color: #c4c8d0; wrap: word-wrap;
+        }
+    }
+
+    Text { x: 24px; y: 517px; width: 430px; height: 42px; text: root.feedback-text; color: #ffcf73; wrap: word-wrap; }
+    Button { x: 464px; y: 522px; width: 150px; text: "Сохранить"; clicked => { root.save-requested(); } }
 }
