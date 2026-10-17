@@ -27,3 +27,7 @@ jobs:
         env:
           RUSTFLAGS: -C target-feature=+crt-static
         run: cargo test --locked --manifest-path crates/speakcursor-speech/Cargo.toml
+      - name: Check dictation pipeline
+        env:
+          RUSTFLAGS: -C target-feature=+crt-static
+        run: cargo test --locked --manifest-path crates/speakcursor-dictation/Cargo.toml

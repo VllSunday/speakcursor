@@ -1,0 +1,11 @@
+[package]
+name = "speakcursor-dictation"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+speakcursor-audio = { path = "../speakcursor-audio" }
+speakcursor-cloud = { path = "../speakcursor-cloud" }
+speakcursor-core = { path = "../speakcursor-core" }
+speakcursor-speech = { path = "../speakcursor-speech" }
