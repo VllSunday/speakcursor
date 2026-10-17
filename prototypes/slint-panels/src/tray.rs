@@ -1,5 +1,6 @@
 use std::{error::Error, time::Duration};
 
+use slint::ComponentHandle;
 use tray_icon::{
     Icon, TrayIcon, TrayIconBuilder,
     menu::{Menu, MenuEvent, MenuItem},
