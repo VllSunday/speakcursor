@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build-and-release:
-    runs-on: windows-latest
+    runs-on: windows-2022
     env:
       CARGO_TARGET_DIR: ${{ github.workspace }}/target
       RUSTFLAGS: -C target-feature=+crt-static

@@ -285,14 +285,14 @@ export component SettingsPanel inherits Window {
             current-value <=> root.default-style-name;
         }
         Text { x: 0px; y: 83px; text: "Промпт своего стиля"; color: white; }
-        LineEdit { x: 0px; y: 111px; width: 580px; text <=> root.custom-prompt; }
+        TextEdit { x: 0px; y: 111px; width: 580px; height: 76px; text <=> root.custom-prompt; }
         Text {
-            x: 0px; y: 165px; width: 580px;
+            x: 0px; y: 197px; width: 580px;
             text: "Без обработки работает без LLM. Другие стили используют выбранную модель обработки.";
             color: #c4c8d0; wrap: word-wrap;
         }
-        Text { x: 0px; y: 220px; text: "Словарь замен — по одной паре на строку: как услышано = как написать"; color: white; }
-        TextEdit { x: 0px; y: 246px; width: 580px; height: 138px; text <=> root.dictionary-rules; }
+        Text { x: 0px; y: 252px; text: "Словарь замен — по одной паре на строку: как услышано = как написать"; color: white; }
+        TextEdit { x: 0px; y: 278px; width: 580px; height: 106px; text <=> root.dictionary-rules; }
     }
 
     if root.page == 2: Rectangle {
@@ -381,9 +381,9 @@ export component HistoryPanel inherits Window {
             background: #2b2e35;
             border-radius: 10px;
             Text { x: 10px; y: 8px; width: 245px; height: 76px; text: row.original; color: white; wrap: word-wrap; }
-            Button { x: 265px; y: 8px; width: 65px; text: "Копия"; clicked => { root.copy-original(row.id); } }
+            Button { x: 265px; y: 8px; width: 65px; text: "⧉"; accessible-label: "Скопировать исходный текст"; clicked => { root.copy-original(row.id); } }
             Text { x: 350px; y: 8px; width: 245px; height: 76px; text: row.processed; color: white; wrap: word-wrap; }
-            Button { x: 605px; y: 8px; width: 65px; text: "Копия"; clicked => { root.copy-processed(row.id); } }
+            Button { x: 605px; y: 8px; width: 65px; text: "⧉"; accessible-label: "Скопировать обработанный текст"; clicked => { root.copy-processed(row.id); } }
             if row.failed: Button { x: 350px; y: 75px; width: 130px; text: "Повторить"; clicked => { root.retry(row.id); } }
         }
     }

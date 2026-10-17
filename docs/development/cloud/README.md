@@ -53,14 +53,11 @@ python -c 'exec(compile(open("/workspace/speakcursor-env/smoke.py").read(), "/wo
 
 После выбора Rust и Slint для новой версии добавлен отдельный [прототип двух панелей](../../../prototypes/slint-panels/README.md). Для его проверки в этой Debian-среде Rust 1.99.1 и Cargo установлены через официальный rustup во временные каталоги `/tmp/speakcursor-rustup` и `/tmp/speakcursor-cargo`; Windows GNU target добавлен для проверки Windows-ветки кода. Проект использует Slint 1.18.1 и собственный `Cargo.lock`.
 
-Исходный образ содержит библиотеку Fontconfig, но не её файл `pkg-config` для сборки Rust-зависимости. Официальный пакет Debian `libfontconfig-dev` версии 2.15.0-2.3, совпадающей с установленной библиотекой, скачан и распакован в `/tmp/speakcursor-sysroot`; локальный `fontconfig.pc` ссылается на этот sysroot. Пакет не устанавливался в системные каталоги. Для повторной сборки в **этой уже подготовленной среде**:
+Исходный образ содержит библиотеку Fontconfig, но не её файл `pkg-config` для сборки Rust-зависимости. Официальный пакет Debian `libfontconfig-dev` версии 2.15.0-2.3, совпадающей с установленной библиотекой, скачан и распакован в локальный sysroot. Пакет не устанавливался в системные каталоги. Подготовленные Rust, Cargo, CMake и sysroot скопированы в `/workspace/speakcursor-env/rust-dev`; для повторной сборки в **этой уже подготовленной среде**:
 
 ```bash
-RUSTUP_HOME=/tmp/speakcursor-rustup \
-CARGO_HOME=/tmp/speakcursor-cargo \
-CARGO_TARGET_DIR=/tmp/speakcursor-target \
-PKG_CONFIG_PATH=/tmp/speakcursor-sysroot/usr/lib/x86_64-linux-gnu/pkgconfig \
-/tmp/speakcursor-cargo/bin/cargo check --manifest-path prototypes/slint-panels/Cargo.toml --locked
+source /workspace/speakcursor-env/rust-dev/env.sh
+cargo check --manifest-path prototypes/slint-panels/Cargo.toml --locked --offline
 ```
 
 Та же проверка с `--target x86_64-pc-windows-gnu` прошла, а обычный `cargo build --locked` собрал исполняемый файл Linux. `cargo fmt --check` также прошёл. Windows target проверяет типы и зависимости Windows-ветки, а не запускает приложение на Windows и не подтверждает поведение фокуса. В среде нет графического рабочего стола и физического Windows-окна; порядок реальной проверки описан в README прототипа. В обычной Debian-среде вместо временного sysroot можно установить системный `libfontconfig-dev` и использовать стандартный `cargo`.
