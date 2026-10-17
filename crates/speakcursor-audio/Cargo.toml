@@ -1,0 +1,11 @@
+[package]
+name = "speakcursor-audio"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+hound = "3.5"
+
+[target.'cfg(windows)'.dependencies]
+cpal = "0.18"

@@ -19,6 +19,10 @@ jobs:
         run: cargo test --locked --manifest-path crates/speakcursor-core/Cargo.toml
       - name: Check OpenAI client
         run: cargo test --locked --manifest-path crates/speakcursor-cloud/Cargo.toml
+      - name: Check microphone capture
+        run: cargo test --locked --manifest-path crates/speakcursor-audio/Cargo.toml
+      - name: Check encrypted key storage
+        run: cargo test --locked --manifest-path crates/speakcursor-windows/Cargo.toml
       - name: Check CTranslate2 speech engine
         env:
           RUSTFLAGS: -C target-feature=+crt-static
