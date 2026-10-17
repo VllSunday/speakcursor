@@ -33,7 +33,7 @@ jobs:
           cargo check --locked --manifest-path prototypes/slint-panels/Cargo.toml --features cuda *> cuda-check.log
           $checkResult = $LASTEXITCODE
           if ($checkResult -ne 0) {
-            Get-Content cuda-check.log | Select-String -Pattern 'CMake Error|error:|Could NOT find|not found|FAILED|CUDA_TOOLKIT_ROOT_DIR' -Context 0,2 | Select-Object -Last 12 | ForEach-Object {
+            Get-Content cuda-check.log | Select-String -Pattern 'error|failed|unsupported|Could NOT find|CUDA_TOOLKIT_ROOT_DIR' -Context 0,2 | Select-Object -Last 30 | ForEach-Object {
               Write-Output "::error::$($_.Line) $($_.Context.PostContext -join ' ')"
             }
             Get-Content cuda-check.log -Tail 12
