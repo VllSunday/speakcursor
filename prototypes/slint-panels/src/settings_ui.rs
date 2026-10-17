@@ -1,7 +1,11 @@
 use std::error::Error;
 use std::path::PathBuf;
+#[cfg(windows)]
+use std::rc::Rc;
 
 use slint::ComponentHandle;
+#[cfg(windows)]
+use slint::{ModelRc, SharedString, VecModel};
 use speakcursor_core::{
     CloudTask, DictationStyle, DictionaryEntry, LocalCompute, LocalModel, RecognitionMode, Settings,
 };
@@ -81,6 +85,7 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
                         .save(new_key.trim())
                         .map_err(|error| error.to_string())?;
                         panel.set_api_key_input("".into());
+                        panel.set_show_api_key(false);
                     }
                     crate::windows_hotkeys::reload();
                     verify_cloud_settings(settings, panel.as_weak());
@@ -103,13 +108,113 @@ pub fn initialize(panel: &SettingsPanel) -> Result<(), Box<dyn Error>> {
             match result {
                 Ok(()) => {
                     panel.set_api_key_input("".into());
+                    panel.set_show_api_key(false);
                     panel.set_feedback_text("Ключ OpenAI удалён".into());
                 }
                 Err(error) => panel.set_feedback_text(error.to_string().into()),
             }
         }
     });
+    #[cfg(windows)]
+    {
+        let weak = panel.as_weak();
+        panel.on_show_key_requested(move || {
+            if let Some(panel) = weak.upgrade() {
+                if panel.get_show_api_key() {
+                    panel.set_show_api_key(false);
+                } else {
+                    if panel.get_api_key_input().is_empty() {
+                        match speakcursor_windows::OpenAiKeyStore::new(key_path()).load() {
+                            Ok(Some(key)) => panel.set_api_key_input(key.into()),
+                            Ok(None) => {
+                                panel.set_feedback_text("Ключ OpenAI ещё не сохранён".into());
+                                return;
+                            }
+                            Err(error) => {
+                                panel.set_feedback_text(error.to_string().into());
+                                return;
+                            }
+                        }
+                    }
+                    panel.set_show_api_key(true);
+                }
+            }
+        });
+        let weak = panel.as_weak();
+        panel.on_refresh_models(move || refresh_model_catalog(weak.clone()));
+    }
     Ok(())
+}
+
+#[cfg(windows)]
+fn refresh_model_catalog(panel: slint::Weak<SettingsPanel>) {
+    if let Some(panel) = panel.upgrade() {
+        panel.set_feedback_text("Обновляю каталог моделей OpenAI…".into());
+    }
+    std::thread::spawn(move || {
+        let result = (|| -> Result<Vec<String>, String> {
+            let key = speakcursor_windows::OpenAiKeyStore::new(key_path())
+                .load()
+                .map_err(|error| error.to_string())?
+                .ok_or("Сначала сохрани ключ OpenAI")?;
+            speakcursor_cloud::OpenAiClient::new()
+                .map_err(|error| error.to_string())?
+                .list_models(&key)
+                .map_err(|error| error.to_string())
+        })();
+        let _ = slint::invoke_from_event_loop(move || {
+            if let Some(panel) = panel.upgrade() {
+                match result {
+                    Ok(models) => {
+                        let count = models.len();
+                        set_model_options(&panel, models);
+                        panel
+                            .set_feedback_text(format!("Каталог обновлён: {count} моделей").into());
+                    }
+                    Err(error) => panel.set_feedback_text(error.into()),
+                }
+            }
+        });
+    });
+}
+
+#[cfg(windows)]
+fn set_model_options(panel: &SettingsPanel, models: Vec<String>) {
+    let mut transcription = models
+        .iter()
+        .filter(|name| {
+            *name == "whisper-1"
+                || name.starts_with("gpt-4o-transcribe")
+                || name.starts_with("gpt-4o-mini-transcribe")
+        })
+        .cloned()
+        .collect::<Vec<_>>();
+    let mut text = models
+        .into_iter()
+        .filter(|name| {
+            (name.starts_with("gpt-4o")
+                || name.starts_with("gpt-4.1")
+                || name.starts_with("gpt-5")
+                || name.starts_with("o1")
+                || name.starts_with("o3")
+                || name.starts_with("o4"))
+                && !name.contains("transcribe")
+                && !name.contains("realtime")
+                && !name.contains("audio")
+                && !name.contains("tts")
+        })
+        .collect::<Vec<_>>();
+    transcription.sort();
+    text.sort();
+    panel.set_transcription_model_options(ModelRc::from(Rc::new(VecModel::from(
+        transcription
+            .into_iter()
+            .map(SharedString::from)
+            .collect::<Vec<_>>(),
+    ))));
+    panel.set_text_model_options(ModelRc::from(Rc::new(VecModel::from(
+        text.into_iter().map(SharedString::from).collect::<Vec<_>>(),
+    ))));
 }
 
 #[cfg(windows)]
@@ -123,10 +228,18 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
         .iter()
         .any(|task| settings.cloud_models.contains_key(task))
     {
+        if speakcursor_windows::OpenAiKeyStore::new(key_path())
+            .load()
+            .ok()
+            .flatten()
+            .is_some()
+        {
+            refresh_model_catalog(panel);
+        }
         return;
     }
     std::thread::spawn(move || {
-        let result = (|| -> Result<(), String> {
+        let result = (|| -> Result<Vec<String>, String> {
             let key = speakcursor_windows::OpenAiKeyStore::new(key_path())
                 .load()
                 .map_err(|error| error.to_string())?
@@ -157,14 +270,17 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
                     }
                 }
             }
-            Ok(())
+            Ok(available)
         })();
         let _ = slint::invoke_from_event_loop(move || {
             if let Some(panel) = panel.upgrade() {
                 match result {
-                    Ok(()) => panel.set_feedback_text("Ключ и модели OpenAI проверены".into()),
+                    Ok(models) => {
+                        set_model_options(&panel, models);
+                        panel.set_feedback_text("Ключ и модели OpenAI проверены".into());
+                    }
                     Err(error) => {
-                        panel.set_page(0);
+                        panel.set_page(4);
                         panel.set_feedback_text(format!("Проверка OpenAI: {error}").into());
                     }
                 }
