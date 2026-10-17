@@ -128,6 +128,9 @@ fn bindings(settings: &Settings) -> Result<Vec<Binding>, String> {
             continue;
         }
         let (mods, key) = parse_shortcut(text)?;
+        if mods == (CTRL | ALT | NOREPEAT) && key == b'O' as u32 {
+            return Err("Ctrl+Alt+O открывает настройки и не может запускать диктовку".into());
+        }
         if !seen.insert((mods, key)) {
             return Err(format!("Сочетание {text} назначено дважды"));
         }
