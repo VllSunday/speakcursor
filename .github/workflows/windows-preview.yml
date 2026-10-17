@@ -1,0 +1,31 @@
+name: Windows preview
+
+on:
+  push:
+    tags:
+      - 'windows-preview-v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Build Windows prototype
+        run: cargo build --release --locked --manifest-path prototypes/slint-panels/Cargo.toml
+      - name: Package executable and instructions
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path windows-preview | Out-Null
+          Copy-Item prototypes/slint-panels/target/release/speakcursor-slint-panels.exe windows-preview/
+          Copy-Item prototypes/slint-panels/README.md windows-preview/
+          Compress-Archive -Path windows-preview/* -DestinationPath speakcursor-windows-preview.zip
+      - name: Publish prerelease
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $env:GITHUB_REF_NAME speakcursor-windows-preview.zip --title "SpeakCursor Windows preview $env:GITHUB_REF_NAME" --notes-file prototypes/slint-panels/RELEASE_NOTES.md --prerelease

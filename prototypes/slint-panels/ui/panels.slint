@@ -1,0 +1,197 @@
+export component AssistantPanel inherits Window {
+    width: 440px;
+    height: 252px;
+    background: transparent;
+    no-frame: true;
+    always-on-top: true;
+    title: "SpeakCursor — ответ";
+
+    in-out property <string> answer-text: "";
+    callback close-requested();
+
+    Rectangle {
+        x: 14px;
+        y: 14px;
+        width: 412px;
+        height: 224px;
+        background: #202227;
+        border-radius: 20px;
+        drop-shadow-blur: 18px;
+        drop-shadow-offset-y: 5px;
+        drop-shadow-color: #00000055;
+
+        Rectangle {
+            x: 0px;
+            y: 0px;
+            width: parent.width;
+            height: 38px;
+            background: #34363b;
+            border-radius: 20px;
+        }
+        Rectangle {
+            x: 0px;
+            y: 20px;
+            width: parent.width;
+            height: 18px;
+            background: #34363b;
+        }
+        Rectangle {
+            x: 16px;
+            y: 15px;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: #78b8ff;
+        }
+        Text {
+            x: 32px;
+            y: 10px;
+            width: 318px;
+            height: 20px;
+            text: "SpeakCursor · ассистент";
+            font-size: 13px;
+            font-weight: 600;
+            color: #f1f3f7;
+        }
+        Text {
+            x: 370px;
+            y: 9px;
+            width: 24px;
+            height: 20px;
+            text: "×";
+            font-size: 19px;
+            horizontal-alignment: center;
+            color: #c0c4cc;
+        }
+        TouchArea {
+            x: 364px;
+            y: 4px;
+            width: 40px;
+            height: 30px;
+            clicked => { root.close-requested(); }
+        }
+        Text {
+            x: 18px;
+            y: 54px;
+            width: 376px;
+            height: 20px;
+            text: "Черновик ответа";
+            font-size: 13px;
+            font-weight: 600;
+            color: #d6d9e0;
+        }
+        Text {
+            x: 18px;
+            y: 82px;
+            width: 374px;
+            height: 83px;
+            text: root.answer-text;
+            wrap: word-wrap;
+            font-size: 15px;
+            color: #f5f6f8;
+        }
+        Rectangle {
+            x: 18px;
+            y: 180px;
+            width: 376px;
+            height: 1px;
+            background: #45474d;
+        }
+        Text {
+            x: 18px;
+            y: 190px;
+            width: 376px;
+            height: 20px;
+            text: "Ответ появляется по мере генерации";
+            font-size: 11px;
+            color: #a3a9b4;
+        }
+    }
+}
+
+export component RecordingPill inherits Window {
+    width: 264px;
+    height: 80px;
+    background: transparent;
+    no-frame: true;
+    always-on-top: true;
+    title: "SpeakCursor — запись";
+
+    in-out property <int> activity: 0;
+
+    Rectangle {
+        x: 12px;
+        y: 12px;
+        width: 240px;
+        height: 56px;
+        background: #17191e;
+        border-radius: 28px;
+        drop-shadow-blur: 14px;
+        drop-shadow-offset-y: 4px;
+        drop-shadow-color: #00000055;
+
+        Rectangle {
+            x: 16px;
+            y: 17px;
+            width: 22px;
+            height: 22px;
+            border-radius: 11px;
+            background: #357fee;
+        }
+        Text {
+            x: 17px;
+            y: 17px;
+            width: 20px;
+            height: 22px;
+            text: "●";
+            font-size: 10px;
+            horizontal-alignment: center;
+            vertical-alignment: center;
+            color: white;
+        }
+        Text {
+            x: 48px;
+            y: 16px;
+            width: 90px;
+            height: 24px;
+            text: "Слушаю";
+            font-size: 14px;
+            font-weight: 600;
+            color: #f5f6f8;
+        }
+        Rectangle {
+            x: 147px;
+            y: 23px - root.activity * 1px;
+            width: 4px;
+            height: 10px + root.activity * 2px;
+            border-radius: 2px;
+            background: #78b8ff;
+        }
+        Rectangle {
+            x: 156px;
+            y: 19px + root.activity * 1px;
+            width: 4px;
+            height: 18px - root.activity * 2px;
+            border-radius: 2px;
+            background: #78b8ff;
+        }
+        Rectangle {
+            x: 165px;
+            y: 21px - root.activity * 1px;
+            width: 4px;
+            height: 14px + root.activity * 2px;
+            border-radius: 2px;
+            background: #78b8ff;
+        }
+        Text {
+            x: 189px;
+            y: 16px;
+            width: 42px;
+            height: 24px;
+            text: "Esc";
+            font-size: 12px;
+            horizontal-alignment: center;
+            color: #a3a9b4;
+        }
+    }
+}
