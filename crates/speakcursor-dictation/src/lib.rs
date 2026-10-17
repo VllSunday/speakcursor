@@ -94,6 +94,20 @@ impl DictationPipeline {
         device: ProcessingDevice,
         mode: DictationMode,
     ) -> Result<DictationResult, PipelineError> {
+        self.process_with_recognition_hook(samples_16khz, settings, api_key, device, mode, |_| {})
+    }
+
+    /// Makes the recognized source available as soon as ASR completes, before
+    /// any slower cloud style processing begins.
+    pub fn process_with_recognition_hook(
+        &mut self,
+        samples_16khz: &[f32],
+        settings: &Settings,
+        api_key: Option<&str>,
+        device: ProcessingDevice,
+        mode: DictationMode,
+        on_recognized: impl FnOnce(&str),
+    ) -> Result<DictationResult, PipelineError> {
         self.unload_if_idle(settings.unload_after_minutes);
         let recognized = match settings.recognition_mode {
             RecognitionMode::Local => {
@@ -129,6 +143,8 @@ impl DictationPipeline {
                     .map_err(PipelineError::Cloud)?
             }
         };
+        let recognized = apply_dictionary(&recognized, settings);
+        on_recognized(&recognized);
         self.process_recognized(&recognized, settings, api_key, mode)
     }
 
@@ -140,7 +156,7 @@ impl DictationPipeline {
         api_key: Option<&str>,
         mode: DictationMode,
     ) -> Result<DictationResult, PipelineError> {
-        let recognized = apply_dictionary(text, settings);
+        let recognized = text.to_owned();
         let final_text = (|| -> Result<String, PipelineError> {
             match mode {
                 DictationMode::Style(DictationStyle::Raw) => Ok(recognized.clone()),
@@ -221,18 +237,13 @@ fn apply_dictionary(text: &str, settings: &Settings) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use speakcursor_core::DictionaryEntry;
 
     #[test]
     fn processing_failure_retains_recognized_text_for_clipboard_or_retry() {
-        let mut settings = Settings::default();
-        settings.dictionary.push(DictionaryEntry {
-            heard: "опен ай".into(),
-            written: "OpenAI".into(),
-        });
+        let settings = Settings::default();
         let pipeline = DictationPipeline::new().unwrap();
         let result = pipeline.process_recognized(
-            "проверь опен ай",
+            "проверь OpenAI",
             &settings,
             None,
             DictationMode::Style(DictationStyle::Proofread),

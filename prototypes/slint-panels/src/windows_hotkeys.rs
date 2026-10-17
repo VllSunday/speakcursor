@@ -31,6 +31,7 @@ const WIN: u32 = 8;
 const NOREPEAT: u32 = 0x4000;
 const WM_HOTKEY: u32 = 0x0312;
 const WM_RELOAD: u32 = 0x8004;
+const WM_TIMER: u32 = 0x0113;
 static THREAD_ID: AtomicU32 = AtomicU32::new(0);
 
 #[repr(C)]
@@ -54,6 +55,8 @@ unsafe extern "system" {
     fn UnregisterHotKey(hwnd: *mut c_void, id: i32) -> i32;
     fn GetMessageW(message: *mut Message, hwnd: *mut c_void, min: u32, max: u32) -> i32;
     fn PostThreadMessageW(thread: u32, message: u32, w_param: usize, l_param: isize) -> i32;
+    fn SetTimer(hwnd: *mut c_void, id: usize, interval_ms: u32, callback: *mut c_void) -> usize;
+    fn KillTimer(hwnd: *mut c_void, id: usize) -> i32;
 }
 #[link(name = "kernel32")]
 unsafe extern "system" {
@@ -250,6 +253,7 @@ fn run(
     let mut esc_active = false;
     let mut pending_reload = false;
     THREAD_ID.store(unsafe { GetCurrentThreadId() }, Ordering::Release);
+    let idle_timer = unsafe { SetTimer(std::ptr::null_mut(), 1, 30_000, std::ptr::null_mut()) };
 
     loop {
         let mut message = std::mem::MaybeUninit::<Message>::uninit();
@@ -257,6 +261,10 @@ fn run(
             break;
         }
         let message = unsafe { message.assume_init() };
+        if idle_timer != 0 && message.message == WM_TIMER && message.w_param == idle_timer {
+            pipeline.unload_if_idle(settings.unload_after_minutes);
+            continue;
+        }
         if message.message == WM_RELOAD {
             if capture.is_some() {
                 pending_reload = true;
@@ -330,8 +338,8 @@ fn run(
                             OpenAiKeyStore::new(settings_ui::key_path()).load().map_err(|error| error.to_string())?
                         } else { None };
                         let device = match settings.local_compute { LocalCompute::Cpu => ProcessingDevice::Cpu, LocalCompute::NvidiaCuda => ProcessingDevice::Cuda };
-                        pipeline.process(&samples, &settings, key.as_deref(), device,
-                            request_mode)
+                        pipeline.process_with_recognition_hook(&samples, &settings, key.as_deref(), device,
+                            request_mode, |recognized| { let _ = copy_text(recognized); })
                             .map_err(|error| match error {
                                 PipelineError::Processing { recognized, source } => {
                                     let _ = save_history(&recognized, None, request_mode, Some(source.to_string()), settings.keep_history_forever);
@@ -397,6 +405,9 @@ fn run(
         }
     }
     THREAD_ID.store(0, Ordering::Release);
+    if idle_timer != 0 {
+        unsafe { KillTimer(std::ptr::null_mut(), idle_timer) };
+    }
     if esc_active {
         unsafe { UnregisterHotKey(std::ptr::null_mut(), ESC_ID) };
     }

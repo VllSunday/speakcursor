@@ -20,6 +20,7 @@ pub enum CloudError {
     EmptyAudio,
     Transport(reqwest::Error),
     HttpStatus(u16),
+    Api { status: u16, message: String },
     UnexpectedResponse,
 }
 
@@ -32,6 +33,7 @@ impl fmt::Display for CloudError {
             Self::EmptyAudio => write!(f, "recorded audio is empty"),
             Self::Transport(error) => write!(f, "OpenAI request failed: {error}"),
             Self::HttpStatus(status) => write!(f, "OpenAI returned HTTP {status}"),
+            Self::Api { status, message } => write!(f, "OpenAI returned HTTP {status}: {message}"),
             Self::UnexpectedResponse => write!(f, "OpenAI returned an unexpected response"),
         }
     }
@@ -200,7 +202,16 @@ fn check_key_and_model(key: &str, model: &str) -> Result<(), CloudError> {
 
 fn checked_json(response: reqwest::blocking::Response) -> Result<Value, CloudError> {
     if !response.status().is_success() {
-        return Err(CloudError::HttpStatus(response.status().as_u16()));
+        let status = response.status().as_u16();
+        let body = response.text().map_err(CloudError::Transport)?;
+        if let Some(message) = serde_json::from_str::<Value>(&body)
+            .ok()
+            .and_then(|json| json["error"]["message"].as_str().map(str::to_owned))
+        {
+            let message: String = message.chars().take(400).collect();
+            return Err(CloudError::Api { status, message });
+        }
+        return Err(CloudError::HttpStatus(status));
     }
     response.json().map_err(CloudError::Transport)
 }

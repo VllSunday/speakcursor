@@ -1,0 +1,29 @@
+name: Optional CUDA build check
+
+on:
+  push:
+    branches:
+      - codex/cuda-build-check
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-cuda:
+    runs-on: windows-latest
+    timeout-minutes: 120
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/target
+      RUSTFLAGS: -C target-feature=+crt-static
+      CUDA_ARCH_LIST: '12.0'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Jimver/cuda-toolkit@v0.2.36
+        with:
+          cuda: '12.8.0'
+          method: network
+          sub-packages: '["nvcc", "cudart", "cublas"]'
+      - name: Check Rust Windows application with NVIDIA CUDA
+        run: cargo check --locked --manifest-path prototypes/slint-panels/Cargo.toml --features cuda
