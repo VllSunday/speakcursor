@@ -118,6 +118,8 @@ export component RecordingPill inherits Window {
     title: "SpeakCursor — запись";
 
     in-out property <int> activity: 0;
+    in-out property <bool> recording: false;
+    in-out property <string> status-text: "Готово";
 
     Rectangle {
         x: 12px;
@@ -143,7 +145,7 @@ export component RecordingPill inherits Window {
             y: 17px;
             width: 20px;
             height: 22px;
-            text: "●";
+            text: root.recording ? "●" : "○";
             font-size: 10px;
             horizontal-alignment: center;
             vertical-alignment: center;
@@ -152,9 +154,9 @@ export component RecordingPill inherits Window {
         Text {
             x: 48px;
             y: 16px;
-            width: 90px;
+            width: 98px;
             height: 24px;
-            text: "Слушаю";
+            text: root.status-text;
             font-size: 14px;
             font-weight: 600;
             color: #f5f6f8;
@@ -165,7 +167,7 @@ export component RecordingPill inherits Window {
             width: 4px;
             height: 10px + root.activity * 2px;
             border-radius: 2px;
-            background: #78b8ff;
+            background: root.recording ? #78b8ff : #59606b;
         }
         Rectangle {
             x: 156px;
@@ -173,7 +175,7 @@ export component RecordingPill inherits Window {
             width: 4px;
             height: 18px - root.activity * 2px;
             border-radius: 2px;
-            background: #78b8ff;
+            background: root.recording ? #78b8ff : #59606b;
         }
         Rectangle {
             x: 165px;
@@ -181,14 +183,14 @@ export component RecordingPill inherits Window {
             width: 4px;
             height: 14px + root.activity * 2px;
             border-radius: 2px;
-            background: #78b8ff;
+            background: root.recording ? #78b8ff : #59606b;
         }
         Text {
             x: 189px;
             y: 16px;
             width: 42px;
             height: 24px;
-            text: "Esc";
+            text: root.recording ? "Esc" : "ТЕСТ";
             font-size: 12px;
             horizontal-alignment: center;
             color: #a3a9b4;

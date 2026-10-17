@@ -3812,12 +3812,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "speakcursor-core"
+version = "0.1.0"
+
+[[package]]
 name = "speakcursor-slint-panels"
 version = "0.1.0"
 dependencies = [
  "raw-window-handle",
  "slint",
  "slint-build",
+ "speakcursor-core",
 ]
 
 [[package]]

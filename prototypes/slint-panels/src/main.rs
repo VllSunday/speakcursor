@@ -6,6 +6,8 @@ slint::include_modules!();
 
 #[cfg(windows)]
 mod windows_focus;
+#[cfg(windows)]
+mod windows_hotkeys;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let assistant = AssistantPanel::new()?;
@@ -34,6 +36,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     });
     assistant.show()?;
     recording.show()?;
+
+    #[cfg(windows)]
+    windows_hotkeys::start(recording.as_weak());
 
     #[cfg(windows)]
     if let Some(expected) = foreground_before {
