@@ -3,6 +3,7 @@ name: First block checks
 on:
   push:
     branches:
+      - main
       - codex/slint-windows-preview
       - codex/screen-help
   workflow_dispatch:
