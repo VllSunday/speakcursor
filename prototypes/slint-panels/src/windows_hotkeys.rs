@@ -19,11 +19,13 @@ use speakcursor_core::{
 use speakcursor_dictation::{DictationMode, DictationPipeline, PipelineError};
 use speakcursor_history::History;
 use speakcursor_speech::ProcessingDevice;
-use speakcursor_windows::{OpenAiKeyStore, copy_text, foreground_window, paste_text_if_foreground};
+use speakcursor_windows::{
+    OpenAiKeyStore, copy_text, foreground_window, paste_text_if_foreground, selected_text,
+};
 
 use crate::{
-    AssistantPanel, RecordingPill, ScreenPanel, ScreenTrace, SettingsPanel, screen_capture,
-    settings_ui, windows_focus,
+    AgentPanel, AssistantPanel, RecordingPill, ScreenPanel, ScreenTrace, SettingsPanel, agent_ui,
+    screen_capture, settings_ui, windows_focus,
 };
 
 const FIRST_ID: i32 = 100;
@@ -94,6 +96,7 @@ struct Binding {
     id: i32,
     mode: DictationMode,
     screen: bool,
+    agent: bool,
     mods: u32,
     key: u32,
 }
@@ -122,6 +125,8 @@ pub fn start(
     settings_panel: slint::Weak<SettingsPanel>,
     screen_panel: slint::Weak<ScreenPanel>,
     trace: slint::Weak<ScreenTrace>,
+    agent: slint::Weak<AgentPanel>,
+    agent_state: agent_ui::SharedAgentState,
 ) {
     let recovery = Arc::new(Mutex::new(None));
     if let Some(panel) = alert.upgrade() {
@@ -206,6 +211,8 @@ pub fn start(
             settings_panel,
             screen_panel,
             trace,
+            agent,
+            agent_state,
             recovery,
             screen_recovery,
         ) {
@@ -312,6 +319,7 @@ fn bindings(settings: &Settings) -> Result<Vec<Binding>, String> {
         settings.dictation_shortcut.as_str(),
         DictationMode::Style(settings.default_style),
         false,
+        false,
     )];
     for style in [
         DictationStyle::Raw,
@@ -320,22 +328,30 @@ fn bindings(settings: &Settings) -> Result<Vec<Binding>, String> {
         DictationStyle::Custom,
     ] {
         if let Some(key) = settings.style_shortcuts.get(&style) {
-            choices.push((key.as_str(), DictationMode::Style(style), false));
+            choices.push((key.as_str(), DictationMode::Style(style), false, false));
         }
     }
     choices.push((
         settings.prompt_shortcut.as_str(),
         DictationMode::PromptEngineer,
         false,
+        false,
     ));
     choices.push((
         settings.screen_shortcut.as_str(),
         DictationMode::Style(DictationStyle::Raw),
         true,
+        false,
+    ));
+    choices.push((
+        settings.assistant_shortcut.as_str(),
+        DictationMode::Style(DictationStyle::Raw),
+        false,
+        true,
     ));
     let mut seen = HashSet::new();
     let mut result = Vec::new();
-    for (text, mode, screen) in choices {
+    for (text, mode, screen, agent) in choices {
         if text.trim().is_empty() {
             continue;
         }
@@ -350,6 +366,7 @@ fn bindings(settings: &Settings) -> Result<Vec<Binding>, String> {
             id: FIRST_ID + result.len() as i32,
             mode,
             screen,
+            agent,
             mods,
             key,
         });
@@ -402,7 +419,7 @@ fn register(settings: &Settings) -> io::Result<Vec<Binding>> {
             == 0
         {
             let error = io::Error::last_os_error();
-            if binding.screen {
+            if binding.screen || binding.agent {
                 // A conflict on the new mode must not disable working dictation.
                 continue;
             }
@@ -454,6 +471,8 @@ fn run(
     settings_panel: slint::Weak<SettingsPanel>,
     screen_panel: slint::Weak<ScreenPanel>,
     trace: slint::Weak<ScreenTrace>,
+    agent: slint::Weak<AgentPanel>,
+    agent_state: agent_ui::SharedAgentState,
     recovery: Arc<Mutex<Option<PendingRecovery>>>,
     screen_recovery: Arc<Mutex<Option<PendingScreen>>>,
 ) -> io::Result<()> {
@@ -567,6 +586,34 @@ fn run(
                     let _ = panel.show();
                 }
             });
+            continue;
+        }
+        if active
+            .iter()
+            .any(|binding| binding.id == message.w_param as i32 && binding.agent)
+        {
+            if screen_session.is_none() && capture.is_none() {
+                let target = foreground_window();
+                let answer = screen_panel.clone();
+                let _ = slint::invoke_from_event_loop(move || {
+                    if let Some(panel) = answer.upgrade() {
+                        let _ = panel.hide();
+                    }
+                });
+                let (selection, selection_error) = match selected_text(target) {
+                    Ok(selection) => (selection, None),
+                    Err(error) => (None, Some(error.to_string())),
+                };
+                agent_ui::open(agent.clone(), Arc::clone(&agent_state), selection, target);
+                if let Some(error) = selection_error {
+                    let panel = agent.clone();
+                    let _ = slint::invoke_from_event_loop(move || {
+                        if let Some(panel) = panel.upgrade() {
+                            panel.set_status_text(format!("Выделение недоступно: {error}").into());
+                        }
+                    });
+                }
+            }
             continue;
         }
         if screen_session.is_some() {
@@ -1087,7 +1134,7 @@ fn show_screen_panel(panel: &slint::Weak<ScreenPanel>, status: &str, text: &str,
     });
 }
 
-fn extract_urls(text: &str) -> Vec<String> {
+pub(crate) fn extract_urls(text: &str) -> Vec<String> {
     let mut urls = Vec::new();
     for word in text.split_whitespace() {
         let Some(start) = word.find("https://").or_else(|| word.find("http://")) else {

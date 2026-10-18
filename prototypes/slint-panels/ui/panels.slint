@@ -307,6 +307,103 @@ export component ScreenTrace inherits Window {
     Image { width: parent.width; height: parent.height; source: root.trace-image; }
 }
 
+export component AgentPanel inherits Window {
+    width: 580px;
+    height: root.expanded ? 540px : 350px;
+    background: transparent;
+    no-frame: true;
+    always-on-top: true;
+    title: "SpeakCursor — агент";
+
+    in-out property <string> question-input: "";
+    in-out property <string> answer-text: "";
+    in-out property <string> history-text: "";
+    in-out property <string> selected-preview: "";
+    in-out property <string> status-text: "Готов к вопросу";
+    in-out property <[string]> result-links: [];
+    in-out property <bool> expanded: false;
+    in-out property <bool> recording: false;
+    in-out property <bool> busy: false;
+    in-out property <bool> has-selection: false;
+    in-out property <int> error-page: -1;
+    callback close-requested();
+    callback submit-question(string);
+    callback toggle-voice();
+    callback copy-answer();
+    callback apply-answer();
+    callback new-chat();
+    callback stop-speaking();
+    callback open-link(string);
+    callback open-error-settings(int);
+
+    Rectangle {
+        x: 12px; y: 12px; width: 556px; height: parent.height - 24px;
+        background: #202938; border-radius: 18px;
+        drop-shadow-blur: 18px; drop-shadow-offset-y: 5px; drop-shadow-color: #00000055;
+        Rectangle { x: 0px; y: 0px; width: parent.width; height: 42px; background: #293a59; border-radius: 18px; }
+        Rectangle { x: 0px; y: 24px; width: parent.width; height: 18px; background: #293a59; }
+        Text { x: 20px; y: 10px; width: 300px; text: "SpeakCursor · агент"; color: white; font-size: 15px; font-weight: 600; }
+        Text { x: 410px; y: 10px; width: 85px; text: "Новый чат"; color: #a8cfff; font-size: 12px; }
+        TouchArea { x: 400px; y: 0px; width: 100px; height: 42px; clicked => { root.new-chat(); } }
+        Text { x: 520px; y: 7px; width: 24px; text: "×"; color: white; font-size: 21px; }
+        TouchArea { x: 505px; y: 0px; width: 50px; height: 42px; clicked => { root.close-requested(); } }
+
+        Text { x: 20px; y: 53px; width: 516px; height: 25px; text: root.selected-preview; color: #92c7ff; font-size: 12px; overflow: elide; }
+        Rectangle {
+            x: 20px; y: 82px; width: root.expanded ? 345px : 516px; height: root.expanded ? 270px : 80px;
+            background: #141e2d; border-radius: 11px;
+            answer-scroll := ScrollView {
+                x: 12px; y: 9px; width: parent.width - 24px; height: parent.height - 18px;
+                content-width: self.visible-width;
+                content-height: max(self.visible-height, answer-content.preferred-height + 8px);
+                answer-content := Text {
+                    x: 0px; y: 0px; width: answer-scroll.visible-width - 14px;
+                    height: self.preferred-height;
+                    text: root.expanded ? root.history-text : root.answer-text;
+                    color: #f1f5fb; font-size: 14px; wrap: word-wrap;
+                }
+            }
+        }
+        if root.expanded: Rectangle {
+            x: 373px; y: 82px; width: 163px; height: 270px;
+            background: #141e2d; border-radius: 11px;
+            Text { x: 10px; y: 8px; text: "Ссылки"; color: #a8cfff; font-size: 12px; }
+            ListView {
+                x: 8px; y: 29px; width: 147px; height: 231px;
+                for link in root.result-links: Rectangle {
+                    width: parent.width; height: 36px; background: transparent;
+                    Text { width: parent.width; height: parent.height; text: link; color: #78b8ff; font-size: 11px; overflow: elide; }
+                    TouchArea { width: parent.width; height: parent.height; clicked => { root.open-link(link); } }
+                }
+            }
+        }
+        Text { x: 20px; y: root.expanded ? 364px : 174px; width: 516px; height: 18px; text: root.error-page >= 0 ? root.status-text + " · Открыть настройки" : root.status-text; color: root.error-page >= 0 ? #ffbd73 : #9db2cc; font-size: 12px; overflow: elide; }
+        TouchArea { x: 20px; y: root.expanded ? 360px : 170px; width: 516px; height: 25px; clicked => { if root.error-page >= 0 { root.open-error-settings(root.error-page); } } }
+        TextEdit { x: 20px; y: root.expanded ? 390px : 200px; width: 516px; height: 62px; text <=> root.question-input; }
+
+        Rectangle { x: 20px; y: root.expanded ? 464px : 274px; width: 100px; height: 32px; border-radius: 9px; background: root.busy ? #52617a : #367ae3;
+            Text { width: parent.width; height: parent.height; text: "Отправить"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { if !root.busy { root.submit-question(root.question-input); } } }
+        }
+        Rectangle { x: 128px; y: root.expanded ? 464px : 274px; width: 95px; height: 32px; border-radius: 9px; background: root.recording ? #9d4d59 : #344966;
+            Text { width: parent.width; height: parent.height; text: root.recording ? "Стоп" : "Голос"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { root.toggle-voice(); } }
+        }
+        Rectangle { x: 231px; y: root.expanded ? 464px : 274px; width: 95px; height: 32px; border-radius: 9px; background: #344966;
+            Text { width: parent.width; height: parent.height; text: root.has-selection ? "Вставить" : "Копировать"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { if root.has-selection { root.apply-answer(); } else { root.copy-answer(); } } }
+        }
+        Rectangle { x: 334px; y: root.expanded ? 464px : 274px; width: 95px; height: 32px; border-radius: 9px; background: #344966;
+            Text { width: parent.width; height: parent.height; text: root.expanded ? "Свернуть" : "История"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { root.expanded = !root.expanded; } }
+        }
+        Rectangle { x: 437px; y: root.expanded ? 464px : 274px; width: 99px; height: 32px; border-radius: 9px; background: #344966;
+            Text { width: parent.width; height: parent.height; text: "Тише"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { root.stop-speaking(); } }
+        }
+    }
+}
+
 export component SettingsPanel inherits Window {
     width: 800px;
     height: 650px;
@@ -326,8 +423,12 @@ export component SettingsPanel inherits Window {
     in-out property <string> processing-model: "";
     in-out property <string> prompt-model: "";
     in-out property <string> screen-model: "";
+    in-out property <string> assistant-model: "";
+    in-out property <string> selected-model: "";
+    in-out property <string> speech-model: "";
     in-out property <[string]> transcription-model-options: [];
     in-out property <[string]> text-model-options: [];
+    in-out property <[string]> speech-model-options: [];
     in-out property <string> default-style-name: "Без обработки";
     in-out property <string> custom-prompt: "";
     in-out property <string> dictionary-rules: "";
@@ -338,6 +439,9 @@ export component SettingsPanel inherits Window {
     in-out property <string> custom-shortcut: "";
     in-out property <string> prompt-shortcut: "Ctrl+Alt+F9";
     in-out property <string> screen-shortcut: "Ctrl+Alt+F10";
+    in-out property <string> assistant-shortcut: "Ctrl+Alt+F11";
+    in-out property <bool> speak-answers: false;
+    in-out property <string> speech-voice: "alloy";
     in-out property <string> unload-minutes: "";
     in-out property <bool> keep-history-forever: false;
     in-out property <string> feedback-text: "";
@@ -374,6 +478,10 @@ export component SettingsPanel inherits Window {
     Rectangle { x: 548px; y: 109px; width: 142px; height: 34px; border-radius: 9px; background: root.page == 3 ? white : transparent;
         Text { width: parent.width; height: parent.height; text: "Приложение"; color: #223453; font-weight: root.page == 3 ? 700 : 500; horizontal-alignment: center; vertical-alignment: center; }
         TouchArea { width: parent.width; height: parent.height; clicked => { root.page = 3; } }
+    }
+    Rectangle { x: 695px; y: 109px; width: 74px; height: 34px; border-radius: 9px; background: root.page == 5 ? white : transparent;
+        Text { width: parent.width; height: parent.height; text: "Агент"; color: #223453; font-weight: root.page == 5 ? 700 : 500; horizontal-alignment: center; vertical-alignment: center; }
+        TouchArea { width: parent.width; height: parent.height; clicked => { root.page = 5; root.refresh-models(); } }
     }
 
     Rectangle { x: 24px; y: 158px; width: 750px; height: 422px; border-radius: 16px; background: white; border-width: 1px; border-color: #dfe7f1; }
@@ -436,6 +544,25 @@ export component SettingsPanel inherits Window {
         }
         Text { x: 0px; y: 252px; text: "Словарь замен — по одной паре на строку: как услышано = как написать"; color: #172846; }
         TextEdit { x: 0px; y: 278px; width: 580px; height: 106px; text <=> root.dictionary-rules; }
+    }
+
+    if root.page == 5: Rectangle {
+        x: 48px; y: 182px; width: 704px; height: 380px;
+        background: transparent;
+        Text { x: 0px; y: 0px; text: "Модель чата и поиска"; color: #172846; }
+        LineEdit { x: 0px; y: 23px; width: 335px; text <=> root.assistant-model; }
+        ComboBox { x: 345px; y: 23px; width: 235px; model: root.text-model-options; selected(value) => { root.assistant-model = value; } }
+        Text { x: 0px; y: 74px; text: "Модель работы с выделенным текстом"; color: #172846; }
+        LineEdit { x: 0px; y: 97px; width: 335px; text <=> root.selected-model; }
+        ComboBox { x: 345px; y: 97px; width: 235px; model: root.text-model-options; selected(value) => { root.selected-model = value; } }
+        Text { x: 0px; y: 148px; text: "Модель озвучивания"; color: #172846; }
+        LineEdit { x: 0px; y: 171px; width: 335px; text <=> root.speech-model; }
+        ComboBox { x: 345px; y: 171px; width: 235px; model: root.speech-model-options; selected(value) => { root.speech-model = value; } }
+        CheckBox { x: 0px; y: 220px; text: "Автоматически озвучивать ответы агента"; checked <=> root.speak-answers; }
+        Text { x: 0px; y: 264px; text: "Голос"; color: #172846; }
+        ComboBox { x: 105px; y: 256px; width: 230px; model: ["alloy", "ash", "coral", "nova", "sage"]; current-value <=> root.speech-voice; }
+        Text { x: 0px; y: 315px; text: "Открыть чат"; color: #172846; }
+        LineEdit { x: 310px; y: 309px; width: 270px; text <=> root.assistant-shortcut; }
     }
 
     if root.page == 2: Rectangle {

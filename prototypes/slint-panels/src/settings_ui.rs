@@ -209,7 +209,7 @@ fn set_model_options(panel: &SettingsPanel, models: Vec<String>) {
         .cloned()
         .collect::<Vec<_>>();
     let mut text = models
-        .into_iter()
+        .iter()
         .filter(|name| {
             (name.starts_with("gpt-4o")
                 || name.starts_with("gpt-4.1")
@@ -222,9 +222,15 @@ fn set_model_options(panel: &SettingsPanel, models: Vec<String>) {
                 && !name.contains("audio")
                 && !name.contains("tts")
         })
+        .cloned()
+        .collect::<Vec<_>>();
+    let mut speech = models
+        .into_iter()
+        .filter(|name| name.starts_with("tts-") || name.contains("-tts"))
         .collect::<Vec<_>>();
     transcription.sort();
     text.sort();
+    speech.sort();
     panel.set_transcription_model_options(ModelRc::from(Rc::new(VecModel::from(
         transcription
             .into_iter()
@@ -233,6 +239,12 @@ fn set_model_options(panel: &SettingsPanel, models: Vec<String>) {
     ))));
     panel.set_text_model_options(ModelRc::from(Rc::new(VecModel::from(
         text.into_iter().map(SharedString::from).collect::<Vec<_>>(),
+    ))));
+    panel.set_speech_model_options(ModelRc::from(Rc::new(VecModel::from(
+        speech
+            .into_iter()
+            .map(SharedString::from)
+            .collect::<Vec<_>>(),
     ))));
 }
 
@@ -243,6 +255,9 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
         CloudTask::SpeechProcessing,
         CloudTask::PromptGeneration,
         CloudTask::ScreenHelp,
+        CloudTask::Assistant,
+        CloudTask::SelectedText,
+        CloudTask::SpeechSynthesis,
     ];
     if !tasks
         .iter()
@@ -279,7 +294,10 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
                         CloudTask::SpeechRecognition => client
                             .verify_transcription_model(&key, model)
                             .map_err(|error| format!("Модель распознавания: {error}"))?,
-                        CloudTask::SpeechProcessing | CloudTask::PromptGeneration
+                        CloudTask::SpeechProcessing
+                        | CloudTask::PromptGeneration
+                        | CloudTask::Assistant
+                        | CloudTask::SelectedText
                             if checked_text.insert(model.clone()) =>
                         {
                             client
@@ -289,6 +307,9 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
                         CloudTask::ScreenHelp => client
                             .verify_vision_model(&key, model)
                             .map_err(|error| format!("Модель экранного режима: {error}"))?,
+                        CloudTask::SpeechSynthesis => client
+                            .verify_speech_model(&key, model, &settings.speech_voice)
+                            .map_err(|error| format!("Модель озвучивания: {error}"))?,
                         _ => {}
                     }
                 }
@@ -371,6 +392,12 @@ fn fill(panel: &SettingsPanel, settings: &Settings) {
     panel.set_processing_model(model(settings, CloudTask::SpeechProcessing).into());
     panel.set_prompt_model(model(settings, CloudTask::PromptGeneration).into());
     panel.set_screen_model(model(settings, CloudTask::ScreenHelp).into());
+    panel.set_assistant_model(model(settings, CloudTask::Assistant).into());
+    panel.set_selected_model(model(settings, CloudTask::SelectedText).into());
+    panel.set_speech_model(model(settings, CloudTask::SpeechSynthesis).into());
+    panel.set_assistant_shortcut(settings.assistant_shortcut.clone().into());
+    panel.set_speak_answers(settings.speak_answers);
+    panel.set_speech_voice(settings.speech_voice.clone().into());
     panel.set_default_style_name(
         match settings.default_style {
             DictationStyle::Raw => "Без обработки",
@@ -480,6 +507,9 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
         (CloudTask::SpeechProcessing, panel.get_processing_model()),
         (CloudTask::PromptGeneration, panel.get_prompt_model()),
         (CloudTask::ScreenHelp, panel.get_screen_model()),
+        (CloudTask::Assistant, panel.get_assistant_model()),
+        (CloudTask::SelectedText, panel.get_selected_model()),
+        (CloudTask::SpeechSynthesis, panel.get_speech_model()),
     ] {
         if value.trim().is_empty() {
             settings.cloud_models.remove(&task);
@@ -516,6 +546,16 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
     settings.dictation_shortcut = panel.get_general_shortcut().trim().to_owned();
     settings.prompt_shortcut = panel.get_prompt_shortcut().trim().to_owned();
     settings.screen_shortcut = panel.get_screen_shortcut().trim().to_owned();
+    settings.assistant_shortcut = panel.get_assistant_shortcut().trim().to_owned();
+    settings.speak_answers = panel.get_speak_answers();
+    settings.speech_voice = panel.get_speech_voice().trim().to_owned();
+    if settings.speak_answers
+        && !settings
+            .cloud_models
+            .contains_key(&CloudTask::SpeechSynthesis)
+    {
+        return Err("Для озвучивания выбери модель синтеза речи".into());
+    }
     for (style, value) in [
         (DictationStyle::Raw, panel.get_raw_shortcut()),
         (DictationStyle::Proofread, panel.get_proofread_shortcut()),

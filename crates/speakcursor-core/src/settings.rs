@@ -19,6 +19,7 @@ pub enum CloudTask {
     SelectedText,
     ScreenHelp,
     Assistant,
+    SpeechSynthesis,
 }
 
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
@@ -68,6 +69,9 @@ pub struct Settings {
     pub style_shortcuts: BTreeMap<DictationStyle, String>,
     pub prompt_shortcut: String,
     pub screen_shortcut: String,
+    pub assistant_shortcut: String,
+    pub speak_answers: bool,
+    pub speech_voice: String,
     pub launch_at_login: bool,
 }
 
@@ -89,6 +93,9 @@ impl Default for Settings {
             style_shortcuts: BTreeMap::new(),
             prompt_shortcut: "Ctrl+Alt+F9".into(),
             screen_shortcut: "Ctrl+Alt+F10".into(),
+            assistant_shortcut: "Ctrl+Alt+F11".into(),
+            speak_answers: false,
+            speech_voice: "alloy".into(),
             launch_at_login: true,
         }
     }
@@ -165,6 +172,9 @@ impl Settings {
         if self.language.trim().is_empty() {
             return Err(SettingsError::InvalidValue("language is empty".into()));
         }
+        if self.speech_voice.trim().is_empty() {
+            return Err(SettingsError::InvalidValue("speech voice is empty".into()));
+        }
         if (self.default_style == DictationStyle::Custom
             || self.style_shortcuts.contains_key(&DictationStyle::Custom))
             && self.custom_style_prompt.trim().is_empty()
@@ -237,5 +247,7 @@ mod tests {
         let restored: Settings = serde_json::from_value(previous).unwrap();
         assert_eq!(restored.screen_shortcut, "Ctrl+Alt+F10");
         assert_eq!(restored.prompt_shortcut, "Ctrl+Shift+F9");
+        assert_eq!(restored.assistant_shortcut, "Ctrl+Alt+F11");
+        assert!(!restored.speak_answers);
     }
 }

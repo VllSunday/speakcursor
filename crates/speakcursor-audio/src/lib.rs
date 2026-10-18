@@ -9,6 +9,10 @@ pub const TRANSCRIPTION_SAMPLE_RATE: u32 = 16_000;
 mod capture;
 #[cfg(windows)]
 pub use capture::AudioCapture;
+#[cfg(windows)]
+mod playback;
+#[cfg(windows)]
+pub use playback::{play_wav_blocking, stop_playback};
 
 /// Downmixing is performed in the input callback; this converts mono samples
 /// from the device's native rate to the model/API rate. Averaging over each

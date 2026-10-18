@@ -5,6 +5,8 @@ use slint::ComponentHandle;
 
 slint::include_modules!();
 
+#[cfg(windows)]
+mod agent_ui;
 mod history_ui;
 #[cfg(windows)]
 mod screen_capture;
@@ -23,11 +25,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let screen_answer = ScreenPanel::new()?;
     #[cfg(windows)]
     let screen_trace = ScreenTrace::new()?;
+    #[cfg(windows)]
+    let agent = AgentPanel::new()?;
     let settings = SettingsPanel::new()?;
     let history = HistoryPanel::new()?;
     #[cfg(windows)]
     let about = AboutPanel::new()?;
     settings_ui::initialize(&settings)?;
+    #[cfg(windows)]
+    let agent_state = agent_ui::initialize(&agent);
     history_ui::initialize(&history, &settings);
     #[cfg(windows)]
     let _tray = tray::initialize(settings.as_weak(), history.as_weak(), about.as_weak())?;
@@ -80,6 +86,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             }
         });
     }
+    #[cfg(windows)]
+    {
+        let weak = agent.as_weak();
+        let state = agent_state.clone();
+        agent.on_close_requested(move || {
+            agent_ui::close(&state);
+            if let Some(panel) = weak.upgrade() {
+                panel.set_recording(false);
+                let _ = panel.hide();
+            }
+        });
+        let weak = settings.as_weak();
+        agent.on_open_error_settings(move |page| {
+            if let Some(settings) = weak.upgrade() {
+                settings.set_page(page);
+                let _ = settings.show();
+            }
+        });
+    }
     let settings_weak = settings.as_weak();
     let assistant_weak = assistant.as_weak();
     assistant.on_open_error_settings(move || {
@@ -110,6 +135,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         settings.as_weak(),
         screen_answer.as_weak(),
         screen_trace.as_weak(),
+        agent.as_weak(),
+        agent_state,
     );
 
     #[cfg(windows)]

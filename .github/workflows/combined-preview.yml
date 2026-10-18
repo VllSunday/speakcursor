@@ -1,0 +1,49 @@
+name: Windows combined preview
+
+on:
+  push:
+    tags:
+      - 'combined-preview-v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: windows-2022
+    env:
+      CARGO_TARGET_DIR: ${{ github.workspace }}/target
+      RUSTFLAGS: -C target-feature=+crt-static
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Test core, cloud and Windows application
+        shell: pwsh
+        run: |
+          cargo test --locked --manifest-path crates/speakcursor-core/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked --manifest-path crates/speakcursor-cloud/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked --manifest-path crates/speakcursor-audio/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked --manifest-path crates/speakcursor-windows/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked --manifest-path crates/speakcursor-dictation/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked --manifest-path prototypes/slint-panels/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Build Windows application
+        run: cargo build --release --locked --manifest-path prototypes/slint-panels/Cargo.toml
+      - name: Package executable and instructions
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path combined-preview | Out-Null
+          Copy-Item target/release/speakcursor-slint-panels.exe combined-preview/SpeakCursor.exe
+          Copy-Item prototypes/slint-panels/COMBINED_TEST.md combined-preview/
+          Compress-Archive -Path combined-preview/* -DestinationPath speakcursor-windows-combined.zip
+      - name: Publish prerelease
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $env:GITHUB_REF_NAME speakcursor-windows-combined.zip --title "SpeakCursor Windows combined preview" --notes-file prototypes/slint-panels/COMBINED_RELEASE_NOTES.md --prerelease
