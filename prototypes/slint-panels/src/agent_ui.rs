@@ -219,7 +219,7 @@ pub fn open(
     selected: Option<String>,
     target: usize,
 ) {
-    let (preview, reset, has_selection) = {
+    let (preview, reset, has_selection, recording) = {
         let mut state = match state.lock() {
             Ok(state) => state,
             Err(_) => return,
@@ -227,6 +227,9 @@ pub fn open(
         let selected = selected.filter(|text| !text.trim().is_empty());
         let reset = selected != state.selected_text;
         if reset {
+            if let Some(stop) = state.voice_stop.take() {
+                let _ = stop.send(());
+            }
             state.selected_text = selected;
             state.turns.clear();
             state.busy = false;
@@ -241,12 +244,12 @@ pub fn open(
             .as_ref()
             .map(|text| format!("Выделено: {}", text.chars().take(110).collect::<String>()))
             .unwrap_or_else(|| "Вопрос без выделенного текста".into());
-        (preview, reset, state.selected_text.is_some())
+        (preview, reset, state.selected_text.is_some(), state.voice_stop.is_some())
     };
     let _ = slint::invoke_from_event_loop(move || {
         if let Some(panel) = panel.upgrade() {
             panel.set_has_selection(has_selection);
-            panel.set_recording(false);
+            panel.set_recording(recording);
             panel.set_selected_preview(preview.into());
             if reset {
                 panel.set_answer_text("".into());
@@ -662,6 +665,7 @@ fn speak(
                 panel.set_status_text(
                     format!("Текст готов, озвучивание не удалось: {error}").into(),
                 );
+                panel.set_error_page(if error.contains("Модель") || error.contains("model") || error.contains("voice") { 5 } else { -1 });
             }
         });
     }
