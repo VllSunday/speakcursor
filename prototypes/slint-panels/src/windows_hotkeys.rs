@@ -497,6 +497,7 @@ fn run(
     let mut screen_session: Option<screen_capture::Session> = None;
     let mut screen_tracking_failed: Option<String> = None;
     let mut trace_dirty = false;
+    let mut trace_visible = false;
     let mut last_trace_update = Instant::now();
     let mut mode: Option<DictationMode> = None;
     let mut target = 0;
@@ -523,12 +524,18 @@ fn run(
                     Err(error) => screen_tracking_failed = Some(error),
                     _ => {}
                 }
-                if trace_dirty && last_trace_update.elapsed() >= Duration::from_millis(100) {
+                if (trace_dirty || trace_visible)
+                    && last_trace_update.elapsed() >= Duration::from_millis(50)
+                {
                     if let Some((rect, image)) = session.overlay() {
                         show_trace(&trace, rect, image);
-                        trace_dirty = false;
-                        last_trace_update = Instant::now();
+                        trace_visible = true;
+                    } else if trace_visible {
+                        hide_trace(&trace);
+                        trace_visible = false;
                     }
+                    trace_dirty = false;
+                    last_trace_update = Instant::now();
                 }
             }
             if let Some(recording) = &capture {
@@ -571,6 +578,7 @@ fn run(
                 screen_session = None;
                 screen_tracking_failed = None;
                 trace_dirty = false;
+                trace_visible = false;
                 capture = None;
                 hide_trace(&trace);
                 show_pill_screen(&pill, "Отменено", false, true, target, false);
@@ -593,6 +601,7 @@ fn run(
                         screen_tracking_failed = Some(error);
                     }
                     hide_trace_and_pill(&trace, &pill);
+                    trace_visible = false;
                     // Wait for the overlay to disappear before reading screen pixels.
                     std::thread::sleep(Duration::from_millis(80));
                     let result = screen_tracking_failed
@@ -713,6 +722,7 @@ fn run(
                     screen_session = Some(session);
                     screen_tracking_failed = None;
                     trace_dirty = false;
+                    trace_visible = false;
                     last_trace_update = Instant::now() - Duration::from_millis(100);
                     capture = Some(recording);
                     let answer = screen_panel.clone();
