@@ -244,7 +244,12 @@ pub fn open(
             .as_ref()
             .map(|text| format!("Выделено: {}", text.chars().take(110).collect::<String>()))
             .unwrap_or_else(|| "Вопрос без выделенного текста".into());
-        (preview, reset, state.selected_text.is_some(), state.voice_stop.is_some())
+        (
+            preview,
+            reset,
+            state.selected_text.is_some(),
+            state.voice_stop.is_some(),
+        )
     };
     let _ = slint::invoke_from_event_loop(move || {
         if let Some(panel) = panel.upgrade() {
@@ -266,6 +271,7 @@ pub fn open(
                 panel.set_status_text(format!("Не удалось разместить окно: {error}").into());
             }
             let _ = panel.show();
+            panel.invoke_focus_question();
         }
     });
 }
@@ -665,7 +671,16 @@ fn speak(
                 panel.set_status_text(
                     format!("Текст готов, озвучивание не удалось: {error}").into(),
                 );
-                panel.set_error_page(if error.contains("Модель") || error.contains("model") || error.contains("voice") { 5 } else { -1 });
+                panel.set_error_page(
+                    if error.contains("Модель")
+                        || error.contains("model")
+                        || error.contains("voice")
+                    {
+                        5
+                    } else {
+                        -1
+                    },
+                );
             }
         });
     }

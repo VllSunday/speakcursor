@@ -335,6 +335,8 @@ export component AgentPanel inherits Window {
     callback stop-speaking();
     callback open-link(string);
     callback open-error-settings(int);
+    callback focus-question();
+    focus-question => { agent-input.focus(); }
 
     Rectangle {
         x: 12px; y: 12px; width: 556px; height: parent.height - 24px;
@@ -379,7 +381,18 @@ export component AgentPanel inherits Window {
         }
         Text { x: 20px; y: root.expanded ? 364px : 174px; width: 516px; height: 18px; text: root.error-page >= 0 ? root.status-text + " · Открыть настройки" : root.status-text; color: root.error-page >= 0 ? #ffbd73 : #9db2cc; font-size: 12px; overflow: elide; }
         TouchArea { x: 20px; y: root.expanded ? 360px : 170px; width: 516px; height: 25px; clicked => { if root.error-page >= 0 { root.open-error-settings(root.error-page); } } }
-        TextEdit { x: 20px; y: root.expanded ? 390px : 200px; width: 516px; height: 62px; text <=> root.question-input; }
+        agent-input := TextEdit {
+            x: 20px; y: root.expanded ? 390px : 200px; width: 516px; height: 62px;
+            text <=> root.question-input;
+            placeholder-text: "Спроси или дай команду · Enter — отправить";
+            key-pressed(event) => {
+                if event.text == Key.Return && !event.modifiers.shift {
+                    if !root.busy { root.submit-question(root.question-input); }
+                    return accept;
+                }
+                reject
+            }
+        }
 
         Rectangle { x: 20px; y: root.expanded ? 464px : 274px; width: 100px; height: 32px; border-radius: 9px; background: root.busy ? #52617a : #367ae3;
             Text { width: parent.width; height: parent.height; text: "Отправить"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
