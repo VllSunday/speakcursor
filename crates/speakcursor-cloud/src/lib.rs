@@ -421,6 +421,41 @@ mod tests {
     use super::*;
 
     #[test]
+    fn screen_request_keeps_original_and_marked_images_separate() {
+        let original = [1u8, 2, 3];
+        let marked = [4u8, 5, 6];
+        let image = ScreenImage {
+            label: "Первый монитор",
+            original_png: &original,
+            marked_png: Some(&marked),
+        };
+        let request = screen_request("vision", "Что здесь?", &[image], true, false);
+        let content = request["input"][0]["content"].as_array().unwrap();
+        assert_eq!(content.len(), 5);
+        assert_eq!(
+            content[2]["image_url"],
+            format!("data:image/png;base64,{}", STANDARD.encode(original))
+        );
+        assert_eq!(
+            content[4]["image_url"],
+            format!("data:image/png;base64,{}", STANDARD.encode(marked))
+        );
+        assert!(request.get("tools").is_none());
+    }
+
+    #[test]
+    fn source_links_from_search_completion_can_be_shown_to_the_user() {
+        let response = json!({"output": [{"content": [{"annotations": [
+            {"type": "url_citation", "url": "https://example.org/result"},
+            {"type": "url_citation", "url": "https://example.org/result"}
+        ]}]}]});
+        assert_eq!(
+            screen_citations(&response),
+            vec!["https://example.org/result"]
+        );
+    }
+
+    #[test]
     fn extracts_only_text_from_a_response_with_multiple_items() {
         let response = json!({"output": [
             {"type": "reasoning", "content": []},

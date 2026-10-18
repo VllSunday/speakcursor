@@ -311,7 +311,7 @@ fn screenshot(rect: Rect) -> Result<ImageBuffer<Rgba<u8>, Vec<u8>>, String> {
                     &mut info,
                     DIB_RGB_COLORS,
                 )
-            } != 0
+            } == h
             {
                 for pixel in bgra.chunks_exact_mut(4) {
                     pixel.swap(0, 2);

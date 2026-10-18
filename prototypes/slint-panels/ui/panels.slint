@@ -1,4 +1,4 @@
-import { AboutSlint, Button, CheckBox, ComboBox, LineEdit, ListView, TextEdit } from "std-widgets.slint";
+import { AboutSlint, Button, CheckBox, ComboBox, LineEdit, ListView, ScrollView, TextEdit } from "std-widgets.slint";
 
 export component AssistantPanel inherits Window {
     width: 440px;
@@ -139,7 +139,7 @@ export component AssistantPanel inherits Window {
 }
 
 export component RecordingPill inherits Window {
-    width: 264px;
+    width: 320px;
     height: 80px;
     background: transparent;
     no-frame: true;
@@ -155,7 +155,7 @@ export component RecordingPill inherits Window {
     Rectangle {
         x: 12px;
         y: 12px;
-        width: 240px;
+        width: 296px;
         height: 56px;
         background: #17191e;
         border-radius: 28px;
@@ -185,7 +185,7 @@ export component RecordingPill inherits Window {
         Text {
             x: 48px;
             y: 16px;
-            width: 98px;
+            width: 128px;
             height: 24px;
             text: root.status-text;
             font-size: 14px;
@@ -193,11 +193,11 @@ export component RecordingPill inherits Window {
             color: #f5f6f8;
         }
         if root.screen-mode: Text {
-            x: 119px; y: 16px; width: 28px; height: 24px;
+            x: 178px; y: 16px; width: 24px; height: 24px;
             text: "▣"; color: #78b8ff; font-size: 18px;
         }
         Rectangle {
-            x: 147px;
+            x: 208px;
             y: 23px - root.activity * 1px;
             width: 4px;
             height: 10px + root.activity * 2px;
@@ -205,7 +205,7 @@ export component RecordingPill inherits Window {
             background: root.recording ? #78b8ff : #59606b;
         }
         Rectangle {
-            x: 156px;
+            x: 218px;
             y: 19px + root.activity * 1px;
             width: 4px;
             height: 18px - root.activity * 2px;
@@ -213,7 +213,7 @@ export component RecordingPill inherits Window {
             background: root.recording ? #78b8ff : #59606b;
         }
         Rectangle {
-            x: 165px;
+            x: 228px;
             y: 21px - root.activity * 1px;
             width: 4px;
             height: 14px + root.activity * 2px;
@@ -221,7 +221,7 @@ export component RecordingPill inherits Window {
             background: root.recording ? #78b8ff : #59606b;
         }
         Text {
-            x: 189px;
+            x: 253px;
             y: 16px;
             width: 42px;
             height: 24px;
@@ -258,9 +258,20 @@ export component ScreenPanel inherits Window {
         Text { x: 20px; y: 10px; width: 455px; height: 24px; text: "SpeakCursor · " + root.status-text; color: white; font-size: 15px; font-weight: 600; }
         Text { x: 512px; y: 8px; width: 24px; height: 24px; text: "×"; color: white; font-size: 21px; }
         TouchArea { x: 500px; y: 0px; width: 55px; height: 42px; clicked => { root.close-requested(); } }
-        TextEdit {
+        Rectangle {
             x: 20px; y: 60px; width: 516px; height: 282px;
-            text: root.answer-text; read-only: true;
+            background: #141e2d; border-radius: 11px;
+            scroll := ScrollView {
+                x: 12px; y: 10px; width: 492px; height: 262px;
+                content-width: self.visible-width;
+                content-height: max(self.visible-height, answer-content.preferred-height + 8px);
+                answer-content := Text {
+                    x: 0px; y: 0px; width: scroll.visible-width - 14px;
+                    height: self.preferred-height;
+                    text: root.answer-text;
+                    color: #f1f5fb; font-size: 14px; wrap: word-wrap;
+                }
+            }
         }
         for link[index] in root.result-links: Rectangle {
             x: 20px; y: 355px + index * 23px;
@@ -268,8 +279,16 @@ export component ScreenPanel inherits Window {
             Text { width: parent.width; height: parent.height; text: link; color: #78b8ff; font-size: 12px; overflow: elide; }
             TouchArea { width: parent.width; height: parent.height; clicked => { root.open-link(link); } }
         }
-        Button { x: 20px; y: 435px; width: 116px; height: 32px; text: "Копировать"; clicked => { root.copy-answer(); } }
-        if root.retry-available: Button { x: 145px; y: 435px; width: 116px; height: 32px; text: "Повторить"; clicked => { root.retry-request(); } }
+        Rectangle {
+            x: 20px; y: 435px; width: 126px; height: 32px; border-radius: 9px; background: #367ae3;
+            Text { width: parent.width; height: parent.height; text: "Копировать"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { root.copy-answer(); } }
+        }
+        if root.retry-available: Rectangle {
+            x: 156px; y: 435px; width: 126px; height: 32px; border-radius: 9px; background: #344966;
+            Text { width: parent.width; height: parent.height; text: "Повторить"; color: white; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { root.retry-request(); } }
+        }
     }
 }
 

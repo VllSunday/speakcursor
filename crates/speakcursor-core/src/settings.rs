@@ -228,4 +228,14 @@ mod tests {
             Err(SettingsError::InvalidValue(_))
         ));
     }
+
+    #[test]
+    fn old_settings_gain_the_screen_shortcut_without_losing_other_choices() {
+        let mut previous = serde_json::to_value(Settings::default()).unwrap();
+        previous.as_object_mut().unwrap().remove("screen_shortcut");
+        previous["prompt_shortcut"] = "Ctrl+Shift+F9".into();
+        let restored: Settings = serde_json::from_value(previous).unwrap();
+        assert_eq!(restored.screen_shortcut, "Ctrl+Alt+F10");
+        assert_eq!(restored.prompt_shortcut, "Ctrl+Shift+F9");
+    }
 }

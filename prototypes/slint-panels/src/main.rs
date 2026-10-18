@@ -70,8 +70,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .window()
             .set_position(slint::PhysicalPosition::new(-32000, -32000));
         screen_trace.show()?;
-        windows_focus::make_click_through(screen_trace.window())?;
-        screen_trace.hide()?;
+        let trace_weak = screen_trace.as_weak();
+        slint::Timer::single_shot(Duration::from_millis(10), move || {
+            if let Some(panel) = trace_weak.upgrade() {
+                if let Err(error) = windows_focus::make_click_through(panel.window()) {
+                    eprintln!("could not prepare mouse trace overlay: {error}");
+                }
+                let _ = panel.hide();
+            }
+        });
     }
     let settings_weak = settings.as_weak();
     let assistant_weak = assistant.as_weak();

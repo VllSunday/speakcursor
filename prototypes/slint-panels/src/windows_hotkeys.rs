@@ -4,9 +4,9 @@ use std::{
     collections::HashSet,
     ffi::c_void,
     io,
-    sync::atomic::{AtomicU32, Ordering},
+    sync::atomic::{AtomicBool, AtomicU32, Ordering},
     sync::{Arc, Mutex},
-    time::Duration,
+    time::{Duration, Instant},
 };
 
 use slint::ComponentHandle;
@@ -39,6 +39,7 @@ const WM_RELOAD: u32 = 0x8004;
 const WM_TIMER: u32 = 0x0113;
 static THREAD_ID: AtomicU32 = AtomicU32::new(0);
 static TRACE_GENERATION: AtomicU32 = AtomicU32::new(0);
+static TRACE_STYLED: AtomicBool = AtomicBool::new(false);
 
 #[repr(C)]
 struct Point {
@@ -403,6 +404,10 @@ fn register(settings: &Settings) -> io::Result<Vec<Binding>> {
             == 0
         {
             let error = io::Error::last_os_error();
+            if binding.screen {
+                // A conflict on the new mode must not disable working dictation.
+                continue;
+            }
             unregister(&active);
             return Err(error);
         }
@@ -427,6 +432,11 @@ fn reload_settings(
             unregister(active);
             match register(&next) {
                 Ok(next_active) => {
+                    if !next.screen_shortcut.trim().is_empty()
+                        && !next_active.iter().any(|binding| binding.screen)
+                    {
+                        show_error_at(alert, "Сочетание экранного режима занято другим приложением. Измени его в настройках.".into(), 2);
+                    }
                     *settings = next;
                     *active = next_active;
                 }
@@ -451,7 +461,14 @@ fn run(
 ) -> io::Result<()> {
     let mut settings = Settings::load(&settings_ui::settings_path()).map_err(io::Error::other)?;
     let mut active = match register(&settings) {
-        Ok(bindings) => bindings,
+        Ok(bindings) => {
+            if !settings.screen_shortcut.trim().is_empty()
+                && !bindings.iter().any(|binding| binding.screen)
+            {
+                show_error_at(&alert, "Сочетание экранного режима занято другим приложением. Измени его в настройках.".into(), 2);
+            }
+            bindings
+        }
         Err(error) => {
             show_error_at(
                 &alert,
@@ -480,6 +497,9 @@ fn run(
     let mut controller = DictationController::default();
     let mut capture: Option<AudioCapture> = None;
     let mut screen_session: Option<screen_capture::Session> = None;
+    let mut screen_tracking_failed: Option<String> = None;
+    let mut trace_dirty = false;
+    let mut last_trace_update = Instant::now();
     let mut mode: Option<DictationMode> = None;
     let mut target = 0;
     let mut esc_active = false;
@@ -500,9 +520,16 @@ fn run(
         }
         if level_timer != 0 && message.message == WM_TIMER && message.w_param == level_timer {
             if let Some(session) = &mut screen_session {
-                if matches!(session.sample(), Ok(true)) {
+                match session.sample() {
+                    Ok(true) => trace_dirty = true,
+                    Err(error) => screen_tracking_failed = Some(error),
+                    _ => {}
+                }
+                if trace_dirty && last_trace_update.elapsed() >= Duration::from_millis(100) {
                     if let Some((rect, image)) = session.overlay() {
                         show_trace(&trace, rect, image);
+                        trace_dirty = false;
+                        last_trace_update = Instant::now();
                     }
                 }
             }
@@ -544,6 +571,8 @@ fn run(
                     esc_active = false;
                 }
                 screen_session = None;
+                screen_tracking_failed = None;
+                trace_dirty = false;
                 capture = None;
                 hide_trace(&trace);
                 show_pill_screen(&pill, "Отменено", false, true, target, false);
@@ -562,52 +591,69 @@ fn run(
                     esc_active = false;
                 }
                 if let Some(mut session) = screen_session.take() {
-                    let _ = session.sample();
+                    if let Err(error) = session.sample() {
+                        screen_tracking_failed = Some(error);
+                    }
                     hide_trace_and_pill(&trace, &pill);
                     // Wait for the overlay to disappear before reading screen pixels.
                     std::thread::sleep(Duration::from_millis(80));
-                    let result = session.capture().and_then(|frames| {
-                        let samples = capture
-                            .take()
-                            .ok_or("Запись звука потеряна")?
-                            .finish()
-                            .map_err(|e| e.to_string())?;
-                        let key = OpenAiKeyStore::new(settings_ui::key_path())
-                            .load()
-                            .map_err(|e| e.to_string())?;
-                        let device = match settings.local_compute {
-                            LocalCompute::Cpu => ProcessingDevice::Cpu,
-                            LocalCompute::NvidiaCuda => ProcessingDevice::Cuda,
-                        };
-                        let question = pipeline
-                            .recognize(&samples, &settings, key.as_deref(), device)
-                            .map_err(|e| e.to_string())?;
-                        let model = settings
-                            .cloud_models
-                            .get(&CloudTask::ScreenHelp)
-                            .cloned()
-                            .filter(|s| !s.trim().is_empty())
-                            .ok_or("Выбери модель для экранного режима в настройках")?;
-                        if key.is_none() {
-                            return Err("Сохрани ключ OpenAI для экранного режима".into());
-                        }
-                        Ok(PendingScreen {
-                            question,
-                            frames,
-                            model,
-                        })
-                    });
+                    let result = screen_tracking_failed
+                        .take()
+                        .map(Err)
+                        .unwrap_or(Ok(()))
+                        .and_then(|()| session.capture())
+                        .and_then(|frames| {
+                            show_screen_panel(&screen_panel, "Распознавание", "", false);
+                            let samples = capture
+                                .take()
+                                .ok_or("Запись звука потеряна")?
+                                .finish()
+                                .map_err(|e| e.to_string())?;
+                            let key = OpenAiKeyStore::new(settings_ui::key_path())
+                                .load()
+                                .map_err(|e| e.to_string())?;
+                            let device = match settings.local_compute {
+                                LocalCompute::Cpu => ProcessingDevice::Cpu,
+                                LocalCompute::NvidiaCuda => ProcessingDevice::Cuda,
+                            };
+                            let question = pipeline
+                                .recognize(&samples, &settings, key.as_deref(), device)
+                                .map_err(|e| e.to_string())?;
+                            let model = settings
+                                .cloud_models
+                                .get(&CloudTask::ScreenHelp)
+                                .cloned()
+                                .filter(|s| !s.trim().is_empty())
+                                .ok_or("Выбери модель для экранного режима в настройках")?;
+                            if key.is_none() {
+                                return Err("Сохрани ключ OpenAI для экранного режима".into());
+                            }
+                            Ok(PendingScreen {
+                                question,
+                                frames,
+                                model,
+                            })
+                        });
                     match result {
                         Ok(request) => send_screen_request(
                             request,
                             Arc::clone(&screen_recovery),
                             screen_panel.clone(),
                         ),
-                        Err(error) => show_error_at(
-                            &alert,
-                            format!("Экранный запрос не отправлен: {error}"),
-                            -1,
-                        ),
+                        Err(error) => {
+                            let page = if error.contains("модель") {
+                                4
+                            } else if error.contains("ключ OpenAI") {
+                                0
+                            } else {
+                                -1
+                            };
+                            show_error_at(
+                                &alert,
+                                format!("Экранный запрос не отправлен: {error}"),
+                                page,
+                            );
+                        }
                     }
                     capture = None;
                 }
@@ -627,6 +673,33 @@ fn run(
                 continue;
             }
             let _ = binding;
+            if !settings
+                .cloud_models
+                .get(&CloudTask::ScreenHelp)
+                .is_some_and(|model| !model.trim().is_empty())
+            {
+                show_error_at(
+                    &alert,
+                    "Выбери модель OpenAI для экранного режима".into(),
+                    4,
+                );
+                continue;
+            }
+            match OpenAiKeyStore::new(settings_ui::key_path()).load() {
+                Ok(Some(key)) if !key.trim().is_empty() => {}
+                Ok(_) => {
+                    show_error_at(&alert, "Сохрани ключ OpenAI для экранного режима".into(), 0);
+                    continue;
+                }
+                Err(error) => {
+                    show_error_at(
+                        &alert,
+                        format!("Не удалось прочитать ключ OpenAI: {error}"),
+                        0,
+                    );
+                    continue;
+                }
+            }
             target = foreground_window();
             let started = screen_capture::Session::start().and_then(|session| {
                 let recording = AudioCapture::start_default()
@@ -650,7 +723,20 @@ fn run(
                         *pending = None;
                     }
                     screen_session = Some(session);
+                    screen_tracking_failed = None;
+                    trace_dirty = false;
+                    last_trace_update = Instant::now() - Duration::from_millis(100);
                     capture = Some(recording);
+                    let answer = screen_panel.clone();
+                    let alert = alert.clone();
+                    let _ = slint::invoke_from_event_loop(move || {
+                        if let Some(panel) = answer.upgrade() {
+                            let _ = panel.hide();
+                        }
+                        if let Some(panel) = alert.upgrade() {
+                            let _ = panel.hide();
+                        }
+                    });
                     show_pill_screen(&pill, "Экран · запись", true, false, target, true);
                 }
                 Err(error) => show_error_at(&alert, error, -1),
@@ -931,6 +1017,13 @@ fn show_trace(
                 .window()
                 .set_position(slint::PhysicalPosition::new(rect.left, rect.top));
             let _ = panel.show();
+            if !TRACE_STYLED.load(Ordering::Acquire) {
+                if windows_focus::make_click_through(panel.window()).is_ok() {
+                    TRACE_STYLED.store(true, Ordering::Release);
+                } else {
+                    let _ = panel.hide();
+                }
+            }
         }
     });
 }
