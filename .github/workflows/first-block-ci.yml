@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - codex/slint-windows-preview
+      - codex/screen-help
   workflow_dispatch:
 
 permissions:

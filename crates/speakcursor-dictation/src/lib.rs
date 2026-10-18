@@ -112,6 +112,19 @@ impl DictationPipeline {
         mode: DictationMode,
         on_recognized: impl FnOnce(&str),
     ) -> Result<DictationResult, PipelineError> {
+        let recognized = self.recognize(samples_16khz, settings, api_key, device)?;
+        on_recognized(&recognized);
+        self.process_recognized(&recognized, settings, api_key, mode)
+    }
+
+    /// Recognizes a voice question without applying a dictation style or pasting it.
+    pub fn recognize(
+        &mut self,
+        samples_16khz: &[f32],
+        settings: &Settings,
+        api_key: Option<&str>,
+        device: ProcessingDevice,
+    ) -> Result<String, PipelineError> {
         self.unload_if_idle(settings.unload_after_minutes);
         let recognized = match settings.recognition_mode {
             RecognitionMode::Local => {
@@ -151,8 +164,7 @@ impl DictationPipeline {
         if recognized.trim().is_empty() {
             return Err(PipelineError::EmptyTranscription);
         }
-        on_recognized(&recognized);
-        self.process_recognized(&recognized, settings, api_key, mode)
+        Ok(recognized)
     }
 
     /// Reprocesses a saved transcription without microphone capture or ASR.

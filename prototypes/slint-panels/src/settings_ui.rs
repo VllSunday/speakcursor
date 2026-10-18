@@ -242,6 +242,7 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
         CloudTask::SpeechRecognition,
         CloudTask::SpeechProcessing,
         CloudTask::PromptGeneration,
+        CloudTask::ScreenHelp,
     ];
     if !tasks
         .iter()
@@ -285,6 +286,9 @@ fn verify_cloud_settings(settings: Settings, panel: slint::Weak<SettingsPanel>) 
                                 .verify_text_model(&key, model)
                                 .map_err(|error| format!("Модель обработки текста: {error}"))?
                         }
+                        CloudTask::ScreenHelp => client
+                            .verify_vision_model(&key, model)
+                            .map_err(|error| format!("Модель экранного режима: {error}"))?,
                         _ => {}
                     }
                 }
@@ -366,6 +370,7 @@ fn fill(panel: &SettingsPanel, settings: &Settings) {
     panel.set_asr_model(model(settings, CloudTask::SpeechRecognition).into());
     panel.set_processing_model(model(settings, CloudTask::SpeechProcessing).into());
     panel.set_prompt_model(model(settings, CloudTask::PromptGeneration).into());
+    panel.set_screen_model(model(settings, CloudTask::ScreenHelp).into());
     panel.set_default_style_name(
         match settings.default_style {
             DictationStyle::Raw => "Без обработки",
@@ -392,6 +397,7 @@ fn fill(panel: &SettingsPanel, settings: &Settings) {
     panel.set_structure_shortcut(shortcut(settings, DictationStyle::Structure).into());
     panel.set_custom_shortcut(shortcut(settings, DictationStyle::Custom).into());
     panel.set_prompt_shortcut(settings.prompt_shortcut.clone().into());
+    panel.set_screen_shortcut(settings.screen_shortcut.clone().into());
     panel.set_unload_minutes(
         settings
             .unload_after_minutes
@@ -473,6 +479,7 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
         (CloudTask::SpeechRecognition, panel.get_asr_model()),
         (CloudTask::SpeechProcessing, panel.get_processing_model()),
         (CloudTask::PromptGeneration, panel.get_prompt_model()),
+        (CloudTask::ScreenHelp, panel.get_screen_model()),
     ] {
         if value.trim().is_empty() {
             settings.cloud_models.remove(&task);
@@ -508,6 +515,7 @@ fn read(panel: &SettingsPanel) -> Result<Settings, String> {
         .collect::<Result<Vec<_>, _>>()?;
     settings.dictation_shortcut = panel.get_general_shortcut().trim().to_owned();
     settings.prompt_shortcut = panel.get_prompt_shortcut().trim().to_owned();
+    settings.screen_shortcut = panel.get_screen_shortcut().trim().to_owned();
     for (style, value) in [
         (DictationStyle::Raw, panel.get_raw_shortcut()),
         (DictationStyle::Proofread, panel.get_proofread_shortcut()),

@@ -5246,6 +5246,7 @@ dependencies = [
 name = "speakcursor-cloud"
 version = "0.1.0"
 dependencies = [
+ "base64 0.22.1",
  "reqwest",
  "serde_json",
  "speakcursor-audio",
@@ -5284,6 +5285,7 @@ dependencies = [
 name = "speakcursor-slint-panels"
 version = "0.1.0"
 dependencies = [
+ "image 0.25.10",
  "raw-window-handle",
  "rfd",
  "slint",

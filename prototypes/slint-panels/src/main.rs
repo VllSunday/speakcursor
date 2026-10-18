@@ -6,6 +6,8 @@ use slint::ComponentHandle;
 slint::include_modules!();
 
 mod history_ui;
+#[cfg(windows)]
+mod screen_capture;
 mod settings_ui;
 #[cfg(windows)]
 mod tray;
@@ -17,6 +19,10 @@ mod windows_hotkeys;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let assistant = AssistantPanel::new()?;
     let recording = RecordingPill::new()?;
+    #[cfg(windows)]
+    let screen_answer = ScreenPanel::new()?;
+    #[cfg(windows)]
+    let screen_trace = ScreenTrace::new()?;
     let settings = SettingsPanel::new()?;
     let history = HistoryPanel::new()?;
     #[cfg(windows)]
@@ -50,6 +56,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             let _ = panel.hide();
         }
     });
+    #[cfg(windows)]
+    {
+        let weak = screen_answer.as_weak();
+        screen_answer.on_close_requested(move || {
+            if let Some(panel) = weak.upgrade() {
+                let _ = panel.hide();
+            }
+        });
+        // Create the transparent native window while settings are opening,
+        // then keep its click-through style for later screen sessions.
+        screen_trace
+            .window()
+            .set_position(slint::PhysicalPosition::new(-32000, -32000));
+        screen_trace.show()?;
+        windows_focus::make_click_through(screen_trace.window())?;
+        screen_trace.hide()?;
+    }
     let settings_weak = settings.as_weak();
     let assistant_weak = assistant.as_weak();
     assistant.on_open_error_settings(move || {
@@ -74,7 +97,13 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     #[cfg(windows)]
-    windows_hotkeys::start(recording.as_weak(), assistant.as_weak(), settings.as_weak());
+    windows_hotkeys::start(
+        recording.as_weak(),
+        assistant.as_weak(),
+        settings.as_weak(),
+        screen_answer.as_weak(),
+        screen_trace.as_weak(),
+    );
 
     #[cfg(windows)]
     if let Some(expected) = foreground_before {

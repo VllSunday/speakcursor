@@ -11,16 +11,20 @@ use std::{
 
 use slint::ComponentHandle;
 use speakcursor_audio::AudioCapture;
+use speakcursor_cloud::{OpenAiClient, ScreenImage};
 use speakcursor_core::{
-    DictationAction, DictationController, DictationShortcut, DictationStyle, LocalCompute,
-    RecognitionMode, Settings,
+    CloudTask, DictationAction, DictationController, DictationShortcut, DictationStyle,
+    LocalCompute, RecognitionMode, Settings,
 };
 use speakcursor_dictation::{DictationMode, DictationPipeline, PipelineError};
 use speakcursor_history::History;
 use speakcursor_speech::ProcessingDevice;
 use speakcursor_windows::{OpenAiKeyStore, copy_text, foreground_window, paste_text_if_foreground};
 
-use crate::{AssistantPanel, RecordingPill, SettingsPanel, settings_ui, windows_focus};
+use crate::{
+    AssistantPanel, RecordingPill, ScreenPanel, ScreenTrace, SettingsPanel, screen_capture,
+    settings_ui, windows_focus,
+};
 
 const FIRST_ID: i32 = 100;
 const ESC_ID: i32 = 2;
@@ -34,6 +38,7 @@ const WM_HOTKEY: u32 = 0x0312;
 const WM_RELOAD: u32 = 0x8004;
 const WM_TIMER: u32 = 0x0113;
 static THREAD_ID: AtomicU32 = AtomicU32::new(0);
+static TRACE_GENERATION: AtomicU32 = AtomicU32::new(0);
 
 #[repr(C)]
 struct Point {
@@ -71,13 +76,32 @@ unsafe extern "system" {
 unsafe extern "system" {
     fn GetCurrentThreadId() -> u32;
 }
+#[link(name = "shell32")]
+unsafe extern "system" {
+    fn ShellExecuteW(
+        hwnd: *mut c_void,
+        operation: *const u16,
+        file: *const u16,
+        parameters: *const u16,
+        directory: *const u16,
+        show: i32,
+    ) -> *mut c_void;
+}
 
 #[derive(Clone, Copy)]
 struct Binding {
     id: i32,
     mode: DictationMode,
+    screen: bool,
     mods: u32,
     key: u32,
+}
+
+#[derive(Clone)]
+struct PendingScreen {
+    question: String,
+    frames: Vec<screen_capture::Frame>,
+    model: String,
 }
 
 #[derive(Clone)]
@@ -97,6 +121,8 @@ pub fn start(
     pill: slint::Weak<RecordingPill>,
     alert: slint::Weak<AssistantPanel>,
     settings_panel: slint::Weak<SettingsPanel>,
+    screen_panel: slint::Weak<ScreenPanel>,
+    trace: slint::Weak<ScreenTrace>,
 ) {
     let recovery = Arc::new(Mutex::new(None));
     if let Some(panel) = alert.upgrade() {
@@ -123,8 +149,67 @@ pub fn start(
             }
         });
     }
+    let screen_recovery: Arc<Mutex<Option<PendingScreen>>> = Arc::new(Mutex::new(None));
+    if let Some(panel) = screen_panel.upgrade() {
+        let weak = screen_panel.clone();
+        panel.on_open_link(move |url| {
+            if !url.starts_with("https://") && !url.starts_with("http://") {
+                return;
+            }
+            let action = "open\0".encode_utf16().collect::<Vec<_>>();
+            let url = format!("{url}\0").encode_utf16().collect::<Vec<_>>();
+            let opened = unsafe {
+                ShellExecuteW(
+                    std::ptr::null_mut(),
+                    action.as_ptr(),
+                    url.as_ptr(),
+                    std::ptr::null(),
+                    std::ptr::null(),
+                    1,
+                )
+            } as isize;
+            if opened <= 32 {
+                if let Some(panel) = weak.upgrade() {
+                    panel.set_status_text("Ссылку не удалось открыть".into());
+                }
+            }
+        });
+        let weak = screen_panel.clone();
+        panel.on_copy_answer(move || {
+            if let Some(panel) = weak.upgrade() {
+                if !panel.get_answer_text().trim().is_empty() {
+                    if let Err(error) = copy_text(&panel.get_answer_text()) {
+                        panel.set_status_text(format!("Копирование не удалось: {error}").into());
+                    } else {
+                        panel.set_status_text("Скопировано".into());
+                    }
+                }
+            }
+        });
+        let pending = Arc::clone(&screen_recovery);
+        let weak = screen_panel.clone();
+        panel.on_retry_request(move || {
+            let request = pending.lock().ok().and_then(|mut value| value.take());
+            if let Some(request) = request {
+                if let Some(panel) = weak.upgrade() {
+                    panel.set_retry_available(false);
+                }
+                let weak = weak.clone();
+                let pending = Arc::clone(&pending);
+                std::thread::spawn(move || send_screen_request(request, pending, weak));
+            }
+        });
+    }
     std::thread::spawn(move || {
-        if let Err(error) = run(pill, alert.clone(), settings_panel, recovery) {
+        if let Err(error) = run(
+            pill,
+            alert.clone(),
+            settings_panel,
+            screen_panel,
+            trace,
+            recovery,
+            screen_recovery,
+        ) {
             show_error_at(&alert, format!("Горячие клавиши недоступны: {error}"), 2);
         }
     });
@@ -227,6 +312,7 @@ fn bindings(settings: &Settings) -> Result<Vec<Binding>, String> {
     let mut choices = vec![(
         settings.dictation_shortcut.as_str(),
         DictationMode::Style(settings.default_style),
+        false,
     )];
     for style in [
         DictationStyle::Raw,
@@ -235,16 +321,22 @@ fn bindings(settings: &Settings) -> Result<Vec<Binding>, String> {
         DictationStyle::Custom,
     ] {
         if let Some(key) = settings.style_shortcuts.get(&style) {
-            choices.push((key.as_str(), DictationMode::Style(style)));
+            choices.push((key.as_str(), DictationMode::Style(style), false));
         }
     }
     choices.push((
         settings.prompt_shortcut.as_str(),
         DictationMode::PromptEngineer,
+        false,
+    ));
+    choices.push((
+        settings.screen_shortcut.as_str(),
+        DictationMode::Style(DictationStyle::Raw),
+        true,
     ));
     let mut seen = HashSet::new();
     let mut result = Vec::new();
-    for (text, mode) in choices {
+    for (text, mode, screen) in choices {
         if text.trim().is_empty() {
             continue;
         }
@@ -258,6 +350,7 @@ fn bindings(settings: &Settings) -> Result<Vec<Binding>, String> {
         result.push(Binding {
             id: FIRST_ID + result.len() as i32,
             mode,
+            screen,
             mods,
             key,
         });
@@ -351,7 +444,10 @@ fn run(
     pill: slint::Weak<RecordingPill>,
     alert: slint::Weak<AssistantPanel>,
     settings_panel: slint::Weak<SettingsPanel>,
+    screen_panel: slint::Weak<ScreenPanel>,
+    trace: slint::Weak<ScreenTrace>,
     recovery: Arc<Mutex<Option<PendingRecovery>>>,
+    screen_recovery: Arc<Mutex<Option<PendingScreen>>>,
 ) -> io::Result<()> {
     let mut settings = Settings::load(&settings_ui::settings_path()).map_err(io::Error::other)?;
     let mut active = match register(&settings) {
@@ -383,13 +479,14 @@ fn run(
     let mut pipeline = DictationPipeline::new().map_err(io::Error::other)?;
     let mut controller = DictationController::default();
     let mut capture: Option<AudioCapture> = None;
+    let mut screen_session: Option<screen_capture::Session> = None;
     let mut mode: Option<DictationMode> = None;
     let mut target = 0;
     let mut esc_active = false;
     let mut pending_reload = false;
     THREAD_ID.store(unsafe { GetCurrentThreadId() }, Ordering::Release);
     let idle_timer = unsafe { SetTimer(std::ptr::null_mut(), 1, 30_000, std::ptr::null_mut()) };
-    let level_timer = unsafe { SetTimer(std::ptr::null_mut(), 2, 100, std::ptr::null_mut()) };
+    let level_timer = unsafe { SetTimer(std::ptr::null_mut(), 2, 50, std::ptr::null_mut()) };
 
     loop {
         let mut message = std::mem::MaybeUninit::<Message>::uninit();
@@ -402,6 +499,13 @@ fn run(
             continue;
         }
         if level_timer != 0 && message.message == WM_TIMER && message.w_param == level_timer {
+            if let Some(session) = &mut screen_session {
+                if matches!(session.sample(), Ok(true)) {
+                    if let Some((rect, image)) = session.overlay() {
+                        show_trace(&trace, rect, image);
+                    }
+                }
+            }
             if let Some(recording) = &capture {
                 let level = recording.take_activity() as i32;
                 let pill = pill.clone();
@@ -431,6 +535,126 @@ fn run(
                     let _ = panel.show();
                 }
             });
+            continue;
+        }
+        if screen_session.is_some() {
+            if message.w_param as i32 == ESC_ID && esc_active {
+                if esc_active {
+                    unsafe { UnregisterHotKey(std::ptr::null_mut(), ESC_ID) };
+                    esc_active = false;
+                }
+                screen_session = None;
+                capture = None;
+                hide_trace(&trace);
+                show_pill_screen(&pill, "Отменено", false, true, target, false);
+                if pending_reload {
+                    reload_settings(&mut settings, &mut active, &alert);
+                    pending_reload = false;
+                }
+                continue;
+            }
+            if active
+                .iter()
+                .any(|binding| binding.id == message.w_param as i32 && binding.screen)
+            {
+                if esc_active {
+                    unsafe { UnregisterHotKey(std::ptr::null_mut(), ESC_ID) };
+                    esc_active = false;
+                }
+                if let Some(mut session) = screen_session.take() {
+                    let _ = session.sample();
+                    hide_trace_and_pill(&trace, &pill);
+                    // Wait for the overlay to disappear before reading screen pixels.
+                    std::thread::sleep(Duration::from_millis(80));
+                    let result = session.capture().and_then(|frames| {
+                        let samples = capture
+                            .take()
+                            .ok_or("Запись звука потеряна")?
+                            .finish()
+                            .map_err(|e| e.to_string())?;
+                        let key = OpenAiKeyStore::new(settings_ui::key_path())
+                            .load()
+                            .map_err(|e| e.to_string())?;
+                        let device = match settings.local_compute {
+                            LocalCompute::Cpu => ProcessingDevice::Cpu,
+                            LocalCompute::NvidiaCuda => ProcessingDevice::Cuda,
+                        };
+                        let question = pipeline
+                            .recognize(&samples, &settings, key.as_deref(), device)
+                            .map_err(|e| e.to_string())?;
+                        let model = settings
+                            .cloud_models
+                            .get(&CloudTask::ScreenHelp)
+                            .cloned()
+                            .filter(|s| !s.trim().is_empty())
+                            .ok_or("Выбери модель для экранного режима в настройках")?;
+                        if key.is_none() {
+                            return Err("Сохрани ключ OpenAI для экранного режима".into());
+                        }
+                        Ok(PendingScreen {
+                            question,
+                            frames,
+                            model,
+                        })
+                    });
+                    match result {
+                        Ok(request) => send_screen_request(
+                            request,
+                            Arc::clone(&screen_recovery),
+                            screen_panel.clone(),
+                        ),
+                        Err(error) => show_error_at(
+                            &alert,
+                            format!("Экранный запрос не отправлен: {error}"),
+                            -1,
+                        ),
+                    }
+                    capture = None;
+                }
+                if pending_reload {
+                    reload_settings(&mut settings, &mut active, &alert);
+                    pending_reload = false;
+                }
+                continue;
+            }
+            continue;
+        }
+        if let Some(binding) = active
+            .iter()
+            .find(|binding| binding.id == message.w_param as i32 && binding.screen)
+        {
+            if capture.is_some() {
+                continue;
+            }
+            let _ = binding;
+            target = foreground_window();
+            let started = screen_capture::Session::start().and_then(|session| {
+                let recording = AudioCapture::start_default()
+                    .map_err(|e| format!("Не удалось включить микрофон: {e}"))?;
+                Ok((session, recording))
+            });
+            match started {
+                Ok((session, recording)) => {
+                    esc_active =
+                        unsafe { RegisterHotKey(std::ptr::null_mut(), ESC_ID, NOREPEAT, 0x1b) }
+                            != 0;
+                    if !esc_active {
+                        show_error_at(
+                            &alert,
+                            "Esc недоступен для отмены экранного запроса".into(),
+                            2,
+                        );
+                        continue;
+                    }
+                    if let Ok(mut pending) = screen_recovery.lock() {
+                        *pending = None;
+                    }
+                    screen_session = Some(session);
+                    capture = Some(recording);
+                    show_pill_screen(&pill, "Экран · запись", true, false, target, true);
+                }
+                Err(error) => show_error_at(&alert, error, -1),
+            }
             continue;
         }
         let action = if message.w_param as i32 == ESC_ID && esc_active {
@@ -644,6 +868,17 @@ fn show_pill(
     auto_hide: bool,
     target: usize,
 ) {
+    show_pill_screen(pill, label, recording, auto_hide, target, false);
+}
+
+fn show_pill_screen(
+    pill: &slint::Weak<RecordingPill>,
+    label: &str,
+    recording: bool,
+    auto_hide: bool,
+    target: usize,
+    screen_mode: bool,
+) {
     let pill = pill.clone();
     let label = label.to_owned();
     let _ = slint::invoke_from_event_loop(move || {
@@ -652,6 +887,7 @@ fn show_pill(
             panel.set_generation(generation);
             panel.set_status_text(label.into());
             panel.set_recording(recording);
+            panel.set_screen_mode(screen_mode);
             panel.set_activity(0);
             let _ = panel.show();
             let _ = windows_focus::place_near_screen_edge(panel.window(), false, target);
@@ -673,6 +909,165 @@ fn show_pill(
             }
         }
     });
+}
+
+fn show_trace(
+    trace: &slint::Weak<ScreenTrace>,
+    rect: screen_capture::Rect,
+    pixels: slint::SharedPixelBuffer<slint::Rgba8Pixel>,
+) {
+    let trace = trace.clone();
+    let generation = TRACE_GENERATION.load(Ordering::Acquire);
+    let _ = slint::invoke_from_event_loop(move || {
+        if generation != TRACE_GENERATION.load(Ordering::Acquire) {
+            return;
+        }
+        if let Some(panel) = trace.upgrade() {
+            let scale = panel.window().scale_factor();
+            panel.set_overlay_width(rect.width() as f32 / scale);
+            panel.set_overlay_height(rect.height() as f32 / scale);
+            panel.set_trace_image(slint::Image::from_rgba8(pixels));
+            panel
+                .window()
+                .set_position(slint::PhysicalPosition::new(rect.left, rect.top));
+            let _ = panel.show();
+        }
+    });
+}
+
+fn hide_trace(trace: &slint::Weak<ScreenTrace>) {
+    TRACE_GENERATION.fetch_add(1, Ordering::AcqRel);
+    let trace = trace.clone();
+    let _ = slint::invoke_from_event_loop(move || {
+        if let Some(panel) = trace.upgrade() {
+            let _ = panel.hide();
+        }
+    });
+}
+
+fn hide_trace_and_pill(trace: &slint::Weak<ScreenTrace>, pill: &slint::Weak<RecordingPill>) {
+    TRACE_GENERATION.fetch_add(1, Ordering::AcqRel);
+    let trace = trace.clone();
+    let pill = pill.clone();
+    let (sender, receiver) = std::sync::mpsc::channel();
+    let _ = slint::invoke_from_event_loop(move || {
+        if let Some(panel) = trace.upgrade() {
+            let _ = panel.hide();
+        }
+        if let Some(panel) = pill.upgrade() {
+            let _ = panel.hide();
+        }
+        let _ = sender.send(());
+    });
+    let _ = receiver.recv_timeout(Duration::from_millis(500));
+}
+
+fn show_screen_panel(panel: &slint::Weak<ScreenPanel>, status: &str, text: &str, retry: bool) {
+    let panel = panel.clone();
+    let status = status.to_owned();
+    let text = text.to_owned();
+    let _ = slint::invoke_from_event_loop(move || {
+        if let Some(panel) = panel.upgrade() {
+            panel.set_generation(panel.get_generation() + 1);
+            panel.set_status_text(status.into());
+            let links = if status == "Готово" {
+                extract_urls(&text)
+                    .into_iter()
+                    .take(3)
+                    .map(slint::SharedString::from)
+                    .collect::<Vec<_>>()
+            } else {
+                Vec::new()
+            };
+            panel.set_answer_text(text.into());
+            panel.set_result_links(slint::ModelRc::from(std::rc::Rc::new(
+                slint::VecModel::from(links),
+            )));
+            panel.set_retry_available(retry);
+            let _ = panel.show();
+            let _ = windows_focus::place_near_screen_edge(panel.window(), true, 0);
+            let weak = panel.as_weak();
+            slint::Timer::single_shot(Duration::from_millis(10), move || {
+                if let Some(panel) = weak.upgrade() {
+                    let _ = windows_focus::make_non_activating(panel.window());
+                }
+            });
+        }
+    });
+}
+
+fn extract_urls(text: &str) -> Vec<String> {
+    let mut urls = Vec::new();
+    for word in text.split_whitespace() {
+        let Some(start) = word.find("https://").or_else(|| word.find("http://")) else {
+            continue;
+        };
+        let candidate = word[start..]
+            .trim_end_matches(|c: char| matches!(c, ')' | ']' | '.' | ',' | ';' | '"' | '\''));
+        if candidate.len() > 8 && !urls.iter().any(|url| url == candidate) {
+            urls.push(candidate.to_owned());
+        }
+    }
+    urls
+}
+
+fn send_screen_request(
+    request: PendingScreen,
+    pending: Arc<Mutex<Option<PendingScreen>>>,
+    panel: slint::Weak<ScreenPanel>,
+) {
+    show_screen_panel(&panel, "Обработка", "", false);
+    let result = (|| -> Result<String, String> {
+        let key = OpenAiKeyStore::new(settings_ui::key_path())
+            .load()
+            .map_err(|error| error.to_string())?
+            .ok_or("Ключ OpenAI не сохранён")?;
+        let images = request
+            .frames
+            .iter()
+            .map(|frame| ScreenImage {
+                label: &frame.label,
+                original_png: &frame.original_png,
+                marked_png: frame.marked_png.as_deref(),
+            })
+            .collect::<Vec<_>>();
+        let client = OpenAiClient::new().map_err(|error| error.to_string())?;
+        client
+            .answer_screen_streaming(&key, &request.model, &request.question, &images, |delta| {
+                let panel = panel.clone();
+                let delta = delta.to_owned();
+                let _ = slint::invoke_from_event_loop(move || {
+                    if let Some(panel) = panel.upgrade() {
+                        let mut answer = panel.get_answer_text().to_string();
+                        answer.push_str(&delta);
+                        panel.set_answer_text(answer.into());
+                    }
+                });
+            })
+            .map_err(|error| error.to_string())
+    })();
+    match result {
+        Ok(answer) => {
+            if let Ok(mut value) = pending.lock() {
+                *value = None;
+            }
+            // The completed text is authoritative even if some deltas were lost.
+            show_screen_panel(&panel, "Готово", &answer, false);
+        }
+        Err(error) => {
+            if let Ok(mut value) = pending.lock() {
+                *value = Some(request);
+            }
+            show_screen_panel(
+                &panel,
+                "Ошибка",
+                &format!(
+                    "Запрос не отправлен или ответ прервался: {error}. Нажми «Повторить» для новой отправки того же вопроса и снимка."
+                ),
+                true,
+            );
+        }
+    }
 }
 
 fn show_error(alert: &slint::Weak<AssistantPanel>, message: String) {

@@ -11,6 +11,8 @@ type Hwnd = *mut c_void;
 const GWL_EXSTYLE: i32 = -20;
 const WS_EX_TOOLWINDOW: u32 = 0x0000_0080;
 const WS_EX_NOACTIVATE: u32 = 0x0800_0000;
+const WS_EX_TRANSPARENT: u32 = 0x0000_0020;
+const WS_EX_LAYERED: u32 = 0x0008_0000;
 const SWP_NOSIZE: u32 = 0x0001;
 const SWP_NOMOVE: u32 = 0x0002;
 const SWP_NOACTIVATE: u32 = 0x0010;
@@ -117,6 +119,36 @@ pub fn make_non_activating(window: &slint::Window) -> Result<(), Box<dyn std::er
             hwnd,
             GWL_EXSTYLE,
             (style | WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE) as isize,
+        );
+        if SetWindowPos(
+            hwnd,
+            -1_isize as Hwnd,
+            0,
+            0,
+            0,
+            0,
+            SWP_NOSIZE | SWP_NOMOVE | SWP_NOACTIVATE | SWP_FRAMECHANGED,
+        ) == 0
+        {
+            return Err(io::Error::last_os_error().into());
+        }
+    }
+    Ok(())
+}
+
+pub fn make_click_through(window: &slint::Window) -> Result<(), Box<dyn std::error::Error>> {
+    make_non_activating(window)?;
+    let handle = window.window_handle();
+    let RawWindowHandle::Win32(native) = handle.window_handle()?.as_raw() else {
+        return Err(io::Error::other("Slint returned a non-Windows window handle").into());
+    };
+    let hwnd = native.hwnd.get() as Hwnd;
+    unsafe {
+        let style = GetWindowLongPtrW(hwnd, GWL_EXSTYLE) as u32;
+        SetWindowLongPtrW(
+            hwnd,
+            GWL_EXSTYLE,
+            (style | WS_EX_TRANSPARENT | WS_EX_LAYERED) as isize,
         );
         if SetWindowPos(
             hwnd,

@@ -149,6 +149,7 @@ export component RecordingPill inherits Window {
     in-out property <int> activity: 0;
     in-out property <int> generation: 0;
     in-out property <bool> recording: false;
+    in-out property <bool> screen-mode: false;
     in-out property <string> status-text: "Готово";
 
     Rectangle {
@@ -191,6 +192,10 @@ export component RecordingPill inherits Window {
             font-weight: 600;
             color: #f5f6f8;
         }
+        if root.screen-mode: Text {
+            x: 119px; y: 16px; width: 28px; height: 24px;
+            text: "▣"; color: #78b8ff; font-size: 18px;
+        }
         Rectangle {
             x: 147px;
             y: 23px - root.activity * 1px;
@@ -228,6 +233,59 @@ export component RecordingPill inherits Window {
     }
 }
 
+export component ScreenPanel inherits Window {
+    width: 580px;
+    height: 510px;
+    background: transparent;
+    no-frame: true;
+    always-on-top: true;
+    title: "SpeakCursor — экранный запрос";
+    in-out property <string> answer-text: "";
+    in-out property <string> status-text: "Ответ";
+    in-out property <bool> retry-available: false;
+    in-out property <int> generation: 0;
+    in-out property <[string]> result-links: [];
+    callback close-requested();
+    callback copy-answer();
+    callback retry-request();
+    callback open-link(string);
+    Rectangle {
+        x: 12px; y: 12px; width: 556px; height: 486px;
+        background: #202938; border-radius: 18px;
+        drop-shadow-blur: 18px; drop-shadow-offset-y: 5px; drop-shadow-color: #00000055;
+        Rectangle { x: 0px; y: 0px; width: parent.width; height: 42px; background: #293a59; border-radius: 18px; }
+        Rectangle { x: 0px; y: 24px; width: parent.width; height: 18px; background: #293a59; }
+        Text { x: 20px; y: 10px; width: 455px; height: 24px; text: "SpeakCursor · " + root.status-text; color: white; font-size: 15px; font-weight: 600; }
+        Text { x: 512px; y: 8px; width: 24px; height: 24px; text: "×"; color: white; font-size: 21px; }
+        TouchArea { x: 500px; y: 0px; width: 55px; height: 42px; clicked => { root.close-requested(); } }
+        TextEdit {
+            x: 20px; y: 60px; width: 516px; height: 282px;
+            text: root.answer-text; read-only: true;
+        }
+        for link[index] in root.result-links: Rectangle {
+            x: 20px; y: 355px + index * 23px;
+            width: 516px; height: 22px;
+            Text { width: parent.width; height: parent.height; text: link; color: #78b8ff; font-size: 12px; overflow: elide; }
+            TouchArea { width: parent.width; height: parent.height; clicked => { root.open-link(link); } }
+        }
+        Button { x: 20px; y: 435px; width: 116px; height: 32px; text: "Копировать"; clicked => { root.copy-answer(); } }
+        if root.retry-available: Button { x: 145px; y: 435px; width: 116px; height: 32px; text: "Повторить"; clicked => { root.retry-request(); } }
+    }
+}
+
+export component ScreenTrace inherits Window {
+    in-out property <length> overlay-width: 100px;
+    in-out property <length> overlay-height: 100px;
+    in-out property <image> trace-image;
+    width: root.overlay-width;
+    height: root.overlay-height;
+    background: transparent;
+    no-frame: true;
+    always-on-top: true;
+    title: "SpeakCursor — указание";
+    Image { width: parent.width; height: parent.height; source: root.trace-image; }
+}
+
 export component SettingsPanel inherits Window {
     width: 800px;
     height: 650px;
@@ -246,6 +304,7 @@ export component SettingsPanel inherits Window {
     in-out property <string> asr-model: "";
     in-out property <string> processing-model: "";
     in-out property <string> prompt-model: "";
+    in-out property <string> screen-model: "";
     in-out property <[string]> transcription-model-options: [];
     in-out property <[string]> text-model-options: [];
     in-out property <string> default-style-name: "Без обработки";
@@ -257,6 +316,7 @@ export component SettingsPanel inherits Window {
     in-out property <string> structure-shortcut: "";
     in-out property <string> custom-shortcut: "";
     in-out property <string> prompt-shortcut: "Ctrl+Alt+F9";
+    in-out property <string> screen-shortcut: "Ctrl+Alt+F10";
     in-out property <string> unload-minutes: "";
     in-out property <bool> keep-history-forever: false;
     in-out property <string> feedback-text: "";
@@ -329,10 +389,12 @@ export component SettingsPanel inherits Window {
         Text { x: 0px; y: 145px; text: "Обработка текста и стили"; color: #172846; }
         LineEdit { x: 0px; y: 170px; width: 335px; text <=> root.processing-model; }
         ComboBox { x: 345px; y: 170px; width: 235px; model: root.text-model-options; selected(value) => { root.processing-model = value; } }
-        Text { x: 0px; y: 235px; text: "Промпт-инженер"; color: #172846; }
-        LineEdit { x: 0px; y: 260px; width: 335px; text <=> root.prompt-model; }
-        ComboBox { x: 345px; y: 260px; width: 235px; model: root.text-model-options; selected(value) => { root.prompt-model = value; } }
-        Text { x: 0px; y: 325px; width: 580px; height: 64px; text: "Список показывает подходящие семейства моделей из каталога OpenAI. Если нужной модели в списке нет, впиши её ID вручную: сохранение проверит реальный запрос к API."; color: #627188; wrap: word-wrap; }
+        Text { x: 0px; y: 227px; text: "Промпт-инженер"; color: #172846; }
+        LineEdit { x: 0px; y: 250px; width: 335px; text <=> root.prompt-model; }
+        ComboBox { x: 345px; y: 250px; width: 235px; model: root.text-model-options; selected(value) => { root.prompt-model = value; } }
+        Text { x: 0px; y: 303px; text: "Экран и изображения"; color: #172846; }
+        LineEdit { x: 0px; y: 326px; width: 335px; text <=> root.screen-model; }
+        ComboBox { x: 345px; y: 326px; width: 235px; model: root.text-model-options; selected(value) => { root.screen-model = value; } }
     }
 
     if root.page == 1: Rectangle {
@@ -370,8 +432,10 @@ export component SettingsPanel inherits Window {
         LineEdit { x: 310px; y: 180px; width: 270px; text <=> root.custom-shortcut; }
         Text { x: 0px; y: 225px; text: "Промпт-инженер"; color: #172846; }
         LineEdit { x: 310px; y: 225px; width: 270px; text <=> root.prompt-shortcut; }
+        Text { x: 0px; y: 270px; text: "Экран и мышь"; color: #172846; }
+        LineEdit { x: 310px; y: 270px; width: 270px; text <=> root.screen-shortcut; }
         Text {
-            x: 0px; y: 290px; width: 580px;
+            x: 0px; y: 329px; width: 580px;
             text: "Повтор того же сочетания завершает запись. Esc отменяет.";
             color: #627188;
         }

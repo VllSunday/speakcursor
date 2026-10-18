@@ -67,6 +67,7 @@ pub struct Settings {
     pub dictation_shortcut: String,
     pub style_shortcuts: BTreeMap<DictationStyle, String>,
     pub prompt_shortcut: String,
+    pub screen_shortcut: String,
     pub launch_at_login: bool,
 }
 
@@ -87,6 +88,7 @@ impl Default for Settings {
             dictation_shortcut: "Ctrl+Alt+F8".into(),
             style_shortcuts: BTreeMap::new(),
             prompt_shortcut: "Ctrl+Alt+F9".into(),
+            screen_shortcut: "Ctrl+Alt+F10".into(),
             launch_at_login: true,
         }
     }
