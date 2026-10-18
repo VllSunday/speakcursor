@@ -148,7 +148,7 @@ fn retry(panel: &HistoryPanel, id: u64) {
                 let key = speakcursor_windows::OpenAiKeyStore::new(settings_ui::key_path())
                     .load()
                     .map_err(|error| error.to_string())?;
-                let mut pipeline = DictationPipeline::new().map_err(|error| error.to_string())?;
+                let pipeline = DictationPipeline::new().map_err(|error| error.to_string())?;
                 let mode = saved
                     .style
                     .map(DictationMode::Style)

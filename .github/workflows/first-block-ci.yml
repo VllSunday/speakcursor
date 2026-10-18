@@ -49,6 +49,8 @@ jobs:
             exit $checkResult
           }
           Get-Content windows-check.log -Tail 8
+      - name: Test screen selection logic
+        run: cargo test --locked --manifest-path prototypes/slint-panels/Cargo.toml
       - name: Build Windows executable
         shell: pwsh
         run: |

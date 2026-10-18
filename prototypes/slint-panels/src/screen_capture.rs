@@ -114,7 +114,6 @@ pub struct Session {
     last: Point,
 }
 
-#[derive(Clone)]
 pub struct Frame {
     pub label: String,
     pub original_png: Vec<u8>,
@@ -160,10 +159,14 @@ impl Session {
 
     pub fn sample(&mut self) -> Result<bool, String> {
         let current = cursor()?;
-        if current == self.last {
-            return Ok(false);
-        }
         let rect = monitor_at(current)?;
+        Ok(self.record_position(current, rect))
+    }
+
+    fn record_position(&mut self, current: Point, rect: Rect) -> bool {
+        if current == self.last {
+            return false;
+        }
         if let Some(path) = self
             .monitors
             .iter_mut()
@@ -185,7 +188,7 @@ impl Session {
             });
         }
         self.last = current;
-        Ok(true)
+        true
     }
 
     pub fn capture(&self) -> Result<Vec<Frame>, String> {
@@ -236,6 +239,42 @@ impl Session {
             draw_path(buffer.make_mut_bytes(), drawing_rect, &points, 1);
         }
         Some((rect, buffer))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn captures_only_visited_monitors_and_leaves_still_cursor_unmarked() {
+        let left = Rect {
+            left: 0,
+            top: 0,
+            right: 100,
+            bottom: 100,
+        };
+        let right = Rect {
+            left: 100,
+            top: 0,
+            right: 200,
+            bottom: 100,
+        };
+        let mut session = Session {
+            monitors: vec![MonitorPath {
+                rect: left,
+                points: vec![],
+            }],
+            last: Point { x: 30, y: 30 },
+        };
+        assert!(!session.record_position(Point { x: 30, y: 30 }, left));
+        assert_eq!(session.monitors.len(), 1);
+        assert!(session.monitors[0].points.is_empty());
+        assert!(session.record_position(Point { x: 40, y: 40 }, left));
+        assert_eq!(session.monitors[0].points.len(), 2);
+        assert!(session.record_position(Point { x: 150, y: 40 }, right));
+        assert_eq!(session.monitors.len(), 2);
+        assert_eq!(session.monitors[1].points, vec![Point { x: 150, y: 40 }]);
     }
 }
 

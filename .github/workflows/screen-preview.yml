@@ -26,6 +26,8 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           cargo test --locked --manifest-path crates/speakcursor-dictation/Cargo.toml
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          cargo test --locked --manifest-path prototypes/slint-panels/Cargo.toml
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Build Windows application
         run: cargo build --release --locked --manifest-path prototypes/slint-panels/Cargo.toml
       - name: Package executable and instructions

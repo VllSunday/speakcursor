@@ -172,7 +172,10 @@ impl OpenAiClient {
         check_key_and_model(key, model)?;
         if question.trim().is_empty()
             || images.is_empty()
-            || images.iter().any(|image| image.original_png.is_empty())
+            || images.iter().any(|image| {
+                image.original_png.is_empty()
+                    || image.marked_png.is_some_and(|marked| marked.is_empty())
+            })
         {
             return Err(CloudError::UnexpectedResponse);
         }

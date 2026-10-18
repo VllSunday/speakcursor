@@ -98,11 +98,9 @@ struct Binding {
     key: u32,
 }
 
-#[derive(Clone)]
 struct PendingScreen {
     question: String,
     frames: Vec<screen_capture::Frame>,
-    model: String,
 }
 
 #[derive(Clone)]
@@ -619,20 +617,10 @@ fn run(
                             let question = pipeline
                                 .recognize(&samples, &settings, key.as_deref(), device)
                                 .map_err(|e| e.to_string())?;
-                            let model = settings
-                                .cloud_models
-                                .get(&CloudTask::ScreenHelp)
-                                .cloned()
-                                .filter(|s| !s.trim().is_empty())
-                                .ok_or("Выбери модель для экранного режима в настройках")?;
                             if key.is_none() {
                                 return Err("Сохрани ключ OpenAI для экранного режима".into());
                             }
-                            Ok(PendingScreen {
-                                question,
-                                frames,
-                                model,
-                            })
+                            Ok(PendingScreen { question, frames })
                         });
                     match result {
                         Ok(request) => send_screen_request(
@@ -1062,11 +1050,11 @@ fn show_screen_panel(panel: &slint::Weak<ScreenPanel>, status: &str, text: &str,
     let _ = slint::invoke_from_event_loop(move || {
         if let Some(panel) = panel.upgrade() {
             panel.set_generation(panel.get_generation() + 1);
+            let completed = status == "Готово";
             panel.set_status_text(status.into());
-            let links = if status == "Готово" {
+            let links = if completed {
                 extract_urls(&text)
                     .into_iter()
-                    .take(3)
                     .map(slint::SharedString::from)
                     .collect::<Vec<_>>()
             } else {
@@ -1111,6 +1099,14 @@ fn send_screen_request(
 ) {
     show_screen_panel(&panel, "Обработка", "", false);
     let result = (|| -> Result<String, String> {
+        let settings =
+            Settings::load(&settings_ui::settings_path()).map_err(|error| error.to_string())?;
+        let model = settings
+            .cloud_models
+            .get(&CloudTask::ScreenHelp)
+            .map(String::as_str)
+            .filter(|model| !model.trim().is_empty())
+            .ok_or("Выбери модель для экранного режима в настройках")?;
         let key = OpenAiKeyStore::new(settings_ui::key_path())
             .load()
             .map_err(|error| error.to_string())?
@@ -1126,7 +1122,7 @@ fn send_screen_request(
             .collect::<Vec<_>>();
         let client = OpenAiClient::new().map_err(|error| error.to_string())?;
         client
-            .answer_screen_streaming(&key, &request.model, &request.question, &images, |delta| {
+            .answer_screen_streaming(&key, model, &request.question, &images, |delta| {
                 let panel = panel.clone();
                 let delta = delta.to_owned();
                 let _ = slint::invoke_from_event_loop(move || {

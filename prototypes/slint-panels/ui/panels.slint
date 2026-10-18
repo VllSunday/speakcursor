@@ -273,11 +273,13 @@ export component ScreenPanel inherits Window {
                 }
             }
         }
-        for link[index] in root.result-links: Rectangle {
-            x: 20px; y: 355px + index * 23px;
-            width: 516px; height: 22px;
-            Text { width: parent.width; height: parent.height; text: link; color: #78b8ff; font-size: 12px; overflow: elide; }
-            TouchArea { width: parent.width; height: parent.height; clicked => { root.open-link(link); } }
+        ListView {
+            x: 20px; y: 350px; width: 516px; height: 74px;
+            for link in root.result-links: Rectangle {
+                width: parent.width; height: 23px; background: transparent;
+                Text { width: parent.width; height: parent.height; text: link; color: #78b8ff; font-size: 12px; overflow: elide; }
+                TouchArea { width: parent.width; height: parent.height; clicked => { root.open-link(link); } }
+            }
         }
         Rectangle {
             x: 20px; y: 435px; width: 126px; height: 32px; border-radius: 9px; background: #367ae3;
